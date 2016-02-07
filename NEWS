@@ -1,0 +1,6 @@
+
+- computation of solvation free energies
+- git revision control
+- Compilation/check/installation on any POSIX platform with GNU Build Tools.
+- POPSc is accelerated by hard coding of ring topologies.
+
