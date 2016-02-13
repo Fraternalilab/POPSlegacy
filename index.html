@@ -1,1 +1,210 @@
-Welcome to POPS
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Pops by jkleinj</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Pops</h1>
+          <h2>POPS*: solvent accessible surface areas (SASAs) of proteins and nucleic acids</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/jkleinj/POPS/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/jkleinj/POPS/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/jkleinj/POPS" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h1>
+
+<p>POPS* is a fast algorithm to calculate solvent accessible surface areas (SASAs) of proteins and nucleic acids at atomic (default) and residue (coarse-grained) level. Atomic and residue area parameters have been optimised versus an accurate all-atom method (Naccess). Residue areas (coarse-grained) are simulated with a single sphere centered at the C-alpha atom for amino acids and at the P atom for nucleotides.</p>
+
+<p>An analytical formula is used for the calculation of solvent accessibilities. The formula is simple, easily derivable and fast to compute, therefore, practical for use in molecular dynamics (MD) simulations as an approximation to the first solvation shell. The default output contains: list of hydrophobic, hydrophilic and total contributions to the accessible surface area of the entire molecule (all atoms), first model only.</p>
+
+<p>After submission a holding page provides access to the result page. Otherwise results (also of previous runs) can be accessed through the Retrieve function.</p>
+
+<p>The POPS* program code can be downloaded here.
+Users publishing results obtained with the POPS* program should acknowledge its use by citing Fraternali and Cavallo (2002) and for the POPS* server Cavallo et al. (2003).</p>
+
+<h1>
+<a id="parameters" class="anchor" href="#parameters" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Parameters</h1>
+
+<p>The optimised parameters are listed here:</p>
+
+<h2>
+<a id="atom-parameters" class="anchor" href="#atom-parameters" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>atom parameters</h2>
+
+<h2>
+<a id="residue-parameters-coarse-grained" class="anchor" href="#residue-parameters-coarse-grained" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>residue parameters (coarse-grained)</h2>
+
+<h1>
+<a id="help-on-options" class="anchor" href="#help-on-options" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Help on Options</h1>
+
+<h2>
+<a id="pdb-structure-file" class="anchor" href="#pdb-structure-file" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PDB structure file</h2>
+
+<p>Entering a PDB identifier (lower case or upper case without the extension .pdb) in the first text window will automatically perform the POPS* calculation on the corresponding structure. Uploading of structure files by the user can be performed by specifying the file path and name in the second text window. Please ensure that atom and residue names conform to the PDB format.</p>
+
+<h2>
+<a id="coarse-grained" class="anchor" href="#coarse-grained" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>coarse-grained</h2>
+
+<p>Calculation of accessible surface area on residue level. </p>
+
+<h2>
+<a id="probe-radius" class="anchor" href="#probe-radius" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>probe radius</h2>
+
+<p>The radius of the surface probe (solvent molecule) in Angstrom. </p>
+
+<h2>
+<a id="multiple-models-option-currently-disabled" class="anchor" href="#multiple-models-option-currently-disabled" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>multiple models (option currently disabled)</h2>
+
+<p>By default the POPS* calculation will be performed on the first model only, if a structure file containing multiple models is chosen/uploaded. Activation of the 'Multiple models' button triggers POPS* calculation of all models. </p>
+
+<h2>
+<a id="molecule-composition" class="anchor" href="#molecule-composition" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>molecule composition</h2>
+
+<p>Number of chains, standard residues, total residues and atoms. </p>
+
+<h2>
+<a id="atom-types" class="anchor" href="#atom-types" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>atom types</h2>
+
+<p>List of atom types and their POPS* parameters. </p>
+
+<h2>
+<a id="molecule-topology" class="anchor" href="#molecule-topology" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>molecule topology</h2>
+
+<p>Number of bonds, angles, torsions and non-bonded interactions. </p>
+
+<h2>
+<a id="pops-area-per-atom" class="anchor" href="#pops-area-per-atom" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>POPS* area per atom</h2>
+
+<p>List of atom areas [A2], number of overlaps and atom grouping (1: positive, 2: negative, 3: polar, 4: aromatic, 5: aliphatic). </p>
+
+<h2>
+<a id="pops-area-per-residue" class="anchor" href="#pops-area-per-residue" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>POPS* area per residue</h2>
+
+<p>List of residue areas <a href="hydrophilic,%20hydrophobic,%20total">A2</a> and number of overlaps. </p>
+
+<h2>
+<a id="pops-area-per-chain" class="anchor" href="#pops-area-per-chain" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>POPS* area per chain</h2>
+
+<p>List of chain areas <a href="hydrophilic,%20hydrophobic,%20total">A2</a>. </p>
+
+<h2>
+<a id="neighbour-list" class="anchor" href="#neighbour-list" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>neighbour list</h2>
+
+<p>List of neighbours per atom, provided in a separate output file. </p>
+
+<h1>
+<a id="output" class="anchor" href="#output" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Output</h1>
+
+<h2>
+<a id="atom-sasas" class="anchor" href="#atom-sasas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ATOM SASAs</h2>
+
+<p>AtomNr : atom number in molecular coordinate file
+AtomNe : atom name in molecular coordinate file
+ResidNe : residue name in molecular coordinate file
+Chain : chain name in molecular coordinate file (can be void)
+ResidNr : residue number in molecular coordinate file
+SASA/A^2 : solvent accessible surace area in Angstrom^2 units
+Q(SASA) : quotient of SASA and Surf (below), i.e. the fraction of SASA
+N(overl) : number of overlaps with atom neighbours
+AtomTp : atom type code (GROMOS van der Waals atom type)
+AtomGp : atom group code: positive=1, negative=2, polar=3, aromatic=4, aliphatic=5
+Surf/A^2 : surface area of isolated atom</p>
+
+<h2>
+<a id="residue-sasas" class="anchor" href="#residue-sasas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>RESIDUE SASAs</h2>
+
+<p>ResidNe : residue name in molecular coordinate file
+Chain : chain name in molecular coordinate file (can be void)
+ResidNr : residue number in molecular coordinate file
+Phob/A^2 : hydrophobic solvent accessible surace area in Angstrom^2 units
+Phil/A^2 : hydrophilic solvent accessible surace area in Angstrom^2 units
+Total/A^2 : total solvent accessible surace area in Angstrom^2 units
+Q(SASA) : quotient of SASA and Surf (below), i.e. the fraction of SASA
+N(overl) : number of overlaps with atom neighbours
+Surf/A^2 : surface area of isolated atom</p>
+
+<h2>
+<a id="chain-sasas" class="anchor" href="#chain-sasas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CHAIN SASAs</h2>
+
+<p>Chain : chain number
+Id : chain name in molecular coordinate file (can be void)
+AtomRange : range of atom numbers in chain
+ResidRange : range of residue numbers in chain
+Phob/A^2 : hydrophobic solvent accessible surace area in Angstrom^2 units
+Phil/A^2 : hydrophilic solvent accessible surace area in Angstrom^2 units
+Total/A^2 : total solvent accessible surace area in Angstrom^2 units</p>
+
+<h2>
+<a id="molecule-sasas" class="anchor" href="#molecule-sasas" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MOLECULE SASAs</h2>
+
+<p>Phob/A^2 : hydrophobic solvent accessible surace area in Angstrom^2 units
+Phil/A^2 : hydrophilic solvent accessible surace area in Angstrom^2 units
+Total/A^2 : total solvent accessible surace area in Angstrom^2 units</p>
+
+<h1>
+<a id="background-information" class="anchor" href="#background-information" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Background Information</h1>
+
+<p>The area equation is defined by a product Π of terms that estimate the reduction of SASA of atom i by the overlap with its neighbours j (Hasel at al., 1988):</p>
+
+<p>Πi=1N [ 1 - (pi pij bij(rij) / Si) ].</p>
+
+<p>i is the atom for which the POPS* area is computed, j is any of N neighbour atoms.
+pi is an atom type specific SASA parameter.
+pij is a sphere overlap parameter depending on the degree of bonding between i and j (1-2, 1-3, 1-4, 1-(&gt;4)).
+bij is a geometric construct based on the radii and distance (rij) of i and j.
+Si is the SASA of the free atom i (no neighbours).</p>
+
+<p>The atom specific parameters (radii, SASAs) are listed in the Parameters files for the atoms of all standard PDB residues, followed by the connectivity parameters (pij, bij) and the solvent radius for water.</p>
+
+<h1>
+<a id="references" class="anchor" href="#references" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>References</h1>
+
+<p>Fraternali, F. and van Gunsteren, W.F.
+An efficient mean solvation force model for use in molecular dynamics simulations of proteins in aqueous solution.
+Journal of Molecular Biology 256 (1996) 939-948.</p>
+
+<p>Fraternali, F. and Cavallo, L.
+Parameter optimized surfaces (POPS*): analysis of key interactions and conformational changes in the ribosome.
+Nucleic Acids Research 30 (2002) 2950-2960.</p>
+
+<p>Cavallo, L., Kleinjung, J. and Fraternali, F.
+POPS: A fast algorithm for solvent accessible surface areas at atomic and residue level.
+Nucleic Acids Research 31 (2003) 3364-3366.</p>
+
+<p>Kleinjung, J. and Fraternali, F.
+POPSCOMP: an automated interaction analysis of biomolecular complexes.
+Nucleic Acids Research 33 (2005) W342-W346.</p>
+
+<p>The POPS server was developed by Franca Fraternali, the POPS logo was designed by Domenico Fraternali.</p>
+        </section>
+
+        <footer>
+          Pops is maintained by <a href="https://github.com/jkleinj">jkleinj</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
