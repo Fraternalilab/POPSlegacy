@@ -228,8 +228,8 @@ int read_pdb(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
 		str->atom[str->nAtom].residueNumber = atoi(&line[22]);
 
 		/* code for insertion of residues */
-		/*str->atom[str->nAtom].icode[0] = line[26];
-		str->atom[str->nAtom].icode[1] = '\0';*/
+		str->atom[str->nAtom].icode[0] = line[26];
+		str->atom[str->nAtom].icode[1] = '\0';
 
 		/* coordinates */
 		str->atom[str->nAtom].pos.x = atof(&line[30]);
@@ -280,7 +280,7 @@ int read_pdb(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
 
 		/* check whether ATOM residue name is standard */
 		if (strncmp(line, "ATOM  ", 6) == 0)
-			resbuf = aacode(str->atom[str->nAtom].residueName);
+			assert((resbuf = aacode(str->atom[str->nAtom].residueName)) != ' ');
 			
 		/* detect CA and P atoms of standard residues for residue allocation */
 		if ((strncmp(line, "ATOM  ", 6) == 0) &&
@@ -306,7 +306,7 @@ int read_pdb(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
 
 		/*____________________________________________________________________________*/
 		/* count number of allResidues (including HETATM residues) */
-        if (str->nAtom == 0 || str->atom[str->nAtom].residueNumber != str->atom[str->nAtom - 1].residueNumber)
+        if (str->nAtom == 0 || str->atom[str->nAtom].residueNumber != str->atom[str->nAtom - 1].residueNumber || strcmp(str->atom[str->nAtom].icode, str->atom[str->nAtom - 1].icode) != 0)
 			++ str->nAllResidue;
 
 		/*____________________________________________________________________________*/

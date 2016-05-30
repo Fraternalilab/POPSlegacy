@@ -23,7 +23,7 @@ typedef struct
 	char residueName[4]; /* Residue name; 18 - 20 */
 	char chainIdentifier[2]; /* Chain identifier; 22 */
 	int residueNumber; /* Residue sequence number; 23 - 26 */
-	/*char icode[2];*/ /* Code for insertion of residues; 27 */
+	char icode[2]; /* Code for insertion of residues; 27 */
 	Vec pos; /* position vector (x, y, z) */
 	/*float occupancy;*/ /* Occupancy; 55 - 60 */
 	/*float temp_f;*/ /* Temperature factor; 61 - 66 */

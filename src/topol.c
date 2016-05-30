@@ -196,10 +196,10 @@ int get_bonds(Str *pdb, Type *type, Topol *topol, ConstantSasa *constant_sasa, A
 		/* to read in atom data, we need to refer to the original indices */
 		/* matrix row index i */
 		int i = floor(((my_rank * (pdb->nAtom - 1)) + xy) / (pdb->nAtom - 1));
-		/* matrix colun index j */
+		/* matrix column index j */
 		int j = xy % (pdb->nAtom - 1);
 
-		/* coarse grained 'P' needs more generous cutoff */
+		/* coarse grained 'P' needs a more generous cutoff */
 		if (argpdb->coarse && (strncmp(pdb->atom[i].atomName, " P  ", 4) == 0))
 			cutoffFactor = 0.7;
 		else
@@ -255,8 +255,6 @@ int get_bonds(Str *pdb, Type *type, Topol *topol, ConstantSasa *constant_sasa, A
 
 	/* assert that allocation is equal across nodes,
 		otherwise make it equal */
-	
-
 	MPI_Allgather(node_ib, 1, MPI_INT, nodes_ib, 1, MPI_INT, MPI_COMM_WORLD);
 	MPI_Allgather(node_jb, 1, MPI_INT, nodes_jb, 1, MPI_INT, MPI_COMM_WORLD);
 

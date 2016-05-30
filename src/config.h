@@ -64,13 +64,13 @@
 #define PACKAGE "pops"
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT "jkleinj@crick.ac.uk"
+#define PACKAGE_BUGREPORT "jens@jkleinj.eu"
 
 /* Define to the full name of this package. */
 #define PACKAGE_NAME "pops"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "pops 1.6.4"
+#define PACKAGE_STRING "pops 1.6.5"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "pops"
@@ -79,7 +79,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.6.4"
+#define PACKAGE_VERSION "1.6.5"
 
 /* Define to compile with PROFILING settings. */
 /* #undef PROFILING */
@@ -88,7 +88,7 @@
 #define STDC_HEADERS 1
 
 /* Version number of package */
-#define VERSION "1.6.4"
+#define VERSION "1.6.5"
 
 /* Define to rpl_malloc if the replacement function should be used. */
 /* #undef malloc */

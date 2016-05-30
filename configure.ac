@@ -1,6 +1,6 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
-AC_INIT(pops, 1.6.4, jkleinj@crick.ac.uk)
+AC_INIT(pops, 1.6.5, jens@jkleinj.eu)
 
 AC_PREREQ([2.63])
 AC_CONFIG_SRCDIR([src/arg.c])

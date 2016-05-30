@@ -3,47 +3,47 @@
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	5.7	//
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 AN	vector.h	15;"	d
 ARGPDB_H	argpdb.h	8;"	d
 ARG_H	arg.h	8;"	d
 ATOMGROUP_DATA_H	atomgroup_data.h	8;"	d
 ATOMGROUP_H	atomgroup.h	8;"	d
-Arg	arg.h	/^} Arg;$/;"	t	typeref:struct:__anon4
-Argpdb	argpdb.h	/^} Argpdb;$/;"	t	typeref:struct:__anon26
-Atom	pdb_structure.h	/^} Atom;$/;"	t	typeref:struct:__anon17
-AtomSFE	sigma.h	/^} AtomSFE;$/;"	t	typeref:struct:__anon11
-AtomSasa	sasa.h	/^} AtomSasa;$/;"	t	typeref:struct:__anon5
-AtomdataGroup	atomgroup.h	/^} AtomdataGroup;$/;"	t	typeref:struct:__anon19
-AtomdataSasa	sasa_const.h	/^} AtomdataSasa;$/;"	t	typeref:struct:__anon9
-AtomdataSigma	sigma_const.h	/^} AtomdataSigma;$/;"	t	typeref:struct:__anon21
-Atomgroup	atomgroup.h	/^} Atomgroup;$/;"	t	typeref:struct:__anon20
-ChainSFE	sigma.h	/^} ChainSFE;$/;"	t	typeref:struct:__anon13
-ChainSasa	sasa.h	/^} ChainSasa;$/;"	t	typeref:struct:__anon7
-ConstantSasa	sasa_const.h	/^} ConstantSasa;$/;"	t	typeref:struct:__anon10
-ConstantSigma	sigma_const.h	/^} ConstantSigma;$/;"	t	typeref:struct:__anon22
+Arg	arg.h	/^} Arg;$/;"	t	typeref:struct:__anon23
+Argpdb	argpdb.h	/^} Argpdb;$/;"	t	typeref:struct:__anon3
+Atom	pdb_structure.h	/^} Atom;$/;"	t	typeref:struct:__anon19
+AtomSFE	sigma.h	/^} AtomSFE;$/;"	t	typeref:struct:__anon6
+AtomSasa	sasa.h	/^} AtomSasa;$/;"	t	typeref:struct:__anon15
+AtomdataGroup	atomgroup.h	/^} AtomdataGroup;$/;"	t	typeref:struct:__anon21
+AtomdataSasa	sasa_const.h	/^} AtomdataSasa;$/;"	t	typeref:struct:__anon1
+AtomdataSigma	sigma_const.h	/^} AtomdataSigma;$/;"	t	typeref:struct:__anon25
+Atomgroup	atomgroup.h	/^} Atomgroup;$/;"	t	typeref:struct:__anon22
+ChainSFE	sigma.h	/^} ChainSFE;$/;"	t	typeref:struct:__anon8
+ChainSasa	sasa.h	/^} ChainSasa;$/;"	t	typeref:struct:__anon17
+ConstantSasa	sasa_const.h	/^} ConstantSasa;$/;"	t	typeref:struct:__anon2
+ConstantSigma	sigma_const.h	/^} ConstantSigma;$/;"	t	typeref:struct:__anon26
 ERRORMSG_H	error.h	8;"	d
 Error	error.c	/^void Error(char *message) {$/;"	f
 ErrorLoc	error.c	/^void ErrorLoc(char *message, char *file, int line) {$/;"	f
 ErrorSpec	error.c	/^void ErrorSpec(char *message, char *spec) {$/;"	f
 ErrorSpecNoexit	error.c	/^void ErrorSpecNoexit(char *message, char *spec) {$/;"	f
 FS_H	fs.h	8;"	d
-FileList	fs.h	/^} FileList;$/;"	t	typeref:struct:__anon16
-Frame	gettraj.h	/^} Frame;$/;"	t	typeref:struct:__anon2
+FileList	fs.h	/^} FileList;$/;"	t	typeref:struct:__anon5
+Frame	gettraj.h	/^} Frame;$/;"	t	typeref:struct:__anon12
 GETPDB_H	getpdb.h	8;"	d
 GETTRAJ_H	gettraj.h	8;"	d
 MATRIX_H	matrix.h	8;"	d
 MODSTRING_H	modstring.h	8;"	d
-MolSFE	sigma.h	/^} MolSFE;$/;"	t	typeref:struct:__anon14
-MolSasa	sasa.h	/^} MolSasa;$/;"	t	typeref:struct:__anon8
+MolSFE	sigma.h	/^} MolSFE;$/;"	t	typeref:struct:__anon9
+MolSasa	sasa.h	/^} MolSasa;$/;"	t	typeref:struct:__anon18
 PATTERN_H	pattern.h	8;"	d
 PDB_STRUCTURE_H	pdb_structure.h	8;"	d
 PI	vector.h	14;"	d
 POPS_H	pops.h	18;"	d
 PUTSASA_H	putsasa.h	8;"	d
 PUTSIGMA_H	putsigma.h	8;"	d
-ResSFE	sigma.h	/^} ResSFE;$/;"	t	typeref:struct:__anon12
-ResSasa	sasa.h	/^} ResSasa;$/;"	t	typeref:struct:__anon6
+ResSFE	sigma.h	/^} ResSFE;$/;"	t	typeref:struct:__anon7
+ResSasa	sasa.h	/^} ResSasa;$/;"	t	typeref:struct:__anon16
 SAFE_H	safe.h	8;"	d
 SASACONST_H	sasa_const.h	12;"	d
 SASADATA_H	sasa_data.h	11;"	d
@@ -52,16 +52,16 @@ SEQ_H	seq.h	8;"	d
 SIGMACONST_H	sigma_const.h	9;"	d
 SIGMADATA_H	sigma_data.h	9;"	d
 SIGMA_H	sigma.h	9;"	d
-Seq	seq.h	/^} Seq;$/;"	t	typeref:struct:__anon25
-Str	pdb_structure.h	/^} Str;$/;"	t	typeref:struct:__anon18
+Seq	seq.h	/^} Seq;$/;"	t	typeref:struct:__anon14
+Str	pdb_structure.h	/^} Str;$/;"	t	typeref:struct:__anon20
 TOPOL_H	topol.h	11;"	d
 TYPE_H	type.h	11;"	d
-Topol	topol.h	/^} Topol;$/;"	t	typeref:struct:__anon15
-Traj	gettraj.h	/^} Traj;$/;"	t	typeref:struct:__anon3
-Trajatom	gettraj.h	/^} Trajatom;$/;"	t	typeref:struct:__anon1
+Topol	topol.h	/^} Topol;$/;"	t	typeref:struct:__anon4
+Traj	gettraj.h	/^} Traj;$/;"	t	typeref:struct:__anon13
+Trajatom	gettraj.h	/^} Trajatom;$/;"	t	typeref:struct:__anon11
 Type	type.h	/^} Type;$/;"	t	typeref:struct:__anon24
 VECTOR_H	vector.h	8;"	d
-Vec	vector.h	/^} Vec;$/;"	t	typeref:struct:__anon23
+Vec	vector.h	/^} Vec;$/;"	t	typeref:struct:__anon10
 Warning	error.c	/^void Warning(char *message) {$/;"	f
 WarningSpec	error.c	/^void WarningSpec(char *message, char *spec) {$/;"	f
 aacode	getpdb.c	/^__inline__ static char aacode(char *code3)$/;"	f	file:
@@ -74,40 +74,40 @@ alloc_mat3D_vec	matrix.c	/^Vec ***alloc_mat3D_vec(Vec ***mat3D_vec, int x, int y
 alloc_mat4D_float	matrix.c	/^float ****alloc_mat4D_float(float ****mat4D_float, int w, int x, int y, int z)$/;"	f
 alloc_mat4D_int	matrix.c	/^int ****alloc_mat4D_int(int ****mat4D_int, int w, int x, int y, int z)$/;"	f
 alloc_mat4D_vec	matrix.c	/^Vec ****alloc_mat4D_vec(Vec ****mat4D_vec, int w, int x, int y, int z)$/;"	f
-angle	topol.h	/^	Type (*angle)[3]; \/* atom and residue types for each angle *\/$/;"	m	struct:__anon15
-atom	pdb_structure.h	/^	Atom *atom; \/* array of selected (CA) atoms constituting structure *\/$/;"	m	struct:__anon18
-atomDataGroup	atomgroup.h	/^	AtomdataGroup atomDataGroup[64][64]; \/* atom-specific data *\/$/;"	m	struct:__anon20
-atomDataSasa	sasa_const.h	/^    AtomdataSasa atomDataSasa[64][64]; \/* atom-specific data *\/$/;"	m	struct:__anon10
-atomDataSigma	sigma_const.h	/^    AtomdataSigma atomDataSigma[64][64]; \/* atom-specific data *\/$/;"	m	struct:__anon22
-atomMap	pdb_structure.h	/^	int *atomMap; \/* map of the selected atom count to the original atom count *\/$/;"	m	struct:__anon18
-atomName	atomgroup.h	/^	char atomName[8];$/;"	m	struct:__anon19
-atomName	pdb_structure.h	/^	char atomName[8]; \/* Atom name; 13 - 16 *\/$/;"	m	struct:__anon17
-atomName	sasa_const.h	/^	char atomName[4];$/;"	m	struct:__anon9
-atomName	sigma_const.h	/^	char atomName[4];$/;"	m	struct:__anon21
-atomNumber	pdb_structure.h	/^	int atomNumber; \/* Atom serial number;  7 - 11 *\/$/;"	m	struct:__anon17
-atomOut	arg.h	/^	int atomOut;$/;"	m	struct:__anon4
-atomRef	sasa.h	/^	int atomRef; \/* first atom of residue to refer to residue number and name *\/$/;"	m	struct:__anon6
-atomRef	sigma.h	/^	int atomRef; \/* first atom of residue to refer to residue number and name *\/$/;"	m	struct:__anon12
-atomSFE	sigma.h	/^	AtomSFE *atomSFE; \/* atomic values *\/$/;"	m	struct:__anon14
-atomSasa	sasa.h	/^	AtomSasa *atomSasa; \/* atomic values *\/$/;"	m	struct:__anon8
-atomType	atomgroup.h	/^	int atomType; \/* GROMOS atom type number *\/$/;"	m	struct:__anon19
-atomType	pdb_structure.h	/^	int atomType; \/* GROMOS atom type *\/$/;"	m	struct:__anon17
+angle	topol.h	/^	Type (*angle)[3]; \/* atom and residue types for each angle *\/$/;"	m	struct:__anon4
+atom	pdb_structure.h	/^	Atom *atom; \/* array of selected (CA) atoms constituting structure *\/$/;"	m	struct:__anon20
+atomDataGroup	atomgroup.h	/^	AtomdataGroup atomDataGroup[64][64]; \/* atom-specific data *\/$/;"	m	struct:__anon22
+atomDataSasa	sasa_const.h	/^    AtomdataSasa atomDataSasa[64][64]; \/* atom-specific data *\/$/;"	m	struct:__anon2
+atomDataSigma	sigma_const.h	/^    AtomdataSigma atomDataSigma[64][64]; \/* atom-specific data *\/$/;"	m	struct:__anon26
+atomMap	pdb_structure.h	/^	int *atomMap; \/* map of the selected atom count to the original atom count *\/$/;"	m	struct:__anon20
+atomName	atomgroup.h	/^	char atomName[8];$/;"	m	struct:__anon21
+atomName	pdb_structure.h	/^	char atomName[8]; \/* Atom name; 13 - 16 *\/$/;"	m	struct:__anon19
+atomName	sasa_const.h	/^	char atomName[4];$/;"	m	struct:__anon1
+atomName	sigma_const.h	/^	char atomName[4];$/;"	m	struct:__anon25
+atomNumber	pdb_structure.h	/^	int atomNumber; \/* Atom serial number;  7 - 11 *\/$/;"	m	struct:__anon19
+atomOut	arg.h	/^	int atomOut;$/;"	m	struct:__anon23
+atomRef	sasa.h	/^	int atomRef; \/* first atom of residue to refer to residue number and name *\/$/;"	m	struct:__anon16
+atomRef	sigma.h	/^	int atomRef; \/* first atom of residue to refer to residue number and name *\/$/;"	m	struct:__anon7
+atomSFE	sigma.h	/^	AtomSFE *atomSFE; \/* atomic values *\/$/;"	m	struct:__anon9
+atomSasa	sasa.h	/^	AtomSasa *atomSasa; \/* atomic values *\/$/;"	m	struct:__anon18
+atomType	atomgroup.h	/^	int atomType; \/* GROMOS atom type number *\/$/;"	m	struct:__anon21
+atomType	pdb_structure.h	/^	int atomType; \/* GROMOS atom type *\/$/;"	m	struct:__anon19
 atomType	type.h	/^	int *atomType; \/* identifier to denote atom type *\/$/;"	m	struct:__anon24
 atom_distance	topol.c	/^float atom_distance(Str *pdb, int i, int j)$/;"	f
 atom_sasa	sasa.c	/^__inline__ static double atom_sasa(MolSasa *molSasa, int k, double connectivityParameter, \\$/;"	f	file:
-bondState	topol.h	/^	int **bondState; \/* records bonded atom pairs *\/$/;"	m	struct:__anon15
-chainIdentifier	pdb_structure.h	/^	char chainIdentifier[2]; \/* Chain identifier; 22 *\/$/;"	m	struct:__anon17
-chainOut	arg.h	/^	int chainOut;$/;"	m	struct:__anon4
-chainSFE	sigma.h	/^	ChainSFE *chainSFE; \/* chain values *\/$/;"	m	struct:__anon14
-chainSasa	sasa.h	/^	ChainSasa *chainSasa; \/* chain values *\/$/;"	m	struct:__anon8
+bondState	topol.h	/^	int **bondState; \/* records bonded atom pairs *\/$/;"	m	struct:__anon4
+chainIdentifier	pdb_structure.h	/^	char chainIdentifier[2]; \/* Chain identifier; 22 *\/$/;"	m	struct:__anon19
+chainOut	arg.h	/^	int chainOut;$/;"	m	struct:__anon23
+chainSFE	sigma.h	/^	ChainSFE *chainSFE; \/* chain values *\/$/;"	m	struct:__anon9
+chainSasa	sasa.h	/^	ChainSasa *chainSasa; \/* chain values *\/$/;"	m	struct:__anon18
 check_input	arg.c	/^static void check_input(Arg *arg, Argpdb *argpdb)$/;"	f	file:
 check_non_null	safe.c	/^void *check_non_null(void *ptr)$/;"	f
-coarse	argpdb.h	/^	int coarse;$/;"	m	struct:__anon26
+coarse	argpdb.h	/^	int coarse;$/;"	m	struct:__anon3
 compile_pattern	pattern.c	/^void compile_pattern(regex_t *regex, char *pattern)$/;"	f
 compile_pattern_positionred	gettraj.c	/^static void compile_pattern_positionred(regex_t *regex)$/;"	f	file:
 compile_pattern_trajectory	gettraj.c	/^static void compile_pattern_trajectory(regex_t *regex)$/;"	f	file:
 compile_patterns	pattern.c	/^void compile_patterns(regex_t *regex, char (*pattern)[32], int nPattern)$/;"	f
-compositionOut	arg.h	/^	int compositionOut;$/;"	m	struct:__anon4
+compositionOut	arg.h	/^	int compositionOut;$/;"	m	struct:__anon23
 compute_atom_sasa	sasa.c	/^static int compute_atom_sasa(Str *pdb, Topol *topol, Type *type, MolSasa *molSasa, \\$/;"	f	file:
 compute_atom_sfe	sigma.c	/^static int compute_atom_sfe(Str *pdb, Type *type, MolSasa *molSasa,\\$/;"	f	file:
 compute_c1	sasa.c	/^__inline__ static double compute_c1(double atomRadius, float rSolvent)$/;"	f	file:
@@ -116,23 +116,23 @@ compute_res_chain_mol_sasa	sasa.c	/^static int compute_res_chain_mol_sasa(Str *p
 compute_res_chain_mol_sfe	sigma.c	/^static int compute_res_chain_mol_sfe(Str *pdb, Type *type, MolSFE *molSFE)$/;"	f	file:
 compute_sasa	sasa.c	/^void compute_sasa(Str *pdb, Topol *topol, Type *type, MolSasa *molSasa, \\$/;"	f
 compute_sfe	sigma.c	/^void compute_sfe(Str *pdb, Type *type, MolSasa *molSasa, \\$/;"	f
-connect_12_parameter	sasa_const.h	/^	float connect_12_parameter; \/* connectivity parameter for 1-2 interactions *\/$/;"	m	struct:__anon10
-connect_13_parameter	sasa_const.h	/^	float connect_13_parameter; \/* connectivity parameter for 1-3 interactions *\/$/;"	m	struct:__anon10
-connect_14_parameter	sasa_const.h	/^	float connect_14_parameter; \/* connectivity parameter for 1-4 interactions *\/$/;"	m	struct:__anon10
-connect_15_parameter	sasa_const.h	/^	float connect_15_parameter; \/* connectivity parameter for >(1-4) (Lennard-Jones) interactions *\/$/;"	m	struct:__anon10
+connect_12_parameter	sasa_const.h	/^	float connect_12_parameter; \/* connectivity parameter for 1-2 interactions *\/$/;"	m	struct:__anon2
+connect_13_parameter	sasa_const.h	/^	float connect_13_parameter; \/* connectivity parameter for 1-3 interactions *\/$/;"	m	struct:__anon2
+connect_14_parameter	sasa_const.h	/^	float connect_14_parameter; \/* connectivity parameter for 1-4 interactions *\/$/;"	m	struct:__anon2
+connect_15_parameter	sasa_const.h	/^	float connect_15_parameter; \/* connectivity parameter for >(1-4) (Lennard-Jones) interactions *\/$/;"	m	struct:__anon2
 constAtomGroup	atomgroup_data.h	/^Atomgroup constAtomGroup[] = {$/;"	v
 constant_sasa_data	sasa_data.h	/^ConstantSasa constant_sasa_data[] = {$/;"	v
 constant_sigma_data	sigma_data.h	/^ConstantSigma constant_sigma_data[] = {$/;"	v
 copy_coordinates	gettraj.c	/^void copy_coordinates(Str *pdb, Traj *traj, int frame)$/;"	f
 cutoff_radius	topol.c	/^float cutoff_radius(Type *type, ConstantSasa *constant_sasa, int i, int j, float rSolvent)$/;"	f
-description	pdb_structure.h	/^	char description[32]; \/* everything before coordinates *\/$/;"	m	struct:__anon17
+description	pdb_structure.h	/^	char description[32]; \/* everything before coordinates *\/$/;"	m	struct:__anon19
 div_mat2D_float	matrix.c	/^void div_mat2D_float(float **mat2D_float, int x, int y, float a)$/;"	f
-element	pdb_structure.h	/^	char element[3]; \/* Element symbol; 77 - 78 *\/$/;"	m	struct:__anon17
-file	fs.h	/^   char (*file)[128];$/;"	m	struct:__anon16
+element	pdb_structure.h	/^	char element[3]; \/* Element symbol; 77 - 78 *\/$/;"	m	struct:__anon19
+file	fs.h	/^   char (*file)[128];$/;"	m	struct:__anon5
 file_exists	fs.c	/^int file_exists(char *fileName)$/;"	f
-first	sasa.h	/^	int first, last; \/* first\/last atom of chain *\/$/;"	m	struct:__anon7
-first	sigma.h	/^	int first, last; \/* first\/last atom of chain *\/$/;"	m	struct:__anon13
-frame	gettraj.h	/^	Frame *frame; \/* xyz coordinate vector of atom *\/$/;"	m	struct:__anon3
+first	sasa.h	/^	int first, last; \/* first\/last atom of chain *\/$/;"	m	struct:__anon17
+first	sigma.h	/^	int first, last; \/* first\/last atom of chain *\/$/;"	m	struct:__anon8
+frame	gettraj.h	/^	Frame *frame; \/* xyz coordinate vector of atom *\/$/;"	m	struct:__anon13
 free_mat2D_float	matrix.c	/^void free_mat2D_float(float **mat2D_float, int x)$/;"	f
 free_mat2D_int	matrix.c	/^void free_mat2D_int(int **mat2D_int, int x)$/;"	f
 free_mat2D_vec	matrix.c	/^void free_mat2D_vec(Vec **mat2D_vec, int x)$/;"	f
@@ -154,11 +154,12 @@ get_bonds	topol.c	/^int get_bonds(Str *pdb, Type *type, Topol *topol, ConstantSa
 get_topology	topol.c	/^int get_topology(Str *pdb, Type *type, Topol *topol, ConstantSasa *constant_sasa, Argpdb *argpdb, Arg *arg)$/;"	f
 get_torsions	topol.c	/^int get_torsions(Str *pdb, Type *type, Topol *topol, ConstantSasa *constant_sasa)$/;"	f
 get_types	type.c	/^int get_types(Str *pdb, Type *type, ConstantSasa *constant_sasa)$/;"	f
-groupID	atomgroup.h	/^	int groupID; \/* group ID number (sequential index) *\/$/;"	m	struct:__anon19
-groupID	pdb_structure.h	/^	int groupID; \/* atom group ID *\/$/;"	m	struct:__anon17
-hydrogens	argpdb.h	/^	int hydrogens;$/;"	m	struct:__anon26
-ib	topol.h	/^	int *ib; \/* atoms forming the bonds: array of size bond-number *\/$/;"	m	struct:__anon15
-in	topol.h	/^	int *in; \/* atoms forming the L-J overlaps: array of size ~30*bond-number *\/$/;"	m	struct:__anon15
+groupID	atomgroup.h	/^	int groupID; \/* group ID number (sequential index) *\/$/;"	m	struct:__anon21
+groupID	pdb_structure.h	/^	int groupID; \/* atom group ID *\/$/;"	m	struct:__anon19
+hydrogens	argpdb.h	/^	int hydrogens;$/;"	m	struct:__anon3
+ib	topol.h	/^	int *ib; \/* atoms forming the bonds: array of size bond-number *\/$/;"	m	struct:__anon4
+icode	pdb_structure.h	/^	char icode[2]; \/* Code for insertion of residues; 27 *\/$/;"	m	struct:__anon19
+in	topol.h	/^	int *in; \/* atoms forming the L-J overlaps: array of size ~30*bond-number *\/$/;"	m	struct:__anon4
 init_mat2D_float	matrix.c	/^void init_mat2D_float(float **mat2D_float, int x, int y, float val)$/;"	f
 init_mat2D_int	matrix.c	/^void init_mat2D_int(int **mat2D_int, int x, int y, int val)$/;"	f
 init_mat2D_vec	matrix.c	/^void init_mat2D_vec(Vec **mat2D_vec, int x, int y, Vec val)$/;"	f
@@ -171,75 +172,79 @@ init_mat4D_vec	matrix.c	/^void init_mat4D_vec(Vec ****mat4D_vec, int w, int x, i
 init_sasa	sasa.c	/^int init_sasa(Str *pdb, Type *type, MolSasa *molSasa, ConstantSasa *constant_sasa, Arg *arg)$/;"	f
 init_sfe	sigma.c	/^int init_sfe(Str *pdb, Type *type, MolSFE *molSFE, ConstantSigma *constant_sigma, Arg *arg)$/;"	f
 init_topology	topol.c	/^void init_topology(Str *pdb, Topol *topol)$/;"	f
-ip	topol.h	/^	int *ip; \/* atoms forming the torsions: array of size 5*bond-number *\/$/;"	m	struct:__anon15
-it	topol.h	/^	int *it; \/* atoms forming the angles: array of size 3*bond-number *\/$/;"	m	struct:__anon15
-jb	topol.h	/^	int *jb;$/;"	m	struct:__anon15
-jn	topol.h	/^	int *jn; $/;"	m	struct:__anon15
-jp	topol.h	/^	int *jp;$/;"	m	struct:__anon15
-jt	topol.h	/^	int *jt;$/;"	m	struct:__anon15
-kp	topol.h	/^	int *kp;$/;"	m	struct:__anon15
-kt	topol.h	/^	int *kt;$/;"	m	struct:__anon15
-last	sasa.h	/^	int first, last; \/* first\/last atom of chain *\/$/;"	m	struct:__anon7
-last	sigma.h	/^	int first, last; \/* first\/last atom of chain *\/$/;"	m	struct:__anon13
-length	seq.h	/^    int length; \/* length of sequence *\/$/;"	m	struct:__anon25
+ip	topol.h	/^	int *ip; \/* atoms forming the torsions: array of size 5*bond-number *\/$/;"	m	struct:__anon4
+it	topol.h	/^	int *it; \/* atoms forming the angles: array of size 3*bond-number *\/$/;"	m	struct:__anon4
+jb	topol.h	/^	int *jb;$/;"	m	struct:__anon4
+jn	topol.h	/^	int *jn; $/;"	m	struct:__anon4
+jp	topol.h	/^	int *jp;$/;"	m	struct:__anon4
+jt	topol.h	/^	int *jt;$/;"	m	struct:__anon4
+kp	topol.h	/^	int *kp;$/;"	m	struct:__anon4
+kt	topol.h	/^	int *kt;$/;"	m	struct:__anon4
+last	sasa.h	/^	int first, last; \/* first\/last atom of chain *\/$/;"	m	struct:__anon17
+last	sigma.h	/^	int first, last; \/* first\/last atom of chain *\/$/;"	m	struct:__anon8
+length	seq.h	/^    int length; \/* length of sequence *\/$/;"	m	struct:__anon14
 listfiles	fs.c	/^int listfiles(char *dir, FileList *filelist)$/;"	f
-lp	topol.h	/^	int *lp;$/;"	m	struct:__anon15
+lp	topol.h	/^	int *lp;$/;"	m	struct:__anon4
 main	pops.c	/^int main(int argc, char *argv[])$/;"	f
 match_pattern	pattern.c	/^int match_pattern(regex_t *regex, char *searchString)$/;"	f
 match_patterns	pattern.c	/^int match_patterns(regex_t *regex, int nPattern, char *searchString)$/;"	f
 mod_atom_sasa	sasa.c	/^__inline__ static int mod_atom_sasa(Str *pdb, Topol *topol, Type *type, \\$/;"	f	file:
-multiModel	arg.h	/^	int multiModel;$/;"	m	struct:__anon4
-nAllAtom	pdb_structure.h	/^	int nAllAtom; \/* number of all atoms *\/$/;"	m	struct:__anon18
-nAllResidue	pdb_structure.h	/^	int nAllResidue; \/* number of all residues (including HETATM) *\/$/;"	m	struct:__anon18
-nAngle	topol.h	/^	int nAngle; \/* number of angles *\/$/;"	m	struct:__anon15
-nAtom	gettraj.h	/^	int nAtom; \/* number of atoms (without ions) *\/$/;"	m	struct:__anon2
-nAtom	pdb_structure.h	/^	int nAtom; \/* number of selected (CA) atoms *\/$/;"	m	struct:__anon18
-nAtomResidue	atomgroup.h	/^	int nAtomResidue[64]; \/* number of atoms per residue type (in the order given by 'atomgroup') *\/$/;"	m	struct:__anon20
-nAtomResidue	sasa_const.h	/^    int nAtomResidue[64]; \/* number of atoms per residue *\/$/;"	m	struct:__anon10
-nAtomResidue	sigma_const.h	/^    int nAtomResidue[64]; \/* number of atoms per residue *\/$/;"	m	struct:__anon22
-nBond	topol.h	/^	int nBond; \/* number of bonds *\/$/;"	m	struct:__anon15
-nChain	pdb_structure.h	/^	int nChain; \/* number of chains *\/$/;"	m	struct:__anon18
-nFile	fs.h	/^   int nFile;$/;"	m	struct:__anon16
-nFrame	gettraj.h	/^	int nFrame; \/* number of atoms (without ions) *\/$/;"	m	struct:__anon3
-nIon	gettraj.h	/^	int nIon; \/* number of ions *\/$/;"	m	struct:__anon2
-nMol	topol.h	/^	int nMol; \/* number of molecules *\/$/;"	m	struct:__anon15
-nNonBonded	topol.h	/^	int nNonBonded; \/* overlapping L-J (non-bonded) atoms *\/$/;"	m	struct:__anon15
-nOverlap	sasa.h	/^	int nOverlap; \/* number of overlaps *\/$/;"	m	struct:__anon5
-nOverlap	sasa.h	/^	int nOverlap; \/* number of overlaps *\/$/;"	m	struct:__anon6
-nResidue	pdb_structure.h	/^	int nResidue; \/* number of residues (CA and P atoms) *\/$/;"	m	struct:__anon18
-nResidue	topol.h	/^	int nResidue; \/* number of residues *\/$/;"	m	struct:__anon15
-nResidueType	atomgroup.h	/^	int nResidueType; \/* number of residue types *\/$/;"	m	struct:__anon20
-nResidueType	sasa_const.h	/^    int nResidueType; \/* number of residue types *\/$/;"	m	struct:__anon10
-nResidueType	sigma_const.h	/^    int nResidueType; \/* number of residue types *\/$/;"	m	struct:__anon22
-nSolv	gettraj.h	/^	int nSolv; \/* number of solvent molecules *\/$/;"	m	struct:__anon2
-nTorsion	topol.h	/^	int nTorsion; \/* number of torsions *\/$/;"	m	struct:__anon15
-name	seq.h	/^    char *name; \/* sequence name *\/$/;"	m	struct:__anon25
-neighbourOut	arg.h	/^	int neighbourOut;$/;"	m	struct:__anon4
-neighbourOutFile	arg.h	/^    FILE *neighbourOutFile;$/;"	m	struct:__anon4
-neighbourOutFileName	arg.h	/^    char *neighbourOutFileName;$/;"	m	struct:__anon4
-neighbourPar	topol.h	/^	float **neighbourPar; \/* records the POPS parameters 'p_ij * b_ij' of neighbours *\/$/;"	m	struct:__anon15
-neighbourState	topol.h	/^	int **neighbourState; \/* records the neighboured (non-bonded) atom pairs *\/$/;"	m	struct:__anon15
-noHeaderOut	arg.h	/^	int noHeaderOut;$/;"	m	struct:__anon4
-noTotalOut	arg.h	/^	int noTotalOut;$/;"	m	struct:__anon4
+multiModel	arg.h	/^	int multiModel;$/;"	m	struct:__anon23
+my_rank	pops.c	/^    int my_rank = 0; $/;"	v
+my_rank	pops.c	/^    int my_rank; \/* rank of 'this' node *\/$/;"	v
+nAllAtom	pdb_structure.h	/^	int nAllAtom; \/* number of all atoms *\/$/;"	m	struct:__anon20
+nAllResidue	pdb_structure.h	/^	int nAllResidue; \/* number of all residues (including HETATM) *\/$/;"	m	struct:__anon20
+nAngle	topol.h	/^	int nAngle; \/* number of angles *\/$/;"	m	struct:__anon4
+nAtom	gettraj.h	/^	int nAtom; \/* number of atoms (without ions) *\/$/;"	m	struct:__anon12
+nAtom	pdb_structure.h	/^	int nAtom; \/* number of selected (CA) atoms *\/$/;"	m	struct:__anon20
+nAtomResidue	atomgroup.h	/^	int nAtomResidue[64]; \/* number of atoms per residue type (in the order given by 'atomgroup') *\/$/;"	m	struct:__anon22
+nAtomResidue	sasa_const.h	/^    int nAtomResidue[64]; \/* number of atoms per residue *\/$/;"	m	struct:__anon2
+nAtomResidue	sigma_const.h	/^    int nAtomResidue[64]; \/* number of atoms per residue *\/$/;"	m	struct:__anon26
+nBond	topol.h	/^	int nBond; \/* number of bonds *\/$/;"	m	struct:__anon4
+nChain	pdb_structure.h	/^	int nChain; \/* number of chains *\/$/;"	m	struct:__anon20
+nFile	fs.h	/^   int nFile;$/;"	m	struct:__anon5
+nFrame	gettraj.h	/^	int nFrame; \/* number of atoms (without ions) *\/$/;"	m	struct:__anon13
+nIon	gettraj.h	/^	int nIon; \/* number of ions *\/$/;"	m	struct:__anon12
+nMol	topol.h	/^	int nMol; \/* number of molecules *\/$/;"	m	struct:__anon4
+nNonBonded	topol.h	/^	int nNonBonded; \/* overlapping L-J (non-bonded) atoms *\/$/;"	m	struct:__anon4
+nOverlap	sasa.h	/^	int nOverlap; \/* number of overlaps *\/$/;"	m	struct:__anon15
+nOverlap	sasa.h	/^	int nOverlap; \/* number of overlaps *\/$/;"	m	struct:__anon16
+nResidue	pdb_structure.h	/^	int nResidue; \/* number of residues (CA and P atoms) *\/$/;"	m	struct:__anon20
+nResidue	topol.h	/^	int nResidue; \/* number of residues *\/$/;"	m	struct:__anon4
+nResidueType	atomgroup.h	/^	int nResidueType; \/* number of residue types *\/$/;"	m	struct:__anon22
+nResidueType	sasa_const.h	/^    int nResidueType; \/* number of residue types *\/$/;"	m	struct:__anon2
+nResidueType	sigma_const.h	/^    int nResidueType; \/* number of residue types *\/$/;"	m	struct:__anon26
+nSolv	gettraj.h	/^	int nSolv; \/* number of solvent molecules *\/$/;"	m	struct:__anon12
+nTorsion	topol.h	/^	int nTorsion; \/* number of torsions *\/$/;"	m	struct:__anon4
+name	seq.h	/^    char *name; \/* sequence name *\/$/;"	m	struct:__anon14
+neighbourOut	arg.h	/^	int neighbourOut;$/;"	m	struct:__anon23
+neighbourOutFile	arg.h	/^    FILE *neighbourOutFile;$/;"	m	struct:__anon23
+neighbourOutFileName	arg.h	/^    char *neighbourOutFileName;$/;"	m	struct:__anon23
+neighbourPar	topol.h	/^	float **neighbourPar; \/* records the POPS parameters 'p_ij * b_ij' of neighbours *\/$/;"	m	struct:__anon4
+neighbourState	topol.h	/^	int **neighbourState; \/* records the neighboured (non-bonded) atom pairs *\/$/;"	m	struct:__anon4
+noHeaderOut	arg.h	/^	int noHeaderOut;$/;"	m	struct:__anon23
+noTotalOut	arg.h	/^	int noTotalOut;$/;"	m	struct:__anon23
+nodes	pops.c	/^    int nodes = 1; $/;"	v
+nodes	pops.c	/^    int nodes; \/* number of nodes *\/$/;"	v
 nonbonded_overlaps	topol.c	/^int nonbonded_overlaps(Str *pdb, Type *type, Topol *topol, ConstantSasa *constant_sasa, Arg *arg)$/;"	f
-padding	arg.h	/^	int padding;$/;"	m	struct:__anon4
-parameter	sasa_const.h	/^	float parameter; \/* atom-specific  SASA parameter *\/$/;"	m	struct:__anon9
-parameterOut	arg.h	/^	int parameterOut;$/;"	m	struct:__anon4
-parameterOutFile	arg.h	/^    FILE *parameterOutFile;$/;"	m	struct:__anon4
-parameterOutFileName	arg.h	/^    char *parameterOutFileName;$/;"	m	struct:__anon4
+padding	arg.h	/^	int padding;$/;"	m	struct:__anon23
+parameter	sasa_const.h	/^	float parameter; \/* atom-specific  SASA parameter *\/$/;"	m	struct:__anon1
+parameterOut	arg.h	/^	int parameterOut;$/;"	m	struct:__anon23
+parameterOutFile	arg.h	/^    FILE *parameterOutFile;$/;"	m	struct:__anon23
+parameterOutFileName	arg.h	/^    char *parameterOutFileName;$/;"	m	struct:__anon23
 parse_args	arg.c	/^int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)$/;"	f
-pdbInFile	arg.h	/^    FILE *pdbInFile;$/;"	m	struct:__anon4
-pdbInFileName	arg.h	/^	char *pdbInFileName;$/;"	m	struct:__anon4
-philicSasa	sasa.h	/^	double philicSasa; \/* hydrophilic SASA *\/$/;"	m	struct:__anon6
-philicSasa	sasa.h	/^	double philicSasa; \/* hydrophilic SASA *\/$/;"	m	struct:__anon7
-philicSasa	sasa.h	/^    double philicSasa; \/* hydrophilic SASA *\/$/;"	m	struct:__anon8
-phobicSasa	sasa.h	/^	double phobicSasa; \/* hydrophobic SASA *\/$/;"	m	struct:__anon6
-phobicSasa	sasa.h	/^	double phobicSasa; \/* hydrophobic SASA *\/$/;"	m	struct:__anon7
-phobicSasa	sasa.h	/^    double phobicSasa; \/* hydrophobic SASA *\/$/;"	m	struct:__anon8
-polar	sasa.h	/^	int polar; \/* polarity *\/$/;"	m	struct:__anon5
-polarity	sasa_const.h	/^	int polarity; \/* hydrophobic = 0, hydrophilic = 1 *\/$/;"	m	struct:__anon9
-pos	gettraj.h	/^	Vec pos; \/* trajectory atom position *\/$/;"	m	struct:__anon1
-pos	pdb_structure.h	/^	Vec pos; \/* position vector (x, y, z) *\/$/;"	m	struct:__anon17
+pdbInFile	arg.h	/^    FILE *pdbInFile;$/;"	m	struct:__anon23
+pdbInFileName	arg.h	/^	char *pdbInFileName;$/;"	m	struct:__anon23
+philicSasa	sasa.h	/^	double philicSasa; \/* hydrophilic SASA *\/$/;"	m	struct:__anon16
+philicSasa	sasa.h	/^	double philicSasa; \/* hydrophilic SASA *\/$/;"	m	struct:__anon17
+philicSasa	sasa.h	/^    double philicSasa; \/* hydrophilic SASA *\/$/;"	m	struct:__anon18
+phobicSasa	sasa.h	/^	double phobicSasa; \/* hydrophobic SASA *\/$/;"	m	struct:__anon16
+phobicSasa	sasa.h	/^	double phobicSasa; \/* hydrophobic SASA *\/$/;"	m	struct:__anon17
+phobicSasa	sasa.h	/^    double phobicSasa; \/* hydrophobic SASA *\/$/;"	m	struct:__anon18
+polar	sasa.h	/^	int polar; \/* polarity *\/$/;"	m	struct:__anon15
+polarity	sasa_const.h	/^	int polarity; \/* hydrophobic = 0, hydrophilic = 1 *\/$/;"	m	struct:__anon1
+pos	gettraj.h	/^	Vec pos; \/* trajectory atom position *\/$/;"	m	struct:__anon11
+pos	pdb_structure.h	/^	Vec pos; \/* position vector (x, y, z) *\/$/;"	m	struct:__anon19
 print_angle	topol.c	/^__inline__ static void print_angle(Str *pdb, int t1, int t2, int t3)$/;"	f	file:
 print_args	arg.c	/^static void print_args(Arg *arg, Argpdb *argpdb)$/;"	f	file:
 print_atom_sasa	putsasa.c	/^static void print_atom_sasa(FILE *sasaOutFile, Arg *arg, Str *pdb, MolSasa *molSasa)$/;"	f	file:
@@ -267,72 +272,72 @@ print_torsion	topol.c	/^__inline__ static void print_torsion(Str *pdb, int t1, i
 print_types	putsasa.c	/^static void print_types(FILE *sasaOutFile, Arg *arg, Type *type, ConstantSasa *constant_sasa)$/;"	f	file:
 print_version	arg.c	/^static void print_version()$/;"	f	file:
 process_het	getpdb.c	/^__inline__ static int process_het(Str *str, char *line, regex_t *regexPattern, char (*hetAtomNewname)[32], int nHetAtom)$/;"	f	file:
-rProbe	arg.h	/^    float rProbe;$/;"	m	struct:__anon4
-rSolvent	sasa_const.h	/^	float rSolvent; \/* solvent radius *\/$/;"	m	struct:__anon10
-radius	sasa_const.h	/^	float radius; \/* atom radius *\/$/;"	m	struct:__anon9
+rProbe	arg.h	/^    float rProbe;$/;"	m	struct:__anon23
+rSolvent	sasa_const.h	/^	float rSolvent; \/* solvent radius *\/$/;"	m	struct:__anon2
+radius	sasa_const.h	/^	float radius; \/* atom radius *\/$/;"	m	struct:__anon1
 read_conect	getpdb.c	/^int read_conect(FILE *pdbInFile)$/;"	f
 read_gromos_traj	gettraj.c	/^int read_gromos_traj(Traj *traj, Arg *arg, int protEnd)$/;"	f
 read_pdb	getpdb.c	/^int read_pdb(FILE *pdbInFile, Str *str, int coarse, int hydrogens)$/;"	f
 read_structure	getpdb.c	/^void read_structure(Arg *arg, Argpdb *argpdb, Str *pdb)$/;"	f
-recordName	pdb_structure.h	/^	char recordName[8]; \/* Record type; 1 -  6*\/$/;"	m	struct:__anon17
-res	seq.h	/^    char *res; \/* array of residues = sequence *\/$/;"	m	struct:__anon25
-resSFE	sigma.h	/^	ResSFE *resSFE; \/* molecular values *\/$/;"	m	struct:__anon14
-resSasa	sasa.h	/^	ResSasa *resSasa; \/* molecular values *\/$/;"	m	struct:__anon8
-residueName	atomgroup.h	/^	char residueName[4]; \/* for PDB entries *\/$/;"	m	struct:__anon19
-residueName	pdb_structure.h	/^	char residueName[4]; \/* Residue name; 18 - 20 *\/$/;"	m	struct:__anon17
-residueName	sasa_const.h	/^	char residueName[4];$/;"	m	struct:__anon9
-residueName	sigma_const.h	/^	char residueName[4];$/;"	m	struct:__anon21
-residueNumber	pdb_structure.h	/^	int residueNumber; \/* Residue sequence number; 23 - 26 *\/$/;"	m	struct:__anon17
-residueOut	arg.h	/^	int residueOut;$/;"	m	struct:__anon4
+recordName	pdb_structure.h	/^	char recordName[8]; \/* Record type; 1 -  6*\/$/;"	m	struct:__anon19
+res	seq.h	/^    char *res; \/* array of residues = sequence *\/$/;"	m	struct:__anon14
+resSFE	sigma.h	/^	ResSFE *resSFE; \/* molecular values *\/$/;"	m	struct:__anon9
+resSasa	sasa.h	/^	ResSasa *resSasa; \/* molecular values *\/$/;"	m	struct:__anon18
+residueName	atomgroup.h	/^	char residueName[4]; \/* for PDB entries *\/$/;"	m	struct:__anon21
+residueName	pdb_structure.h	/^	char residueName[4]; \/* Residue name; 18 - 20 *\/$/;"	m	struct:__anon19
+residueName	sasa_const.h	/^	char residueName[4];$/;"	m	struct:__anon1
+residueName	sigma_const.h	/^	char residueName[4];$/;"	m	struct:__anon25
+residueNumber	pdb_structure.h	/^	int residueNumber; \/* Residue sequence number; 23 - 26 *\/$/;"	m	struct:__anon19
+residueOut	arg.h	/^	int residueOut;$/;"	m	struct:__anon23
 residueType	type.h	/^	int *residueType; \/* identifier to denote residue type *\/$/;"	m	struct:__anon24
-ring	sasa_const.h	/^	int ring; \/* not in ring = 0, in ring = 1 *\/$/;"	m	struct:__anon9
+ring	sasa_const.h	/^	int ring; \/* not in ring = 0, in ring = 1 *\/$/;"	m	struct:__anon1
 rotate_2D	vector.c	/^void rotate_2D(float *dim1, float *dim2, float phi)$/;"	f
 safe_malloc	safe.c	/^void *safe_malloc(size_t size)$/;"	f
 safe_open	safe.c	/^FILE *safe_open(const char *name, const char *mode)$/;"	f
 safe_realloc	safe.c	/^void *safe_realloc(void *ptr, size_t size)$/;"	f
-sasa	sasa.h	/^    double sasa; \/* SASA *\/$/;"	m	struct:__anon5
-sasa	sasa.h	/^    double sasa; \/* SASA *\/$/;"	m	struct:__anon6
-sasa	sasa.h	/^    double sasa; \/* SASA *\/$/;"	m	struct:__anon7
-sasa	sasa.h	/^    double sasa; \/* SASA *\/$/;"	m	struct:__anon8
-sasaOutFile	arg.h	/^    FILE *sasaOutFile;$/;"	m	struct:__anon4
-sasaOutFileName	arg.h	/^    char *sasaOutFileName;$/;"	m	struct:__anon4
-sasatrajOutFile	arg.h	/^    FILE *sasatrajOutFile;$/;"	m	struct:__anon4
-sasatrajOutFileName	arg.h	/^    char *sasatrajOutFileName;$/;"	m	struct:__anon4
+sasa	sasa.h	/^    double sasa; \/* SASA *\/$/;"	m	struct:__anon15
+sasa	sasa.h	/^    double sasa; \/* SASA *\/$/;"	m	struct:__anon16
+sasa	sasa.h	/^    double sasa; \/* SASA *\/$/;"	m	struct:__anon17
+sasa	sasa.h	/^    double sasa; \/* SASA *\/$/;"	m	struct:__anon18
+sasaOutFile	arg.h	/^    FILE *sasaOutFile;$/;"	m	struct:__anon23
+sasaOutFileName	arg.h	/^    char *sasaOutFileName;$/;"	m	struct:__anon23
+sasatrajOutFile	arg.h	/^    FILE *sasatrajOutFile;$/;"	m	struct:__anon23
+sasatrajOutFileName	arg.h	/^    char *sasatrajOutFileName;$/;"	m	struct:__anon23
 scan_array	getpdb.c	/^__inline__ static char scan_array(char *code3, char *residue_array[], int shift)$/;"	f	file:
-sequence	pdb_structure.h	/^	Seq sequence; \/* amino acid sequence of structure *\/$/;"	m	struct:__anon18
+sequence	pdb_structure.h	/^	Seq sequence; \/* amino acid sequence of structure *\/$/;"	m	struct:__anon20
 set_defaults	arg.c	/^static void set_defaults(Arg *arg, Argpdb *argpdb)$/;"	f	file:
-sfe_group	sigma.h	/^	double sfe_group;$/;"	m	struct:__anon11
-sfe_group	sigma.h	/^	double sfe_group;$/;"	m	struct:__anon12
-sfe_group	sigma.h	/^	double sfe_group;$/;"	m	struct:__anon13
-sfe_group	sigma.h	/^	double sfe_group;$/;"	m	struct:__anon14
-sfe_type	sigma.h	/^    double sfe_type;$/;"	m	struct:__anon11
-sfe_type	sigma.h	/^    double sfe_type;$/;"	m	struct:__anon12
-sfe_type	sigma.h	/^    double sfe_type;$/;"	m	struct:__anon13
-sfe_type	sigma.h	/^    double sfe_type;$/;"	m	struct:__anon14
-sigmaOutFile	arg.h	/^    FILE *sigmaOutFile;$/;"	m	struct:__anon4
-sigmaOutFileName	arg.h	/^    char *sigmaOutFileName;$/;"	m	struct:__anon4
-sigma_group	sigma_const.h	/^	float sigma_group; \/* sigma atomgroup parameter *\/$/;"	m	struct:__anon21
-sigma_type	sigma_const.h	/^	float sigma_type; \/* sigma atomtype parameter *\/$/;"	m	struct:__anon21
-sigmatrajOutFile	arg.h	/^    FILE *sigmatrajOutFile;$/;"	m	struct:__anon4
-sigmatrajOutFileName	arg.h	/^    char *sigmatrajOutFileName;$/;"	m	struct:__anon4
-silent	arg.h	/^	int silent;$/;"	m	struct:__anon4
+sfe_group	sigma.h	/^	double sfe_group;$/;"	m	struct:__anon6
+sfe_group	sigma.h	/^	double sfe_group;$/;"	m	struct:__anon7
+sfe_group	sigma.h	/^	double sfe_group;$/;"	m	struct:__anon8
+sfe_group	sigma.h	/^	double sfe_group;$/;"	m	struct:__anon9
+sfe_type	sigma.h	/^    double sfe_type;$/;"	m	struct:__anon6
+sfe_type	sigma.h	/^    double sfe_type;$/;"	m	struct:__anon7
+sfe_type	sigma.h	/^    double sfe_type;$/;"	m	struct:__anon8
+sfe_type	sigma.h	/^    double sfe_type;$/;"	m	struct:__anon9
+sigmaOutFile	arg.h	/^    FILE *sigmaOutFile;$/;"	m	struct:__anon23
+sigmaOutFileName	arg.h	/^    char *sigmaOutFileName;$/;"	m	struct:__anon23
+sigma_group	sigma_const.h	/^	float sigma_group; \/* sigma atomgroup parameter *\/$/;"	m	struct:__anon25
+sigma_type	sigma_const.h	/^	float sigma_type; \/* sigma atomtype parameter *\/$/;"	m	struct:__anon25
+sigmatrajOutFile	arg.h	/^    FILE *sigmatrajOutFile;$/;"	m	struct:__anon23
+sigmatrajOutFileName	arg.h	/^    char *sigmatrajOutFileName;$/;"	m	struct:__anon23
+silent	arg.h	/^	int silent;$/;"	m	struct:__anon23
 sphere_surface	sasa.c	/^__inline__ static double sphere_surface(double atomRadius, float rSolvent)$/;"	f	file:
 standardise_name	getpdb.c	/^__inline__ static int standardise_name(char *residueName, char *atomName)$/;"	f	file:
 status	error.c	/^int status = 0;$/;"	v
-strSequence	pdb_structure.h	/^	Seq strSequence; \/* sequence of string-encoded structure *\/$/;"	m	struct:__anon18
+strSequence	pdb_structure.h	/^	Seq strSequence; \/* sequence of string-encoded structure *\/$/;"	m	struct:__anon20
 strip_char	modstring.c	/^void strip_char(const char *s, char *t) $/;"	f
 strpos0	modstring.c	/^int strpos0(char *string, char *substring)$/;"	f
 strpos1	modstring.c	/^int strpos1(char *string, char *substring)$/;"	f
-surface	sasa.h	/^	double surface; \/* surface area of isolated atom *\/$/;"	m	struct:__anon5
-surface	sasa.h	/^	double surface; \/* surface area of isolated atoms in chain *\/$/;"	m	struct:__anon7
-surface	sasa.h	/^	double surface; \/* surface area of isolated atoms in residue *\/$/;"	m	struct:__anon6
-surface	sasa_const.h	/^	double surface; \/* SASA of fully exposed atom *\/$/;"	m	struct:__anon9
-topologyOut	arg.h	/^	int topologyOut;$/;"	m	struct:__anon4
-tpos	pdb_structure.h	/^	Vec tpos; \/* transformed position vector *\/$/;"	m	struct:__anon17
-trajInFile	arg.h	/^    FILE *trajInFile;$/;"	m	struct:__anon4
-trajInFileName	arg.h	/^	char *trajInFileName;$/;"	m	struct:__anon4
-trajatom	gettraj.h	/^	Trajatom *trajatom; \/* trajectory atom *\/$/;"	m	struct:__anon2
-typeOut	arg.h	/^	int typeOut;$/;"	m	struct:__anon4
+surface	sasa.h	/^	double surface; \/* surface area of isolated atom *\/$/;"	m	struct:__anon15
+surface	sasa.h	/^	double surface; \/* surface area of isolated atoms in chain *\/$/;"	m	struct:__anon17
+surface	sasa.h	/^	double surface; \/* surface area of isolated atoms in residue *\/$/;"	m	struct:__anon16
+surface	sasa_const.h	/^	double surface; \/* SASA of fully exposed atom *\/$/;"	m	struct:__anon1
+topologyOut	arg.h	/^	int topologyOut;$/;"	m	struct:__anon23
+tpos	pdb_structure.h	/^	Vec tpos; \/* transformed position vector *\/$/;"	m	struct:__anon19
+trajInFile	arg.h	/^    FILE *trajInFile;$/;"	m	struct:__anon23
+trajInFileName	arg.h	/^	char *trajInFileName;$/;"	m	struct:__anon23
+trajatom	gettraj.h	/^	Trajatom *trajatom; \/* trajectory atom *\/$/;"	m	struct:__anon12
+typeOut	arg.h	/^	int typeOut;$/;"	m	struct:__anon23
 v_ang	vector.c	/^float v_ang(Vec *v1, Vec *v2)$/;"	f
 v_copy	vector.c	/^void v_copy(Vec *v2, Vec *v1)$/;"	f
 v_cro_pro	vector.c	/^void v_cro_pro(Vec *v3, Vec *v1, Vec *v2)$/;"	f
@@ -356,6 +361,6 @@ vector_div_sca	vector.c	/^void vector_div_sca(Vec *v1, float a, Vec *v2)$/;"	f
 vector_mul_sca	vector.c	/^void vector_mul_sca(Vec *v1, float a, Vec *v2)$/;"	f
 vector_norm	vector.c	/^void vector_norm(Vec *v1, Vec *v2)$/;"	f
 vector_sum	vector.c	/^void vector_sum(Vec *v1, Vec *v2, Vec *v3)$/;"	f
-x	vector.h	/^   float x, y, z;$/;"	m	struct:__anon23
-y	vector.h	/^   float x, y, z;$/;"	m	struct:__anon23
-z	vector.h	/^   float x, y, z;$/;"	m	struct:__anon23
+x	vector.h	/^   float x, y, z;$/;"	m	struct:__anon10
+y	vector.h	/^   float x, y, z;$/;"	m	struct:__anon10
+z	vector.h	/^   float x, y, z;$/;"	m	struct:__anon10

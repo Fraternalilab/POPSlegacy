@@ -1,3 +1,8 @@
+- 1.6.5
+Sat May 28 17:17:42 BST 2016
+	Bug fix: now considering PDB format column
+	'27 AChar Code for insertion of residues'.
+
 - 1.6.4.
 Sun Apr 12 12:59:43 BST 2015
 	Corrected output annotatation and format of %SASA to Q(SASA).

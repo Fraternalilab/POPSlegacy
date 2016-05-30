@@ -74,7 +74,7 @@ static void print_atom_sasa(FILE *sasaOutFile, Arg *arg, Str *pdb, MolSasa *molS
 
 	if (! arg->noHeaderOut) {
 		fprintf(sasaOutFile, "\n=== ATOM SASAs ===\n");
-		fprintf(sasaOutFile, "\nAtomNr\tAtomNe\tResidNe\tChain\tResidNr\tSASA/A^2\tQ(SASA)\tN(overl)\tAtomTp\tAtomGp\tSurf/A^2\n");
+		fprintf(sasaOutFile, "\nAtomNr\tAtomNe\tResidNe\tChain\tResidNr\tiCode\tSASA/A^2\tQ(SASA)\tN(overl)\tAtomTp\tAtomGp\tSurf/A^2\n");
 	}
 
 	/* before the first line:
@@ -82,12 +82,13 @@ static void print_atom_sasa(FILE *sasaOutFile, Arg *arg, Str *pdb, MolSasa *molS
 	if (arg->padding)  {
 		j = 0;
 		while (++ j < pdb->atom[0].atomNumber) {
-			fprintf(sasaOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%10.2f\t%10.2f\t%8d\t\t%2d\t\t%2d\t%10.2f\n",
+			fprintf(sasaOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%1s\t%10.2f\t%10.2f\t%8d\t\t%2d\t\t%2d\t%10.2f\n",
 				j,
 				"XXX",
 				pdb->atom[0].residueName,
 				" ",
 				pdb->atom[0].residueNumber,
+				" ",
 				0.,
 				0.,
 				0,
@@ -109,12 +110,13 @@ static void print_atom_sasa(FILE *sasaOutFile, Arg *arg, Str *pdb, MolSasa *molS
 #endif
 		}
 
-		fprintf(sasaOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%10.2f\t%10.4f\t%8d\t\t%2d\t\t%2d\t%10.2f\n",
+		fprintf(sasaOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%1s\t%10.2f\t%10.4f\t%8d\t\t%2d\t\t%2d\t%10.2f\n",
 			pdb->atom[i].atomNumber,
 			pdb->atom[i].atomName,
 			pdb->atom[i].residueName,
 			pdb->atom[i].chainIdentifier,
 			pdb->atom[i].residueNumber,
+			pdb->atom[i].icode,
 			molSasa->atomSasa[i].sasa,
 			surface_ratio,
 			molSasa->atomSasa[i].nOverlap,
@@ -126,12 +128,13 @@ static void print_atom_sasa(FILE *sasaOutFile, Arg *arg, Str *pdb, MolSasa *molS
 		if (arg->padding && ((i + 1) < pdb->nAtom)) {
 			j = pdb->atom[i].atomNumber;
 			while (++ j < pdb->atom[i+1].atomNumber) {
-				fprintf(sasaOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%10.2f\t%10.4f\t%8d\t\t%2d\t\t%2d%10.2f\n",
+				fprintf(sasaOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%1s\t%10.2f\t%10.4f\t%8d\t\t%2d\t\t%2d%10.2f\n",
 					j,
 					"HXX",
 					pdb->atom[i].residueName,
 					" ",
 					pdb->atom[i].residueNumber,
+					" ",
 					0.,
 					0.,
 					0,
@@ -152,11 +155,10 @@ static void print_residue_sasa(FILE *sasaOutFile, Arg *arg, Str *pdb, MolSasa *m
 
 	if (! arg->noHeaderOut) {
 		fprintf(sasaOutFile, "\n=== RESIDUE SASAs ===\n");
-		fprintf(sasaOutFile, "\nResidNe\tChain\tResidNr\tPhob/A^2\t\tPhil/A^2\tTotal/A^2\t\tQ(SASA)\tN(overl)\tSurf/A^2\n");
+		fprintf(sasaOutFile, "\nResidNe\tChain\tResidNr\tiCode\tPhob/A^2\t\tPhil/A^2\tTotal/A^2\t\tQ(SASA)\tN(overl)\tSurf/A^2\n");
 	}
 
-    for (i = 0; i < pdb->nAllResidue; ++ i)
-	{ 
+    for (i = 0; i < pdb->nAllResidue; ++ i) { 
 		if (molSasa->resSasa[i].surface > 0.) {
 			surface_ratio = molSasa->resSasa[i].sasa / molSasa->resSasa[i].surface;
 			/* upper limit: there can be configurational effects leading to >1. */
@@ -169,10 +171,11 @@ static void print_residue_sasa(FILE *sasaOutFile, Arg *arg, Str *pdb, MolSasa *m
 #endif
 		}
 			
-		fprintf(sasaOutFile, "%8s\t%3s\t%8d\t%10.2f\t%10.2f\t%10.2f\t%10.4f\t%8d\t%10.2f\n",
+		fprintf(sasaOutFile, "%8s\t%3s\t%8d\t%1s\t%10.2f\t%10.2f\t%10.2f\t%10.4f\t%8d\t%10.2f\n",
 			pdb->atom[molSasa->resSasa[i].atomRef].residueName,
 			pdb->atom[molSasa->resSasa[i].atomRef].chainIdentifier,
 			pdb->atom[molSasa->resSasa[i].atomRef].residueNumber,
+			pdb->atom[molSasa->resSasa[i].atomRef].icode,
 			molSasa->resSasa[i].phobicSasa,
 			molSasa->resSasa[i].philicSasa,
 			molSasa->resSasa[i].sasa,
