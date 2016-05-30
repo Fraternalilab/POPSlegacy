@@ -655,7 +655,17 @@ ConstantSasa constant_sasa_data[] = {
 		},
 
 		/*____________________________________________________________________________*/
-		/* atom-specific data: residue name, atom name, radius, SASA parameter, polarity, surface */
+		/* residue-specific data:
+			1: residue name, 2: centre atom name, 3: radius, 4: SASA parameter,
+			5: polarity code, 6: ring code (=0), 7: surface.
+
+			residue name: PDB standard residue.
+			atom name: PDB standard atom.
+			radius: atom radius in Angstrom.
+			SASA parameter: unitless geometric parameter.
+			polarity code: hydrophilic=0, hydrophobic=1.
+			ring code: not_in_ring=0, in_ring=1.
+			surface */
 		{
 			{	/*CA	ALA*/ {"ALA", "CA",  4.01256,  0.99042, 0, 0, 144.3}},
 			{	/*CA	ARG*/ {"ARG", "CA",  4.62059,  0.71552, 1, 0, 274.9}}, 

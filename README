@@ -188,8 +188,8 @@ Phob/A^2 : hydrophobic solvent accessible surace area in Angstrom^2 units
 Phil/A^2 : hydrophilic solvent accessible surace area in Angstrom^2 units
 Total/A^2 : total solvent accessible surace area in Angstrom^2 units
 Q(SASA) : quotient of SASA and Surf (below), i.e. the fraction of SASA
-N(overl) : number of overlaps with atom neighbours
-Surf/A^2 : surface area of isolated atom
+N(overl) : number of overlaps with residue neighbours
+Surf/A^2 : surface area of isolated residue
 
 CHAIN SASAs
 Chain : chain number 

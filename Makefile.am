@@ -4,5 +4,5 @@
 
 SUBDIRS = src tests
 
-EXTRA_DIST = doc 
+EXTRA_DIST = doc
 
