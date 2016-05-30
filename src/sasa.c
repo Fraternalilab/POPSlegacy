@@ -276,18 +276,24 @@ static int compute_res_chain_mol_sasa(Str *pdb, Type *type, MolSasa *molSasa, \
 
     for (i = 0, j = 0, k = 0; i < pdb->nAtom; ++ i) { 
 		/*___________________________________________________________________________*/
-		/* determine residue index */
+		/* first (==0) residue index */
 		/* first atom of each residue is reference for residue type */
 		if (i == 0) {
 			molSasa->resSasa[j].atomRef = i;
 			molSasa->resSasa[j].surface = res_sasa->atomDataSasa[type->residueType[i]][type->atomType[i]].surface;
 		}
-		if (i > 0 && pdb->atom[i].residueNumber != pdb->atom[i - 1].residueNumber) {
+		/*___________________________________________________________________________*/
+		/* increment residue index */
+		//if (i > 0 && (pdb->atom[i].residueNumber != pdb->atom[i - 1].residueNumber)) { 
+		if (i > 0 && (pdb->atom[i].residueNumber != pdb->atom[i - 1].residueNumber ||
+				      strcmp(pdb->atom[i].icode, pdb->atom[i - 1].icode) != 0)) {
 			++ j;
 			molSasa->resSasa[j].atomRef = i; /* assign atom reference */
 			/* set reference residue surface*/
 			molSasa->resSasa[j].surface = res_sasa->atomDataSasa[type->residueType[i]][type->atomType[i]].surface;
 		}
+		/*___________________________________________________________________________*/
+		/* increment chain index */
         if (i > 0 && pdb->atom[i].chainIdentifier[0] != pdb->atom[i - 1].chainIdentifier[0]) {
 			++ k;
 			molSasa->chainSasa[k-1].last = i-1;

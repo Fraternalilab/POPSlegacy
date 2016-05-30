@@ -21,7 +21,7 @@ int init_sfe(Str *pdb, Type *type, MolSFE *molSFE, ConstantSigma *constant_sigma
 	for (i = 0; i < pdb->nAtom; ++ i) {
 		/*___________________________________________________________________________*/
 		/* initialise atom SFEs */
-		molSFE->atomSFE[i].sfe_type = 0.;	
+		molSFE->atomSFE[i].sfe_type = 0.;
 		molSFE->atomSFE[i].sfe_group = 0.;
 /*
 #if DEBUG>1
@@ -38,6 +38,7 @@ int init_sfe(Str *pdb, Type *type, MolSFE *molSFE, ConstantSigma *constant_sigma
 	for (i = 0; i < pdb->nAllResidue; ++ i) {
 			molSFE->resSFE[i].sfe_type = 0.;
 			molSFE->resSFE[i].sfe_group = 0.;
+			molSFE->resSFE[i].atomRef = -1;
 /*
 #if DEBUG>1
 		fprintf(stderr, "%s:%d: resSFE %d\t%f\t%f\n",
@@ -112,15 +113,22 @@ static int compute_res_chain_mol_sfe(Str *pdb, Type *type, MolSFE *molSFE)
 
     for (i = 0, j = 0, k = 0; i < pdb->nAtom; ++ i) { 
 		/*___________________________________________________________________________*/
-		/* determine residue index */
+		/* first (==0) residue index */
 		/* first atom of each residue is reference for residue type */
-		if (i > 0 && pdb->atom[i].residueNumber != pdb->atom[i - 1].residueNumber) {
+		if (i == 0) {
+			molSFE->resSFE[j].atomRef = i;
+		}
+		/*___________________________________________________________________________*/
+		/* increment residue index */
+		/* first atom of each residue is reference for residue type */
+		if (i > 0 && (pdb->atom[i].residueNumber != pdb->atom[i - 1].residueNumber || 
+					 strcmp(pdb->atom[i].icode, pdb->atom[i - 1].icode) != 0)) {
 			++ j; /* increment residue index */
 			molSFE->resSFE[j].atomRef = i; /* assign atom reference */
 		}
 
 		/*___________________________________________________________________________*/
-		/* determine chain index, record first and last atom of chain */
+		/* increment chain index */
         if (i > 0 && pdb->atom[i].chainIdentifier[0] != pdb->atom[i - 1].chainIdentifier[0]) {
 			++ k;
 			molSFE->chainSFE[k-1].last = i-1;

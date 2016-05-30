@@ -36,10 +36,11 @@ static void print_atom_sfe(FILE *sigmaOutFile, Arg *arg, Str *pdb, MolSFE *molSF
 	}
 
 	for (i = 0; i < pdb->nAtom; ++ i) {
-		fprintf(sigmaOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%10.2f\t\t%10.2f\t\t\t%2d\t\t%2d\n",
+		fprintf(sigmaOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%1s\t%10.2f\t\t%10.2f\t\t\t%2d\t\t%2d\n",
 			pdb->atom[i].atomNumber, pdb->atom[i].atomName,
 			pdb->atom[i].residueName, pdb->atom[i].chainIdentifier,
 			pdb->atom[i].residueNumber,
+			pdb->atom[i].icode,
 			molSFE->atomSFE[i].sfe_type, molSFE->atomSFE[i].sfe_group,
 			pdb->atom[i].atomType, pdb->atom[i].groupID);
 		/* after the first atom :
@@ -47,9 +48,10 @@ static void print_atom_sfe(FILE *sigmaOutFile, Arg *arg, Str *pdb, MolSFE *molSF
 		if (arg->padding && ((i + 1) < pdb->nAtom)) {
 			j = pdb->atom[i].atomNumber;
 			while (++ j < pdb->atom[i+1].atomNumber) {
-				fprintf(sigmaOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%10.2f\t\t%10.2f\t\t\t%2d\t\t%2d\n",
+				fprintf(sigmaOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%1s\t%10.2f\t\t%10.2f\t\t\t%2d\t\t%2d\n",
 					j, "HXX", pdb->atom[i].residueName, " ",
 					pdb->atom[i].residueNumber,
+					pdb->atom[i].icode,
 					0., 0., 0, 0);
 			}
 		}
@@ -67,12 +69,12 @@ static void print_residue_sfe(FILE *sigmaOutFile, Arg *arg, Str *pdb, MolSFE *mo
 		fprintf(sigmaOutFile, "\nResid\tChain\tResidNr\tSFEt/(kJ/mol)\tSFEg/(kJ/mol)\n");
 	}
 
-    for (i = 0; i < pdb->nAllResidue; ++ i)
-	{ 
-		fprintf(sigmaOutFile, "%3s\t%3s\t%8d\t%10.2f\t\t%10.2f\n",
+    for (i = 0; i < pdb->nAllResidue; ++ i) { 
+		fprintf(sigmaOutFile, "%3s\t%3s\t%8d\t%1s\t%10.2f\t\t%10.2f\n",
 			pdb->atom[molSFE->resSFE[i].atomRef].residueName,
 			pdb->atom[molSFE->resSFE[i].atomRef].chainIdentifier,
 			pdb->atom[molSFE->resSFE[i].atomRef].residueNumber,
+			pdb->atom[molSFE->resSFE[i].atomRef].icode,
 			molSFE->resSFE[i].sfe_type,
 			molSFE->resSFE[i].sfe_group);
     }
@@ -127,15 +129,15 @@ void print_sfe(Arg *arg, Argpdb *argpdb, Str *pdb, Type *type, Topol *topol, \
 		if (arg->atomOut)
 			print_atom_sfe(arg->sigmaOutFile, arg, pdb, molSFE);
 
-		/* residue SASA */
+		/* residue SFE */
 		if (arg->residueOut)
 			print_residue_sfe(arg->sigmaOutFile, arg, pdb, molSFE);
 
-		/* chain SASA */
+		/* chain SFE */
 		if (arg->chainOut)
 			print_chain_sfe(arg->sigmaOutFile, arg, pdb, molSFE);
 
-		/* molecule SASA */
+		/* molecule SFE */
 		if (! arg->noTotalOut)
 			print_mol_sfe(arg->sigmaOutFile, arg, molSFE);
 

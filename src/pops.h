@@ -1,7 +1,7 @@
 /*==============================================================================
-popsc : Parameter OPtimised Surface of proteins and nucleic acids
-Copyright (C) 2002-2011 Franca Fraternali (program author, parametrisation)
-Copyright (C) 2008-2011 Jens Kleinjung (developer)
+POPS* : Parameter OPtimised Surface of proteins and nucleic acids
+Copyright (C) 2002-2016 Franca Fraternali (program author, parametrisation)
+Copyright (C) 2008-2016 Jens Kleinjung (modular C code)
 Copyright (C) 2002 Luigi Cavallo (parametrisation)
 Copyright (C) 2002 Kuang Lin and Valerie Hindie (translation to C)
 
