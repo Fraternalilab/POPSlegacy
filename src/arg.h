@@ -34,6 +34,10 @@ typedef struct
     char *sasaOutFileName;
     FILE *sasatrajOutFile;
     char *sasatrajOutFileName;
+    FILE *bsasaOutFile;
+    char *bsasaOutFileName;
+    FILE *bsasatrajOutFile;
+    char *bsasatrajOutFileName;
     FILE *sigmaOutFile;
     char *sigmaOutFileName;
     FILE *sigmatrajOutFile;

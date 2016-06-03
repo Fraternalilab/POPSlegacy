@@ -1,6 +1,14 @@
+- 1.7.0
+Fri Jun  3 11:35:12 BST 2016
+	New feature: Output of the buried SASA (bSASA).
+	Assuming SASA is calculated for residue 'i',
+	bSASA is summed only over side-chain atoms to form bSASA_phil and
+	bSASA_phob, depending upon the hydrophilic or hydrophobic
+	nature of the contacting atom. bSASA default output is 'popsb.out'.
+
 - 1.6.5
 Sat May 28 17:17:42 BST 2016
-	Bug fix: now considering PDB format column
+	Bug fix: Now considering PDB format column
 	'27 AChar Code for insertion of residues'.
 
 - 1.6.4.

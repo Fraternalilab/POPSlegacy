@@ -47,6 +47,15 @@ __inline__ static double atom_sasa(MolSasa *molSasa, int k, double connectivityP
 }
 
 /*___________________________________________________________________________*/
+/** compute atomic bSASA */
+__inline__ static double atom_bsasa(MolSasa *molSasa, int k, double connectivityParameter, \
+	double bkl, double atomParameter_k)
+{
+	return (molSasa->atomSasa[k].sasa * \
+		(connectivityParameter * bkl * atomParameter_k / molSasa->atomSasa[k].surface));
+}
+
+/*___________________________________________________________________________*/
 /** initialise all SASAs */
 int init_sasa(Str *pdb, Type *type, MolSasa *molSasa, ConstantSasa *constant_sasa, Arg *arg)
 {
@@ -65,13 +74,17 @@ int init_sasa(Str *pdb, Type *type, MolSasa *molSasa, ConstantSasa *constant_sas
 			sphere_surface(constant_sasa->atomDataSasa[type->residueType[i]][type->atomType[i]].radius, arg->rProbe);
 		molSasa->atomSasa[i].sasa = molSasa->atomSasa[i].surface;
 		molSasa->atomSasa[i].nOverlap = 0; /* no overlaps yet (isolated atom) */
+		molSasa->atomSasa[i].phobicbSasa = 0.; /* hydrophobic buried SASA */
+		molSasa->atomSasa[i].philicbSasa = 0.; /* hydrophilic buried SASA */
 #if DEBUG>1
-		fprintf(stderr, "%s:%d: atomSasa %d %f %f %f %d\n",
+		fprintf(stderr, "%s:%d: atomSasa %d %f %f %f %d %f %f\n",
 			__FILE__, __LINE__, i,
 			molSasa->atomSasa[i].surface,
 			constant_sasa->atomDataSasa[type->residueType[i]][type->atomType[i]].surface,
 			molSasa->atomSasa[i].sasa,
-			molSasa->atomSasa[i].nOverlap);
+			molSasa->atomSasa[i].nOverlap
+			molSasa->atomSasa[i].phobicbSasa,
+			molSasa->atomSasa[i].philicbSasa);
 #endif
 	}
 
@@ -84,15 +97,19 @@ int init_sasa(Str *pdb, Type *type, MolSasa *molSasa, ConstantSasa *constant_sas
 		molSasa->resSasa[i].sasa = 0.;
 		molSasa->resSasa[i].nOverlap = 0;
 		molSasa->resSasa[i].atomRef = -1;
+		molSasa->resSasa[i].phobicbSasa = 0.;
+		molSasa->resSasa[i].philicbSasa = 0.;
 /*
 #if DEBUG>1
-		fprintf(stderr, "%s:%d: resSasa %d %f %f %f %d %d\n",
+		fprintf(stderr, "%s:%d: resSasa %d %f %f %f %d %d %f %f\n",
 			__FILE__, __LINE__, i,
 			molSasa->resSasa[i].phobicSasa,
 			molSasa->resSasa[i].philicSasa,
 			molSasa->resSasa[i].sasa,
 			molSasa->resSasa[i].nOverlap,
-			molSasa->resSasa[i].atomRef);
+			molSasa->resSasa[i].atomRef),
+			molSasa->resSasa[i].phobicbSasa = 0.,
+			molSasa->resSasa[i].philicbSasa = 0.;
 #endif
 */
 	}
@@ -106,6 +123,8 @@ int init_sasa(Str *pdb, Type *type, MolSasa *molSasa, ConstantSasa *constant_sas
 		molSasa->chainSasa[i].sasa = 0;
 		molSasa->chainSasa[i].first = -1;
 		molSasa->chainSasa[i].last = -1;
+		molSasa->chainSasa[i].phobicbSasa = 0.,
+		molSasa->chainSasa[i].philicbSasa = 0.;
 /*
 #if DEBUG>1
 		fprintf(stderr, "%s:%d: chainSasa %d %f %f %f %d %d\n",
@@ -114,7 +133,9 @@ int init_sasa(Str *pdb, Type *type, MolSasa *molSasa, ConstantSasa *constant_sas
 			molSasa->chainSasa[i].philicSasa,
 			molSasa->chainSasa[i].sasa,
 			molSasa->chainSasa[i].first,
-			molSasa->chainSasa[i].last);
+			molSasa->chainSasa[i].last,
+			molSasa->chainSasa[i].phobicbSasa = 0.,
+			molSasa->chainSasa[i].philicbSasa = 0.;
 #endif
 */
 	}
@@ -124,6 +145,8 @@ int init_sasa(Str *pdb, Type *type, MolSasa *molSasa, ConstantSasa *constant_sas
 	molSasa->phobicSasa = 0.;
 	molSasa->philicSasa = 0.;
 	molSasa->sasa = 0.;
+	molSasa->phobicbSasa = 0.,
+	molSasa->philicbSasa = 0.;
 
 	return 0;
 }
@@ -173,7 +196,7 @@ __inline__ static int mod_atom_sasa(Str *pdb, Topol *topol, Type *type, \
 		 (atomDistance = atom_distance(pdb, i, j)))
 		return(1);
 
-	/* shortest atomic bond length is .74 A in hydrogen */
+	/* shortest atomic bond length is .74 A in hydrogen molecule H_2 */
 	if (atomDistance < .74) {
 		fprintf(stderr, "Atom distance %d %d = %f Angstrom\n",
 			pdb->atom[i].atomNumber, pdb->atom[j].atomNumber, atomDistance);
@@ -211,6 +234,24 @@ __inline__ static int mod_atom_sasa(Str *pdb, Topol *topol, Type *type, \
     molSasa->atomSasa[i].sasa = atom_sasa(molSasa, i, connectivityParameter, bij, atomParameter_i);
     molSasa->atomSasa[j].sasa = atom_sasa(molSasa, j, connectivityParameter, bji, atomParameter_j);
 
+	/* compute atom bSASA for atoms i and j */
+	/* select side-chain atoms and determine polarity of neghbour (overlap) atom */
+	if ((type->atomType[i] > 3) && (constant_sasa->atomDataSasa[type->residueType[j]][type->atomType[j]].polarity == 0)) {
+		molSasa->atomSasa[i].phobicbSasa += atom_bsasa(molSasa, i, connectivityParameter, bij, atomParameter_i);
+	} else if ((type->atomType[i] > 3) && (constant_sasa->atomDataSasa[type->residueType[j]][type->atomType[j]].polarity == 1)) {
+		molSasa->atomSasa[i].philicbSasa += atom_bsasa(molSasa, i, connectivityParameter, bij, atomParameter_i);
+	} else {
+		molSasa->atomSasa[i].philicbSasa += 0.;
+	}
+
+	if ((type->atomType[j] > 3) && (constant_sasa->atomDataSasa[type->residueType[i]][type->atomType[i]].polarity == 0)) {
+		molSasa->atomSasa[j].phobicbSasa += atom_bsasa(molSasa, j, connectivityParameter, bij, atomParameter_j);
+	} else if ((type->atomType[j] > 3) && (constant_sasa->atomDataSasa[type->residueType[i]][type->atomType[i]].polarity == 1)) {
+		molSasa->atomSasa[j].philicbSasa += atom_bsasa(molSasa, j, connectivityParameter, bij, atomParameter_j);
+	} else {
+		molSasa->atomSasa[i].philicbSasa += 0.;
+	}
+
 	/* record parameters: increment neighbour index */
 	++ topol->neighbourPar[i][0];
 	++ topol->neighbourPar[j][0];
@@ -223,7 +264,9 @@ __inline__ static int mod_atom_sasa(Str *pdb, Topol *topol, Type *type, \
 
 /*___________________________________________________________________________*/
 /** atomic SASA calculation:
-	modify initial atom SASA (=total surface) for each atom interaction */
+	modify initial atom SASA (=total surface) for each atom interaction; */
+/** atomic bSASA calculation (last subroutine):
+	compute buried SASA due to neighbour atoms */
 static int compute_atom_sasa(Str *pdb, Topol *topol, Type *type, MolSasa *molSasa, \
 	ConstantSasa *constant_sasa, Arg *arg)
 {

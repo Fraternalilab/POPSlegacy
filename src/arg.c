@@ -84,9 +84,11 @@ static void set_defaults(Arg *arg, Argpdb *argpdb)
 	arg->silent = 0; /* suppress stdout */
     arg->sasaOutFileName = "pops.out";
     arg->sasatrajOutFileName = "popstraj";
+    arg->bsasaOutFileName = "popsb.out";
+    arg->bsasatrajOutFileName = "popsbtraj";
 	arg->compositionOut = 0; /* output of molecule composition */
     arg->sigmaOutFileName = "sigma.out";
-    arg->sigmatrajOutFileName = "sigma.out";
+    arg->sigmatrajOutFileName = "sigmatraj";
 	arg->typeOut = 0; /* output of atom/residue types */
 	arg->topologyOut = 0; /* output of molecule topology */
 	arg->atomOut = 0; /* output of atom areas */
@@ -114,6 +116,8 @@ static void check_input(Arg *arg, Argpdb *argpdb)
 	assert(arg->rProbe > 0);
 	assert(strlen(arg->sasaOutFileName) > 0);
 	assert(strlen(arg->sasatrajOutFileName) > 0);
+	assert(strlen(arg->bsasaOutFileName) > 0);
+	assert(strlen(arg->bsasatrajOutFileName) > 0);
 	assert(strlen(arg->sigmaOutFileName) > 0);
 	assert(strlen(arg->sigmatrajOutFileName) > 0);
 	assert(arg->compositionOut == 0 || arg->compositionOut == 1);
@@ -166,6 +170,8 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
 	 OUTPUT OPTIONS\n\
 	   --popsOut <POPS output>\t(mode: optional , type: char  , default: pops.out)\n\
 	   --popstrajOut <POPS output>\t(mode: optional , type: char  , default: popstraj.out)\n\
+	   --popsbOut <POPSb output>\t(mode: optional , type: char  , default: popsb.out)\n\
+	   --popsbtrajOut <POPSb output>\t(mode: optional , type: char  , default: popsbtraj.out)\n\
 	   --sigmaOut <SFE output>\t(mode: optional , type: char  , default: sigma.out)\n\
 	   --sigmatrajOut <SFE output>\t(mode: optional , type: char  , default: sigmatraj.out)\n\
 	   --compositionOut\t\t(mode: optional , type: no_arg, default: off)\n\
@@ -202,28 +208,30 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
         {"rProbe", required_argument, 0, 5},
         {"popsOut", required_argument, 0, 6},
         {"popstrajOut", required_argument, 0, 7},
-        {"sigmaOut", required_argument, 0, 8},
-        {"sigmatrajOut", required_argument, 0, 9},
-        {"silent", no_argument, 0, 10},
-        {"compositionOut", no_argument, 0, 11},
-        {"typeOut", no_argument, 0, 12},
-        {"topologyOut", no_argument, 0, 13},
-        {"atomOut", no_argument, 0, 14},
-        {"residueOut", no_argument, 0, 15},
-        {"chainOut", no_argument, 0, 16},
-        {"neighbourOut", no_argument, 0, 17},
-        {"parameterOut", no_argument, 0, 18},
-        {"noTotalOut", no_argument, 0, 19},
-        {"noHeaderOut", no_argument, 0, 20},
-        {"padding", no_argument, 0, 21},
-        {"cite", no_argument, 0, 22},
-        {"version", no_argument, 0, 23},
-        {"help", no_argument, 0, 24},
+        {"popsbOut", required_argument, 0, 8},
+        {"popsbtrajOut", required_argument, 0, 9},
+        {"sigmaOut", required_argument, 0, 10},
+        {"sigmatrajOut", required_argument, 0, 11},
+        {"silent", no_argument, 0, 12},
+        {"compositionOut", no_argument, 0, 13},
+        {"typeOut", no_argument, 0, 14},
+        {"topologyOut", no_argument, 0, 15},
+        {"atomOut", no_argument, 0, 16},
+        {"residueOut", no_argument, 0, 17},
+        {"chainOut", no_argument, 0, 18},
+        {"neighbourOut", no_argument, 0, 19},
+        {"parameterOut", no_argument, 0, 20},
+        {"noTotalOut", no_argument, 0, 21},
+        {"noHeaderOut", no_argument, 0, 22},
+        {"padding", no_argument, 0, 23},
+        {"cite", no_argument, 0, 24},
+        {"version", no_argument, 0, 25},
+        {"help", no_argument, 0, 26},
         {0, 0, 0, 0}
     };
 
     /** assign parameters to long options */
-    while ((c = getopt_long(argc, argv, "1:2:3 4 5:6:7:8:9:10 11 12 13 14 15 16 17 18 19 20 21 22 23 24", long_options, NULL)) != -1) {
+    while ((c = getopt_long(argc, argv, "1:2:3 4 5:6:7:8:9:10:11:12 13 14 15 16 17 18 19 20 21 22 23 24 25 26", long_options, NULL)) != -1) {
         switch(c) {
             case 1:
                 arg->pdbInFileName = optarg;
@@ -247,55 +255,61 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
                 arg->sasatrajOutFileName = optarg;
                 break;
             case 8:
-                arg->sigmaOutFileName = optarg;
+                arg->bsasaOutFileName = optarg;
                 break;
             case 9:
-                arg->sigmatrajOutFileName = optarg;
+                arg->bsasatrajOutFileName = optarg;
                 break;
             case 10:
-                arg->silent = 1;
+                arg->sigmaOutFileName = optarg;
                 break;
             case 11:
-                arg->compositionOut = 1;
+                arg->sigmatrajOutFileName = optarg;
                 break;
             case 12:
-                arg->typeOut = 1;
+                arg->silent = 1;
                 break;
             case 13:
-                arg->topologyOut = 1;
+                arg->compositionOut = 1;
                 break;
             case 14:
-                arg->atomOut = 1;
+                arg->typeOut = 1;
                 break;
             case 15:
-                arg->residueOut = 1;
+                arg->topologyOut = 1;
                 break;
             case 16:
-                arg->chainOut = 1;
+                arg->atomOut = 1;
                 break;
             case 17:
-                arg->neighbourOut = 1;
+                arg->residueOut = 1;
                 break;
             case 18:
-                arg->parameterOut = 1;
+                arg->chainOut = 1;
                 break;
             case 19:
-                arg->noTotalOut = 1;
+                arg->neighbourOut = 1;
                 break;
             case 20:
-                arg->noHeaderOut = 1;
+                arg->parameterOut = 1;
                 break;
             case 21:
-                arg->padding = 1;
+                arg->noTotalOut = 1;
                 break;
             case 22:
+                arg->noHeaderOut = 1;
+                break;
+            case 23:
+                arg->padding = 1;
+                break;
+            case 24:
                 print_citation();
                 exit(0);
-            case 23:
+            case 25:
 				print_version();
 				print_license();
                 exit(0);
-            case 24:
+            case 26:
                 fprintf(stderr, "%s", usage);
 				print_license();
                 exit(0);

@@ -17,33 +17,24 @@ pops.o: pops.c /usr/include/stdc-predef.h config.h pops.h \
  /usr/include/x86_64-linux-gnu/bits/select.h \
  /usr/include/x86_64-linux-gnu/bits/sigset.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
- /usr/include/x86_64-linux-gnu/bits/select2.h \
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h /usr/include/alloca.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib.h /usr/include/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h /usr/include/stdio.h \
  /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h \
  /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdarg.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
- /usr/include/x86_64-linux-gnu/bits/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/stdio2.h arg.h /usr/include/getopt.h \
- /usr/include/string.h /usr/include/xlocale.h \
- /usr/include/x86_64-linux-gnu/bits/string.h \
- /usr/include/x86_64-linux-gnu/bits/string2.h \
- /usr/include/x86_64-linux-gnu/bits/string3.h argpdb.h error.h \
- atomgroup.h getpdb.h /usr/include/libgen.h /usr/include/regex.h \
- /usr/include/x86_64-linux-gnu/gnu/option-groups.h modstring.h \
- /usr/include/ctype.h pdb_structure.h seq.h vector.h /usr/include/math.h \
- /usr/include/x86_64-linux-gnu/bits/huge_val.h \
+ /usr/include/x86_64-linux-gnu/bits/sys_errlist.h arg.h \
+ /usr/include/getopt.h /usr/include/string.h /usr/include/xlocale.h \
+ argpdb.h error.h atomgroup.h getpdb.h /usr/include/libgen.h \
+ /usr/include/regex.h /usr/include/x86_64-linux-gnu/gnu/option-groups.h \
+ modstring.h /usr/include/ctype.h pdb_structure.h seq.h vector.h \
+ /usr/include/math.h /usr/include/x86_64-linux-gnu/bits/huge_val.h \
  /usr/include/x86_64-linux-gnu/bits/huge_valf.h \
  /usr/include/x86_64-linux-gnu/bits/huge_vall.h \
  /usr/include/x86_64-linux-gnu/bits/inf.h \
  /usr/include/x86_64-linux-gnu/bits/nan.h \
  /usr/include/x86_64-linux-gnu/bits/mathdef.h \
- /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
- /usr/include/x86_64-linux-gnu/bits/mathinline.h pattern.h safe.h safe.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls.h pattern.h safe.h safe.h \
  atomgroup_data.h fs.h /usr/include/dirent.h \
  /usr/include/x86_64-linux-gnu/bits/dirent.h \
  /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
@@ -51,8 +42,8 @@ pops.o: pops.c /usr/include/stdc-predef.h config.h pops.h \
  /usr/include/linux/limits.h /usr/include/x86_64-linux-gnu/sys/stat.h \
  /usr/include/x86_64-linux-gnu/bits/stat.h gettraj.h matrix.h putsasa.h \
  sasa.h /usr/lib/gcc/x86_64-linux-gnu/4.8/include/float.h topol.h \
- sasa_const.h type.h putsigma.h sigma.h sigma_const.h sasa_data.h \
- sigma_data.h
+ sasa_const.h type.h putbsasa.h putsigma.h sigma.h sigma_const.h \
+ sasa_data.h sigma_data.h
 
 /usr/include/stdc-predef.h:
 
@@ -104,19 +95,13 @@ pops.h:
 
 /usr/include/x86_64-linux-gnu/bits/time.h:
 
-/usr/include/x86_64-linux-gnu/bits/select2.h:
-
 /usr/include/x86_64-linux-gnu/sys/sysmacros.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
 /usr/include/alloca.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
-
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdlib.h:
 
 /usr/include/stdio.h:
 
@@ -132,10 +117,6 @@ pops.h:
 
 /usr/include/x86_64-linux-gnu/bits/sys_errlist.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdio.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio2.h:
-
 arg.h:
 
 /usr/include/getopt.h:
@@ -143,12 +124,6 @@ arg.h:
 /usr/include/string.h:
 
 /usr/include/xlocale.h:
-
-/usr/include/x86_64-linux-gnu/bits/string.h:
-
-/usr/include/x86_64-linux-gnu/bits/string2.h:
-
-/usr/include/x86_64-linux-gnu/bits/string3.h:
 
 argpdb.h:
 
@@ -190,8 +165,6 @@ vector.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 
-/usr/include/x86_64-linux-gnu/bits/mathinline.h:
-
 pattern.h:
 
 safe.h:
@@ -231,6 +204,8 @@ topol.h:
 sasa_const.h:
 
 type.h:
+
+putbsasa.h:
 
 putsigma.h:
 

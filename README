@@ -205,6 +205,18 @@ Phob/A^2 : hydrophobic solvent accessible surace area in Angstrom^2 units
 Phil/A^2 : hydrophilic solvent accessible surace area in Angstrom^2 units
 Total/A^2 : total solvent accessible surace area in Angstrom^2 units
 
+bSASAs
+The same type of information as for the SASAs is produced for bSASAs,
+which are the buried SASAs of side-chain atoms only.
+bSASAs serve as a component in the definition of a structural 
+environment (3D profile).
+Phob/A^2 : solvent accessible surface area buried by hydrophobic neighbour
+			atoms in Angstrom^2 units
+Phil/A^2 : solvent accessible surface area buried by hydrophilic neighbour
+			atoms in Angstrom^2 units
+Total/A^2 : solvent accessible surface area buried by all neighbour
+			atoms in Angstrom^2 units
+
 = Background Information
 The area equation is defined by a product ∏ of terms that estimate
 the reduction of SASA of atom i by the overlap with its 

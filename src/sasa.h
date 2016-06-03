@@ -30,6 +30,8 @@ typedef struct
 	double surface; /* surface area of isolated atom */
 	int nOverlap; /* number of overlaps */
 	int polar; /* polarity */
+    double phobicbSasa; /* hydrophobic bSASA */
+    double philicbSasa; /* hydrophilic bSASA */
 } AtomSasa;
 
 /* Residuic Solvent Accessible Surface Area */
@@ -41,6 +43,8 @@ typedef struct
     double sasa; /* SASA */
 	int nOverlap; /* number of overlaps */
 	int atomRef; /* first atom of residue to refer to residue number and name */
+    double phobicbSasa; /* hydrophobic bSASA */
+    double philicbSasa; /* hydrophilic bSASA */
 } ResSasa;
 
 /* Chainic Solvent Accessible Surface Area */
@@ -51,6 +55,8 @@ typedef struct
 	double philicSasa; /* hydrophilic SASA */
     double sasa; /* SASA */
 	int first, last; /* first/last atom of chain */
+    double phobicbSasa; /* hydrophobic bSASA */
+    double philicbSasa; /* hydrophilic bSASA */
 } ChainSasa;
 
 /* Molecular Solvent Accessible Surface Area */
@@ -62,6 +68,8 @@ typedef struct
     double philicSasa; /* hydrophilic SASA */
     double phobicSasa; /* hydrophobic SASA */
     double sasa; /* SASA */
+    double phobicbSasa; /* hydrophobic bSASA */
+    double philicbSasa; /* hydrophilic bSASA */
 } MolSasa;
 
 /*___________________________________________________________________________*/
