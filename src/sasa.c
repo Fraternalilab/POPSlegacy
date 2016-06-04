@@ -204,20 +204,22 @@ __inline__ static int mod_atom_sasa(Str *pdb, Topol *topol, Type *type, \
 
 	/* compute atom bSASA for atoms i and j */
 	/* select side-chain atoms and determine polarity of neghbour (overlap) atom */
-	if ((type->atomType[i] > 3) && (constant_sasa->atomDataSasa[type->residueType[j]][type->atomType[j]].polarity == 0)) {
-		molSasa->atomSasa[i].phobicbSasa += atom_bsasa(molSasa, i, connectivityParameter, bij, atomParameter_i);
-	} else if ((type->atomType[i] > 3) && (constant_sasa->atomDataSasa[type->residueType[j]][type->atomType[j]].polarity == 1)) {
-		molSasa->atomSasa[i].philicbSasa += atom_bsasa(molSasa, i, connectivityParameter, bij, atomParameter_i);
-	} else {
-		molSasa->atomSasa[i].philicbSasa += 0.;
-	}
+	if (pdb->atom[i].residueNumber != pdb->atom[j].residueNumber) {
+		if ((type->atomType[i] > 3) && (constant_sasa->atomDataSasa[type->residueType[j]][type->atomType[j]].polarity == 0)) {
+			molSasa->atomSasa[i].phobicbSasa += atom_bsasa(molSasa, i, connectivityParameter, bij, atomParameter_i);
+		} else if ((type->atomType[i] > 3) && (constant_sasa->atomDataSasa[type->residueType[j]][type->atomType[j]].polarity == 1)) {
+			molSasa->atomSasa[i].philicbSasa += atom_bsasa(molSasa, i, connectivityParameter, bij, atomParameter_i);
+		} else {
+			molSasa->atomSasa[i].philicbSasa += 0.;
+		}
 
-	if ((type->atomType[j] > 3) && (constant_sasa->atomDataSasa[type->residueType[i]][type->atomType[i]].polarity == 0)) {
-		molSasa->atomSasa[j].phobicbSasa += atom_bsasa(molSasa, j, connectivityParameter, bij, atomParameter_j);
-	} else if ((type->atomType[j] > 3) && (constant_sasa->atomDataSasa[type->residueType[i]][type->atomType[i]].polarity == 1)) {
-		molSasa->atomSasa[j].philicbSasa += atom_bsasa(molSasa, j, connectivityParameter, bij, atomParameter_j);
-	} else {
-		molSasa->atomSasa[i].philicbSasa += 0.;
+		if ((type->atomType[j] > 3) && (constant_sasa->atomDataSasa[type->residueType[i]][type->atomType[i]].polarity == 0)) {
+			molSasa->atomSasa[j].phobicbSasa += atom_bsasa(molSasa, j, connectivityParameter, bij, atomParameter_j);
+		} else if ((type->atomType[j] > 3) && (constant_sasa->atomDataSasa[type->residueType[i]][type->atomType[i]].polarity == 1)) {
+			molSasa->atomSasa[j].philicbSasa += atom_bsasa(molSasa, j, connectivityParameter, bij, atomParameter_j);
+		} else {
+			molSasa->atomSasa[i].philicbSasa += 0.;
+		}
 	}
 
 	molSasa->atomSasa[i].bSasa = molSasa->atomSasa[i].phobicbSasa + molSasa->atomSasa[i].philicbSasa;

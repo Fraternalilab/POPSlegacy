@@ -86,7 +86,7 @@ static void print_residue_bsasa(FILE *bsasaOutFile, Arg *arg, Str *pdb, MolSasa 
 
 	if (! arg->noHeaderOut) {
 		fprintf(bsasaOutFile, "\n=== RESIDUE bSASAs ===\n");
-		fprintf(bsasaOutFile, "\nResidNe\tChain\tResidNr\tiCode\tPhob/A^2\tQ(Phob)\tPhil/\tQ(Phil)\tTotal/A^2\n");
+		fprintf(bsasaOutFile, "\nResidNe\tChain\tResidNr\tiCode\tPhob/A^2\tQ(Phob)\tPhil/A^2\tQ(Phil)\tTotal/A^2\n");
 	}
 
     for (i = 0; i < pdb->nAllResidue; ++ i) { 
