@@ -20,7 +20,7 @@ static void print_atom_bsasa(FILE *bsasaOutFile, Arg *arg, Str *pdb, MolSasa *mo
 
 	if (! arg->noHeaderOut) {
 		fprintf(bsasaOutFile, "\n=== ATOM bSASAs ===\n");
-		fprintf(bsasaOutFile, "\nAtomNr\tAtomNe\tResidNe\tChain\tResidNr\tiCode\tPhob/A^2\tPhil/A^2\n");
+		fprintf(bsasaOutFile, "\nAtomNr\tAtomNe\tResidNe\tChain\tResidNr\tiCode\tPhob/A^2\tQ(Phob)\tPhil/A^2\tQ(Phil)\tTotal/A^2\n");
 	}
 
 	/* before the first line:
@@ -28,7 +28,7 @@ static void print_atom_bsasa(FILE *bsasaOutFile, Arg *arg, Str *pdb, MolSasa *mo
 	if (arg->padding)  {
 		j = 0;
 		while (++ j < pdb->atom[0].atomNumber) {
-			fprintf(bsasaOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%1s\t%10.2f\t%10.2f\n",
+			fprintf(bsasaOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%1s\t%10.2f\t%10.8f\t%10.2f\t%10.8f\t%10.2f\n",
 				j,
 				"XXX",
 				pdb->atom[0].residueName,
@@ -36,12 +36,15 @@ static void print_atom_bsasa(FILE *bsasaOutFile, Arg *arg, Str *pdb, MolSasa *mo
 				pdb->atom[0].residueNumber,
 				" ",
 				0.,
+				0.,
+				0.,
+				0.,
 				0.);
 		}
 	}
 
 	for (i = 0; i < pdb->nAtom; ++ i) {
-		fprintf(bsasaOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%1s\t%10.2f\t%10.4f\n",
+		fprintf(bsasaOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%1s\t%10.2f\t%10.8f\t%10.2f\t%10.8f\t%10.2f\n",
 			pdb->atom[i].atomNumber,
 			pdb->atom[i].atomName,
 			pdb->atom[i].residueName,
@@ -49,19 +52,25 @@ static void print_atom_bsasa(FILE *bsasaOutFile, Arg *arg, Str *pdb, MolSasa *mo
 			pdb->atom[i].residueNumber,
 			pdb->atom[i].icode,
 			molSasa->atomSasa[i].phobicbSasa,
-			molSasa->atomSasa[i].philicbSasa);
+			molSasa->atomSasa[i].bSasa > 0. ? (molSasa->atomSasa[i].phobicbSasa / molSasa->atomSasa[i].bSasa) : 0.,
+			molSasa->atomSasa[i].philicbSasa,
+			molSasa->atomSasa[i].bSasa > 0. ? (molSasa->atomSasa[i].philicbSasa / molSasa->atomSasa[i].bSasa) : 0.,
+			molSasa->atomSasa[i].bSasa);
 		/* after the first atom :
 			print dummy lines to substitute missing hydrogen atom lines */
 		if (arg->padding && ((i + 1) < pdb->nAtom)) {
 			j = pdb->atom[i].atomNumber;
 			while (++ j < pdb->atom[i+1].atomNumber) {
-				fprintf(bsasaOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%1s\t%10.2f\t%10.4f\n",
+				fprintf(bsasaOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%1s\t%10.2f\t%10.8f\t%10.2f\t%10.8f\t%10.2f\n",
 					j,
 					"HXX",
 					pdb->atom[i].residueName,
 					" ",
 					pdb->atom[i].residueNumber,
 					" ",
+					0.,
+					0.,
+					0.,
 					0.,
 					0.);
 			}
@@ -77,17 +86,20 @@ static void print_residue_bsasa(FILE *bsasaOutFile, Arg *arg, Str *pdb, MolSasa 
 
 	if (! arg->noHeaderOut) {
 		fprintf(bsasaOutFile, "\n=== RESIDUE bSASAs ===\n");
-		fprintf(bsasaOutFile, "\nResidNe\tChain\tResidNr\tiCode\tPhob/A^2\tPhil/A^2\n");
+		fprintf(bsasaOutFile, "\nResidNe\tChain\tResidNr\tiCode\tPhob/A^2\tQ(Phob)\tPhil/\tQ(Phil)\tTotal/A^2\n");
 	}
 
     for (i = 0; i < pdb->nAllResidue; ++ i) { 
-		fprintf(bsasaOutFile, "%8s\t%3s\t%8d\t%1s\t%10.2f\t%10.2f\n",
+		fprintf(bsasaOutFile, "%8s\t%3s\t%8d\t%1s\t%10.2f\t%10.8f\t%10.2f\t%10.8f\t%10.2f\n",
 			pdb->atom[molSasa->resSasa[i].atomRef].residueName,
 			pdb->atom[molSasa->resSasa[i].atomRef].chainIdentifier,
 			pdb->atom[molSasa->resSasa[i].atomRef].residueNumber,
 			pdb->atom[molSasa->resSasa[i].atomRef].icode,
 			molSasa->resSasa[i].phobicbSasa,
-			molSasa->resSasa[i].philicbSasa);
+			molSasa->resSasa[i].bSasa > 0. ? (molSasa->resSasa[i].phobicbSasa / molSasa->resSasa[i].bSasa) : 0.,
+			molSasa->resSasa[i].philicbSasa,
+			molSasa->resSasa[i].bSasa > 0. ? (molSasa->resSasa[i].philicbSasa / molSasa->resSasa[i].bSasa) : 0.,
+			molSasa->resSasa[i].bSasa);
     }
 }
 
@@ -103,7 +115,7 @@ static void print_chain_bsasa(FILE *bsasaOutFile, Arg *arg, Str *pdb, MolSasa *m
 	}
 
     for (i = 0; i < pdb->nChain; ++ i)
-		fprintf(bsasaOutFile, "%3d\t%3s\t%6d->%-6d\t%5d->%-5d\t%10.2f\t%10.2f\n",
+		fprintf(bsasaOutFile, "%3d\t%3s\t%6d->%-6d\t%5d->%-5d\t%10.2f\t%10.2f\%10.2f\n",
 			i,
 			pdb->atom[molSasa->chainSasa[i].first].chainIdentifier,
 			pdb->atom[molSasa->chainSasa[i].first].atomNumber,
@@ -111,7 +123,8 @@ static void print_chain_bsasa(FILE *bsasaOutFile, Arg *arg, Str *pdb, MolSasa *m
 			pdb->atom[molSasa->chainSasa[i].first].residueNumber,
 			pdb->atom[molSasa->chainSasa[i].last].residueNumber,
 			molSasa->chainSasa[i].phobicbSasa,
-			molSasa->chainSasa[i].philicbSasa);
+			molSasa->chainSasa[i].philicbSasa,
+			molSasa->chainSasa[i].bSasa);
 }
 
 /*____________________________________________________________________________*/
@@ -123,7 +136,7 @@ void print_mol_bsasa(FILE *bsasaOutFile, Arg *arg, MolSasa *molSasa)
     fprintf(bsasaOutFile, "%10.2f\t%10.2f\t%10.2f\n\n",
 			molSasa->phobicbSasa,
 			molSasa->philicbSasa,
-			molSasa->sasa);
+			molSasa->bSasa);
 }
 
 /*____________________________________________________________________________*/

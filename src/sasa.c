@@ -76,16 +76,7 @@ int init_sasa(Str *pdb, Type *type, MolSasa *molSasa, ConstantSasa *constant_sas
 		molSasa->atomSasa[i].nOverlap = 0; /* no overlaps yet (isolated atom) */
 		molSasa->atomSasa[i].phobicbSasa = 0.; /* hydrophobic buried SASA */
 		molSasa->atomSasa[i].philicbSasa = 0.; /* hydrophilic buried SASA */
-#if DEBUG>1
-		fprintf(stderr, "%s:%d: atomSasa %d %f %f %f %d %f %f\n",
-			__FILE__, __LINE__, i,
-			molSasa->atomSasa[i].surface,
-			constant_sasa->atomDataSasa[type->residueType[i]][type->atomType[i]].surface,
-			molSasa->atomSasa[i].sasa,
-			molSasa->atomSasa[i].nOverlap
-			molSasa->atomSasa[i].phobicbSasa,
-			molSasa->atomSasa[i].philicbSasa);
-#endif
+		molSasa->atomSasa[i].bSasa = 0.; /* buried SASA */
 	}
 
 	/*___________________________________________________________________________*/
@@ -99,19 +90,7 @@ int init_sasa(Str *pdb, Type *type, MolSasa *molSasa, ConstantSasa *constant_sas
 		molSasa->resSasa[i].atomRef = -1;
 		molSasa->resSasa[i].phobicbSasa = 0.;
 		molSasa->resSasa[i].philicbSasa = 0.;
-/*
-#if DEBUG>1
-		fprintf(stderr, "%s:%d: resSasa %d %f %f %f %d %d %f %f\n",
-			__FILE__, __LINE__, i,
-			molSasa->resSasa[i].phobicSasa,
-			molSasa->resSasa[i].philicSasa,
-			molSasa->resSasa[i].sasa,
-			molSasa->resSasa[i].nOverlap,
-			molSasa->resSasa[i].atomRef),
-			molSasa->resSasa[i].phobicbSasa = 0.,
-			molSasa->resSasa[i].philicbSasa = 0.;
-#endif
-*/
+		molSasa->resSasa[i].bSasa = 0.;
 	}
 
 	/*___________________________________________________________________________*/
@@ -125,19 +104,7 @@ int init_sasa(Str *pdb, Type *type, MolSasa *molSasa, ConstantSasa *constant_sas
 		molSasa->chainSasa[i].last = -1;
 		molSasa->chainSasa[i].phobicbSasa = 0.,
 		molSasa->chainSasa[i].philicbSasa = 0.;
-/*
-#if DEBUG>1
-		fprintf(stderr, "%s:%d: chainSasa %d %f %f %f %d %d\n",
-			__FILE__, __LINE__, i,
-			molSasa->chainSasa[i].phobicSasa,
-			molSasa->chainSasa[i].philicSasa,
-			molSasa->chainSasa[i].sasa,
-			molSasa->chainSasa[i].first,
-			molSasa->chainSasa[i].last,
-			molSasa->chainSasa[i].phobicbSasa = 0.,
-			molSasa->chainSasa[i].philicbSasa = 0.;
-#endif
-*/
+		molSasa->chainSasa[i].bSasa = 0.;
 	}
 
 	/*___________________________________________________________________________*/
@@ -147,6 +114,7 @@ int init_sasa(Str *pdb, Type *type, MolSasa *molSasa, ConstantSasa *constant_sas
 	molSasa->sasa = 0.;
 	molSasa->phobicbSasa = 0.,
 	molSasa->philicbSasa = 0.;
+	molSasa->bSasa = 0.;
 
 	return 0;
 }
@@ -251,6 +219,9 @@ __inline__ static int mod_atom_sasa(Str *pdb, Topol *topol, Type *type, \
 	} else {
 		molSasa->atomSasa[i].philicbSasa += 0.;
 	}
+
+	molSasa->atomSasa[i].bSasa = molSasa->atomSasa[i].phobicbSasa + molSasa->atomSasa[i].philicbSasa;
+	molSasa->atomSasa[j].bSasa = molSasa->atomSasa[j].phobicbSasa + molSasa->atomSasa[j].philicbSasa;
 
 	/* record parameters: increment neighbour index */
 	++ topol->neighbourPar[i][0];
@@ -363,6 +334,20 @@ static int compute_res_chain_mol_sasa(Str *pdb, Type *type, MolSasa *molSasa, \
 		/* sum number of atom overlaps to residuic number of overlaps */
 		molSasa->resSasa[j].nOverlap += molSasa->atomSasa[i].nOverlap;
 
+
+		/*___________________________________________________________________________*/
+		/* sum atomic bSASA to residue, chain and molecule SASA */
+		molSasa->resSasa[j].phobicbSasa += molSasa->atomSasa[i].phobicbSasa;
+		molSasa->resSasa[j].philicbSasa += molSasa->atomSasa[i].philicbSasa;
+		molSasa->resSasa[j].bSasa += molSasa->atomSasa[i].phobicbSasa + molSasa->atomSasa[i].philicbSasa;
+
+		molSasa->chainSasa[k].phobicbSasa += molSasa->atomSasa[i].phobicbSasa;
+		molSasa->chainSasa[k].philicbSasa += molSasa->atomSasa[i].philicbSasa;
+		molSasa->chainSasa[k].bSasa += molSasa->atomSasa[i].phobicbSasa + molSasa->atomSasa[i].philicbSasa;
+
+		molSasa->phobicbSasa += molSasa->atomSasa[i].phobicbSasa;
+		molSasa->philicbSasa += molSasa->atomSasa[i].philicbSasa;
+		molSasa->bSasa += molSasa->atomSasa[i].phobicbSasa + molSasa->atomSasa[i].philicbSasa;
 	}
 	molSasa->chainSasa[k].last = i - 1;
 
