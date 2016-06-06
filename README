@@ -37,6 +37,13 @@ should acknowledge its use by the following citation:
 Install / Uninstall
 -------------------
 Please read the general 'INSTALL' instructions.
+In case the Autoconf version is too old, run
+% autoconf --version
+and use the result to replace the version number in configure.ac
+AC_PREREQ([2.59])
+to reconfigure with the included script
+% ./reconf
+
 For documentation execute 'doxygen doxygen.cfg' in the 'src' directory.
 Documentation files are created in 'doc/html' and 'doc/latex'.
 The latex documentation is completed by executing 'make pdf' in the
