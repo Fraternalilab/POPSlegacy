@@ -136,6 +136,11 @@ int main(int argc, char *argv[])
 	print_sasa(&arg, &argpdb, &pdb, &type, &topol, &molSasa, constant_sasa, -1);
 
     /*____________________________________________________________________________*/
+	/** print bSASA */
+	if (! arg.silent) fprintf(stdout, "bSASA Output:\n");
+	print_bsasa(&arg, &argpdb, &pdb, &type, &topol, &molSasa, constant_sasa, -1);
+
+    /*____________________________________________________________________________*/
     /** compute Solvation Free Energy: atoms, residues, chains, molecule */
 	if (! arg.silent) fprintf(stdout, "Solvation Free Energy\n");
     init_sfe(&pdb, &type, &molSFE, constant_sigma, &arg);

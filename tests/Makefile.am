@@ -6,7 +6,6 @@ noinst_DATA = \
 	1f3r.pdb \
     1aki.pdb\
 	1aki.sdtraj.gro \
-	1aki.sdtraj.gro.2 \
 	host_file
 
 noinst_SCRIPTS = \

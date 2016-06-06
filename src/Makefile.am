@@ -13,8 +13,8 @@ arg.c arg.h argpdb.h atomgroup.c atomgroup.h atomgroup_data.h \
 error.c error.h fs.c fs.h getpdb.c getpdb.h gettraj.c gettraj.h \
 matrix.c matrix.h modstring.c modstring.h \
 pattern.c pattern.h pdb_structure.h pops.c pops.h \
-putsasa.c putsasa.h putsigma.c putsigma.h safe.c safe.h \
-sasa.c sasa.h sasa_const.h sasa_data.h seq.h \
+putsasa.c putsasa.h putbsasa.c putbsasa.h putsigma.c putsigma.h \
+safe.c safe.h sasa.c sasa.h sasa_const.h sasa_data.h seq.h \
 sigma.c sigma.h sigma_const.h sigma_data.h \
 topol.c topol.h type.c type.h vector.c vector.h
 
