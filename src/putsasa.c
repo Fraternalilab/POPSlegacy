@@ -270,6 +270,31 @@ void print_neighbour_parameter(FILE *parameterOutFile, Str *pdb, Type *type, \
 }
 
 /*____________________________________________________________________________*/
+/** print interface residue pairs */
+/* nearest neighbour atom pairs on different chains */
+void print_interface(FILE *interfaceOutFile, Arg *arg, Str *pdb, Type *type, Topol *topol)
+{
+	unsigned int i, j;
+
+	for (i = 0; i < pdb->nAtom; ++ i) {
+		j = topol->interfaceNn[i];
+
+		if (pdb->atom[i].chainIdentifier != pdb->atom[j].chainIdentifier) {
+			fprintf(interfaceOutFile, "%8s\t%3s\t%8d\t%1s%8s\t%3s\t%8d\t%1s%10.4f\n",
+				pdb->atom[i].residueName,
+				pdb->atom[i].chainIdentifier,
+				pdb->atom[i].residueNumber,
+				pdb->atom[i].icode,
+				pdb->atom[j].residueName,
+				pdb->atom[j].chainIdentifier,
+				pdb->atom[j].residueNumber,
+				pdb->atom[j].icode,
+				topol->interfaceNnDist[i]);
+		}
+	}
+}
+
+/*____________________________________________________________________________*/
 /** print SASAs */
 void print_sasa(Arg *arg, Argpdb *argpdb, Str *pdb, Type *type, Topol *topol, \
 				MolSasa *molSasa, ConstantSasa *constant_sasa, int frame)
@@ -336,6 +361,17 @@ void print_sasa(Arg *arg, Argpdb *argpdb, Str *pdb, Type *type, Topol *topol, \
 
 		print_neighbour_parameter(arg->parameterOutFile, pdb, type, topol, molSasa);
 		fclose(arg->parameterOutFile);
+	}
+
+	/* interface residue pairs */
+	if (arg->interfaceOut) {
+		if (frame < 0)
+			arg->interfaceOutFile = safe_open(arg->interfaceOutFileName, "w");
+		else
+			arg->interfaceOutFile = safe_open(arg->interfaceOutFileName, "a");
+
+		print_interface(arg->interfaceOutFile, arg, pdb, type, topol);
+		fclose(arg->interfaceOutFile);
 	}
 }
 

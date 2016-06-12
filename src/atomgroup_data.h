@@ -1,6 +1,6 @@
 /*==============================================================================
 atomgroup_data.h : definition of atom group parameters
-Copyright (C) 07/31/08 Jens Kleinjung
+Copyright (C) 2008 Jens Kleinjung
 Read the COPYING file for license information.
 ==============================================================================*/
 

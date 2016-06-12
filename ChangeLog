@@ -1,3 +1,13 @@
+- 1.8.0
+Sat Jun 11 19:48:15 BST 2016
+	New feature: Output of a pairlist of contact residues between
+	distinct chains, where only the contact residue with the shortest
+	distance is listed. The default output is 'interface.out'.
+
+- 1.7.1
+Sat Jun 11 19:55:44 BST 2016
+
+
 - 1.7.0
 Fri Jun  3 11:35:12 BST 2016
 	New feature: Output of the buried SASA (bSASA).

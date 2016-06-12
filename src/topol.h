@@ -1,7 +1,7 @@
 /*=============================================================================
 topol : molecular topology
-Copyright (C) 2002-2011 Franca Fraternali
-Copyright (C) 2008-2011 Jens Kleinjung
+Copyright (C) 2002-2016 Franca Fraternali
+Copyright (C) 2008-2016 Jens Kleinjung
 Copyright (C) 2002 Luigi Cavallo
 Copyright (C) 2002 Kuang Lin and Valerie Hindie
 Read the COPYING file for license information.
@@ -11,6 +11,7 @@ Read the COPYING file for license information.
 #define TOPOL_H
 
 #include <assert.h>
+#include <float.h>
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -45,6 +46,8 @@ typedef struct
 	int **bondState; /* records bonded atom pairs */
 	int **neighbourState; /* records the neighboured (non-bonded) atom pairs */
 	float **neighbourPar; /* records the POPS parameters 'p_ij * b_ij' of neighbours */
+	int *interfaceNn; /* nearest neighbour on separate chain */
+	float *interfaceNnDist; /* distance to nearest neighbour on separate chain */
 } Topol;
 
 /*____________________________________________________________________________*/

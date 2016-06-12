@@ -1,7 +1,7 @@
 /*=============================================================================
 sasa.h : SASA computation
-Copyright (C) 2002-2013 Franca Fraternali
-Copyright (C) 2008-2013 Jens Kleinjung
+Copyright (C) 2002-2016 Franca Fraternali
+Copyright (C) 2008-2016 Jens Kleinjung
 Copyright (C) 2002 Luigi Cavallo
 Copyright (C) 2002 Kuang Lin and Valerie Hindie
 Read the COPYING file for license information.

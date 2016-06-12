@@ -1,7 +1,7 @@
 /*=============================================================================
 topol : molecular topology
-Copyright (C) 2002-2013 Franca Fraternali
-Copyright (C) 2008-2013 Jens Kleinjung
+Copyright (C) 2002-2016 Franca Fraternali
+Copyright (C) 2008-2016 Jens Kleinjung
 Copyright (C) 2002 Luigi Cavallo
 Copyright (C) 2002 Kuang Lin and Valerie Hindie
 Read the COPYING file for license information.
@@ -88,10 +88,11 @@ void init_topology(Str *pdb, Topol *topol)
 		topol->bondState[i][0] = 0; /* no bonded pairs recorded */
 		topol->neighbourState[i][0] = 0; /* no non-bonded pairs recorded */
 		topol->neighbourPar[i][0] = 0.; /* no neighbours recorded */
+		topol->interfaceNn[i] = -1; /* no nearest neighbour recorded */
+		topol->interfaceNnDist[i] = FLT_MAX; /* distance to nearest neighbour */
 	}
 #endif
 }
-
 
 /*___________________________________________________________________________*/
 /** free topology */
@@ -649,6 +650,16 @@ int nonbonded_overlaps(Str *pdb, Type *type, Topol *topol, ConstantSasa *constan
 				++ topol->neighbourState[j][0];
 				assert(topol->neighbourState[j][0] < 1024);
 				topol->neighbourState[j][topol->neighbourState[j][0]] = i;
+
+				/* record nearest neighbour */
+				if (atomDistance < topol->interfaceNnDist[i]) {
+					topol->interfaceNnDist[i] = atomDistance;
+					topol->interfaceNn[i] = j;
+				}
+				if (atomDistance < topol->interfaceNnDist[j]) {
+					topol->interfaceNnDist[j] = atomDistance;
+					topol->interfaceNn[j] = i;
+				}
 
 				++ topol->nNonBonded; /* increment non-bonded atom index */
 

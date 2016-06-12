@@ -42,6 +42,9 @@ typedef struct
     char *sigmaOutFileName;
     FILE *sigmatrajOutFile;
     char *sigmatrajOutFileName;
+    FILE *interfaceOutFile;
+    char *interfaceOutFileName;
+	int interfaceOut;
 	int compositionOut;
 	int topologyOut;
 	int typeOut;
