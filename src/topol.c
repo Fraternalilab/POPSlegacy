@@ -63,6 +63,7 @@ void init_topology(Str *pdb, Topol *topol)
 	topol->neighbourState = alloc_mat2D_int(topol->neighbourState, (dimx * nodes), 1024);
 	/* assuming an upper limit of 255 neighbours per atom */
 	topol->neighbourPar = alloc_mat2D_float(topol->neighbourPar, (dimx * nodes), 1024);
+	topol->neighbourPar = alloc_mat2D_float(topol->neighbourPar, (dimx * nodes), 1024);
 
     for (i = 0; i < dimx; ++ i) {
         /* skip excess loops */
@@ -83,6 +84,10 @@ void init_topology(Str *pdb, Topol *topol)
 	topol->neighbourState = alloc_mat2D_int(topol->neighbourState, pdb->nAtom, 1024);
 	/* assuming an upper limit of 255 neighbours per atom */
 	topol->neighbourPar = alloc_mat2D_float(topol->neighbourPar, pdb->nAtom, 1024);
+
+	/* maximally one interface nearest neighbour per atom */
+	topol->interfaceNn = safe_malloc(pdb->nAtom * sizeof(int));
+	topol->interfaceNnDist = safe_malloc(pdb->nAtom * sizeof(float));
 
 	for (i = 0; i < pdb->nAtom; ++ i) {
 		topol->bondState[i][0] = 0; /* no bonded pairs recorded */
@@ -120,6 +125,8 @@ void free_topology(Str *pdb, Topol *topol)
 	free_mat2D_int(topol->bondState, dimMat2D); /* bond status of atom pairs */
 	free_mat2D_int(topol->neighbourState, dimMat2D); /* neighbour status of atom pairs */
 	free_mat2D_float(topol->neighbourPar,dimMat2D); /* POPS parameters of neighbours */
+	free(topol->interfaceNn);
+	free(topol->interfaceNnDist);
 }
 
 /*___________________________________________________________________________*/

@@ -178,7 +178,7 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
 	   --popsbtrajOut <POPSb output>\t(mode: optional , type: char  , default: popsbtraj.out)\n\
 	   --sigmaOut <SFE output>\t(mode: optional , type: char  , default: sigma.out)\n\
 	   --sigmatrajOut <SFE output>\t(mode: optional , type: char  , default: sigmatraj.out)\n\
-	   --interfaceOut <interface output>\t(mode: optional , type: char  , default: interface.out)\n\
+	   --interfaceOut\t\t(mode: optional , type: no_arg, default: off)\n\
 	   --compositionOut\t\t(mode: optional , type: no_arg, default: off)\n\
 	   --typeOut\t\t\t(mode: optional , type: no_arg, default: off)\n\
 	   --topologyOut\t\t(mode: optional , type: no_arg, default: off)\n\
@@ -217,7 +217,7 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
         {"popsbtrajOut", required_argument, 0, 9},
         {"sigmaOut", required_argument, 0, 10},
         {"sigmatrajOut", required_argument, 0, 11},
-        {"interfaceOut", required_argument, 0, 12},
+        {"interfaceOut", no_argument, 0, 12},
         {"silent", no_argument, 0, 13},
         {"compositionOut", no_argument, 0, 14},
         {"typeOut", no_argument, 0, 15},
