@@ -279,12 +279,16 @@ void print_interface(FILE *interfaceOutFile, Arg *arg, Str *pdb, Type *type, Top
 	for (i = 0; i < pdb->nAtom; ++ i) {
 		j = topol->interfaceNn[i];
 
-		if (pdb->atom[i].chainIdentifier != pdb->atom[j].chainIdentifier) {
-			fprintf(interfaceOutFile, "%8s\t%3s\t%8d\t%1s%8s\t%3s\t%8d\t%1s%10.4f\n",
+		if (strcmp(pdb->atom[i].chainIdentifier, pdb->atom[j].chainIdentifier) != 0) {
+			fprintf(interfaceOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%1s%8d\t%3s\t%3s\t%1s\t%6d\t%1s\t%10.4f\n",
+				pdb->atom[i].atomNumber,
+				pdb->atom[i].atomName,
 				pdb->atom[i].residueName,
 				pdb->atom[i].chainIdentifier,
 				pdb->atom[i].residueNumber,
 				pdb->atom[i].icode,
+				pdb->atom[j].atomNumber,
+				pdb->atom[j].atomName,
 				pdb->atom[j].residueName,
 				pdb->atom[j].chainIdentifier,
 				pdb->atom[j].residueNumber,
