@@ -36,26 +36,17 @@ should acknowledge its use by the following citation:
 
 Install / Uninstall
 -------------------
-Please read the general 'INSTALL' instructions.
-In case the Autoconf version is too old, run
-% autoconf --version
-and use the result to replace the version number in configure.ac
-AC_PREREQ([2.59])
-to reconfigure with the included script
-% ./reconf
-
-For documentation execute 'doxygen doxygen.cfg' in the 'src' directory.
-Documentation files are created in 'doc/html' and 'doc/latex'.
-The latex documentation is completed by executing 'make pdf' in the
-'doc/latex' directory, which creates 'refman.ps' and 'refman.pdf'.
+Run the boostrap script in the main directory (cd POPS ; ./bootstrap)
+and follow the general 'INSTALL' instructions.
 
 The configuration option '--enable-debug' creates a debuggable binary,
 the option '--enable-profiling' enables profiling with 'gprof'.
 
-POPS* can be accelerated considerably by using MPI. To compile using MPI:
-% configure --enable-mpi
-and if MPI is not installed in a default location:
-% configure --enable-mpi --with-mpi=<my-path-to-mpi>
+For automatic code documentation execute 'doxygen doxygen.cfg'
+in the 'src' directory.
+Documentation files are created in 'doc/html' and 'doc/latex'.
+The latex documentation is completed by executing 'make pdf' in the
+'doc/latex' directory, which creates 'refman.ps' and 'refman.pdf'.
 
 
 Usage
@@ -246,7 +237,7 @@ p_ij is a sphere overlap parameter depending on the degree of bonding between i 
 b_ij is a geometric construct based on the radii and distance (r_ij) of i and j.
 S_i is the SASA of the free atom i (no neighbours).
 
-The atom specific parameters (radii, SASAs) are listed in the
+The atom specific parameters (radii, SASAs) are listed on the web server's
 <a href="#Parameters">Parameters</a> files for the atoms of all standard PDB residues,   
 followed by the connectivity parameters (p<sub>ij</sub>, b<sub>ij</sub>) and the
 solvent radius for water.
@@ -255,7 +246,7 @@ solvent radius for water.
 Return values
 -------------
 0 : Clean termination.
-1 : Any substantial error, in particular:
+1 : Error:
 - Input error (wrong file name).
 - Too few arguments.
 - Unknown standard residue or atom. 
@@ -263,9 +254,9 @@ Return values
 - Less than 2 atoms, 2 bonds, 2 angles or 2 torsions in input structure.
 - Assertions: Internal data flow is partially controlled by assertions.
   The 'assert' macro does not return an error value itself,
-  but the program exits with a (non-zero) error code.
-- Warning messages: Error and warninig output is directed to stderr.
-- Progress messsages: Progress output is directed to stdout.
+  but the program exits with a (non-zero) error code and a comment.
+- Warning messages: Error and warninig output is directed to 'stderr'.
+- Progress messsages: Progress output is sparse and directed to 'stdout'.
 - Default result output: By default the program prints results to 'pops.out'.
 
 
