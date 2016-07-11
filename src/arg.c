@@ -165,7 +165,7 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
 	const char usage[] = "\npops [--pdb ...] [OPTIONS ...]\n\
 	 INPUT OPTIONS\n\
 	   --pdb <PDB input>\t\t(mode: mandatory, type: char  , default: void)\n\
-	   --traj <trajectory input>\t(mode: optional, type: char  , default: void)\n\
+	   --traj <trajectory input>\t(mode: optional , type: char  , default: void)\n\
 	 MODE OPTIONS\n\
 	   --coarse\t\t\t(mode: optional , type: no_arg, default: off)\n\
 	   --multiModel (disabled)\t(mode: optional , type: no_arg, default: off)\n\
