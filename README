@@ -36,7 +36,8 @@ should acknowledge its use by the following citation:
 
 Install / Uninstall
 -------------------
-Please read the general 'INSTALL' instructions.
+Run the 'bootstrap' shell script and follow the
+general 'INSTALL' instructions.
 In case the Autoconf version is too old, run
 % autoconf --version
 and use the result to replace the version number in configure.ac
