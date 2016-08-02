@@ -38,17 +38,12 @@ Install / Uninstall
 -------------------
 Run the 'bootstrap' shell script and follow the
 general 'INSTALL' instructions.
+
 In case the Autoconf version is too old, run
 % autoconf --version
 and use the result to replace the version number in configure.ac
 AC_PREREQ([2.59])
-to reconfigure with the included script
-% ./reconf
-
-For documentation execute 'doxygen doxygen.cfg' in the 'src' directory.
-Documentation files are created in 'doc/html' and 'doc/latex'.
-The latex documentation is completed by executing 'make pdf' in the
-'doc/latex' directory, which creates 'refman.ps' and 'refman.pdf'.
+to reconfigure with the bootstrap script.
 
 The configuration option '--enable-debug' creates a debuggable binary,
 the option '--enable-profiling' enables profiling with 'gprof'.
@@ -274,8 +269,24 @@ Return values
 Servers
 -------
 POPS: http://mathbio.crick.ac.uk/wiki/POPS
-
 POPSCOMP: http://mathbio.crick.ac.uk/wiki/POPSCOMP
+
+
+Code
+----
+https://github.com/jkleinj/POPS
+
+
+Releases
+--------
+https://github.com/jkleinj/POPS/releases
+see ChangeLog for the release history
+
+
+Contact
+-------
+franca.fraternali@kcl.ac.uk
+jens.kleinjung@crick.ac.uk
 
 
 -------------------------------------------------------------------------------
