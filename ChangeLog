@@ -1,3 +1,7 @@
+- 1.8.1
+Thu Jul 21 15:18:43 BST 2016
+	Added Calpha to bSASA calculation
+
 - 1.8.0
 Mon Jun 13 00:11:54 BST 2016
 	New feature: Output of a nearest neighbour list between
