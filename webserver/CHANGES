@@ -1,0 +1,16 @@
+1.0.5
+Sat Aug 22 19:16:56 BST 2009 : changed over to POPSc-GNU version
+
+1.0.4
+- running on MathBio wiki for several years
+
+1.0.3
+- moved pops executable to POPSf and changed name to 'pops' instead of 'pops_web.x'
+
+1.0.2
+- added chain identifier to popsresdiff.out file
+
+1.0.1
+- added probe radius (1.4) to header of POPS*.dat files
+- added chain identifier to popsdiff.out file
+
