@@ -1,0 +1,226 @@
+<?php
+/*============================================================================*/
+/* POPS website layout and functions                                          */
+/* (C) 2007 Jens Kleinjung, Franca Fraternali, Alessandro Pandini             */
+/*============================================================================*/
+
+$scriptdir = "/srv/www/htdocs/wiki/php";
+$wikibaseurl = "mathbio.nimr.mrc.ac.uk/wiki";
+
+/* variables */
+$pops_input = <<<EOF
+<br>
+<form method="post" enctype="multipart/form-data">
+<p>
+	Enter a PDB identifier:<br>
+	<input name="PDBID" value="" size="10" type="text"><br>
+	<br>
+	<i><b>OR</b></i> Upload file containing PDB file:<br>
+	<input name="PDBUP" value="" accept="*" size="50" type="file"><br>
+	<br>
+	Multiple models <input name="MULTMOD" value="1" type="checkbox"><br>
+	<br>
+	Coarse grained calculation <input name="RESONLY" value="1" type="checkbox"><br>
+	<br>
+	Output atomic areas  <input name="ATOMICOUT" value="1" type="checkbox"><br>
+	Output residue areas  <input name="RESOUT" value="1" type="checkbox"><br>
+	<br>
+</p>
+<p>
+	<input name="action" value="Submit" type="submit">
+	<input name="mbjob[method]" value="pops" type="hidden">
+	<a href="#Options">Help on Options</a>
+</p>
+</form>
+<br><br><hr>
+EOF;
+
+$pops_desc = <<<EOF
+<p>
+	POPS is a fast algorithm to calculate accessible surfaces areas at atomic 
+	(default) and residue (coarse grained) level. Atomic and residue areas 
+	(the latter simulated with a single sphere centered at the C-alpha atom 
+	for amino acids and at the P atom for nucleotides) have been optimised 
+	versus accurate all-atoms methods (Naccess).
+</p>
+<p>
+	An analytical formula is used for the calculation of solvent accessibilities. 
+	The formula is simple, easily derivable and fast to compute, therefore, 
+	practical for use in molecular dynamics (MD) simulations as an approximation 
+	to the first solvation shell.
+</p>
+<p>
+	Users publishing results obtained with the POPS program should acknowledge 
+	its use by citing <a href="#Fraternali_2002">Fraternali and Cavallo (2002)</a>
+	and for the POPS server <a href="#Cavallo_2003">Cavallo et al. (2003)</a>.
+</p>
+<p>
+	After submission a holding page provides access to the result page.
+	Otherwise results (also of previous runs) can be accessed through the
+	<a href="http://$wikibaseurl/Online_Tools#Retrieve">Retrieve function</a>.
+</p>
+EOF;
+
+$pops_parameters = <<<EOF
+<br>
+<h2><a name="Parameters">Parameters</a></h2>
+The <b>optimised parameters</b> are listed here:<br>
+(Parameters for a molecule containing RNA+DNA are at the moment not available.)
+
+<ul>
+	<li>
+		<a href="http://mathbio.nimr.mrc.ac.uk/tool/POPS/POPS-A-RNA.dat">All atoms (protein+RNA)</a><br>
+	</li>
+</ul>
+<ul>
+	<li>
+		<a href="http://mathbio.nimr.mrc.ac.uk/tool/POPS/POPS-A-DNA.dat">All atoms (protein+DNA) </a><br>
+	</li>
+</ul>
+<ul>
+	<li>
+		<a href="http://mathbio.nimr.mrc.ac.uk/tool/POPS/POPS-R-RNA.dat">Coarse grained (protein+RNA)</a><br>
+	</li>
+</ul>
+<ul>
+	<li>
+		<a href="http://mathbio.nimr.mrc.ac.uk/tool/POPS/POPS-R-DNA.dat">Coarse grained (protein+DNA)</a><br>
+	</li>
+</ul>
+EOF;
+
+$pops_help_options = <<<EOF
+<br>
+<h2><a name="Options">Help on Options</a></h2>
+<dl>
+	<dt><b>PDB structure file</b></dt>
+	<dd>
+		Entering a PDB identifier (lower case or upper case without the extension
+	   .pdb) in the first text window will automatically perform the POPS 
+	   calculation on the corresponding structure. Uploading of structure files 
+	   by the user can be performed by specifying the file path and name in the 
+	   second text window.
+	</dd>
+	<dt><b>Multiple models</b></dt>
+	<dd>
+		By default the POPS calculation will be performed on the first model only, 
+		if a structure file containing multiple models is chosen/uploaded. Activation 
+		of the 'Multiple models' button triggers POPS calculation of all models.
+	</dd>
+	<dt><b>Coarse grained</b></dt>
+	<dd>
+		Calculation of accessible surface area on residue level.
+	</dd>
+	<dt><b>Output areas</b></dt>
+	<dd>
+		Choice between short list (residue areas) and detailed list (atom areas).
+	</dd>
+	<dt><b>Default output</b></dt>
+	<dd>
+		List of hydrophobic, hydrophilic and  total contributions to the accessible 
+		surface area of the entire molecule (all atoms), first model only.
+	</dd>
+</dl>
+EOF;
+
+$pops_help_parameters = <<<EOF
+<br>
+<h2><a name="Output Format">Help on POPS Parameters</a></h2>
+The area equation is defined by a product 'Î ' of atom-specific terms '[ ]'<br>
+Î <sub>i=1</sub><sup>Natoms</sup> [&nbsp; 1 - (p<sub>i</sub> p<sub>ij</sub> b<sub>ij</sub>(r<sub>ij</sub>)/S<sub>i</sub>)&nbsp;].<br>
+p<sub>i</sub> depends on the atom type.<br>
+p<sub>ij</sub> depends on the degree of bonding (1-2, 1-3, 1-4, 1- &nbsp;&gt;4).<br>
+b<sub>ij</sub> is a geometric construct based on the radii and distance of two atoms.<br>
+For example, the definition of <a href="#Parameters">optimised parameters</a> begins with:
+<p>
+	<table>
+		<tbody>
+			<tr>
+				<td>255</td><td>0.91463</td><td>0.24511</td><td>-0.32226</td><td>0.58720</td>
+			</tr>
+		</tbody>
+	</table>
+	<table>
+		<tbody>
+			<tr>
+				<td>ATOM</td><td>N </td><td>ALA</td><td>1.55000</td><td>1.27927</td><td>1</td>
+			</tr>
+			<tr>
+				<td>ATOM</td><td>CA</td><td>ALA</td><td>1.80000</td><td>1.13196</td><td>0</td>
+			</tr>
+		</tbody>
+	</table>
+</p>
+<p>
+	The first line of the data file is the number of atoms, followed by the 
+	p<sub>1-2</sub>, p<sub>1-3</sub>, p<sub>1-4</sub> and p<sub>1-&nbsp;&gt;4</sub> 
+	parameters. These are the numbers to be used for the p<sub>ij</sub> connectivity 
+	parameter. Then, for each atom the radius and the atomic parameter p<sub>i</sub> 
+	are given. The last digit 0/1 indicates whether an atom is polar (1) or not (0).
+
+	So we have 255 atom parameters: 250 p<sub>i</sub> for the different atom types, 
+	4 p<sub>ij</sub> connectivity parameters and 1 b<sub>ij</sub> geometric parameter.
+	<br>
+	In this example we have: p<sub>1-2</sub> = 0.91463; p<sub>1-3</sub> = 0.24511; 
+	p<sub>1-4</sub> = -0.32226; p<sub>1- &nbsp;&gt;4</sub> = 0.58720;  
+	the p<sub>i</sub> of alanine N is 1.27927 and the p<sub>i</sub> of alanine CA is 1.13196.
+</p>
+EOF;
+
+$pops_references = <<<EOF
+<br>
+<h2><a name="References">References</a></h2>
+<ol>
+	<li>
+		<a name="Fraternali_2002"></a>Fraternali, F. and Cavallo, L.<br>
+		Parameter optimized surfaces (POPS): analysis of key interactions and 
+		conformational changes in the ribosome.<br>
+		<i>Nucleic Acids Research</i> <b>30</b> (2002) 2950-2960. &nbsp;
+		<a href="http://nar.oupjournals.org/cgi/reprint/30/13/2950">reprint (PDF)</a>.
+	</li>
+	<p></p>
+	<li>
+		<a name="Cavallo_2003"></a>Cavallo, L., Kleinjung, J. and Fraternali, F.<br>
+		POPS: A fast algorithm for solvent accessible surface areas at atomic 
+		and residue level.<br>
+		<i>Nucleic Acids Research</i> <b>31</b> (2003) 3364-3366. &nbsp; 
+		<a href="http://nar.oxfordjournals.org/cgi/reprint/31/13/3364">reprint (PDF)</a>.
+	</li>
+	<p></p>
+	<li>
+		<a name="Kleinjung_2005"></a>Kleinjung, J. and Fraternali, F.<br>
+		POPSCOMP: an automated interaction analysis of biomolecular complexes.<br>
+		<i>Nucleic Acids Research</i> <b>33</b> (2005) W342-W346. &nbsp;
+		<a href="http://nar.oxfordjournals.org/cgi/reprint/33/suppl_2/W342">reprint (PDF)</a>.
+	</li>
+</ol>
+<br>
+EOF;
+
+$pops_footer = <<<EOF
+<hr>
+The POPS server was developed by Franca Fraternali, the POPS logo was designed 
+by Domenico Fraternali. &nbsp;
+<a href="mailto:ffranca@kcl.ac.uk,jkleinj@nimr.mrc.ac.uk">Contact Authors</a>
+EOF;
+
+
+/* functions */
+function parse_results($jobid, $wwwdir)
+{
+	// parse POPS result page
+	$myFile = $wwwdir . "/job/" . $jobid . "/result.html";
+	$output = file($myFile);
+
+	// append POPS output to result string
+	$resultstring .= join("<br>\n",$output);
+
+	return $resultstring;
+}
+
+function check_input($_FILES, $_POST)
+{
+	return false;
+}
+
+?>
