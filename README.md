@@ -249,17 +249,17 @@ and the solvent radius for water.
 ### Return values
 * 0 : Clean termination.
 * 1 : Error:
-* Input error (wrong file name).
-* Too few arguments.
-* Unknown standard residue or atom. 
-* Too short atom distance.
-* Less than 2 atoms, 2 bonds, 2 angles or 2 torsions in input structure.
-* Assertions: Internal data flow is partially controlled by assertions.
+  - Input error (wrong file name).
+  - Too few arguments.
+  - Unknown standard residue or atom. 
+  - Too short atom distance.
+  - Less than 2 atoms, 2 bonds, 2 angles or 2 torsions in input structure.
+  - Assertions: Internal data flow is partially controlled by assertions.
   The 'assert' macro does not return an error value itself,
   but the program exits with a (non-zero) error code and a comment.
-* Warning messages: Error and warninig output is directed to 'stderr'.
-* Progress messsages: Progress output is sparse and directed to 'stdout'.
-* Default result output: By default the program prints results to 'pops.out'.
+  - Warning messages: Error and warninig output is directed to 'stderr'.
+  - Progress messsages: Progress output is sparse and directed to 'stdout'.
+  - Default result output: By default the program prints results to 'pops.out'.
 
 
 ## Code
