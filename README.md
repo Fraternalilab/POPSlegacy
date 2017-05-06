@@ -1,47 +1,43 @@
 
-POPS*: Parameter OPtimised Surface of proteins and nucleic acids 
-----------------------------------------------------------------
+# POPS*: Parameter OPtimised Surface of proteins and nucleic acids 
 Calculation of solvent accessible surface areas (SASAs) of biopolymers,
 currently proteins and nucleic acids.
 
 
-Servers
--------
+## Servers
 * [POPS](http://mathbio.crick.ac.uk/wiki/POPS)
 * [POPSCOMP](http://mathbio.crick.ac.uk/wiki/POPSCOMP)
 
 
-References
-----------
+## References
 Users publishing results obtained with the program and its applications
 should acknowledge its use by the following citation:
 
-## Implicit solvent
+### Implicit solvent
    Fraternali, F. and van Gunsteren, W.F.
    An efficient mean solvation force model for use in molecular 
    dynamics simulations of proteins in aqueous solution.
    Journal of Molecular Biology 256 (1996) 939-948.
 
-## POPS* method
+### POPS* method
    Fraternali, F. and Cavallo, L.
    Parameter optimized surfaces (POPS*): analysis of key interactions
    and conformational changes in the ribosome.
    Nucleic Acids Research 30 (2002) 2950-2960.
 
-## POPS* server
+### POPS* server
    Cavallo, L., Kleinjung, J. and Fraternali, F.
    POPS: A fast algorithm for solvent accessible surface areas 
    at atomic and residue level.
    Nucleic Acids Research 31 (2003) 3364-3366.
 
-## POPSCOMP server
+### POPSCOMP server
    Kleinjung, J. and Fraternali, F.
    POPSCOMP: an automated interaction analysis of biomolecular complexes.
    Nucleic Acids Research 33 (2005) W342-W346.
 
 
-Install / Uninstall
--------------------
+## Install / Uninstall
 * Run the 'bootstrap' shell script and follow the general 'INSTALL' instructions.
 
 * In case the Autoconf version is too old, run
@@ -60,8 +56,7 @@ The latex documentation is completed by executing 'make pdf' in the
 'doc/latex' directory, which creates 'refman.ps' and 'refman.pdf'.
 
 
-Usage
------
+## Usage
 pops [--pdb ...] [OPTIONS ...]
     INPUT OPTIONS
     --pdb <PDB input>		(mode: mandatory, type: char  , default: void)
@@ -93,8 +88,7 @@ pops [--pdb ...] [OPTIONS ...]
     --help
 
 
-Program Design
---------------
+## Program Design
 * PDB input file (read input) 
 * Groups (assign atom group id)
 * Types (assign GROMOS atom type id)
@@ -102,7 +96,7 @@ Program Design
 * SASA (compute SASA values at atoms, chain and molecule level)
 * Output (print output)
 
-## Determine the atom and residue types according to 'sasa_data.h' ('type'),
+### Determine the atom and residue types according to 'sasa_data.h' ('type'),
 Possible complications in the handling of PDB files and the way it
 is dealt with by POPSc are listed here.
 * Hydrogen atoms : Hydrogen atoms are skipped.
@@ -131,12 +125,12 @@ is dealt with by POPSc are listed here.
 * For a complete list of residues see:
     [monomers](ftp://ftp.wwpdb.org/pub/pdb/data/monomers/)
 
-## Atomgroup assignment (code file 'atomgroup').
+### Atomgroup assignment (code file 'atomgroup').
 POPS* uses a specific sigma parameter for each atom type.
 Atom types with the same sigma can be grouped together, 
 yielding a group-specific sigma parameter.
 
-## Type assignment for atoms and residues (code file 'type').
+### Type assignment for atoms and residues (code file 'type').
 The data structure that defines the atom and residue types is specified
 as data type 'ConstantSasa' in 'sasa_const.h', 
 while the actual parametrisation is kept in 'sasa_data.h'.
@@ -149,7 +143,7 @@ to either element, which defines the parametrisation to be used.
 Other parametrisations can be defined by appending new elements
 to the 'constant_sasa_data[]' array.
 
-## Determine the molecular Topol (code file 'topol').
+### Determine the molecular Topol (code file 'topol').
 The determination of the molecular topology proceeds progressively
 from 1-2 interactions (bonds) over 1-3 interactions (angles) to
 1-4 interactions (torsions). Any other pairwise atom pair relationship 
@@ -162,14 +156,14 @@ included in the 'ConstantSasa' data type so that there is no need to
 determine it. This means the treatment of cyclic HETATM molecules
 requires specific attention.
 
-## SASA: Compute AtomSasa, ResSasa, ChainSasa and MolSasa (code file 'sasa').
+### SASA: Compute AtomSasa, ResSasa, ChainSasa and MolSasa (code file 'sasa').
 The SASA calculation has been broken down into elementary equations (as
 inline code) and a progressive strategy to approximate atom SASAs.
 Starting from the SASA of the isolated atom, overlap areas are subtracted
 progressively for all 1-(i+n) interactions. Atomic SASAs are summed up
 to yield residue, chain and molecule SASAs.
 
-## Output
+### Output
 Flags controlling the amount and type of output.
 The default ouput is the overall SASA of the molecule, including the
 hydrophilic and hydrophobic contributions. More output can be produced
@@ -222,7 +216,7 @@ environment (3D profile).
 * Phil/A^2 : solvent accessible surface area buried by hydrophilic neighbour atoms in Angstrom^2 units
 * Total/A^2 : solvent accessible surface area buried by all neighbour atoms in Angstrom^2 units
 
-## INTERFACE
+### INTERFACE
 Information of interface residues in complexes can be obtained with switch
 --interfaceOut. For each atom of the input structure, the nearest neighbour
 is computed based on the neighbour list and printed if the two contact
@@ -232,8 +226,7 @@ for B. Also, the list might change with protein motion. Therefore it depends
 on the interpretation to be derived from the interface whether it is suitable
 to use the atom pairs, the residue pairs and/or their distances.
 
-
-## Background Information
+### Background Information
 The area equation is defined by a product ∏ of terms that estimate
 the reduction of SASA of atom i by the overlap with its 
 neighbours j (Hasel at al., 1988):
@@ -249,8 +242,7 @@ The atom specific parameters (radii, SASAs) are listed on the web server's
 and the solvent radius for water.
 
 
-Return values
--------------
+### Return values
 * 0 : Clean termination.
 * 1 : Error:
 * Input error (wrong file name).
@@ -266,34 +258,30 @@ Return values
 * Default result output: By default the program prints results to 'pops.out'.
 
 
-# [POPS code](https://github.com/jkleinj/POPS)
+## Code
+* [POPS code](https://github.com/jkleinj/POPS)
+* [Releases](https://github.com/jkleinj/POPS/releases)
 
 
-# [Releases](https://github.com/jkleinj/POPS/releases)
-see ChangeLog for the release history
-
-
-Contact
--------
+## Contact
 * franca.fraternali@kcl.ac.uk
 * jens.kleinjung@crick.ac.uk
 
 
-# Copyright
+## Copyright
 Copyright (C) 2002-2016 Franca Fraternali (program author)
 Copyright (C) 2008-2016 Jens Kleinjung (modular C code)
 Copyright (C) 2002 Kuang Lin and Valerie Hindie (translation to C)
 Copyright (C) 2002 Luigi Cavallo (parametrisation)
 
-Availability
-------------
+
+## Availability
 The program is made available under the GNU Public License for academic
 scientific purposes, under the condition that proper acknowledgement
 is made to the authors of the program in publications resulting from the use
 of the program.
 
-License
--------
+## License
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
