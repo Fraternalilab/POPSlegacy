@@ -14,24 +14,24 @@ Users publishing results obtained with the program and its applications
 should acknowledge its use by the following citation:
 
 ### Implicit solvent
-   **Fraternali, F. and van Gunsteren, W.F.**
+   Fraternali, F. and van Gunsteren, W.F.
    *An efficient mean solvation force model for use in molecular dynamics simulations of proteins in aqueous solution.*
-   Journal of Molecular Biology 256 (1996) 939-948.
+   **Journal of Molecular Biology** 256 (1996) 939-948.
 
 ### POPS* method
-   **Fraternali, F. and Cavallo, L.**
-   *Parameter optimized surfaces (POPS*): analysis of key interactions and conformational changes in the ribosome.*
-   Nucleic Acids Research 30 (2002) 2950-2960.
+   Fraternali, F. and Cavallo, L.
+   *Parameter optimized surfaces (POPS): analysis of key interactions and conformational changes in the ribosome.*
+   **Nucleic Acids Research** 30 (2002) 2950-2960.
 
 ### POPS* server
-   **Cavallo, L., Kleinjung, J. and Fraternali, F.**
+   Cavallo, L., Kleinjung, J. and Fraternali, F.
    *POPS: A fast algorithm for solvent accessible surface areas at atomic and residue level.*
-   Nucleic Acids Research 31 (2003) 3364-3366.
+   **Nucleic Acids Research** 31 (2003) 3364-3366.
 
 ### POPSCOMP server
-   **Kleinjung, J. and Fraternali, F.**
+   Kleinjung, J. and Fraternali, F.
    *POPSCOMP: an automated interaction analysis of biomolecular complexes.*
-   Nucleic Acids Research 33 (2005) W342-W346.
+   **Nucleic Acids Research** 33 (2005) W342-W346.
 
 
 ## Install / Uninstall
