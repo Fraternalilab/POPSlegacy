@@ -14,26 +14,23 @@ Users publishing results obtained with the program and its applications
 should acknowledge its use by the following citation:
 
 ### Implicit solvent
-   Fraternali, F. and van Gunsteren, W.F.
-   An efficient mean solvation force model for use in molecular 
-   dynamics simulations of proteins in aqueous solution.
+   **Fraternali, F. and van Gunsteren, W.F.**
+   *An efficient mean solvation force model for use in molecular dynamics simulations of proteins in aqueous solution.*
    Journal of Molecular Biology 256 (1996) 939-948.
 
 ### POPS* method
-   Fraternali, F. and Cavallo, L.
-   Parameter optimized surfaces (POPS*): analysis of key interactions
-   and conformational changes in the ribosome.
+   **Fraternali, F. and Cavallo, L.**
+   *Parameter optimized surfaces (POPS*): analysis of key interactions and conformational changes in the ribosome.*
    Nucleic Acids Research 30 (2002) 2950-2960.
 
 ### POPS* server
-   Cavallo, L., Kleinjung, J. and Fraternali, F.
-   POPS: A fast algorithm for solvent accessible surface areas 
-   at atomic and residue level.
+   **Cavallo, L., Kleinjung, J. and Fraternali, F.**
+   *POPS: A fast algorithm for solvent accessible surface areas at atomic and residue level.*
    Nucleic Acids Research 31 (2003) 3364-3366.
 
 ### POPSCOMP server
-   Kleinjung, J. and Fraternali, F.
-   POPSCOMP: an automated interaction analysis of biomolecular complexes.
+   **Kleinjung, J. and Fraternali, F.**
+   *POPSCOMP: an automated interaction analysis of biomolecular complexes.*
    Nucleic Acids Research 33 (2005) W342-W346.
 
 
@@ -41,9 +38,13 @@ should acknowledge its use by the following citation:
 * Run the 'bootstrap' shell script and follow the general 'INSTALL' instructions.
 
 * In case the Autoconf version is too old, run
-    autoconf --version
+```
+autoconf --version
+```
 and use the result to replace the version number in configure.ac
-    AC_PREREQ([2.59])
+```
+AC_PREREQ([2.59])
+```
 to reconfigure with the bootstrap script.
 
 The configuration option '--enable-debug' creates a debuggable binary,
@@ -57,6 +58,7 @@ The latex documentation is completed by executing 'make pdf' in the
 
 
 ## Usage
+```
 pops [--pdb ...] [OPTIONS ...]
     INPUT OPTIONS
     --pdb <PDB input>		(mode: mandatory, type: char  , default: void)
@@ -86,7 +88,7 @@ pops [--pdb ...] [OPTIONS ...]
     --cite			(mode: optional , type: no_arg, default: off)
     --version			(mode: optional , type: no_arg, default: off)
     --help
-
+```
 
 ## Program Design
 * PDB input file (read input) 
@@ -230,7 +232,9 @@ to use the atom pairs, the residue pairs and/or their distances.
 The area equation is defined by a product ∏ of terms that estimate
 the reduction of SASA of atom i by the overlap with its 
 neighbours j (Hasel at al., 1988):
-    ∏^N_i=1 [1 - (p_i p_ij b_ij (r_ij) / S_i)].
+```
+∏^N_i=1 [1 - (p_i p_ij b_ij (r_ij) / S_i)].
+```
 * i is the atom for which the POPS area is computed, j is any of N neighbour atoms.
 * p_i  is an atom type specific SASA parameter.
 * p_ij is a sphere overlap parameter depending on the degree of bonding between i and j (1-2, 1-3, 1-4, 1-5, ...).
