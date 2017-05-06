@@ -5,6 +5,12 @@ Calculation of solvent accessible surface areas (SASAs) of biopolymers,
 currently proteins and nucleic acids.
 
 
+Servers
+-------
+POPS: http://mathbio.crick.ac.uk/wiki/POPS
+POPSCOMP: http://mathbio.crick.ac.uk/wiki/POPSCOMP
+
+
 References
 ----------
 Users publishing results obtained with the program and its applications
@@ -264,12 +270,6 @@ Return values
 - Warning messages: Error and warninig output is directed to 'stderr'.
 - Progress messsages: Progress output is sparse and directed to 'stdout'.
 - Default result output: By default the program prints results to 'pops.out'.
-
-
-Servers
--------
-POPS: http://mathbio.crick.ac.uk/wiki/POPS
-POPSCOMP: http://mathbio.crick.ac.uk/wiki/POPSCOMP
 
 
 Code
