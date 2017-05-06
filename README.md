@@ -272,11 +272,11 @@ and the solvent radius for water.
 * jens.kleinjung@crick.ac.uk
 
 
-## Copyright
-Copyright (C) 2002-2016 Franca Fraternali (program author)
-Copyright (C) 2008-2016 Jens Kleinjung (modular C code)
-Copyright (C) 2002 Kuang Lin and Valerie Hindie (translation to C)
-Copyright (C) 2002 Luigi Cavallo (parametrisation)
+## Copyright (C)
+* 2002-2017 Franca Fraternali (program author)
+* 2008-2017 Jens Kleinjung (modular C code)
+* 2002 Kuang Lin and Valerie Hindie (translation to C)
+* 2002 Luigi Cavallo (parametrisation)
 
 
 ## Availability
