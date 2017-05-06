@@ -7,8 +7,8 @@ currently proteins and nucleic acids.
 
 Servers
 -------
-[POPS](http://mathbio.crick.ac.uk/wiki/POPS)
-[POPSCOMP](http://mathbio.crick.ac.uk/wiki/POPSCOMP)
+* [POPS](http://mathbio.crick.ac.uk/wiki/POPS)
+* [POPSCOMP](http://mathbio.crick.ac.uk/wiki/POPSCOMP)
 
 
 References
