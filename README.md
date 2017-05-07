@@ -264,7 +264,7 @@ and the solvent radius for water.
 
 ## Code
 * [POPS code](https://github.com/jkleinj/POPS)
-* [Releases](https://github.com/jkleinj/POPS/releases)
+* [Latest Release](https://github.com/jkleinj/POPS/releases/latest)
 
 
 ## Contact
