@@ -59,7 +59,7 @@ if test "$ac_use_mpi" = "yes"; then
    AC_DEFINE(MPI,1,[Compiling with MPI settings.])
 fi
 
-# Output files
+# output files
 AC_CONFIG_FILES([Makefile src/Makefile tests/Makefile])
 AC_CONFIG_HEADERS([src/config.h])
 AC_OUTPUT
