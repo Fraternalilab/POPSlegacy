@@ -72,9 +72,11 @@ static void print_atom_sasa(FILE *sasaOutFile, Arg *arg, Str *pdb, MolSasa *molS
 	unsigned int i, j;
 	float surface_ratio = 0.;
 
-	if (! arg->noHeaderOut) {
+	if (! arg->noHeaderOut && ! arg->rout) {
 		fprintf(sasaOutFile, "\n=== ATOM SASAs ===\n");
-		fprintf(sasaOutFile, "\nAtomNr\tAtomNe\tResidNe\tChain\tResidNr\tiCode\tSASA/A^2\tQ(SASA)\tN(overl)\tAtomTp\tAtomGp\tSurf/A^2\n");
+	}
+	if (! arg->noHeaderOut || arg->rout) {
+		fprintf(sasaOutFile, "AtomNr\tAtomNe\tResidNe\tChain\tResidNr\tiCode\tSASA/A^2\tQ(SASA)\tN(overl)\tAtomTp\tAtomGp\tSurf/A^2\n");
 	}
 
 	/* before the first line:
@@ -153,9 +155,11 @@ static void print_residue_sasa(FILE *sasaOutFile, Arg *arg, Str *pdb, MolSasa *m
     unsigned int i;
 	float surface_ratio = 0.;
 
-	if (! arg->noHeaderOut) {
+	if (! arg->noHeaderOut && ! arg->rout) {
 		fprintf(sasaOutFile, "\n=== RESIDUE SASAs ===\n");
-		fprintf(sasaOutFile, "\nResidNe\tChain\tResidNr\tiCode\tPhob/A^2\t\tPhil/A^2\tTotal/A^2\t\tQ(SASA)\tN(overl)\tSurf/A^2\n");
+	}
+	if (! arg->noHeaderOut || arg->rout) {
+		fprintf(sasaOutFile, "ResidNe\tChain\tResidNr\tiCode\tPhob/A^2\t\tPhil/A^2\tTotal/A^2\t\tQ(SASA)\tN(overl)\tSurf/A^2\n");
 	}
 
     for (i = 0; i < pdb->nAllResidue; ++ i) { 
@@ -191,9 +195,11 @@ static void print_chain_sasa(FILE *sasaOutFile, Arg *arg, Str *pdb, MolSasa *mol
 {
     unsigned int i;
 
-	if (! arg->noHeaderOut) {
+	if (! arg->noHeaderOut && ! arg->rout) {
 		fprintf(sasaOutFile, "\n=== CHAIN SASAs ===\n(Atom Range excluding hydrogen atoms)\n");
-		fprintf(sasaOutFile, "\nChain\tId\tAtomRange\tResidRange\t\tPhob/A^2\t\tPhil/A^2\t\tTotal/A^2\n");
+	}
+	if (! arg->noHeaderOut || arg->rout) {
+		fprintf(sasaOutFile, "Chain\tId\tAtomRange\tResidRange\t\tPhob/A^2\t\tPhil/A^2\t\tTotal/A^2\n");
 	}
 
     for (i = 0; i < pdb->nChain; ++ i)
@@ -213,9 +219,14 @@ static void print_chain_sasa(FILE *sasaOutFile, Arg *arg, Str *pdb, MolSasa *mol
 /** total (molecule) SASA */
 void print_mol_sasa(FILE *sasaOutFile, Arg *arg, MolSasa *molSasa)
 {
-	if (! arg->noHeaderOut) fprintf(sasaOutFile, "\n=== MOLECULE SASAs ===\n");
-		fprintf(sasaOutFile, "\nPhob/A^2\t\tPhil/A^2\t\tTotal/A^2\n");
-    fprintf(sasaOutFile, "%10.2f\t%10.2f\t%10.2f\n\n",
+	if (! arg->noHeaderOut && ! arg->rout) {
+		fprintf(sasaOutFile, "\n=== MOLECULE SASAs ===\n");
+	}
+	if (! arg->noHeaderOut || arg->rout) {
+		fprintf(sasaOutFile, "Phob/A^2\t\tPhil/A^2\t\tTotal/A^2\n");
+	}
+
+    fprintf(sasaOutFile, "%10.2f\t%10.2f\t%10.2f\n",
 			molSasa->phobicSasa,
 			molSasa->philicSasa,
 			molSasa->sasa);
@@ -304,6 +315,8 @@ void print_sasa(Arg *arg, Argpdb *argpdb, Str *pdb, Type *type, Topol *topol, \
 				MolSasa *molSasa, ConstantSasa *constant_sasa, int frame)
 {
 	char sasatrajOutFileName[256];
+	char rpopsOutFileName[256];
+	FILE *rpopsOutFile;
 
 	/* for single (reference) molecule */
 	if (frame < 0) {
@@ -316,8 +329,9 @@ void print_sasa(Arg *arg, Argpdb *argpdb, Str *pdb, Type *type, Topol *topol, \
 			arg->sasaOutFile = safe_open(sasatrajOutFileName, "w");
 	}
 	/* composition */
-	if (arg->compositionOut)
+	if (arg->compositionOut) {
 		print_composition(arg->sasaOutFile, arg, argpdb, pdb);
+	}
 
 	/* topology */
 	if (arg->topologyOut)
@@ -328,20 +342,52 @@ void print_sasa(Arg *arg, Argpdb *argpdb, Str *pdb, Type *type, Topol *topol, \
 		print_types(arg->sasaOutFile, arg, type, constant_sasa);
 
 	/* atom SASA */
-	if (arg->atomOut && ! argpdb->coarse)
-		print_atom_sasa(arg->sasaOutFile, arg, pdb, molSasa);
+	if (arg->atomOut && ! argpdb->coarse) {
+		if (arg->rout) {
+			sprintf(rpopsOutFileName, "%s_%s", "rpopsAtom", arg->sasaOutFileName);
+			rpopsOutFile = safe_open(rpopsOutFileName, "w");
+			print_atom_sasa(rpopsOutFile, arg, pdb, molSasa);
+			fclose(rpopsOutFile);
+		} else {
+			print_atom_sasa(arg->sasaOutFile, arg, pdb, molSasa);
+		}
+	}
 
 	/* residue SASA */
-	if (arg->residueOut)
-		print_residue_sasa(arg->sasaOutFile, arg, pdb, molSasa);
+	if (arg->residueOut) {
+		if (arg->rout) {
+			sprintf(rpopsOutFileName, "%s_%s", "rpopsResidue", arg->sasaOutFileName);
+			rpopsOutFile = safe_open(rpopsOutFileName, "w");
+			print_residue_sasa(rpopsOutFile, arg, pdb, molSasa);
+			fclose(rpopsOutFile);
+		} else {
+			print_residue_sasa(arg->sasaOutFile, arg, pdb, molSasa);
+		}
+	}
 
 	/* chain SASA */
-	if (arg->chainOut)
-		print_chain_sasa(arg->sasaOutFile, arg, pdb, molSasa);
+	if (arg->chainOut) {
+		if (arg->rout) {
+			sprintf(rpopsOutFileName, "%s_%s", "rpopsChain", arg->sasaOutFileName);
+			rpopsOutFile = safe_open(rpopsOutFileName, "w");
+			print_chain_sasa(rpopsOutFile, arg, pdb, molSasa);
+			fclose(rpopsOutFile);
+		} else {
+			print_chain_sasa(arg->sasaOutFile, arg, pdb, molSasa);
+		}
+	}
 
 	/* molecule SASA */
-	if (! arg->noTotalOut)
-		print_mol_sasa(arg->sasaOutFile, arg, molSasa);
+	if (! arg->noTotalOut) {
+		if (arg->rout) {
+			sprintf(rpopsOutFileName, "%s_%s", "rpopsMolecule", arg->sasaOutFileName);
+			rpopsOutFile = safe_open(rpopsOutFileName, "w");
+			print_mol_sasa(rpopsOutFile, arg, molSasa);
+			fclose(rpopsOutFile);
+		} else {
+			print_mol_sasa(arg->sasaOutFile, arg, molSasa);
+		}
+	}
 
 	fclose(arg->sasaOutFile);
 

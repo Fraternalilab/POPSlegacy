@@ -1,3 +1,7 @@
+- 2.0
+Sun 15 Oct 23:32:59 BST 2017
+	Making the transition to R-based post-processing of SASA data
+
 - 1.8.1
 Thu Jul 21 15:18:43 BST 2016
 	Added Calpha to bSASA calculation

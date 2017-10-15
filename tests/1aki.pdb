@@ -1,6 +1,5 @@
 HEADER    test molecule
 TITLE     energy minimised (GROMOS) lysozyme
-TITLE    2 MAIN IMMUNOGENIC REGION OF THE ACETYLCHOLINE RECEPTOR     
 ATOM      1  H1  LYSH    1      36.029  22.879 -12.371
 ATOM      2  H2  LYSH    1      34.831  22.769 -11.279
 ATOM      3  N   LYSH    1      35.295  22.294 -12.026

@@ -60,6 +60,7 @@ typedef struct
 	int noTotalOut;
 	int noHeaderOut;
 	int padding;
+	int rout;
 } Arg;
 
 /*____________________________________________________________________________*/

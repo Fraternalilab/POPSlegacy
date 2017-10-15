@@ -104,6 +104,7 @@ static void set_defaults(Arg *arg, Argpdb *argpdb)
 	arg->noHeaderOut = 0; /* suppress output headers (for benchmarking) */
 	arg->padding = 0; /* add lines to pad the missing hydrogen atom lines 
 						(for benchmarking) */
+	arg->rout = 0; /* output for R-version of POPSCOMP */ 
 }
 
 /*____________________________________________________________________________*/
@@ -136,6 +137,7 @@ static void check_input(Arg *arg, Argpdb *argpdb)
 	assert(arg->silent == 0 || arg->silent == 1);
 	assert(arg->noHeaderOut == 0 || arg->noHeaderOut == 1);
 	assert(arg->padding == 0 || arg->padding == 1);
+	assert(arg->rout == 0 || arg->rout == 1);
 }
 
 /*____________________________________________________________________________*/
@@ -190,6 +192,7 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
 	   --noTotalOut\t\t\t(mode: optional , type: no_arg, default: off)\n\
 	   --noHeaderOut\t\t(mode: optional , type: no_arg, default: off)\n\
 	   --padding\t\t\t(mode: optional , type: no_arg, default: off)\n\
+	   --rout\t\t\t(mode: optional , type: no_arg, default: off)\n\
 	 INFO OPTIONS\n\
 	   --cite\t\t\t(mode: optional , type: no_arg, default: off)\n\
 	   --version\t\t\t(mode: optional , type: no_arg, default: off)\n\
@@ -230,14 +233,15 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
         {"noTotalOut", no_argument, 0, 22},
         {"noHeaderOut", no_argument, 0, 23},
         {"padding", no_argument, 0, 24},
-        {"cite", no_argument, 0, 25},
-        {"version", no_argument, 0, 26},
-        {"help", no_argument, 0, 27},
+        {"rout", no_argument, 0, 25},
+        {"cite", no_argument, 0, 26},
+        {"version", no_argument, 0, 27},
+        {"help", no_argument, 0, 28},
         {0, 0, 0, 0}
     };
 
     /** assign parameters to long options */
-    while ((c = getopt_long(argc, argv, "1:2:3 4 5:6:7:8:9:10:11:12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27", long_options, NULL)) != -1) {
+    while ((c = getopt_long(argc, argv, "1:2:3 4 5:6:7:8:9:10:11:12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28", long_options, NULL)) != -1) {
         switch(c) {
             case 1:
                 arg->pdbInFileName = optarg;
@@ -311,13 +315,16 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
                 arg->padding = 1;
                 break;
             case 25:
+                arg->rout = 1;
+                break;
+            case 26:
                 print_citation();
                 exit(0);
-            case 26:
+            case 27:
 				print_version();
 				print_license();
                 exit(0);
-            case 27:
+            case 28:
                 fprintf(stderr, "%s", usage);
 				print_license();
                 exit(0);

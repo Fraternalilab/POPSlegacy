@@ -58,6 +58,7 @@ The latex documentation is completed by executing 'make pdf' in the
 
 
 ## Usage
+### Command Line Parameters
 ```
 pops [--pdb ...] [OPTIONS ...]
     INPUT OPTIONS
@@ -89,6 +90,37 @@ pops [--pdb ...] [OPTIONS ...]
     --version			(mode: optional , type: no_arg, default: off)
     --help
 ```
+
+### Short Descriptionof Command Line Parameters
+* trajInFileName : trajectory input file
+* coarse : Calpha-only computation [0,1]
+* hydrogens : hydrogens [0,1]
+* multiModel : input with multiple models
+* rProbe : probe radius (in Angstrom) */
+* silent : suppress stdout
+* sasaOutFileName : output of SASA values for single structure
+* sasatrajOutFileName : output of SASA values for trajectory
+* bsasaOutFileName : output of buried SASA for single structure
+* bsasatrajOutFileName : output of buried SASA for 
+* compositionOut : print molecule composition
+* sigmaOutFileName : output of sigma values for single structure 
+* sigmatrajOutFileName : output of sigma value for trajectory
+* interfaceOutFileName : pairlist of contact residues between distinct chains, where only the contact residue with the shortest distance is listed
+* interfaceOut : output of interface residue pairs
+* typeOut : print atom/residue types
+* topologyOut : print molecule topology
+* atomOut : print atom areas
+* residueOut : print residue areas
+* chainOut : print chain areas
+* neighbourOutFileName : output of neighbour list 
+* neighbourOut : print neighbour list 
+* parameterOutFileName : output of POPS parameters
+* parameterOut : print atom parameters
+* noTotalOut : suppress output of total area (for benchmarking)
+* noHeaderOut : suppress output headers (for benchmarking)
+* padding : add lines to pad the missing hydrogen atom lines (for benchmarking)
+* rout : output of R-compatible output 
+
 
 ## Program Design
 * PDB input file (read input) 
