@@ -231,6 +231,10 @@ int read_pdb(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
 		str->atom[str->nAtom].icode[0] = line[26];
 		str->atom[str->nAtom].icode[1] = '\0';
 
+		/* avoid space character in icode */
+		if (isspace(str->atom[str->nAtom].icode[0]))
+			str->atom[str->nAtom].icode[0] = '-';
+
 		/* coordinates */
 		str->atom[str->nAtom].pos.x = atof(&line[30]);
 		str->atom[str->nAtom].pos.y = atof(&line[38]);
