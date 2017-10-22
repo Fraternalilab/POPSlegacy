@@ -15,10 +15,10 @@ chain.sasatype = factor(rep(c("phob", "phil", "total"), each = 2));
 chain.df = data.frame(chain.id, chain.sasa, chain.sasatype, paste(chain.id, chain.sasatype, sep = "_"));
 colnames(chain.df) = c("id", "sasa", "sasatype", "id.sasatype");
 
-## total SASA in black
+png("sasa_chain.png");
+
 g = ggplot(data = chain.df, aes(x = id.sasatype, y = sasa, fill = sasatype)) + 
 		geom_col(colour = "black");
-## fill colours
 g = g + scale_fill_manual("", values = colours, drop = FALSE);
 
 g = g + xlab("chain") +
@@ -29,5 +29,6 @@ g = g + theme(axis.text = element_text(size = 14),
 
 plot(g);
 
+dev.off();
 
 #===============================================================================
