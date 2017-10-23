@@ -37,8 +37,8 @@ static void print_header()
 /** print license */
 static void print_license()
 {
-    fprintf(stdout, "\nCopyright (C) 2002-2016 Franca Fraternali (program author)\n"
-			"Copyright (C) 2008-2016 Jens Kleinjung (modular C code)\n"
+    fprintf(stdout, "\nCopyright (C) 2002-2017 Franca Fraternali (program author)\n"
+			"Copyright (C) 2008-2017 Jens Kleinjung (modular C code)\n"
 			"Copyright (C) 2002 Kuang Lin and Valerie Hindie (translation to C)\n"
 			"Copyright (C) 2002 Luigi Cavallo (parametrisation)\n"
 			"POPS* is free software and comes with ABSOLUTELY NO WARRANTY.\n"

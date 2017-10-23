@@ -1,7 +1,7 @@
 /*=============================================================================
 sigma.c : Solvation Free Energy (SFE) computation
-Copyright (C) 2011-2016 Franca Fraternali
-Copyright (C) 2011-2016 Jens Kleinjung
+Copyright (C) 2011-2017 Franca Fraternali
+Copyright (C) 2011-2017 Jens Kleinjung
 Read the COPYING file for license information.
 =============================================================================*/
 
