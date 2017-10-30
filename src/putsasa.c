@@ -397,7 +397,9 @@ void print_sasa(Arg *arg, Argpdb *argpdb, Str *pdb, Type *type, Topol *topol, \
 		}
 	}
 
-	fclose(arg->sasaOutFile);
+	if (! arg->rout) {
+		fclose(arg->sasaOutFile);
+	}
 
 	/* neighbour list */
 	if (arg->neighbourOut) {
