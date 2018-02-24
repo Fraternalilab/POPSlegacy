@@ -435,3 +435,9 @@ void print_sasa(Arg *arg, Argpdb *argpdb, Str *pdb, Type *type, Topol *topol, \
 	}
 }
 
+/*____________________________________________________________________________*/
+void print_json(Arg *arg, Str *pdb, MolSasa *molSasa)
+{
+	;
+}
+

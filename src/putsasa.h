@@ -21,4 +21,6 @@ Read the COPYING file for license information.
 void print_sasa(Arg *arg, Argpdb *argpdb, Str *pdb, Type *type, Topol *topol, \
 				MolSasa *molSasa, ConstantSasa *constant_sasa, int frame);
 
+void print_json(Arg *arg, Str *pdb, MolSasa *molSasa);
+
 #endif

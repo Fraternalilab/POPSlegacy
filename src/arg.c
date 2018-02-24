@@ -37,8 +37,8 @@ static void print_header()
 /** print license */
 static void print_license()
 {
-    fprintf(stdout, "\nCopyright (C) 2002-2017 Franca Fraternali (program author)\n"
-			"Copyright (C) 2008-2017 Jens Kleinjung (modular C code)\n"
+    fprintf(stdout, "\nCopyright (C) 2002-2018 Franca Fraternali (program author)\n"
+			"Copyright (C) 2008-2018 Jens Kleinjung (modular C code)\n"
 			"Copyright (C) 2002 Kuang Lin and Valerie Hindie (translation to C)\n"
 			"Copyright (C) 2002 Luigi Cavallo (parametrisation)\n"
 			"POPS* is free software and comes with ABSOLUTELY NO WARRANTY.\n"
@@ -105,6 +105,8 @@ static void set_defaults(Arg *arg, Argpdb *argpdb)
 	arg->padding = 0; /* add lines to pad the missing hydrogen atom lines 
 						(for benchmarking) */
 	arg->rout = 0; /* output for R-version of POPSCOMP */ 
+	arg->jsonOut = 0; /* JSON output */
+	arg->jsonOutFileName = "pops.json";
 }
 
 /*____________________________________________________________________________*/
@@ -138,6 +140,7 @@ static void check_input(Arg *arg, Argpdb *argpdb)
 	assert(arg->noHeaderOut == 0 || arg->noHeaderOut == 1);
 	assert(arg->padding == 0 || arg->padding == 1);
 	assert(arg->rout == 0 || arg->rout == 1);
+	assert(arg->jsonOut == 0 || arg->jsonOut == 1);
 }
 
 /*____________________________________________________________________________*/
@@ -193,6 +196,7 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
 	   --noHeaderOut\t\t(mode: optional , type: no_arg, default: off)\n\
 	   --padding\t\t\t(mode: optional , type: no_arg, default: off)\n\
 	   --rout\t\t\t(mode: optional , type: no_arg, default: off)\n\
+	   --jsonOut\t\t\t(mode: optional , type: no_arg, default: off)\n\
 	 INFO OPTIONS\n\
 	   --cite\t\t\t(mode: optional , type: no_arg, default: off)\n\
 	   --version\t\t\t(mode: optional , type: no_arg, default: off)\n\
@@ -234,14 +238,15 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
         {"noHeaderOut", no_argument, 0, 23},
         {"padding", no_argument, 0, 24},
         {"rout", no_argument, 0, 25},
-        {"cite", no_argument, 0, 26},
-        {"version", no_argument, 0, 27},
-        {"help", no_argument, 0, 28},
+        {"jsonOut", no_argument, 0, 25},
+        {"cite", no_argument, 0, 27},
+        {"version", no_argument, 0, 28},
+        {"help", no_argument, 0, 29},
         {0, 0, 0, 0}
     };
 
     /** assign parameters to long options */
-    while ((c = getopt_long(argc, argv, "1:2:3 4 5:6:7:8:9:10:11:12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28", long_options, NULL)) != -1) {
+    while ((c = getopt_long(argc, argv, "1:2:3 4 5:6:7:8:9:10:11:12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29", long_options, NULL)) != -1) {
         switch(c) {
             case 1:
                 arg->pdbInFileName = optarg;
@@ -318,13 +323,16 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
                 arg->rout = 1;
                 break;
             case 26:
+                arg->jsonOut = 1;
+                break;
+            case 27:
                 print_citation();
                 exit(0);
-            case 27:
+            case 28:
 				print_version();
 				print_license();
                 exit(0);
-            case 28:
+            case 29:
                 fprintf(stderr, "%s", usage);
 				print_license();
                 exit(0);

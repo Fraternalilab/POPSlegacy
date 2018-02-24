@@ -131,9 +131,14 @@ int main(int argc, char *argv[])
     compute_sasa(&pdb, &topol, &type, &molSasa, constant_sasa, res_sasa, &arg);
     
     /*____________________________________________________________________________*/
-	/** print atom types and SASA */
 	if (! arg.silent) fprintf(stdout, "SASA Output:\n");
-	print_sasa(&arg, &argpdb, &pdb, &type, &topol, &molSasa, constant_sasa, -1);
+	/** print JSON output */
+	if (arg.jsonOut) {
+		print_json(&arg, &pdb, &molSasa);
+	} else {
+	/** print atom types and SASA */
+		print_sasa(&arg, &argpdb, &pdb, &type, &topol, &molSasa, constant_sasa, -1);
+	}
 
     /*____________________________________________________________________________*/
 	/** print bSASA */

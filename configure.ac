@@ -30,6 +30,8 @@ AC_ARG_ENABLE(debug, [  --enable-debug  Turn on debugging], [ac_use_debug="yes"]
 if test "$ac_use_debug" = "yes"; then
     CFLAGS="-ggdb"
     AC_DEFINE(DEBUG,1,[Define to compile with DEBUG settings.])
+else
+    AC_DEFINE(DEBUG,0,[Define to compile without DEBUG settings.])
 fi
 
 # enable profiling 
