@@ -65,6 +65,7 @@ int main(int argc, char *argv[])
 	ConstantSasa *res_sasa; /* residue SASA constants */ 
 	ConstantSigma *constant_sigma; /* SIGMA constants */ 
 	Atomgroup *atomGroup; /* atom group constants */
+	cJSON json; /* JSON object for SASA output */
 	extern int status; /* program status from 'error' library */
 
     /*________________________________________________________________________*/
@@ -134,7 +135,8 @@ int main(int argc, char *argv[])
 	if (! arg.silent) fprintf(stdout, "SASA Output:\n");
 	/** print JSON output */
 	if (arg.jsonOut) {
-		print_json(&arg, &pdb, &molSasa);
+		make_json(&arg, &pdb, &molSasa, &json);
+		print_json(&arg, &json);
 	} else {
 	/** print atom types and SASA */
 		print_sasa(&arg, &argpdb, &pdb, &type, &topol, &molSasa, constant_sasa, -1);

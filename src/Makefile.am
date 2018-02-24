@@ -10,7 +10,9 @@ AM_CFLAGS = -Wall
 
 pops_SOURCES = \
 arg.c arg.h argpdb.h atomgroup.c atomgroup.h atomgroup_data.h \
+cJSON.c cJSON.h \
 error.c error.h fs.c fs.h getpdb.c getpdb.h gettraj.c gettraj.h \
+json.c json.h \
 matrix.c matrix.h modstring.c modstring.h \
 pattern.c pattern.h pdb_structure.h pops.c pops.h \
 putsasa.c putsasa.h putbsasa.c putbsasa.h putsigma.c putsigma.h \

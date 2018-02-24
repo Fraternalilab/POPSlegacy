@@ -1,6 +1,12 @@
+
+- 2.1
+Sat 24 Feb 15:27:07 GMT 2018
+	Implementation of JSON output for Elixir in the branch 'json'.
+
 - 2.0
 Sun 15 Oct 23:32:59 BST 2017
 	Making the transition to R-based post-processing of SASA data
+	  in branch 'Rout'.
 
 - 1.8.1
 Thu Jul 21 15:18:43 BST 2016

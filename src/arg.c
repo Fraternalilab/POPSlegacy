@@ -238,7 +238,7 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
         {"noHeaderOut", no_argument, 0, 23},
         {"padding", no_argument, 0, 24},
         {"rout", no_argument, 0, 25},
-        {"jsonOut", no_argument, 0, 25},
+        {"jsonOut", no_argument, 0, 26},
         {"cite", no_argument, 0, 27},
         {"version", no_argument, 0, 28},
         {"help", no_argument, 0, 29},

@@ -298,15 +298,20 @@ and the solvent radius for water.
 * [POPS code](https://github.com/jkleinj/POPS)
 * [Latest Release](https://github.com/jkleinj/POPS/releases/latest)
 
+### Github branches
+* master : the distributed version of POPS
+* json : prints POPS output in JSON format
+* Rout : prints POPS output in R compatible table format
+
 
 ## Contact
 * franca.fraternali@kcl.ac.uk
-* jens.kleinjung@crick.ac.uk
+* jens@jkleinj.eu
 
 
 ## Copyright
-* 2002-2017 Franca Fraternali (program author)
-* 2008-2017 Jens Kleinjung (modular C code)
+* 2002-2018 Franca Fraternali (program author)
+* 2008-2018 Jens Kleinjung (modular C code)
 * 2002 Kuang Lin and Valerie Hindie (translation to C)
 * 2002 Luigi Cavallo (parametrisation)
 
