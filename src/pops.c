@@ -65,8 +65,14 @@ int main(int argc, char *argv[])
 	ConstantSasa *res_sasa; /* residue SASA constants */ 
 	ConstantSigma *constant_sigma; /* SIGMA constants */ 
 	Atomgroup *atomGroup; /* atom group constants */
-	cJSON json; /* JSON object for SASA output */
 	extern int status; /* program status from 'error' library */
+
+	/* create JSON object */
+	cJSON *resSasaJson = cJSON_CreateObject();
+    if (resSasaJson == NULL) {
+		cJSON_Delete(resSasaJson);
+		ErrorSpec("Exiting", "JSON object returned NULL");
+    }
 
     /*________________________________________________________________________*/
     /* MPI */
@@ -132,20 +138,21 @@ int main(int argc, char *argv[])
     compute_sasa(&pdb, &topol, &type, &molSasa, constant_sasa, res_sasa, &arg);
     
     /*____________________________________________________________________________*/
-	if (! arg.silent) fprintf(stdout, "SASA Output:\n");
 	/** print JSON output */
 	if (arg.jsonOut) {
-		make_json(&arg, &pdb, &molSasa, &json);
-		print_json(&arg, &json);
+		if (! arg.silent) fprintf(stdout, "JSON Output:\n");
+		make_resSasaJson(&arg, &pdb, molSasa.resSasa, resSasaJson);
+		print_json(&arg, resSasaJson);
 	} else {
 	/** print atom types and SASA */
+		if (! arg.silent) fprintf(stdout, "SASA Output:\n");
 		print_sasa(&arg, &argpdb, &pdb, &type, &topol, &molSasa, constant_sasa, -1);
+		if (! arg.silent) fprintf(stdout, "bSASA Output:\n");
+		print_bsasa(&arg, &argpdb, &pdb, &type, &topol, &molSasa, constant_sasa, -1);
 	}
 
     /*____________________________________________________________________________*/
 	/** print bSASA */
-	if (! arg.silent) fprintf(stdout, "bSASA Output:\n");
-	print_bsasa(&arg, &argpdb, &pdb, &type, &topol, &molSasa, constant_sasa, -1);
 
     /*____________________________________________________________________________*/
     /** compute Solvation Free Energy: atoms, residues, chains, molecule */
@@ -203,6 +210,7 @@ int main(int argc, char *argv[])
 	/* structure */
 	free(pdb.sequence.name);
 	free(pdb.atom);
+	free(pdb.resAtom);
 	free(pdb.atomMap);
 	free(pdb.sequence.res);
 	/* trajectory */

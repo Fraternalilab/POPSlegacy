@@ -91,7 +91,7 @@ pops [--pdb ...] [OPTIONS ...]
     --help
 ```
 
-### Short Descriptionof Command Line Parameters
+### Short Description of Command Line Parameters
 * trajInFileName : trajectory input file
 * coarse : Calpha-only computation [0,1]
 * hydrogens : hydrogens [0,1]
@@ -129,6 +129,9 @@ pops [--pdb ...] [OPTIONS ...]
 * Topology (compute molecular topology)
 * SASA (compute SASA values at atoms, chain and molecule level)
 * Output (print output)
+* From version 3.0 the POPSCOMP method has been built into the POPS program
+    so that complex interfaces are computed automatically.
+
 
 ### Determine the atom and residue types according to 'sasa_data.h' ('type'),
 Possible complications in the handling of PDB files and the way it

@@ -39,7 +39,8 @@ typedef struct
 /* molecular structure */
 typedef struct
 {
-	Atom *atom; /* array of selected (CA) atoms constituting structure */
+	Atom *atom; /* array of atoms constituting structure */
+	int *resAtom; /* atom indices of CA and P atoms */
 	int *atomMap; /* map of the selected atom count to the original atom count */
 	int nAtom; /* number of selected (CA) atoms */
 	int nAllAtom; /* number of all atoms */

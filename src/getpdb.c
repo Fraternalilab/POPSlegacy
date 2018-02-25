@@ -153,6 +153,9 @@ int read_pdb(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
 	str->atom = safe_malloc(allocated_atom * sizeof(Atom));
 	str->atomMap = safe_malloc(allocated_atom * sizeof(int));
 
+	/* array of residue-centric atom indices */
+	str->resAtom = safe_malloc(allocated_residue * sizeof(int));
+
 	/* allocate memory for sequence residues */
 	str->sequence.res = safe_malloc(allocated_residue * sizeof(char));
 
@@ -290,10 +293,13 @@ int read_pdb(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
 		if ((strncmp(line, "ATOM  ", 6) == 0) &&
 			((strncmp(str->atom[str->nAtom].atomName, " CA ", 4) == 0) ||
 			(strncmp(str->atom[str->nAtom].atomName, " P  ", 4) == 0))) {
-			str->sequence.res[k++] = aacode(str->atom[str->nAtom].residueName);
-			++ ca_p;
+			str->resAtom[k] = str->nAtom;
+			str->sequence.res[k] = aacode(str->atom[str->nAtom].residueName);
+			++ k;
 			if (k == allocated_residue)
+				str->resAtom = safe_realloc(str->resAtom, (allocated_residue += 64) * sizeof(int));
 				str->sequence.res = safe_realloc(str->sequence.res, (allocated_residue += 64) * sizeof(char));
+			++ ca_p;
 		}
 
 		/* standardise non-standard atom names */

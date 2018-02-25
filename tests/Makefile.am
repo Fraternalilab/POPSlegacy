@@ -12,6 +12,7 @@ noinst_SCRIPTS = \
 	test0.sh \
 	test1.sh \
 	test1a.sh \
+	test1b.sh \
 	test2.sh \
 	test3.sh
 

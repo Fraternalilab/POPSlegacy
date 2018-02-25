@@ -1,4 +1,6 @@
-
+- inclusion of the POPSCOMP method into the POPS*
+- JSON output
+- R-compatible output
 - computation of solvation free energies
 - git revision control
 - Compilation/check/installation on any POSIX platform with GNU Build Tools.

@@ -1,3 +1,7 @@
+= 3.0
+Sun 25 Feb 12:53:54 GMT 2018
+	POPSCOMP is now being integrated into the C code
+		in the 'popscomp' branch.
 
 - 2.1
 Sat 24 Feb 15:27:07 GMT 2018
