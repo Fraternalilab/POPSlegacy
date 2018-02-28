@@ -294,11 +294,12 @@ int read_pdb(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
 			((strncmp(str->atom[str->nAtom].atomName, " CA ", 4) == 0) ||
 			(strncmp(str->atom[str->nAtom].atomName, " P  ", 4) == 0))) {
 			str->resAtom[k] = str->nAtom;
-			str->sequence.res[k] = aacode(str->atom[str->nAtom].residueName);
-			++ k;
-			if (k == allocated_residue)
-				str->resAtom = safe_realloc(str->resAtom, (allocated_residue += 64) * sizeof(int));
-				str->sequence.res = safe_realloc(str->sequence.res, (allocated_residue += 64) * sizeof(char));
+			str->sequence.res[k ++] = aacode(str->atom[str->nAtom].residueName);
+			if (k == allocated_residue) {
+				allocated_residue += 64;
+				str->resAtom = safe_realloc(str->resAtom, allocated_residue * sizeof(int));
+				str->sequence.res = safe_realloc(str->sequence.res, allocated_residue * sizeof(char));
+			}
 			++ ca_p;
 		}
 
