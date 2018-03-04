@@ -1,15 +1,22 @@
 = 3.0
 Sun 25 Feb 12:53:54 GMT 2018
-	POPSCOMP is now being integrated into the C code
-		in the 'popscomp' branch.
+	popscomp branch: POPSCOMP is integrated into the C code in the 
+		'popscomp' branch.
+
+- 2.2
+Sun  4 Mar 18:40:13 GMT 2018
+	mmCIF branch: Implementation of Gemmi for mmCIF parsing.
+	http://gemmi.readthedocs.io/en/latest/cif-parser.html
+	https://stackoverflow.com/questions/13810121/how-do-you-use-extern-c-to-call-c-functions-in-c
 
 - 2.1
 Sat 24 Feb 15:27:07 GMT 2018
-	Implementation of JSON output for Elixir in the branch 'json'.
+	json branch: Implementation of JSON output for Elixir in the branch 'json'.
+	https://github.com/DaveGamble/cJSON
 
 - 2.0
 Sun 15 Oct 23:32:59 BST 2017
-	Making the transition to R-based post-processing of SASA data
+	Rout branch: Making the transition to R-based post-processing of SASA data
 	  in branch 'Rout'.
 
 - 1.8.1

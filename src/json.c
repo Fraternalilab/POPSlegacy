@@ -102,12 +102,19 @@ void print_json(Arg *arg, cJSON *json)
 
 
 /*____________________________________________________________________________*/
+/* The natural way to make residues dependent on chains would be a
+	double loop iterating over chains and residues. The current data
+	is such that it is easier (but less natural) to iterate over residues
+	and to create chains on the fly, to which new residue array are attached. */
 void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 {
+	/* 'json' is the root object to which everything else will be attached */
+
 	/* indices to iterate through arrays defined below */
 	unsigned int r = 0; /* residue index */
+	char isChainLabel[2] = "@"; /* dummy chain name, never in structure */
 
-	/* header */
+	/* header: attached to 'json' */
 	cJSON_AddStringToObject(json, "data_resource", "popscomp_asymmetric");
 	cJSON_AddStringToObject(json, "resource_version", "");
 	cJSON_AddStringToObject(json, "software_version", "3.0.0");
@@ -115,11 +122,23 @@ void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 	cJSON_AddStringToObject(json, "release_date", "21/02/2018");
 	cJSON_AddStringToObject(json, "pdb_id", "0x00");
 
-	/* add Residue array */
-	cJSON *residues = cJSON_AddArrayToObject(json, "residues");
+	/* add Chain array */
+	cJSON *chains = cJSON_AddArrayToObject(json, "chains");
+
+	/* add Residue array for new Chain */
+	cJSON *residues = cJSON_AddArrayToObject(chains, "residues");
 
 	/* iterate over all Residues */
 	for (r = 0; r < pdb->nResidue; ++ r) { 
+		/*
+		if (strcmp(pdb->atom[pdb->resAtom[r]].chainIdentifier, isChainLabel) != 0) {
+			strcpy(isChainLabel, pdb->atom[pdb->resAtom[r]].chainIdentifier);
+			cJSON *chain = cJSON_CreateObject();
+			cJSON_AddItemToArray(chains, chain);
+			cJSON_AddStringToObject(chain, "chain_label", isChainLabel); 
+		}
+		*/
+
 		/* add Residue */
 		cJSON *residue = cJSON_CreateObject();
 		cJSON_AddItemToArray(residues, residue);

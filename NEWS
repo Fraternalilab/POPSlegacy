@@ -1,4 +1,5 @@
 - inclusion of the POPSCOMP method into the POPS*
+- mmCIF parser
 - JSON output
 - R-compatible output
 - computation of solvation free energies

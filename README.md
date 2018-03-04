@@ -303,7 +303,9 @@ and the solvent radius for water.
 
 ### Github branches
 * master : the distributed version of POPS
+* mmCIF : parses mmCIF format instead of PDB format
 * json : prints POPS output in JSON format
+* popscomp : computes results of POPSCOMP protocol
 * Rout : prints POPS output in R compatible table format
 
 
