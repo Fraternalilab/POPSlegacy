@@ -35,6 +35,10 @@ should acknowledge its use by the following citation:
 
 
 ## Install / Uninstall
+* Dependencies
+1. *gemmi* for mmCIF parsing
+2. *cJSON* for JSON output
+
 * Run the 'bootstrap' shell script and follow the general 'INSTALL' instructions.
 
 * In case the Autoconf version is too old, run

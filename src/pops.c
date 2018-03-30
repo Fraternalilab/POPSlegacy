@@ -151,6 +151,8 @@ int main(int argc, char *argv[])
 		print_bsasa(&arg, &argpdb, &pdb, &type, &topol, &molSasa, constant_sasa, -1);
 	}
 
+	cJSON_Delete(resSasaJson);
+
     /*____________________________________________________________________________*/
 	/** print bSASA */
 
