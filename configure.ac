@@ -8,6 +8,7 @@ AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 
 # Checks for programs.
 AC_PROG_CC_C_O
+AC_PROG_CXX
 AC_PROG_INSTALL
 
 # Checks for libraries.
@@ -60,6 +61,11 @@ if test "$ac_use_mpi" = "yes"; then
    LIBS="$MPILIBS $LIBS"
    AC_DEFINE(MPI,1,[Compiling with MPI settings.])
 fi
+
+# check for libxml2
+PKG_CHECK_MODULES(XML, libxml-2.0 >= 2.4)
+# check for zlib 
+PKG_CHECK_MODULES(ZLIB, zlib >= 1.0)
 
 # output files
 AC_CONFIG_FILES([Makefile src/Makefile tests/Makefile])

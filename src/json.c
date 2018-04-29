@@ -112,7 +112,7 @@ void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 
 	/* indices to iterate through arrays defined below */
 	unsigned int r = 0; /* residue index */
-	char isChainLabel[2] = "@"; /* dummy chain name, never in structure */
+	/*char isChainLabel[2] = "@";*/ /* dummy chain name, never in structure */
 
 	/* header: attached to 'json' */
 	cJSON_AddStringToObject(json, "data_resource", "popscomp_asymmetric");

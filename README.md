@@ -319,6 +319,8 @@ and the solvent radius for water.
 
 
 ## Copyright
+* 2018 Using XML parser code in getpdbml.c from the Bioplib library
+	by Dr. Andrew C. R. Martin 1988-2015 (ReadPDB.c)
 * 2002-2018 Franca Fraternali (program author)
 * 2008-2018 Jens Kleinjung (modular C code)
 * 2002 Kuang Lin and Valerie Hindie (translation to C)

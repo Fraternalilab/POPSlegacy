@@ -5,9 +5,8 @@ Sun 25 Feb 12:53:54 GMT 2018
 
 - 2.2
 Sun  4 Mar 18:40:13 GMT 2018
-	mmCIF branch: Implementation of Gemmi for mmCIF parsing.
-	http://gemmi.readthedocs.io/en/latest/cif-parser.html
-	https://stackoverflow.com/questions/13810121/how-do-you-use-extern-c-to-call-c-functions-in-c
+	PDBML branch: PDBML formatted files can be read as input
+	configure.ac checks presence of libxml2 (system) library
 
 - 2.1
 Sat 24 Feb 15:27:07 GMT 2018

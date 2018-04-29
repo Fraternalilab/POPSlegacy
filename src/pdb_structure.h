@@ -17,6 +17,7 @@ Read the COPYING file for license information.
 typedef struct
 {
 	char recordName[8]; /* Record type; 1 -  6*/
+	int  entityId; /* Entity ID; in XML files */
 	int atomNumber; /* Atom serial number;  7 - 11 */
 	char atomName[8]; /* Atom name; 13 - 16 */
 	/*char alternativeLocation[2];*/ /* Alternate location indicator; 17 */
@@ -30,11 +31,35 @@ typedef struct
 	/*char segmentIdentifier[5];*/ /* Segment identifier; 73 - 76 */
 	char element[3]; /* Element symbol; 77 - 78 */
 	/*char charge[3];*/ /* Charge on the atom; 79 - 80 */
+	char segId[8]; /* Segment ID */
+	char altpos; /* Alternate position indicator */
+	char secstr; /* Secondary structure */
 	char description[32]; /* everything before coordinates */
 	Vec tpos; /* transformed position vector */
 	int atomType; /* GROMOS atom type */
 	int groupID; /* atom group ID */
 } Atom;
+
+/* residue */
+typedef struct residue 
+{ 
+   struct residue *next, *prev; 
+   Atom *start, *stop; 
+   int residuenumber; 
+   char chainIdentifier[2]; 
+   char insert[8]; 
+   char residueName[4]; 
+   char residueID[8]; 
+} Residue; 
+
+/* chain */
+typedef struct chain 
+{ 
+   struct chain *next, *prev; 
+   Atom *start, *stop; 
+   Residue *residues; 
+   char chainIdentifier[2]; 
+} Chain; 
 
 /* molecular structure */
 typedef struct
@@ -49,6 +74,21 @@ typedef struct
 	int nChain; /* number of chains */
 	Seq sequence; /* amino acid sequence of structure */
 	Seq strSequence; /* sequence of string-encoded structure */
+	Chain *chains;
 } Str;
 
+/* secondary structure */
+typedef struct secstr
+{
+   struct secstr *next;
+   char chain1[8];
+   char insert1[8];
+   char chain2[8];
+   char insert2[8];
+   int  res1;
+   int  res2;
+   char type;
+}  Secstr;
+
 #endif
+
