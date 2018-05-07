@@ -298,8 +298,8 @@ and the solvent radius for water.
 
 
 ## Code
-* [POPS code](https://github.com/jkleinj/POPS)
-* [Latest Release](https://github.com/jkleinj/POPS/releases/latest)
+* [POPS code](https://github.com/Fratenalilab/POPS)
+* [Latest Release](https://github.com/Fraternalilab/POPS/releases/latest)
 
 ### Github branches
 * master : the distributed version of POPS
