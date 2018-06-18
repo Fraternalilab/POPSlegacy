@@ -9,9 +9,12 @@ Read the COPYING file for license information.
 
 /*____________________________________________________________________________*/
 /* structures */
-typedef struct { 
-	int coarse;
-	int hydrogens;
+typedef struct
+{ 
+	int coarse; /* Calpha and Pphosphate atoms only */
+	int hydrogens; /* read hydrogen atoms */
+	int multiModel; /* read multiple models */
+	int partOcc; /* partial occupancy */
 } Argpdb;
 
 #endif

@@ -25,11 +25,12 @@ typedef struct
 {
     FILE *pdbInFile;
 	char *pdbInFileName;
+	char *pdbmlInFileName;
+	int pdbml;
     FILE *trajInFile;
 	char *trajInFileName;
     float rProbe;
 	int silent;
-	int multiModel;
     FILE *sasaOutFile;
     char *sasaOutFileName;
     FILE *sasatrajOutFile;

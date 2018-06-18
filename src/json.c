@@ -108,44 +108,50 @@ void print_json(Arg *arg, cJSON *json)
 	and to create chains on the fly, to which new residue array are attached. */
 void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 {
+	char reslab[8];
+
 	/* 'json' is the root object to which everything else will be attached */
 
 	/* indices to iterate through arrays defined below */
 	unsigned int r = 0; /* residue index */
-	/*char isChainLabel[2] = "@";*/ /* dummy chain name, never in structure */
+	char isChainLabel[2] = "@"; /* dummy chain name, never in structure */
 
 	/* header: attached to 'json' */
 	cJSON_AddStringToObject(json, "data_resource", "popscomp_asymmetric");
-	cJSON_AddStringToObject(json, "resource_version", "");
+	cJSON_AddStringToObject(json, "resource_version", "3.0.0");
 	cJSON_AddStringToObject(json, "software_version", "3.0.0");
-	cJSON_AddStringToObject(json, "resource_entry_url", "");
+	cJSON_AddStringToObject(json, "resource_entry_url", "https://github.com/Fraternalilab/POPS");
 	cJSON_AddStringToObject(json, "release_date", "21/02/2018");
-	cJSON_AddStringToObject(json, "pdb_id", "0x00");
+	cJSON_AddStringToObject(json, "pdb_id", "1f3r");
 
 	/* add Chain array */
 	cJSON *chains = cJSON_AddArrayToObject(json, "chains");
+	strcpy(isChainLabel, pdb->atom[pdb->resAtom[0]].chainIdentifier);
+	cJSON *chain = cJSON_CreateObject();
+	cJSON_AddItemToArray(chains, chain);
+	cJSON_AddStringToObject(chain, "chain_label", isChainLabel); 
+	cJSON_AddObjectToObject(chain, "additional_chain_annotations");
 
 	/* add Residue array for new Chain */
-	cJSON *residues = cJSON_AddArrayToObject(chains, "residues");
+	cJSON *residues = cJSON_AddArrayToObject(chain, "residues");
 
 	/* iterate over all Residues */
 	for (r = 0; r < pdb->nResidue; ++ r) { 
-		/*
 		if (strcmp(pdb->atom[pdb->resAtom[r]].chainIdentifier, isChainLabel) != 0) {
 			strcpy(isChainLabel, pdb->atom[pdb->resAtom[r]].chainIdentifier);
 			cJSON *chain = cJSON_CreateObject();
 			cJSON_AddItemToArray(chains, chain);
 			cJSON_AddStringToObject(chain, "chain_label", isChainLabel); 
 		}
-		*/
 
 		/* add Residue */
 		cJSON *residue = cJSON_CreateObject();
 		cJSON_AddItemToArray(residues, residue);
-		cJSON_AddNumberToObject(residue, "pdb_res_label", r);
+		sprintf(reslab, "%d", r);
+		cJSON_AddStringToObject(residue, "pdb_res_label", reslab);
 		cJSON_AddStringToObject(residue, "aa_type", \
 								pdb->atom[pdb->resAtom[r]].residueName);
-		cJSON_AddStringToObject(residue, "additional_chain_annotations", "");
+		cJSON_AddObjectToObject(residue, "additional_residue_annotations");
 
 		/* add Site_Data array */
 		cJSON *site_data = cJSON_AddArrayToObject(residue, "site_data");
@@ -153,31 +159,46 @@ void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 		/* add Sites */
 		cJSON *phil = cJSON_CreateObject();
 		cJSON_AddItemToArray(site_data, phil);
+		cJSON_AddNumberToObject(phil, "site_id_ref", r+1);
 		cJSON_AddNumberToObject(phil, "raw_score", resSasa[r].philicSasa);
-		cJSON_AddNumberToObject(phil, "confidence_score", 90.0);
+		cJSON_AddNumberToObject(phil, "confidence_score", 0.9);
 		cJSON_AddStringToObject(phil, "confidence_classification", "high");
 
 		cJSON *phob = cJSON_CreateObject();
 		cJSON_AddItemToArray(site_data, phob);
+		cJSON_AddNumberToObject(phob, "site_id_ref", r+1);
 		cJSON_AddNumberToObject(phob, "raw_score", resSasa[r].phobicSasa);
-		cJSON_AddNumberToObject(phob, "confidence_score", 90.0);
+		cJSON_AddNumberToObject(phob, "confidence_score", 0.9);
 		cJSON_AddStringToObject(phob, "confidence_classification", "high");
 
 		cJSON *total = cJSON_CreateObject();
 		cJSON_AddItemToArray(site_data, total);
+		cJSON_AddNumberToObject(total, "site_id_ref", r+1);
 		cJSON_AddNumberToObject(total, "raw_score", resSasa[r].sasa);
-		cJSON_AddNumberToObject(total, "confidence_score", 90.0);
+		cJSON_AddNumberToObject(total, "confidence_score", 0.9);
 		cJSON_AddStringToObject(total, "confidence_classification", "high");
 	}
 
 	/* add Sites array */
 	cJSON *sites = cJSON_AddArrayToObject(json, "sites");
+	cJSON *site = cJSON_CreateObject();
+	cJSON_AddItemToArray(sites, site);
 
 	/* add Site information */
-	cJSON_AddNumberToObject(sites, "site_id", 1);
-	cJSON_AddStringToObject(sites, "label", "interface");
-	cJSON_AddStringToObject(sites, "source_database", "pdb");
-	cJSON_AddStringToObject(sites, "source_accession", "0x00");
-	cJSON_AddStringToObject(sites, "source_release_data", "01/01/2017");
+	cJSON_AddNumberToObject(site, "site_id", 1);
+	cJSON_AddStringToObject(site, "label", "interface");
+	cJSON_AddStringToObject(site, "source_database", "pdb");
+	cJSON_AddStringToObject(site, "source_accession", "1f3r");
+	cJSON_AddStringToObject(site, "source_release_date", "01/01/2017");
+
+	/* entry annotations */
+	cJSON_AddObjectToObject(json, "additional_entry_annotations");
+
+	/* add Evidence array */
+	cJSON *evidence_code_ontology = cJSON_AddArrayToObject(json, "evidence_code_ontology");
+	cJSON *evidence_code_onto = cJSON_CreateObject();
+	cJSON_AddItemToArray(evidence_code_ontology, evidence_code_onto);
+    cJSON_AddStringToObject(evidence_code_onto, "eco_term", "computational combinatorial evidence used in automatic assertion");
+    cJSON_AddStringToObject(evidence_code_onto, "eco_code", "ECO_0000246");
 }
 

@@ -65,8 +65,9 @@ typedef struct chain
 } Chain; 
 
 /* molecular structure */
-typedef struct
+typedef struct str
 {
+	struct str *next, *prev;
 	Atom *atom; /* array of atoms constituting structure */
 	int *resAtom; /* atom indices of CA and P atoms */
 	int *atomMap; /* map of the selected atom count to the original atom count */
@@ -85,7 +86,7 @@ typedef struct
 /* secondary structure */
 typedef struct secstr
 {
-   struct secstr *next;
+   struct secstr *next, *prev;
    char chain1[8];
    char insert1[8];
    char chain2[8];
@@ -94,6 +95,13 @@ typedef struct secstr
    int  res2;
    char type;
 }  Secstr;
+
+/* ensemble of structures; multiple models */
+typedef struct
+{
+	Str *str;
+	int nStr;
+} Ensmbl;
 
 #endif
 

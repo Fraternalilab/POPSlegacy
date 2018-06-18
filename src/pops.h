@@ -1,7 +1,7 @@
 /*==============================================================================
 POPS* : Parameter OPtimised Surface of proteins and nucleic acids
-Copyright (C) 2002-2016 Franca Fraternali (program author, parametrisation)
-Copyright (C) 2008-2016 Jens Kleinjung (modular C code)
+Copyright (C) 2002-2018 Franca Fraternali (program author, parametrisation)
+Copyright (C) 2008-2018 Jens Kleinjung (modular C code)
 Copyright (C) 2002 Luigi Cavallo (parametrisation)
 Copyright (C) 2002 Kuang Lin and Valerie Hindie (translation to C)
 
@@ -28,6 +28,7 @@ POPS : Parameter OPtimised Surfaces at atomic resolution.
 #include "cJSON.h"
 #include "fs.h"
 #include "getpdb.h"
+#include "getpdbml.h"
 #include "gettraj.h"
 #include "json.h"
 #include "matrix.h"

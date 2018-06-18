@@ -41,6 +41,7 @@ static void print_license()
 			"Copyright (C) 2008-2018 Jens Kleinjung (modular C code)\n"
 			"Copyright (C) 2002 Kuang Lin and Valerie Hindie (translation to C)\n"
 			"Copyright (C) 2002 Luigi Cavallo (parametrisation)\n"
+			"The routine 'getpdbml.c' has been adapted from Bioplib.\n"
 			"POPS* is free software and comes with ABSOLUTELY NO WARRANTY.\n"
 			"You are welcome to redistribute it under certain conditions.\n"
 			"Read the COPYING file for distribution details.\n\n");
@@ -76,10 +77,13 @@ static void print_citation()
 static void set_defaults(Arg *arg, Argpdb *argpdb)
 {
     arg->pdbInFileName = "";
+    arg->pdbmlInFileName = "";
+	arg->pdbml = 0;
 	arg->trajInFileName = 0; /* trajectory input file */ 
-	argpdb->coarse = 0; /* Calpha-only computation [0,1] */
-	argpdb->hydrogens = 0; /* hydrogens [0,1] */
-	arg->multiModel = 0; /* input with multiple models */
+	argpdb->coarse = 0; /* Calpha- or Pphosphate-only computation [0,1] */
+	argpdb->hydrogens = 0; /* read hydrogens [0,1] */
+	argpdb->multiModel = 0; /* read multiple models [0,1] */
+	argpdb->partOcc = 0; /* partial occupancy [0,1] */
 	arg->rProbe = 1.4; /* probe radius (in Angstrom) */
 	arg->silent = 0; /* suppress stdout */
     arg->sasaOutFileName = "pops.out";
@@ -113,11 +117,14 @@ static void set_defaults(Arg *arg, Argpdb *argpdb)
 /** check input */
 static void check_input(Arg *arg, Argpdb *argpdb)
 {
-	if (strlen(arg->pdbInFileName) == 0)
+	if ((strlen(arg->pdbInFileName) == 0) &&
+		(strlen(arg->pdbmlInFileName) == 0))
 		Error("Invalid PDB file name");
+	assert(arg->pdbml == 0 || arg->pdbml == 1);
 	assert(argpdb->coarse == 0 || argpdb->coarse == 1);
     assert(argpdb->hydrogens == 0 || argpdb->hydrogens == 1);
-	assert(arg->multiModel == 0 || arg->multiModel == 1);
+	assert(argpdb->multiModel == 0 || argpdb->multiModel == 1);
+	assert(argpdb->partOcc == 0 || argpdb->partOcc == 1);
 	assert(arg->rProbe > 0);
 	assert(strlen(arg->sasaOutFileName) > 0);
 	assert(strlen(arg->sasatrajOutFileName) > 0);
@@ -167,20 +174,24 @@ static void print_args(Arg *arg, Argpdb *argpdb)
 int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
 {
 	int c;
-	const char usage[] = "\npops [--pdb ...] [OPTIONS ...]\n\
+	const char usage[] = "\npops [--pdb ... | --pdbml ...] [OPTIONS ...]\n\
 	 INPUT OPTIONS\n\
-	   --pdb <PDB input>\t\t(mode: mandatory, type: char  , default: void)\n\
+       Input is either a *.pdb[.gz] file (--pdb) or a *.xml[.gz] file (--pdbml).\n\
+	   --pdb <PDB input>\t\t(mode: optional, type: char  , default: void)\n\
+	   --pdbml <PDBML input>\t(mode: optional, type: char  , default: void)\n\
 	   --traj <trajectory input>\t(mode: optional , type: char  , default: void)\n\
 	 MODE OPTIONS\n\
 	   --coarse\t\t\t(mode: optional , type: no_arg, default: off)\n\
-	   --multiModel (disabled)\t(mode: optional , type: no_arg, default: off)\n\
+	   --hydrogens\t\t\t(mode: optional , type: no_arg, default: off)\n\
+	   --multiModel\t\t\t(mode: optional , type: no_arg, default: off)\n\
+	   --partOcc\t\t\t(mode: optional , type: no_arg, default: off)\n\
 	   --rProbe <probe radius [A]>\t(mode: optional , type: float , default: 1.4)\n\
 	   --silent\t\t\t(mode: optional , type: no_arg, default: off)\n\
 	 OUTPUT OPTIONS\n\
 	   --popsOut <POPS output>\t(mode: optional , type: char  , default: pops.out)\n\
 	   --popstrajOut <POPS output>\t(mode: optional , type: char  , default: popstraj.out)\n\
 	   --popsbOut <POPSb output>\t(mode: optional , type: char  , default: popsb.out)\n\
-	   --popsbtrajOut <POPSb output>\t(mode: optional , type: char  , default: popsbtraj.out)\n\
+	   --popsbtrajOut <POPSb output>(mode: optional , type: char  , default: popsbtraj.out)\n\
 	   --sigmaOut <SFE output>\t(mode: optional , type: char  , default: sigma.out)\n\
 	   --sigmatrajOut <SFE output>\t(mode: optional , type: char  , default: sigmatraj.out)\n\
 	   --interfaceOut\t\t(mode: optional , type: no_arg, default: off)\n\
@@ -239,14 +250,17 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
         {"padding", no_argument, 0, 24},
         {"rout", no_argument, 0, 25},
         {"jsonOut", no_argument, 0, 26},
-        {"cite", no_argument, 0, 27},
-        {"version", no_argument, 0, 28},
-        {"help", no_argument, 0, 29},
+        {"hydrogens", no_argument, 0, 27},
+        {"partOcc", no_argument, 0, 28},
+        {"pdbml", required_argument, 0, 29},
+        {"cite", no_argument, 0, 30},
+        {"version", no_argument, 0, 31},
+        {"help", no_argument, 0, 32},
         {0, 0, 0, 0}
     };
 
     /** assign parameters to long options */
-    while ((c = getopt_long(argc, argv, "1:2:3 4 5:6:7:8:9:10:11:12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29", long_options, NULL)) != -1) {
+    while ((c = getopt_long(argc, argv, "1:2:3 4 5:6:7:8:9:10:11:12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29:30 31 32", long_options, NULL)) != -1) {
         switch(c) {
             case 1:
                 arg->pdbInFileName = optarg;
@@ -258,7 +272,7 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
                 argpdb->coarse = 1;
                 break;
             case 4:
-                arg->multiModel = 1;
+                argpdb->multiModel = 1;
                 break;
             case 5:
                 arg->rProbe = atof(optarg);
@@ -326,13 +340,19 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
                 arg->jsonOut = 1;
                 break;
             case 27:
-                print_citation();
-                exit(0);
+                argpdb->hydrogens = 1;
+                break;
             case 28:
-				print_version();
-				print_license();
-                exit(0);
+                argpdb->partOcc = 1;
+                break;
             case 29:
+                arg->pdbmlInFileName = optarg;
+				arg->pdbml = 1;
+				break;
+            case 30:
+				print_citation();
+                exit(0);
+            case 31:
                 fprintf(stderr, "%s", usage);
 				print_license();
                 exit(0);

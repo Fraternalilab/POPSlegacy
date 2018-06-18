@@ -1,7 +1,7 @@
 /*=============================================================================
 POPS* : Parameter OPtimised Surface of proteins and nucleic acids
-Copyright (C) 2002-2017 Franca Fraternali (program author, parametrisation)
-Copyright (C) 2008-2017 Jens Kleinjung (modular C code)
+Copyright (C) 2002-2018 Franca Fraternali (program author, parametrisation)
+Copyright (C) 2008-2018 Jens Kleinjung (modular C code)
 Copyright (C) 2002 Luigi Cavallo (parametrisation)
 Copyright (C) 2002 Kuang Lin and Valerie Hindie (translation to C)
 
@@ -103,9 +103,13 @@ int main(int argc, char *argv[])
 		constant_sigma = &(constant_sigma_data[1]); /* data array element 1: coarse-grained */
 
     /*____________________________________________________________________________*/
-    /** read input structure */
+    /** read input structure, either XML format or classic PDB format */
 	if (! arg.silent) fprintf(stdout, "Input structure\n");
-    read_structure(&arg, &argpdb, &pdb);
+	if (arg.pdbml) {
+		read_structure_xml(&arg, &argpdb, &pdb);
+	} else {
+		read_structure(&arg, &argpdb, &pdb);
+	}
 
     /*____________________________________________________________________________*/
     /** read input trajectory */

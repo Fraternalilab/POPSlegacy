@@ -165,6 +165,12 @@ int read_pdb(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
 
 	/*____________________________________________________________________________*/
     /* count the number of models */
+/*
+char * gzgets (gzFile file, char *buf, int len);
+    Reads bytes from the compressed file until len-1 characters are read, or a newline character is read and transferred to buf, or an end-of-file condition is encountered. The string is then terminated with a null character.
+
+    gzgets returns buf, or Z_NULL in case of error.
+*/
     while(fgets(line, 80, pdbInFile) != 0) {
         if (strncmp(line, "MODEL ", 6) == 0) {
             if (stopflag == 0) {
@@ -176,6 +182,15 @@ int read_pdb(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
             }
         }
     }
+
+/*
+z_off_t gzseek (gzFile file, z_off_t offset, int whence);
+    Sets the starting position for the next gzread or gzwrite on the given compressed file. The offset represents a number of bytes in the uncompressed data stream. The whence parameter is defined as in lseek(2); the value SEEK_END is not supported.
+
+    If the file is opened for reading, this function is emulated but can be extremely slow. If the file is opened for writing, only forward seeks are supported ; gzseek then compresses a sequence of zeroes up to the new starting position.
+
+    gzseek returns the resulting offset location as measured in bytes from the beginning of the uncompressed stream, or -1 in case of error, in particular if the file is opened for writing and the new starting position would be before the current position. 
+*/
 
     /* rewind the file handle to the start */
 	if (fseek(pdbInFile, 0L, SEEK_SET) != 0) {
@@ -377,6 +392,17 @@ int read_conect(FILE *pdbInFile)
 void read_structure(Arg *arg, Argpdb *argpdb, Str *pdb)
 {
 	FILE *pdbInFile = 0;
+
+/*
+	typedef voidp gzFile;
+
+	gzFile gzopen (const char *path, const char *mode);
+    Opens a gzip (.gz) file for reading or writing. The mode parameter is as in fopen ("rb" or "wb") but can also include a compression level ("wb9") or a strategy: 'f' for filtered data as in "wb6f", 'h' for Huffman only compression as in "wb1h". (See the description of deflateInit2 for more information about the strategy parameter.)
+
+    gzopen can be used to read a file which is not in gzip format ; in this case gzread will directly read from the file without decompression.
+
+    gzopen returns NULL if the file could not be opened or if there was insufficient memory to allocate the (de)compression state ; errno can be checked to distinguish the two cases (if errno is zero, the zlib error is Z_MEM_ERROR).
+*/
 
     pdbInFile = safe_open(arg->pdbInFileName, "r");
     pdb->sequence.name = safe_malloc((strlen(basename(arg->pdbInFileName)) + 1) * sizeof(char));

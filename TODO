@@ -1,4 +1,6 @@
-- separate solvent HET and standard molecule output
-- selenium parameters
 - multiple structure input
 - multiple models
+- user numbering input
+- atom occupancy
+- separate solvent HET and standard molecule output
+- selenium parameters

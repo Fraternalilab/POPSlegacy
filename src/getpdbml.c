@@ -3,11 +3,41 @@ getpdbml.c : routines for reading PDBML structures
 	Using to a large extent the ReadPDB.c routine of Bioplib as template,
 		partially verbatim and partially with style and syntax adaptations,
 		because POPS has its own core data structure ('Str') for PDB data.
+	The relevant header has been copied below.
 	For a detailed code comparison use a tool like 'vimdiff'.
-    Copyright (C) UCL / Dr. Andrew C. R. Martin 1988-2015
 Copyright (C) 2018 Jens Kleinjung
 Read the COPYING file for license information.
 ==============================================================================*/
+/*
+   \file       ReadPDB.c
+   
+   \version    V3.11
+   \date       01.07.15
+   \brief      Read coordinates from a PDB file 
+   
+   \copyright  (c) UCL / Dr. Andrew C. R. Martin 1988-2015
+   \author     Dr. Andrew C. R. Martin
+   \par
+               Institute of Structural & Molecular Biology,
+               University College London,
+               Gower Street,
+               London.
+               WC1E 6BT.
+   \par
+               andrew@bioinf.org.uk
+               andrew.martin@ucl.ac.uk
+               
+**************************************************************************
+   This code is NOT IN THE PUBLIC DOMAIN, but it may be copied
+   according to the conditions laid out in the accompanying file
+   COPYING.DOC.
+
+   The code may be modified as required, but any modifications must be
+   documented so that the person responsible can be identified.
+
+   The code may not be sold commercially or included as part of a 
+   commercial product except as described in the file COPYING.DOC.
+*/
 
 #include "getpdbml.h"
 #include "pdb_structure.h"
@@ -18,7 +48,9 @@ Read the COPYING file for license information.
 extern int nodes;
 extern int my_rank;
 
-static void init_atom(Atom *atom) {
+/*____________________________________________________________________________*/
+void init_atom(Atom *atom)
+{
 	strcpy(atom->recordName, "      ");
 	atom->entityId = 0;
 	atom->atomNumber = 0;
@@ -42,7 +74,8 @@ static void init_atom(Atom *atom) {
 
 /*____________________________________________________________________________*/
 /* parse PDB file in XML format */
-int readpdbml(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
+int read_pdbml(FILE *pdbmlInFile, Str *str, int coarse, int hydrogens,
+										int multiModel, int partOcc)
 {
 	/* variables */
 	int ret = 0;
@@ -57,15 +90,27 @@ int readpdbml(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
 	xmlChar *content;
 	double content_lf;
 	Atom *atom = 0;
+	unsigned int allocated_atom = 64;
+	unsigned int allocated_residue = 64;
 
+	/*____________________________________________________________________________*/
 	str->multiModel = 0;
 	str->nAtom = 0;
-	atom = &(str->atom[str->nAtom]);
 
+	str->atom = safe_malloc(allocated_atom * sizeof(Atom));
+	str->atomMap = safe_malloc(allocated_atom * sizeof(int));
+
+	/* array of residue-centric atom indices */
+	str->resAtom = safe_malloc(allocated_residue * sizeof(int));
+
+	/* allocate memory for sequence residues */
+	str->sequence.res = safe_malloc(allocated_residue * sizeof(char));
+
+	/*____________________________________________________________________________*/
 	/* Generate Document From Filehandle */
-	ret = fread(xml_buffer, 1, bufferSize, pdbInFile);
+	ret = fread(xml_buffer, 1, bufferSize, pdbmlInFile);
 	ctxt = xmlCreatePushParserCtxt(NULL, NULL, xml_buffer, bufferSize, "file");
-	while ((ret = fread(xml_buffer, 1, bufferSize, pdbInFile)) > 0) {
+	while ((ret = fread(xml_buffer, 1, bufferSize, pdbmlInFile)) > 0) {
 		xmlParseChunk(ctxt, xml_buffer, bufferSize, 0);
 	}
 	xmlParseChunk(ctxt, xml_buffer, 0, 1);
@@ -91,14 +136,14 @@ int readpdbml(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
 	}
 
    /* Parse Atom Coordinate Nodes */
-   for (n = root_node->children; n != 0; n = n->next) {
-      /* Find Atom Sites Node */
-      if(!strcmp("atom_siteCategory", (char *)n->name)) {
-         /* Found Atom Sites */
-         sites_node = n;
-         break;
-      }
-   }
+   //for (n = root_node->children; n != 0; n = n->next) {
+   //   /* Find Atom Sites Node */
+   //   if(!strcmp("atom_siteCategory", (char *)n->name)) {
+   //      /* Found Atom Sites */
+   //      sites_node = n;
+   //      break;
+   //   }
+   //}
    
    if (sites_node == 0) {
       /* Error: Failed to find atom sites */
@@ -108,9 +153,15 @@ int readpdbml(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
       return 1; /* return error code */
    }
 
-   /* Scan through atom nodes and populate PDB list. */
+	fprintf(stderr, "Hello, %d\n", str->nAtom);
+	exit(1);
+
+	atom = &(str->atom[0]);
+
+	/* Scan through atom nodes and populate PDB list. */
 	for (atom_node = sites_node->children; atom_node; atom_node = atom_node->next) {
 		if (!strcmp("atom_site", (char *)atom_node->name)) {
+			fprintf(stderr, "Hello, %d\n", str->nAtom);
 			/* Set default values */
 			init_atom(atom);
 
@@ -308,9 +359,46 @@ int readpdbml(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
 			   ++ str->nAtom;
 			}
 			*/
+
+		/* allocate more memory if needed */
+		if (str->nAtom == allocated_atom) {
+			allocated_atom += 64;
+			str->atom = safe_realloc(str->atom, allocated_atom * sizeof(Atom));
+			str->atomMap = safe_realloc(str->atomMap, allocated_atom * sizeof(int));
+		}
 		}
 	}
 
 	return 0;
+}
+
+/*_____________________________________________________________________________*/
+/** read PDB structure in XML format */
+void read_structure_xml(Arg *arg, Argpdb *argpdb, Str *pdb)
+{
+	FILE *pdbmlInFile = 0;
+
+    pdbmlInFile = safe_open(arg->pdbmlInFileName, "r");
+    pdb->sequence.name = safe_malloc((strlen(basename(arg->pdbmlInFileName)) + 1) * sizeof(char));
+    strcpy(pdb->sequence.name, basename(arg->pdbmlInFileName));
+    read_pdbml(pdbmlInFile, pdb, argpdb->coarse, argpdb->hydrogens,
+						argpdb->multiModel, argpdb->partOcc);
+    fclose(pdbmlInFile);
+
+    /* check for empty pdb structure and exit */
+    if (pdb->nAtom == 0)
+    {
+        ErrorSpecNoexit("Invalid PDB file", arg->pdbmlInFileName);
+        free(pdb->atom);
+        free(pdb->sequence.res);
+        free(pdb->sequence.name);
+        exit(1);
+    }
+
+    if (! arg->silent) fprintf(stdout, "\tPDB file: %s\n"
+										"\tPDB file content:\n"
+										"\tnAtom = %d (excluding hydrogens)\n"
+										"\tnAllAtom = %d (all atoms to match trajectory entries)\n",
+							arg->pdbmlInFileName, pdb->nAtom, pdb->nAllAtom);
 }
 

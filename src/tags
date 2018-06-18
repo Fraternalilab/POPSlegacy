@@ -9,62 +9,97 @@ ARGPDB_H	argpdb.h	8;"	d
 ARG_H	arg.h	8;"	d
 ATOMGROUP_DATA_H	atomgroup_data.h	8;"	d
 ATOMGROUP_H	atomgroup.h	8;"	d
-Arg	arg.h	/^} Arg;$/;"	t	typeref:struct:__anon23
-Argpdb	argpdb.h	/^} Argpdb;$/;"	t	typeref:struct:__anon3
-Atom	pdb_structure.h	/^} Atom;$/;"	t	typeref:struct:__anon19
-AtomSFE	sigma.h	/^} AtomSFE;$/;"	t	typeref:struct:__anon6
-AtomSasa	sasa.h	/^} AtomSasa;$/;"	t	typeref:struct:__anon15
-AtomdataGroup	atomgroup.h	/^} AtomdataGroup;$/;"	t	typeref:struct:__anon21
-AtomdataSasa	sasa_const.h	/^} AtomdataSasa;$/;"	t	typeref:struct:__anon1
-AtomdataSigma	sigma_const.h	/^} AtomdataSigma;$/;"	t	typeref:struct:__anon25
-Atomgroup	atomgroup.h	/^} Atomgroup;$/;"	t	typeref:struct:__anon22
-ChainSFE	sigma.h	/^} ChainSFE;$/;"	t	typeref:struct:__anon8
-ChainSasa	sasa.h	/^} ChainSasa;$/;"	t	typeref:struct:__anon17
-ConstantSasa	sasa_const.h	/^} ConstantSasa;$/;"	t	typeref:struct:__anon2
-ConstantSigma	sigma_const.h	/^} ConstantSigma;$/;"	t	typeref:struct:__anon26
+Arg	arg.h	/^} Arg;$/;"	t	typeref:struct:__anon17
+Argpdb	argpdb.h	/^} Argpdb;$/;"	t	typeref:struct:__anon25
+Atom	pdb_structure.h	/^} Atom;$/;"	t	typeref:struct:atom
+AtomSFE	sigma.h	/^} AtomSFE;$/;"	t	typeref:struct:__anon1
+AtomSasa	sasa.h	/^} AtomSasa;$/;"	t	typeref:struct:__anon5
+AtomdataGroup	atomgroup.h	/^} AtomdataGroup;$/;"	t	typeref:struct:__anon9
+AtomdataSasa	sasa_const.h	/^} AtomdataSasa;$/;"	t	typeref:struct:__anon19
+AtomdataSigma	sigma_const.h	/^} AtomdataSigma;$/;"	t	typeref:struct:__anon22
+Atomgroup	atomgroup.h	/^} Atomgroup;$/;"	t	typeref:struct:__anon10
+CJSON_EXPORT_SYMBOLS	cJSON.h	108;"	d
+CJSON_NESTING_LIMIT	cJSON.h	129;"	d
+CJSON_PUBLIC	cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_Compare(const cJSON * const a, const cJSON * const b, const cJSON_bool case_sensitive)$/;"	f
+CJSON_PUBLIC	cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_HasObjectItem(const cJSON *object, const char *string)$/;"	f
+CJSON_PUBLIC	cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsArray(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsBool(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsFalse(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsInvalid(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsNull(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsNumber(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsObject(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsRaw(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsString(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsTrue(const cJSON * const item)$/;"	f
+CJSON_PUBLIC	cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_PrintPreallocated(cJSON *item, char *buf, const int len, const cJSON_bool fmt)$/;"	f
+CJSON_PUBLIC	cJSON.c	/^CJSON_PUBLIC(cJSON_bool) cJSON_ReplaceItemViaPointer(cJSON * const parent, cJSON * const item, cJSON * replacement)$/;"	f
+CJSON_PUBLIC	cJSON.h	112;"	d
+CJSON_PUBLIC	cJSON.h	114;"	d
+CJSON_PUBLIC	cJSON.h	116;"	d
+CJSON_PUBLIC	cJSON.h	120;"	d
+CJSON_PUBLIC	cJSON.h	122;"	d
+CJSON_VERSION_MAJOR	cJSON.h	32;"	d
+CJSON_VERSION_MINOR	cJSON.h	33;"	d
+CJSON_VERSION_PATCH	cJSON.h	34;"	d
+Chain	pdb_structure.h	/^} Chain; $/;"	t	typeref:struct:chain
+ChainSFE	sigma.h	/^} ChainSFE;$/;"	t	typeref:struct:__anon3
+ChainSasa	sasa.h	/^} ChainSasa;$/;"	t	typeref:struct:__anon7
+ConstantSasa	sasa_const.h	/^} ConstantSasa;$/;"	t	typeref:struct:__anon20
+ConstantSigma	sigma_const.h	/^} ConstantSigma;$/;"	t	typeref:struct:__anon23
 ERRORMSG_H	error.h	8;"	d
+Ensmbl	pdb_structure.h	/^} Ensmbl;$/;"	t	typeref:struct:__anon18
 Error	error.c	/^void Error(char *message) {$/;"	f
 ErrorLoc	error.c	/^void ErrorLoc(char *message, char *file, int line) {$/;"	f
 ErrorSpec	error.c	/^void ErrorSpec(char *message, char *spec) {$/;"	f
 ErrorSpecNoexit	error.c	/^void ErrorSpecNoexit(char *message, char *spec) {$/;"	f
 FS_H	fs.h	8;"	d
-FileList	fs.h	/^} FileList;$/;"	t	typeref:struct:__anon5
-Frame	gettraj.h	/^} Frame;$/;"	t	typeref:struct:__anon12
+FileList	fs.h	/^} FileList;$/;"	t	typeref:struct:__anon24
+Frame	gettraj.h	/^} Frame;$/;"	t	typeref:struct:__anon27
+GETPDBML_H	getpdbml.h	8;"	d
 GETPDB_H	getpdb.h	8;"	d
 GETTRAJ_H	gettraj.h	8;"	d
+JSON_H	json.h	8;"	d
 MATRIX_H	matrix.h	8;"	d
 MODSTRING_H	modstring.h	8;"	d
-MolSFE	sigma.h	/^} MolSFE;$/;"	t	typeref:struct:__anon9
-MolSasa	sasa.h	/^} MolSasa;$/;"	t	typeref:struct:__anon18
+MolSFE	sigma.h	/^} MolSFE;$/;"	t	typeref:struct:__anon4
+MolSasa	sasa.h	/^} MolSasa;$/;"	t	typeref:struct:__anon8
 PATTERN_H	pattern.h	8;"	d
 PDB_STRUCTURE_H	pdb_structure.h	8;"	d
 PI	vector.h	14;"	d
 POPS_H	pops.h	18;"	d
+PUTBSASA_H	putbsasa.h	8;"	d
 PUTSASA_H	putsasa.h	8;"	d
 PUTSIGMA_H	putsigma.h	8;"	d
-ResSFE	sigma.h	/^} ResSFE;$/;"	t	typeref:struct:__anon7
-ResSasa	sasa.h	/^} ResSasa;$/;"	t	typeref:struct:__anon16
+ResSFE	sigma.h	/^} ResSFE;$/;"	t	typeref:struct:__anon2
+ResSasa	sasa.h	/^} ResSasa;$/;"	t	typeref:struct:__anon6
+Residue	pdb_structure.h	/^} Residue; $/;"	t	typeref:struct:residue
 SAFE_H	safe.h	8;"	d
-SASACONST_H	sasa_const.h	12;"	d
+SASACONST_H	sasa_const.h	11;"	d
 SASADATA_H	sasa_data.h	11;"	d
 SASA_H	sasa.h	11;"	d
 SEQ_H	seq.h	8;"	d
 SIGMACONST_H	sigma_const.h	9;"	d
 SIGMADATA_H	sigma_data.h	9;"	d
 SIGMA_H	sigma.h	9;"	d
-Seq	seq.h	/^} Seq;$/;"	t	typeref:struct:__anon14
-Str	pdb_structure.h	/^} Str;$/;"	t	typeref:struct:__anon20
+Secstr	pdb_structure.h	/^}  Secstr;$/;"	t	typeref:struct:secstr
+Seq	seq.h	/^} Seq;$/;"	t	typeref:struct:__anon16
+Str	pdb_structure.h	/^} Str;$/;"	t	typeref:struct:str
 TOPOL_H	topol.h	11;"	d
 TYPE_H	type.h	11;"	d
-Topol	topol.h	/^} Topol;$/;"	t	typeref:struct:__anon4
-Traj	gettraj.h	/^} Traj;$/;"	t	typeref:struct:__anon13
-Trajatom	gettraj.h	/^} Trajatom;$/;"	t	typeref:struct:__anon11
-Type	type.h	/^} Type;$/;"	t	typeref:struct:__anon24
+Topol	topol.h	/^} Topol;$/;"	t	typeref:struct:__anon15
+Traj	gettraj.h	/^} Traj;$/;"	t	typeref:struct:__anon28
+Trajatom	gettraj.h	/^} Trajatom;$/;"	t	typeref:struct:__anon26
+Type	type.h	/^} Type;$/;"	t	typeref:struct:__anon11
 VECTOR_H	vector.h	8;"	d
-Vec	vector.h	/^} Vec;$/;"	t	typeref:struct:__anon10
+Vec	vector.h	/^} Vec;$/;"	t	typeref:struct:__anon21
 Warning	error.c	/^void Warning(char *message) {$/;"	f
 WarningSpec	error.c	/^void WarningSpec(char *message, char *spec) {$/;"	f
+_CRT_SECURE_NO_DEPRECATE	cJSON.c	28;"	d	file:
+__WINDOWS__	cJSON.h	84;"	d
 aacode	getpdb.c	/^__inline__ static char aacode(char *code3)$/;"	f	file:
+add_item_to_array	cJSON.c	/^static cJSON_bool add_item_to_array(cJSON *array, cJSON *item)$/;"	f	file:
+add_item_to_object	cJSON.c	/^static cJSON_bool add_item_to_object(cJSON * const object, const char * const string, cJSON * const item, const internal_hooks * const hooks, const cJSON_bool constant_key)$/;"	f	file:
 alloc_mat2D_float	matrix.c	/^float **alloc_mat2D_float(float **mat2D_float, int x, int y)$/;"	f
 alloc_mat2D_int	matrix.c	/^int **alloc_mat2D_int(int **mat2D_int, int x, int y)$/;"	f
 alloc_mat2D_vec	matrix.c	/^Vec **alloc_mat2D_vec(Vec **mat2D_vec, int x, int y)$/;"	f
@@ -74,40 +109,158 @@ alloc_mat3D_vec	matrix.c	/^Vec ***alloc_mat3D_vec(Vec ***mat3D_vec, int x, int y
 alloc_mat4D_float	matrix.c	/^float ****alloc_mat4D_float(float ****mat4D_float, int w, int x, int y, int z)$/;"	f
 alloc_mat4D_int	matrix.c	/^int ****alloc_mat4D_int(int ****mat4D_int, int w, int x, int y, int z)$/;"	f
 alloc_mat4D_vec	matrix.c	/^Vec ****alloc_mat4D_vec(Vec ****mat4D_vec, int w, int x, int y, int z)$/;"	f
-angle	topol.h	/^	Type (*angle)[3]; \/* atom and residue types for each angle *\/$/;"	m	struct:__anon4
-atom	pdb_structure.h	/^	Atom *atom; \/* array of selected (CA) atoms constituting structure *\/$/;"	m	struct:__anon20
-atomDataGroup	atomgroup.h	/^	AtomdataGroup atomDataGroup[64][64]; \/* atom-specific data *\/$/;"	m	struct:__anon22
-atomDataSasa	sasa_const.h	/^    AtomdataSasa atomDataSasa[64][64]; \/* atom-specific data *\/$/;"	m	struct:__anon2
-atomDataSigma	sigma_const.h	/^    AtomdataSigma atomDataSigma[64][64]; \/* atom-specific data *\/$/;"	m	struct:__anon26
-atomMap	pdb_structure.h	/^	int *atomMap; \/* map of the selected atom count to the original atom count *\/$/;"	m	struct:__anon20
-atomName	atomgroup.h	/^	char atomName[8];$/;"	m	struct:__anon21
-atomName	pdb_structure.h	/^	char atomName[8]; \/* Atom name; 13 - 16 *\/$/;"	m	struct:__anon19
-atomName	sasa_const.h	/^	char atomName[4];$/;"	m	struct:__anon1
-atomName	sigma_const.h	/^	char atomName[4];$/;"	m	struct:__anon25
-atomNumber	pdb_structure.h	/^	int atomNumber; \/* Atom serial number;  7 - 11 *\/$/;"	m	struct:__anon19
-atomOut	arg.h	/^	int atomOut;$/;"	m	struct:__anon23
-atomRef	sasa.h	/^	int atomRef; \/* first atom of residue to refer to residue number and name *\/$/;"	m	struct:__anon16
-atomRef	sigma.h	/^	int atomRef; \/* first atom of residue to refer to residue number and name *\/$/;"	m	struct:__anon7
-atomSFE	sigma.h	/^	AtomSFE *atomSFE; \/* atomic values *\/$/;"	m	struct:__anon9
-atomSasa	sasa.h	/^	AtomSasa *atomSasa; \/* atomic values *\/$/;"	m	struct:__anon18
-atomType	atomgroup.h	/^	int atomType; \/* GROMOS atom type number *\/$/;"	m	struct:__anon21
-atomType	pdb_structure.h	/^	int atomType; \/* GROMOS atom type *\/$/;"	m	struct:__anon19
-atomType	type.h	/^	int *atomType; \/* identifier to denote atom type *\/$/;"	m	struct:__anon24
+allocate	cJSON.c	/^    void *(*allocate)(size_t size);$/;"	m	struct:internal_hooks	file:
+alternativeLocation	pdb_structure.h	/^	char alternativeLocation[2]; \/* Alternate location indicator; 17 *\/$/;"	m	struct:atom
+altpos	pdb_structure.h	/^	char altpos; \/* Alternate position indicator *\/$/;"	m	struct:atom
+angle	topol.h	/^	Type (*angle)[3]; \/* atom and residue types for each angle *\/$/;"	m	struct:__anon15
+array	cJSON.h	/^CJSON_PUBLIC(int) cJSON_GetArraySize(const cJSON *array);$/;"	v
+atom	pdb_structure.h	/^	Atom *atom; \/* array of atoms constituting structure *\/$/;"	m	struct:str
+atom	pdb_structure.h	/^typedef struct atom$/;"	s
+atomDataGroup	atomgroup.h	/^	AtomdataGroup atomDataGroup[64][64]; \/* atom-specific data *\/$/;"	m	struct:__anon10
+atomDataSasa	sasa_const.h	/^    AtomdataSasa atomDataSasa[64][64]; \/* atom-specific data *\/$/;"	m	struct:__anon20
+atomDataSigma	sigma_const.h	/^    AtomdataSigma atomDataSigma[64][64]; \/* atom-specific data *\/$/;"	m	struct:__anon23
+atomMap	pdb_structure.h	/^	int *atomMap; \/* map of the selected atom count to the original atom count *\/$/;"	m	struct:str
+atomName	atomgroup.h	/^	char atomName[8];$/;"	m	struct:__anon9
+atomName	pdb_structure.h	/^	char atomName[8]; \/* Atom name; 13 - 16 *\/$/;"	m	struct:atom
+atomName	sasa_const.h	/^	char atomName[4];$/;"	m	struct:__anon19
+atomName	sigma_const.h	/^	char atomName[4];$/;"	m	struct:__anon22
+atomName_raw	pdb_structure.h	/^	char atomName_raw[8]; \/* Atom name; 13 - 14 *\/$/;"	m	struct:atom
+atomNumber	pdb_structure.h	/^	int atomNumber; \/* Atom serial number;  7 - 11 *\/$/;"	m	struct:atom
+atomOut	arg.h	/^	int atomOut;$/;"	m	struct:__anon17
+atomRef	sasa.h	/^	int atomRef; \/* first atom of residue to refer to residue number and name *\/$/;"	m	struct:__anon6
+atomRef	sigma.h	/^	int atomRef; \/* first atom of residue to refer to residue number and name *\/$/;"	m	struct:__anon2
+atomSFE	sigma.h	/^	AtomSFE *atomSFE; \/* atomic values *\/$/;"	m	struct:__anon4
+atomSasa	sasa.h	/^	AtomSasa *atomSasa; \/* atomic values *\/$/;"	m	struct:__anon8
+atomType	atomgroup.h	/^	int atomType; \/* GROMOS atom type number *\/$/;"	m	struct:__anon9
+atomType	pdb_structure.h	/^	int atomType; \/* GROMOS atom type *\/$/;"	m	struct:atom
+atomType	type.h	/^	int *atomType; \/* identifier to denote atom type *\/$/;"	m	struct:__anon11
+atom_bsasa	sasa.c	/^__inline__ static double atom_bsasa(MolSasa *molSasa, int k, double connectivityParameter, \\$/;"	f	file:
 atom_distance	topol.c	/^float atom_distance(Str *pdb, int i, int j)$/;"	f
 atom_sasa	sasa.c	/^__inline__ static double atom_sasa(MolSasa *molSasa, int k, double connectivityParameter, \\$/;"	f	file:
-bondState	topol.h	/^	int **bondState; \/* records bonded atom pairs *\/$/;"	m	struct:__anon4
-chainIdentifier	pdb_structure.h	/^	char chainIdentifier[2]; \/* Chain identifier; 22 *\/$/;"	m	struct:__anon19
-chainOut	arg.h	/^	int chainOut;$/;"	m	struct:__anon23
-chainSFE	sigma.h	/^	ChainSFE *chainSFE; \/* chain values *\/$/;"	m	struct:__anon9
-chainSasa	sasa.h	/^	ChainSasa *chainSasa; \/* chain values *\/$/;"	m	struct:__anon18
+bSasa	sasa.h	/^    double bSasa; \/* bSASA *\/$/;"	m	struct:__anon5
+bSasa	sasa.h	/^    double bSasa; \/* bSASA *\/$/;"	m	struct:__anon6
+bSasa	sasa.h	/^    double bSasa; \/* bSASA *\/$/;"	m	struct:__anon7
+bSasa	sasa.h	/^    double bSasa; \/* bSASA *\/$/;"	m	struct:__anon8
+bondState	topol.h	/^	int **bondState; \/* records bonded atom pairs *\/$/;"	m	struct:__anon15
+boolean	cJSON.h	/^CJSON_PUBLIC(cJSON *) cJSON_CreateBool(cJSON_bool boolean);$/;"	v
+bsasaOutFile	arg.h	/^    FILE *bsasaOutFile;$/;"	m	struct:__anon17
+bsasaOutFileName	arg.h	/^    char *bsasaOutFileName;$/;"	m	struct:__anon17
+bsasatrajOutFile	arg.h	/^    FILE *bsasatrajOutFile;$/;"	m	struct:__anon17
+bsasatrajOutFileName	arg.h	/^    char *bsasatrajOutFileName;$/;"	m	struct:__anon17
+buffer	cJSON.c	/^    unsigned char *buffer;$/;"	m	struct:__anon14	file:
+buffer_at_offset	cJSON.c	264;"	d	file:
+buffer_skip_whitespace	cJSON.c	/^static parse_buffer *buffer_skip_whitespace(parse_buffer * const buffer)$/;"	f	file:
+c	cJSON.h	/^CJSON_PUBLIC(void) cJSON_Delete(cJSON *c);$/;"	v
+cJSON	cJSON.h	/^typedef struct cJSON$/;"	s
+cJSON	cJSON.h	/^} cJSON;$/;"	t	typeref:struct:cJSON
+cJSON_AddArrayToObject	cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddArrayToObject(cJSON * const object, const char * const name)$/;"	f
+cJSON_AddBoolToObject	cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddBoolToObject(cJSON * const object, const char * const name, const cJSON_bool boolean)$/;"	f
+cJSON_AddFalseToObject	cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddFalseToObject(cJSON * const object, const char * const name)$/;"	f
+cJSON_AddItemReferenceToArray	cJSON.c	/^CJSON_PUBLIC(void) cJSON_AddItemReferenceToArray(cJSON *array, cJSON *item)$/;"	f
+cJSON_AddItemReferenceToObject	cJSON.c	/^CJSON_PUBLIC(void) cJSON_AddItemReferenceToObject(cJSON *object, const char *string, cJSON *item)$/;"	f
+cJSON_AddItemToArray	cJSON.c	/^CJSON_PUBLIC(void) cJSON_AddItemToArray(cJSON *array, cJSON *item)$/;"	f
+cJSON_AddItemToObject	cJSON.c	/^CJSON_PUBLIC(void) cJSON_AddItemToObject(cJSON *object, const char *string, cJSON *item)$/;"	f
+cJSON_AddItemToObjectCS	cJSON.c	/^CJSON_PUBLIC(void) cJSON_AddItemToObjectCS(cJSON *object, const char *string, cJSON *item)$/;"	f
+cJSON_AddNullToObject	cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddNullToObject(cJSON * const object, const char * const name)$/;"	f
+cJSON_AddNumberToObject	cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddNumberToObject(cJSON * const object, const char * const name, const double number)$/;"	f
+cJSON_AddObjectToObject	cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddObjectToObject(cJSON * const object, const char * const name)$/;"	f
+cJSON_AddRawToObject	cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddRawToObject(cJSON * const object, const char * const name, const char * const raw)$/;"	f
+cJSON_AddStringToObject	cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddStringToObject(cJSON * const object, const char * const name, const char * const string)$/;"	f
+cJSON_AddTrueToObject	cJSON.c	/^CJSON_PUBLIC(cJSON*) cJSON_AddTrueToObject(cJSON * const object, const char * const name)$/;"	f
+cJSON_Array	cJSON.h	45;"	d
+cJSON_ArrayForEach	cJSON.h	267;"	d
+cJSON_CreateArray	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateArray(void)$/;"	f
+cJSON_CreateArrayReference	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateArrayReference(const cJSON *child) {$/;"	f
+cJSON_CreateBool	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateBool(cJSON_bool b)$/;"	f
+cJSON_CreateDoubleArray	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateDoubleArray(const double *numbers, int count)$/;"	f
+cJSON_CreateFalse	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateFalse(void)$/;"	f
+cJSON_CreateFloatArray	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateFloatArray(const float *numbers, int count)$/;"	f
+cJSON_CreateIntArray	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateIntArray(const int *numbers, int count)$/;"	f
+cJSON_CreateNull	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateNull(void)$/;"	f
+cJSON_CreateNumber	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateNumber(double num)$/;"	f
+cJSON_CreateObject	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateObject(void)$/;"	f
+cJSON_CreateObjectReference	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateObjectReference(const cJSON *child)$/;"	f
+cJSON_CreateRaw	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateRaw(const char *raw)$/;"	f
+cJSON_CreateString	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateString(const char *string)$/;"	f
+cJSON_CreateStringArray	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateStringArray(const char **strings, int count)$/;"	f
+cJSON_CreateStringReference	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateStringReference(const char *string)$/;"	f
+cJSON_CreateTrue	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_CreateTrue(void)$/;"	f
+cJSON_Delete	cJSON.c	/^CJSON_PUBLIC(void) cJSON_Delete(cJSON *item)$/;"	f
+cJSON_DeleteItemFromArray	cJSON.c	/^CJSON_PUBLIC(void) cJSON_DeleteItemFromArray(cJSON *array, int which)$/;"	f
+cJSON_DeleteItemFromObject	cJSON.c	/^CJSON_PUBLIC(void) cJSON_DeleteItemFromObject(cJSON *object, const char *string)$/;"	f
+cJSON_DeleteItemFromObjectCaseSensitive	cJSON.c	/^CJSON_PUBLIC(void) cJSON_DeleteItemFromObjectCaseSensitive(cJSON *object, const char *string)$/;"	f
+cJSON_DetachItemFromArray	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_DetachItemFromArray(cJSON *array, int which)$/;"	f
+cJSON_DetachItemFromObject	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_DetachItemFromObject(cJSON *object, const char *string)$/;"	f
+cJSON_DetachItemFromObjectCaseSensitive	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_DetachItemFromObjectCaseSensitive(cJSON *object, const char *string)$/;"	f
+cJSON_DetachItemViaPointer	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_DetachItemViaPointer(cJSON *parent, cJSON * const item)$/;"	f
+cJSON_Duplicate	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_Duplicate(const cJSON *item, cJSON_bool recurse)$/;"	f
+cJSON_False	cJSON.h	40;"	d
+cJSON_GetArrayItem	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_GetArrayItem(const cJSON *array, int index)$/;"	f
+cJSON_GetArraySize	cJSON.c	/^CJSON_PUBLIC(int) cJSON_GetArraySize(const cJSON *array)$/;"	f
+cJSON_GetErrorPtr	cJSON.c	/^CJSON_PUBLIC(const char *) cJSON_GetErrorPtr(void)$/;"	f
+cJSON_GetObjectItem	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_GetObjectItem(const cJSON * const object, const char * const string)$/;"	f
+cJSON_GetObjectItemCaseSensitive	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_GetObjectItemCaseSensitive(const cJSON * const object, const char * const string)$/;"	f
+cJSON_GetStringValue	cJSON.c	/^CJSON_PUBLIC(char *) cJSON_GetStringValue(cJSON *item) {$/;"	f
+cJSON_Hooks	cJSON.h	/^typedef struct cJSON_Hooks$/;"	s
+cJSON_Hooks	cJSON.h	/^} cJSON_Hooks;$/;"	t	typeref:struct:cJSON_Hooks
+cJSON_InitHooks	cJSON.c	/^CJSON_PUBLIC(void) cJSON_InitHooks(cJSON_Hooks* hooks)$/;"	f
+cJSON_InsertItemInArray	cJSON.c	/^CJSON_PUBLIC(void) cJSON_InsertItemInArray(cJSON *array, int which, cJSON *newitem)$/;"	f
+cJSON_Invalid	cJSON.h	39;"	d
+cJSON_IsReference	cJSON.h	49;"	d
+cJSON_Minify	cJSON.c	/^CJSON_PUBLIC(void) cJSON_Minify(char *json)$/;"	f
+cJSON_NULL	cJSON.h	42;"	d
+cJSON_New_Item	cJSON.c	/^static cJSON *cJSON_New_Item(const internal_hooks * const hooks)$/;"	f	file:
+cJSON_Number	cJSON.h	43;"	d
+cJSON_Object	cJSON.h	46;"	d
+cJSON_Parse	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_Parse(const char *value)$/;"	f
+cJSON_ParseWithOpts	cJSON.c	/^CJSON_PUBLIC(cJSON *) cJSON_ParseWithOpts(const char *value, const char **return_parse_end, cJSON_bool require_null_terminated)$/;"	f
+cJSON_Print	cJSON.c	/^CJSON_PUBLIC(char *) cJSON_Print(const cJSON *item)$/;"	f
+cJSON_PrintBuffered	cJSON.c	/^CJSON_PUBLIC(char *) cJSON_PrintBuffered(const cJSON *item, int prebuffer, cJSON_bool fmt)$/;"	f
+cJSON_PrintUnformatted	cJSON.c	/^CJSON_PUBLIC(char *) cJSON_PrintUnformatted(const cJSON *item)$/;"	f
+cJSON_Raw	cJSON.h	47;"	d
+cJSON_ReplaceItemInArray	cJSON.c	/^CJSON_PUBLIC(void) cJSON_ReplaceItemInArray(cJSON *array, int which, cJSON *newitem)$/;"	f
+cJSON_ReplaceItemInObject	cJSON.c	/^CJSON_PUBLIC(void) cJSON_ReplaceItemInObject(cJSON *object, const char *string, cJSON *newitem)$/;"	f
+cJSON_ReplaceItemInObjectCaseSensitive	cJSON.c	/^CJSON_PUBLIC(void) cJSON_ReplaceItemInObjectCaseSensitive(cJSON *object, const char *string, cJSON *newitem)$/;"	f
+cJSON_SetIntValue	cJSON.h	261;"	d
+cJSON_SetNumberHelper	cJSON.c	/^CJSON_PUBLIC(double) cJSON_SetNumberHelper(cJSON *object, double number)$/;"	f
+cJSON_SetNumberValue	cJSON.h	264;"	d
+cJSON_String	cJSON.h	44;"	d
+cJSON_StringIsConst	cJSON.h	50;"	d
+cJSON_True	cJSON.h	41;"	d
+cJSON_Version	cJSON.c	/^CJSON_PUBLIC(const char*) cJSON_Version(void)$/;"	f
+cJSON__h	cJSON.h	24;"	d
+cJSON_bool	cJSON.h	/^typedef int cJSON_bool;$/;"	t
+cJSON_free	cJSON.c	/^CJSON_PUBLIC(void) cJSON_free(void *object)$/;"	f
+cJSON_malloc	cJSON.c	/^CJSON_PUBLIC(void *) cJSON_malloc(size_t size)$/;"	f
+cJSON_strdup	cJSON.c	/^static unsigned char* cJSON_strdup(const unsigned char* string, const internal_hooks * const hooks)$/;"	f	file:
+can_access_at_index	cJSON.c	261;"	d	file:
+can_read	cJSON.c	259;"	d	file:
+cannot_access_at_index	cJSON.c	262;"	d	file:
+case_insensitive_strcmp	cJSON.c	/^static int case_insensitive_strcmp(const unsigned char *string1, const unsigned char *string2)$/;"	f	file:
+cast_away_const	cJSON.c	/^static void* cast_away_const(const void* string)$/;"	f	file:
+chain	pdb_structure.h	/^typedef struct chain $/;"	s
+chain1	pdb_structure.h	/^   char chain1[8];$/;"	m	struct:secstr
+chain2	pdb_structure.h	/^   char chain2[8];$/;"	m	struct:secstr
+chainIdentifier	pdb_structure.h	/^	char chainIdentifier[2]; \/* Chain identifier; 22 *\/$/;"	m	struct:atom
+chainIdentifier	pdb_structure.h	/^   char chainIdentifier[2]; $/;"	m	struct:chain
+chainIdentifier	pdb_structure.h	/^   char chainIdentifier[2]; $/;"	m	struct:residue
+chainOut	arg.h	/^	int chainOut;$/;"	m	struct:__anon17
+chainSFE	sigma.h	/^	ChainSFE *chainSFE; \/* chain values *\/$/;"	m	struct:__anon4
+chainSasa	sasa.h	/^	ChainSasa *chainSasa; \/* chain values *\/$/;"	m	struct:__anon8
+chains	pdb_structure.h	/^	Chain *chains;$/;"	m	struct:str
+charge	pdb_structure.h	/^	char charge[3]; \/* Charge on the atom; 79 - 80 *\/$/;"	m	struct:atom
 check_input	arg.c	/^static void check_input(Arg *arg, Argpdb *argpdb)$/;"	f	file:
 check_non_null	safe.c	/^void *check_non_null(void *ptr)$/;"	f
-coarse	argpdb.h	/^	int coarse;$/;"	m	struct:__anon3
+child	cJSON.h	/^    struct cJSON *child;$/;"	m	struct:cJSON	typeref:struct:cJSON::cJSON
+child	cJSON.h	/^CJSON_PUBLIC(cJSON *) cJSON_CreateArrayReference(const cJSON *child);$/;"	v
+child	cJSON.h	/^CJSON_PUBLIC(cJSON *) cJSON_CreateObjectReference(const cJSON *child);$/;"	v
+cjson_min	cJSON.c	1086;"	d	file:
+coarse	argpdb.h	/^	int coarse; \/* Calpha and Pphosphate atoms only *\/$/;"	m	struct:__anon25
 compile_pattern	pattern.c	/^void compile_pattern(regex_t *regex, char *pattern)$/;"	f
 compile_pattern_positionred	gettraj.c	/^static void compile_pattern_positionred(regex_t *regex)$/;"	f	file:
 compile_pattern_trajectory	gettraj.c	/^static void compile_pattern_trajectory(regex_t *regex)$/;"	f	file:
 compile_patterns	pattern.c	/^void compile_patterns(regex_t *regex, char (*pattern)[32], int nPattern)$/;"	f
-compositionOut	arg.h	/^	int compositionOut;$/;"	m	struct:__anon23
+compositionOut	arg.h	/^	int compositionOut;$/;"	m	struct:__anon17
 compute_atom_sasa	sasa.c	/^static int compute_atom_sasa(Str *pdb, Topol *topol, Type *type, MolSasa *molSasa, \\$/;"	f	file:
 compute_atom_sfe	sigma.c	/^static int compute_atom_sfe(Str *pdb, Type *type, MolSasa *molSasa,\\$/;"	f	file:
 compute_c1	sasa.c	/^__inline__ static double compute_c1(double atomRadius, float rSolvent)$/;"	f	file:
@@ -116,23 +269,35 @@ compute_res_chain_mol_sasa	sasa.c	/^static int compute_res_chain_mol_sasa(Str *p
 compute_res_chain_mol_sfe	sigma.c	/^static int compute_res_chain_mol_sfe(Str *pdb, Type *type, MolSFE *molSFE)$/;"	f	file:
 compute_sasa	sasa.c	/^void compute_sasa(Str *pdb, Topol *topol, Type *type, MolSasa *molSasa, \\$/;"	f
 compute_sfe	sigma.c	/^void compute_sfe(Str *pdb, Type *type, MolSasa *molSasa, \\$/;"	f
-connect_12_parameter	sasa_const.h	/^	float connect_12_parameter; \/* connectivity parameter for 1-2 interactions *\/$/;"	m	struct:__anon2
-connect_13_parameter	sasa_const.h	/^	float connect_13_parameter; \/* connectivity parameter for 1-3 interactions *\/$/;"	m	struct:__anon2
-connect_14_parameter	sasa_const.h	/^	float connect_14_parameter; \/* connectivity parameter for 1-4 interactions *\/$/;"	m	struct:__anon2
-connect_15_parameter	sasa_const.h	/^	float connect_15_parameter; \/* connectivity parameter for >(1-4) (Lennard-Jones) interactions *\/$/;"	m	struct:__anon2
+connect_12_parameter	sasa_const.h	/^	float connect_12_parameter; \/* connectivity parameter for 1-2 interactions *\/$/;"	m	struct:__anon20
+connect_13_parameter	sasa_const.h	/^	float connect_13_parameter; \/* connectivity parameter for 1-3 interactions *\/$/;"	m	struct:__anon20
+connect_14_parameter	sasa_const.h	/^	float connect_14_parameter; \/* connectivity parameter for 1-4 interactions *\/$/;"	m	struct:__anon20
+connect_15_parameter	sasa_const.h	/^	float connect_15_parameter; \/* connectivity parameter for >(1-4) (Lennard-Jones) interactions *\/$/;"	m	struct:__anon20
 constAtomGroup	atomgroup_data.h	/^Atomgroup constAtomGroup[] = {$/;"	v
 constant_sasa_data	sasa_data.h	/^ConstantSasa constant_sasa_data[] = {$/;"	v
 constant_sigma_data	sigma_data.h	/^ConstantSigma constant_sigma_data[] = {$/;"	v
+content	cJSON.c	/^    const unsigned char *content;$/;"	m	struct:__anon13	file:
 copy_coordinates	gettraj.c	/^void copy_coordinates(Str *pdb, Traj *traj, int frame)$/;"	f
+create_reference	cJSON.c	/^static cJSON *create_reference(const cJSON *item, const internal_hooks * const hooks)$/;"	f	file:
 cutoff_radius	topol.c	/^float cutoff_radius(Type *type, ConstantSasa *constant_sasa, int i, int j, float rSolvent)$/;"	f
-description	pdb_structure.h	/^	char description[32]; \/* everything before coordinates *\/$/;"	m	struct:__anon19
+deallocate	cJSON.c	/^    void (*deallocate)(void *pointer);$/;"	m	struct:internal_hooks	file:
+depth	cJSON.c	/^    size_t depth; \/* How deeply nested (in arrays\/objects) is the input at the current offset. *\/$/;"	m	struct:__anon13	file:
+depth	cJSON.c	/^    size_t depth; \/* current nesting depth (for formatted printing) *\/$/;"	m	struct:__anon14	file:
+description	pdb_structure.h	/^	char description[32]; \/* everything before coordinates *\/$/;"	m	struct:atom
 div_mat2D_float	matrix.c	/^void div_mat2D_float(float **mat2D_float, int x, int y, float a)$/;"	f
-element	pdb_structure.h	/^	char element[3]; \/* Element symbol; 77 - 78 *\/$/;"	m	struct:__anon19
-file	fs.h	/^   char (*file)[128];$/;"	m	struct:__anon5
+element	pdb_structure.h	/^	char element[3]; \/* Element symbol; 77 - 78 *\/$/;"	m	struct:atom
+ensure	cJSON.c	/^static unsigned char* ensure(printbuffer * const p, size_t needed)$/;"	f	file:
+entityId	pdb_structure.h	/^	int  entityId; \/* Entity ID; in XML files *\/$/;"	m	struct:atom
+error	cJSON.c	/^} error;$/;"	t	typeref:struct:__anon12	file:
+false	cJSON.c	63;"	d	file:
+file	fs.h	/^   char (*file)[128];$/;"	m	struct:__anon24
 file_exists	fs.c	/^int file_exists(char *fileName)$/;"	f
-first	sasa.h	/^	int first, last; \/* first\/last atom of chain *\/$/;"	m	struct:__anon17
-first	sigma.h	/^	int first, last; \/* first\/last atom of chain *\/$/;"	m	struct:__anon8
-frame	gettraj.h	/^	Frame *frame; \/* xyz coordinate vector of atom *\/$/;"	m	struct:__anon13
+first	sasa.h	/^	int first, last; \/* first\/last atom of chain *\/$/;"	m	struct:__anon7
+first	sigma.h	/^	int first, last; \/* first\/last atom of chain *\/$/;"	m	struct:__anon3
+formalCharge	pdb_structure.h	/^	int formalCharge;$/;"	m	struct:atom
+format	cJSON.c	/^    cJSON_bool format; \/* is this print a formatted print *\/$/;"	m	struct:__anon14	file:
+frame	gettraj.h	/^	Frame *frame; \/* xyz coordinate vector of atom *\/$/;"	m	struct:__anon28
+free_fn	cJSON.h	/^      void (*free_fn)(void *ptr);$/;"	m	struct:cJSON_Hooks
 free_mat2D_float	matrix.c	/^void free_mat2D_float(float **mat2D_float, int x)$/;"	f
 free_mat2D_int	matrix.c	/^void free_mat2D_int(int **mat2D_int, int x)$/;"	f
 free_mat2D_vec	matrix.c	/^void free_mat2D_vec(Vec **mat2D_vec, int x)$/;"	f
@@ -148,18 +313,27 @@ free_sasa	sasa.c	/^void free_sasa(MolSasa *molSasa)$/;"	f
 free_sfe	sigma.c	/^void free_sfe(MolSFE *molSFE)$/;"	f
 free_topology	topol.c	/^void free_topology(Str *pdb, Topol *topol)$/;"	f
 get_angles	topol.c	/^int get_angles(Str *pdb, Topol *topol)$/;"	f
+get_array_item	cJSON.c	/^static cJSON* get_array_item(const cJSON *array, size_t index)$/;"	f	file:
 get_atomgroup	atomgroup.c	/^int get_atomgroup(Str *str, Atomgroup *atomGroup)$/;"	f
 get_bondState	topol.c	/^__inline__ static int get_bondState(Topol *topol, int i, int j)$/;"	f	file:
 get_bonds	topol.c	/^int get_bonds(Str *pdb, Type *type, Topol *topol, ConstantSasa *constant_sasa, Argpdb *argpdb)$/;"	f
+get_decimal_point	cJSON.c	/^static unsigned char get_decimal_point(void)$/;"	f	file:
+get_object_item	cJSON.c	/^static cJSON *get_object_item(const cJSON * const object, const char * const name, const cJSON_bool case_sensitive)$/;"	f	file:
 get_topology	topol.c	/^int get_topology(Str *pdb, Type *type, Topol *topol, ConstantSasa *constant_sasa, Argpdb *argpdb, Arg *arg)$/;"	f
 get_torsions	topol.c	/^int get_torsions(Str *pdb, Type *type, Topol *topol, ConstantSasa *constant_sasa)$/;"	f
 get_types	type.c	/^int get_types(Str *pdb, Type *type, ConstantSasa *constant_sasa)$/;"	f
-groupID	atomgroup.h	/^	int groupID; \/* group ID number (sequential index) *\/$/;"	m	struct:__anon21
-groupID	pdb_structure.h	/^	int groupID; \/* atom group ID *\/$/;"	m	struct:__anon19
-hydrogens	argpdb.h	/^	int hydrogens;$/;"	m	struct:__anon3
-ib	topol.h	/^	int *ib; \/* atoms forming the bonds: array of size bond-number *\/$/;"	m	struct:__anon4
-icode	pdb_structure.h	/^	char icode[2]; \/* Code for insertion of residues; 27 *\/$/;"	m	struct:__anon19
-in	topol.h	/^	int *in; \/* atoms forming the L-J overlaps: array of size ~30*bond-number *\/$/;"	m	struct:__anon4
+global_error	cJSON.c	/^static error global_error = { NULL, 0 };$/;"	v	file:
+global_hooks	cJSON.c	/^static internal_hooks global_hooks = { internal_malloc, internal_free, internal_realloc };$/;"	v	file:
+groupID	atomgroup.h	/^	int groupID; \/* group ID number (sequential index) *\/$/;"	m	struct:__anon9
+groupID	pdb_structure.h	/^	int groupID; \/* atom group ID *\/$/;"	m	struct:atom
+hooks	cJSON.c	/^    internal_hooks hooks;$/;"	m	struct:__anon13	file:
+hooks	cJSON.c	/^    internal_hooks hooks;$/;"	m	struct:__anon14	file:
+hooks	cJSON.h	/^CJSON_PUBLIC(void) cJSON_InitHooks(cJSON_Hooks* hooks);$/;"	v
+hydrogens	argpdb.h	/^	int hydrogens; \/* read hydrogen atoms *\/$/;"	m	struct:__anon25
+ib	topol.h	/^	int *ib; \/* atoms forming the bonds: array of size bond-number *\/$/;"	m	struct:__anon15
+icode	pdb_structure.h	/^	char icode[2]; \/* Code for insertion of residues; 27 *\/$/;"	m	struct:atom
+in	topol.h	/^	int *in; \/* atoms forming the L-J overlaps: array of size ~30*bond-number *\/$/;"	m	struct:__anon15
+init_atom	getpdbml.c	/^void init_atom(Atom *atom)$/;"	f
 init_mat2D_float	matrix.c	/^void init_mat2D_float(float **mat2D_float, int x, int y, float val)$/;"	f
 init_mat2D_int	matrix.c	/^void init_mat2D_int(int **mat2D_int, int x, int y, int val)$/;"	f
 init_mat2D_vec	matrix.c	/^void init_mat2D_vec(Vec **mat2D_vec, int x, int y, Vec val)$/;"	f
@@ -172,172 +346,294 @@ init_mat4D_vec	matrix.c	/^void init_mat4D_vec(Vec ****mat4D_vec, int w, int x, i
 init_sasa	sasa.c	/^int init_sasa(Str *pdb, Type *type, MolSasa *molSasa, ConstantSasa *constant_sasa, Arg *arg)$/;"	f
 init_sfe	sigma.c	/^int init_sfe(Str *pdb, Type *type, MolSFE *molSFE, ConstantSigma *constant_sigma, Arg *arg)$/;"	f
 init_topology	topol.c	/^void init_topology(Str *pdb, Topol *topol)$/;"	f
-ip	topol.h	/^	int *ip; \/* atoms forming the torsions: array of size 5*bond-number *\/$/;"	m	struct:__anon4
-it	topol.h	/^	int *it; \/* atoms forming the angles: array of size 3*bond-number *\/$/;"	m	struct:__anon4
-jb	topol.h	/^	int *jb;$/;"	m	struct:__anon4
-jn	topol.h	/^	int *jn; $/;"	m	struct:__anon4
-jp	topol.h	/^	int *jp;$/;"	m	struct:__anon4
-jt	topol.h	/^	int *jt;$/;"	m	struct:__anon4
-kp	topol.h	/^	int *kp;$/;"	m	struct:__anon4
-kt	topol.h	/^	int *kt;$/;"	m	struct:__anon4
-last	sasa.h	/^	int first, last; \/* first\/last atom of chain *\/$/;"	m	struct:__anon17
-last	sigma.h	/^	int first, last; \/* first\/last atom of chain *\/$/;"	m	struct:__anon8
-length	seq.h	/^    int length; \/* length of sequence *\/$/;"	m	struct:__anon14
+insert	pdb_structure.h	/^   char insert[8]; $/;"	m	struct:residue
+insert1	pdb_structure.h	/^   char insert1[8];$/;"	m	struct:secstr
+insert2	pdb_structure.h	/^   char insert2[8];$/;"	m	struct:secstr
+interfaceNn	topol.h	/^	int *interfaceNn; \/* nearest neighbour on separate chain *\/$/;"	m	struct:__anon15
+interfaceNnDist	topol.h	/^	float *interfaceNnDist; \/* distance to nearest neighbour on separate chain *\/$/;"	m	struct:__anon15
+interfaceOut	arg.h	/^	int interfaceOut;$/;"	m	struct:__anon17
+interfaceOutFile	arg.h	/^    FILE *interfaceOutFile;$/;"	m	struct:__anon17
+interfaceOutFileName	arg.h	/^    char *interfaceOutFileName;$/;"	m	struct:__anon17
+internal_free	cJSON.c	/^static void internal_free(void *pointer)$/;"	f	file:
+internal_free	cJSON.c	144;"	d	file:
+internal_hooks	cJSON.c	/^typedef struct internal_hooks$/;"	s	file:
+internal_hooks	cJSON.c	/^} internal_hooks;$/;"	t	typeref:struct:internal_hooks	file:
+internal_malloc	cJSON.c	/^static void *internal_malloc(size_t size)$/;"	f	file:
+internal_malloc	cJSON.c	143;"	d	file:
+internal_realloc	cJSON.c	/^static void *internal_realloc(void *pointer, size_t size)$/;"	f	file:
+internal_realloc	cJSON.c	145;"	d	file:
+ip	topol.h	/^	int *ip; \/* atoms forming the torsions: array of size 5*bond-number *\/$/;"	m	struct:__anon15
+it	topol.h	/^	int *it; \/* atoms forming the angles: array of size 3*bond-number *\/$/;"	m	struct:__anon15
+item	cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsArray(const cJSON * const item);$/;"	v
+item	cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsBool(const cJSON * const item);$/;"	v
+item	cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsFalse(const cJSON * const item);$/;"	v
+item	cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsInvalid(const cJSON * const item);$/;"	v
+item	cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsNull(const cJSON * const item);$/;"	v
+item	cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsNumber(const cJSON * const item);$/;"	v
+item	cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsObject(const cJSON * const item);$/;"	v
+item	cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsRaw(const cJSON * const item);$/;"	v
+item	cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsString(const cJSON * const item);$/;"	v
+item	cJSON.h	/^CJSON_PUBLIC(cJSON_bool) cJSON_IsTrue(const cJSON * const item);$/;"	v
+item	cJSON.h	/^CJSON_PUBLIC(char *) cJSON_GetStringValue(cJSON *item);$/;"	v
+item	cJSON.h	/^CJSON_PUBLIC(char *) cJSON_Print(const cJSON *item);$/;"	v
+item	cJSON.h	/^CJSON_PUBLIC(char *) cJSON_PrintUnformatted(const cJSON *item);$/;"	v
+jb	topol.h	/^	int *jb;$/;"	m	struct:__anon15
+jn	topol.h	/^	int *jn; $/;"	m	struct:__anon15
+jp	topol.h	/^	int *jp;$/;"	m	struct:__anon15
+json	cJSON.c	/^    const unsigned char *json;$/;"	m	struct:__anon12	file:
+jsonOut	arg.h	/^	int jsonOut;$/;"	m	struct:__anon17
+jsonOutFile	arg.h	/^	FILE *jsonOutFile;$/;"	m	struct:__anon17
+jsonOutFileName	arg.h	/^	char *jsonOutFileName;$/;"	m	struct:__anon17
+jt	topol.h	/^	int *jt;$/;"	m	struct:__anon15
+kp	topol.h	/^	int *kp;$/;"	m	struct:__anon15
+kt	topol.h	/^	int *kt;$/;"	m	struct:__anon15
+last	sasa.h	/^	int first, last; \/* first\/last atom of chain *\/$/;"	m	struct:__anon7
+last	sigma.h	/^	int first, last; \/* first\/last atom of chain *\/$/;"	m	struct:__anon3
+length	cJSON.c	/^    size_t length;$/;"	m	struct:__anon13	file:
+length	cJSON.c	/^    size_t length;$/;"	m	struct:__anon14	file:
+length	seq.h	/^    int length; \/* length of sequence *\/$/;"	m	struct:__anon16
 listfiles	fs.c	/^int listfiles(char *dir, FileList *filelist)$/;"	f
-lp	topol.h	/^	int *lp;$/;"	m	struct:__anon4
+lp	topol.h	/^	int *lp;$/;"	m	struct:__anon15
 main	pops.c	/^int main(int argc, char *argv[])$/;"	f
+make_resSasaJson	json.c	/^void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)$/;"	f
+malloc_fn	cJSON.h	/^      void *(*malloc_fn)(size_t sz);$/;"	m	struct:cJSON_Hooks
 match_pattern	pattern.c	/^int match_pattern(regex_t *regex, char *searchString)$/;"	f
 match_patterns	pattern.c	/^int match_patterns(regex_t *regex, int nPattern, char *searchString)$/;"	f
 mod_atom_sasa	sasa.c	/^__inline__ static int mod_atom_sasa(Str *pdb, Topol *topol, Type *type, \\$/;"	f	file:
-multiModel	arg.h	/^	int multiModel;$/;"	m	struct:__anon23
+modelNumber	pdb_structure.h	/^	int modelNumber; \/* number of PDB model *\/$/;"	m	struct:str
+multiModel	argpdb.h	/^	int multiModel; \/* read multiple models *\/$/;"	m	struct:__anon25
+multiModel	pdb_structure.h	/^	int multiModel; \/* multiple models *\/$/;"	m	struct:str
 my_rank	pops.c	/^    int my_rank = 0; $/;"	v
 my_rank	pops.c	/^    int my_rank; \/* rank of 'this' node *\/$/;"	v
-nAllAtom	pdb_structure.h	/^	int nAllAtom; \/* number of all atoms *\/$/;"	m	struct:__anon20
-nAllResidue	pdb_structure.h	/^	int nAllResidue; \/* number of all residues (including HETATM) *\/$/;"	m	struct:__anon20
-nAngle	topol.h	/^	int nAngle; \/* number of angles *\/$/;"	m	struct:__anon4
-nAtom	gettraj.h	/^	int nAtom; \/* number of atoms (without ions) *\/$/;"	m	struct:__anon12
-nAtom	pdb_structure.h	/^	int nAtom; \/* number of selected (CA) atoms *\/$/;"	m	struct:__anon20
-nAtomResidue	atomgroup.h	/^	int nAtomResidue[64]; \/* number of atoms per residue type (in the order given by 'atomgroup') *\/$/;"	m	struct:__anon22
-nAtomResidue	sasa_const.h	/^    int nAtomResidue[64]; \/* number of atoms per residue *\/$/;"	m	struct:__anon2
-nAtomResidue	sigma_const.h	/^    int nAtomResidue[64]; \/* number of atoms per residue *\/$/;"	m	struct:__anon26
-nBond	topol.h	/^	int nBond; \/* number of bonds *\/$/;"	m	struct:__anon4
-nChain	pdb_structure.h	/^	int nChain; \/* number of chains *\/$/;"	m	struct:__anon20
-nFile	fs.h	/^   int nFile;$/;"	m	struct:__anon5
-nFrame	gettraj.h	/^	int nFrame; \/* number of atoms (without ions) *\/$/;"	m	struct:__anon13
-nIon	gettraj.h	/^	int nIon; \/* number of ions *\/$/;"	m	struct:__anon12
-nMol	topol.h	/^	int nMol; \/* number of molecules *\/$/;"	m	struct:__anon4
-nNonBonded	topol.h	/^	int nNonBonded; \/* overlapping L-J (non-bonded) atoms *\/$/;"	m	struct:__anon4
-nOverlap	sasa.h	/^	int nOverlap; \/* number of overlaps *\/$/;"	m	struct:__anon15
-nOverlap	sasa.h	/^	int nOverlap; \/* number of overlaps *\/$/;"	m	struct:__anon16
-nResidue	pdb_structure.h	/^	int nResidue; \/* number of residues (CA and P atoms) *\/$/;"	m	struct:__anon20
-nResidue	topol.h	/^	int nResidue; \/* number of residues *\/$/;"	m	struct:__anon4
-nResidueType	atomgroup.h	/^	int nResidueType; \/* number of residue types *\/$/;"	m	struct:__anon22
-nResidueType	sasa_const.h	/^    int nResidueType; \/* number of residue types *\/$/;"	m	struct:__anon2
-nResidueType	sigma_const.h	/^    int nResidueType; \/* number of residue types *\/$/;"	m	struct:__anon26
-nSolv	gettraj.h	/^	int nSolv; \/* number of solvent molecules *\/$/;"	m	struct:__anon12
-nTorsion	topol.h	/^	int nTorsion; \/* number of torsions *\/$/;"	m	struct:__anon4
-name	seq.h	/^    char *name; \/* sequence name *\/$/;"	m	struct:__anon14
-neighbourOut	arg.h	/^	int neighbourOut;$/;"	m	struct:__anon23
-neighbourOutFile	arg.h	/^    FILE *neighbourOutFile;$/;"	m	struct:__anon23
-neighbourOutFileName	arg.h	/^    char *neighbourOutFileName;$/;"	m	struct:__anon23
-neighbourPar	topol.h	/^	float **neighbourPar; \/* records the POPS parameters 'p_ij * b_ij' of neighbours *\/$/;"	m	struct:__anon4
-neighbourState	topol.h	/^	int **neighbourState; \/* records the neighboured (non-bonded) atom pairs *\/$/;"	m	struct:__anon4
-noHeaderOut	arg.h	/^	int noHeaderOut;$/;"	m	struct:__anon23
-noTotalOut	arg.h	/^	int noTotalOut;$/;"	m	struct:__anon23
+nAllAtom	pdb_structure.h	/^	int nAllAtom; \/* number of all atoms *\/$/;"	m	struct:str
+nAllResidue	pdb_structure.h	/^	int nAllResidue; \/* number of all residues (including HETATM) *\/$/;"	m	struct:str
+nAngle	topol.h	/^	int nAngle; \/* number of angles *\/$/;"	m	struct:__anon15
+nAtom	gettraj.h	/^	int nAtom; \/* number of atoms (without ions) *\/$/;"	m	struct:__anon27
+nAtom	pdb_structure.h	/^	int nAtom; \/* number of selected (CA) atoms *\/$/;"	m	struct:str
+nAtomResidue	atomgroup.h	/^	int nAtomResidue[64]; \/* number of atoms per residue type (in the order given by 'atomgroup') *\/$/;"	m	struct:__anon10
+nAtomResidue	sasa_const.h	/^    int nAtomResidue[64]; \/* number of atoms per residue *\/$/;"	m	struct:__anon20
+nAtomResidue	sigma_const.h	/^    int nAtomResidue[64]; \/* number of atoms per residue *\/$/;"	m	struct:__anon23
+nBond	topol.h	/^	int nBond; \/* number of bonds *\/$/;"	m	struct:__anon15
+nChain	pdb_structure.h	/^	int nChain; \/* number of chains *\/$/;"	m	struct:str
+nFile	fs.h	/^   int nFile;$/;"	m	struct:__anon24
+nFrame	gettraj.h	/^	int nFrame; \/* number of atoms (without ions) *\/$/;"	m	struct:__anon28
+nIon	gettraj.h	/^	int nIon; \/* number of ions *\/$/;"	m	struct:__anon27
+nMol	topol.h	/^	int nMol; \/* number of molecules *\/$/;"	m	struct:__anon15
+nNonBonded	topol.h	/^	int nNonBonded; \/* overlapping L-J (non-bonded) atoms *\/$/;"	m	struct:__anon15
+nOverlap	sasa.h	/^	int nOverlap; \/* number of overlaps *\/$/;"	m	struct:__anon5
+nOverlap	sasa.h	/^	int nOverlap; \/* number of overlaps *\/$/;"	m	struct:__anon6
+nResidue	pdb_structure.h	/^	int nResidue; \/* number of residues (CA and P atoms) *\/$/;"	m	struct:str
+nResidue	topol.h	/^	int nResidue; \/* number of residues *\/$/;"	m	struct:__anon15
+nResidueType	atomgroup.h	/^	int nResidueType; \/* number of residue types *\/$/;"	m	struct:__anon10
+nResidueType	sasa_const.h	/^    int nResidueType; \/* number of residue types *\/$/;"	m	struct:__anon20
+nResidueType	sigma_const.h	/^    int nResidueType; \/* number of residue types *\/$/;"	m	struct:__anon23
+nSolv	gettraj.h	/^	int nSolv; \/* number of solvent molecules *\/$/;"	m	struct:__anon27
+nStr	pdb_structure.h	/^	int nStr;$/;"	m	struct:__anon18
+nTorsion	topol.h	/^	int nTorsion; \/* number of torsions *\/$/;"	m	struct:__anon15
+name	seq.h	/^    char *name; \/* sequence name *\/$/;"	m	struct:__anon16
+neighbourOut	arg.h	/^	int neighbourOut;$/;"	m	struct:__anon17
+neighbourOutFile	arg.h	/^    FILE *neighbourOutFile;$/;"	m	struct:__anon17
+neighbourOutFileName	arg.h	/^    char *neighbourOutFileName;$/;"	m	struct:__anon17
+neighbourPar	topol.h	/^	float **neighbourPar; \/* records the POPS parameters 'p_ij * b_ij' of neighbours *\/$/;"	m	struct:__anon15
+neighbourState	topol.h	/^	int **neighbourState; \/* records the neighboured (non-bonded) atom pairs *\/$/;"	m	struct:__anon15
+next	cJSON.h	/^    struct cJSON *next;$/;"	m	struct:cJSON	typeref:struct:cJSON::cJSON
+next	pdb_structure.h	/^	struct atom *next;$/;"	m	struct:atom	typeref:struct:atom::atom
+next	pdb_structure.h	/^	struct str *next, *prev;$/;"	m	struct:str	typeref:struct:str::str
+next	pdb_structure.h	/^   struct chain *next, *prev; $/;"	m	struct:chain	typeref:struct:chain::chain
+next	pdb_structure.h	/^   struct residue *next, *prev; $/;"	m	struct:residue	typeref:struct:residue::residue
+next	pdb_structure.h	/^   struct secstr *next, *prev;$/;"	m	struct:secstr	typeref:struct:secstr::secstr
+noHeaderOut	arg.h	/^	int noHeaderOut;$/;"	m	struct:__anon17
+noTotalOut	arg.h	/^	int noTotalOut;$/;"	m	struct:__anon17
+noalloc	cJSON.c	/^    cJSON_bool noalloc;$/;"	m	struct:__anon14	file:
 nodes	pops.c	/^    int nodes = 1; $/;"	v
 nodes	pops.c	/^    int nodes; \/* number of nodes *\/$/;"	v
 nonbonded_overlaps	topol.c	/^int nonbonded_overlaps(Str *pdb, Type *type, Topol *topol, ConstantSasa *constant_sasa, Arg *arg)$/;"	f
-padding	arg.h	/^	int padding;$/;"	m	struct:__anon23
-parameter	sasa_const.h	/^	float parameter; \/* atom-specific  SASA parameter *\/$/;"	m	struct:__anon1
-parameterOut	arg.h	/^	int parameterOut;$/;"	m	struct:__anon23
-parameterOutFile	arg.h	/^    FILE *parameterOutFile;$/;"	m	struct:__anon23
-parameterOutFileName	arg.h	/^    char *parameterOutFileName;$/;"	m	struct:__anon23
+occupancy	pdb_structure.h	/^	float occupancy; \/* Occupancy; 55 - 60 *\/$/;"	m	struct:atom
+offset	cJSON.c	/^    size_t offset;$/;"	m	struct:__anon13	file:
+offset	cJSON.c	/^    size_t offset;$/;"	m	struct:__anon14	file:
+padding	arg.h	/^	int padding;$/;"	m	struct:__anon17
+parameter	sasa_const.h	/^	float parameter; \/* atom-specific  SASA parameter *\/$/;"	m	struct:__anon19
+parameterOut	arg.h	/^	int parameterOut;$/;"	m	struct:__anon17
+parameterOutFile	arg.h	/^    FILE *parameterOutFile;$/;"	m	struct:__anon17
+parameterOutFileName	arg.h	/^    char *parameterOutFileName;$/;"	m	struct:__anon17
 parse_args	arg.c	/^int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)$/;"	f
-pdbInFile	arg.h	/^    FILE *pdbInFile;$/;"	m	struct:__anon23
-pdbInFileName	arg.h	/^	char *pdbInFileName;$/;"	m	struct:__anon23
-philicSasa	sasa.h	/^	double philicSasa; \/* hydrophilic SASA *\/$/;"	m	struct:__anon16
-philicSasa	sasa.h	/^	double philicSasa; \/* hydrophilic SASA *\/$/;"	m	struct:__anon17
-philicSasa	sasa.h	/^    double philicSasa; \/* hydrophilic SASA *\/$/;"	m	struct:__anon18
-phobicSasa	sasa.h	/^	double phobicSasa; \/* hydrophobic SASA *\/$/;"	m	struct:__anon16
-phobicSasa	sasa.h	/^	double phobicSasa; \/* hydrophobic SASA *\/$/;"	m	struct:__anon17
-phobicSasa	sasa.h	/^    double phobicSasa; \/* hydrophobic SASA *\/$/;"	m	struct:__anon18
-polar	sasa.h	/^	int polar; \/* polarity *\/$/;"	m	struct:__anon15
-polarity	sasa_const.h	/^	int polarity; \/* hydrophobic = 0, hydrophilic = 1 *\/$/;"	m	struct:__anon1
-pos	gettraj.h	/^	Vec pos; \/* trajectory atom position *\/$/;"	m	struct:__anon11
-pos	pdb_structure.h	/^	Vec pos; \/* position vector (x, y, z) *\/$/;"	m	struct:__anon19
+parse_array	cJSON.c	/^static cJSON_bool parse_array(cJSON * const item, parse_buffer * const input_buffer)$/;"	f	file:
+parse_buffer	cJSON.c	/^} parse_buffer;$/;"	t	typeref:struct:__anon13	file:
+parse_hex4	cJSON.c	/^static unsigned parse_hex4(const unsigned char * const input)$/;"	f	file:
+parse_number	cJSON.c	/^static cJSON_bool parse_number(cJSON * const item, parse_buffer * const input_buffer)$/;"	f	file:
+parse_object	cJSON.c	/^static cJSON_bool parse_object(cJSON * const item, parse_buffer * const input_buffer)$/;"	f	file:
+parse_string	cJSON.c	/^static cJSON_bool parse_string(cJSON * const item, parse_buffer * const input_buffer)$/;"	f	file:
+parse_value	cJSON.c	/^static cJSON_bool parse_value(cJSON * const item, parse_buffer * const input_buffer)$/;"	f	file:
+partOcc	argpdb.h	/^	int partOcc; \/* partial occupancy *\/$/;"	m	struct:__anon25
+partialCharge	pdb_structure.h	/^	float partialCharge;$/;"	m	struct:atom
+pdbInFile	arg.h	/^    FILE *pdbInFile;$/;"	m	struct:__anon17
+pdbInFileName	arg.h	/^	char *pdbInFileName;$/;"	m	struct:__anon17
+pdbml	arg.h	/^	int pdbml;$/;"	m	struct:__anon17
+pdbmlInFileName	arg.h	/^	char *pdbmlInFileName;$/;"	m	struct:__anon17
+philicSasa	sasa.h	/^	double philicSasa; \/* hydrophilic SASA *\/$/;"	m	struct:__anon6
+philicSasa	sasa.h	/^	double philicSasa; \/* hydrophilic SASA *\/$/;"	m	struct:__anon7
+philicSasa	sasa.h	/^    double philicSasa; \/* hydrophilic SASA *\/$/;"	m	struct:__anon8
+philicbSasa	sasa.h	/^    double philicbSasa; \/* hydrophilic bSASA *\/$/;"	m	struct:__anon5
+philicbSasa	sasa.h	/^    double philicbSasa; \/* hydrophilic bSASA *\/$/;"	m	struct:__anon6
+philicbSasa	sasa.h	/^    double philicbSasa; \/* hydrophilic bSASA *\/$/;"	m	struct:__anon7
+philicbSasa	sasa.h	/^    double philicbSasa; \/* hydrophilic bSASA *\/$/;"	m	struct:__anon8
+phobicSasa	sasa.h	/^	double phobicSasa; \/* hydrophobic SASA *\/$/;"	m	struct:__anon6
+phobicSasa	sasa.h	/^	double phobicSasa; \/* hydrophobic SASA *\/$/;"	m	struct:__anon7
+phobicSasa	sasa.h	/^    double phobicSasa; \/* hydrophobic SASA *\/$/;"	m	struct:__anon8
+phobicbSasa	sasa.h	/^    double phobicbSasa; \/* hydrophobic bSASA *\/$/;"	m	struct:__anon5
+phobicbSasa	sasa.h	/^    double phobicbSasa; \/* hydrophobic bSASA *\/$/;"	m	struct:__anon6
+phobicbSasa	sasa.h	/^    double phobicbSasa; \/* hydrophobic bSASA *\/$/;"	m	struct:__anon7
+phobicbSasa	sasa.h	/^    double phobicbSasa; \/* hydrophobic bSASA *\/$/;"	m	struct:__anon8
+polar	sasa.h	/^	int polar; \/* polarity *\/$/;"	m	struct:__anon5
+polarity	sasa_const.h	/^	int polarity; \/* hydrophobic = 0, hydrophilic = 1 *\/$/;"	m	struct:__anon19
+pos	gettraj.h	/^	Vec pos; \/* trajectory atom position *\/$/;"	m	struct:__anon26
+pos	pdb_structure.h	/^	Vec pos; \/* position vector (x, y, z) *\/$/;"	m	struct:atom
+position	cJSON.c	/^    size_t position;$/;"	m	struct:__anon12	file:
+prev	cJSON.h	/^    struct cJSON *prev;$/;"	m	struct:cJSON	typeref:struct:cJSON::cJSON
+prev	pdb_structure.h	/^	struct str *next, *prev;$/;"	m	struct:str	typeref:struct:str::
+prev	pdb_structure.h	/^   struct chain *next, *prev; $/;"	m	struct:chain	typeref:struct:chain::
+prev	pdb_structure.h	/^   struct residue *next, *prev; $/;"	m	struct:residue	typeref:struct:residue::
+prev	pdb_structure.h	/^   struct secstr *next, *prev;$/;"	m	struct:secstr	typeref:struct:secstr::
+print	cJSON.c	/^static unsigned char *print(const cJSON * const item, cJSON_bool format, const internal_hooks * const hooks)$/;"	f	file:
 print_angle	topol.c	/^__inline__ static void print_angle(Str *pdb, int t1, int t2, int t3)$/;"	f	file:
 print_args	arg.c	/^static void print_args(Arg *arg, Argpdb *argpdb)$/;"	f	file:
+print_array	cJSON.c	/^static cJSON_bool print_array(const cJSON * const item, printbuffer * const output_buffer)$/;"	f	file:
+print_atom_bsasa	putbsasa.c	/^static void print_atom_bsasa(FILE *bsasaOutFile, Arg *arg, Str *pdb, MolSasa *molSasa)$/;"	f	file:
 print_atom_sasa	putsasa.c	/^static void print_atom_sasa(FILE *sasaOutFile, Arg *arg, Str *pdb, MolSasa *molSasa)$/;"	f	file:
 print_atom_sfe	putsigma.c	/^static void print_atom_sfe(FILE *sigmaOutFile, Arg *arg, Str *pdb, MolSFE *molSFE)$/;"	f	file:
 print_bondState	topol.c	/^void print_bondState(Str *pdb, Topol *topol)$/;"	f
+print_bsasa	putbsasa.c	/^void print_bsasa(Arg *arg, Argpdb *argpdb, Str *pdb, Type *type, Topol *topol, \\$/;"	f
+print_chain_bsasa	putbsasa.c	/^static void print_chain_bsasa(FILE *bsasaOutFile, Arg *arg, Str *pdb, MolSasa *molSasa)$/;"	f	file:
 print_chain_sasa	putsasa.c	/^static void print_chain_sasa(FILE *sasaOutFile, Arg *arg, Str *pdb, MolSasa *molSasa)$/;"	f	file:
 print_chain_sfe	putsigma.c	/^static void print_chain_sfe(FILE *sigmaOutFile, Arg *arg, Str *pdb, MolSFE *molSFE)$/;"	f	file:
 print_citation	arg.c	/^static void print_citation()$/;"	f	file:
 print_composition	putsasa.c	/^static void print_composition(FILE *sasaOutFile, Arg *arg, Argpdb *argpdb, Str *pdb)$/;"	f	file:
 print_header	arg.c	/^static void print_header()$/;"	f	file:
+print_interface	putsasa.c	/^void print_interface(FILE *interfaceOutFile, Arg *arg, Str *pdb, Type *type, Topol *topol)$/;"	f
+print_json	json.c	/^void print_json(Arg *arg, cJSON *json)$/;"	f
 print_license	arg.c	/^static void print_license()$/;"	f	file:
 print_mat2D_float	matrix.c	/^void print_mat2D_float(char *outFileName, float **mat2D_float, int x, int y)$/;"	f
 print_mat2D_int	matrix.c	/^void print_mat2D_int(char *outFileName, int **mat2D_int, int x, int y)$/;"	f
+print_mol_bsasa	putbsasa.c	/^void print_mol_bsasa(FILE *bsasaOutFile, Arg *arg, MolSasa *molSasa)$/;"	f
 print_mol_sasa	putsasa.c	/^void print_mol_sasa(FILE *sasaOutFile, Arg *arg, MolSasa *molSasa)$/;"	f
 print_mol_sfe	putsigma.c	/^void print_mol_sfe(FILE *sigmaOutFile, Arg *arg, MolSFE *molSFE)$/;"	f
 print_neighbour_list	putsasa.c	/^void print_neighbour_list(FILE *neighbourOutFile, Arg *arg, Str *pdb, Topol *topol)$/;"	f
 print_neighbour_parameter	putsasa.c	/^void print_neighbour_parameter(FILE *parameterOutFile, Str *pdb, Type *type, \\$/;"	f
+print_number	cJSON.c	/^static cJSON_bool print_number(const cJSON * const item, printbuffer * const output_buffer)$/;"	f	file:
+print_object	cJSON.c	/^static cJSON_bool print_object(const cJSON * const item, printbuffer * const output_buffer)$/;"	f	file:
 print_pair	topol.c	/^__inline__ static void print_pair(Str *pdb, int t1, int t2)$/;"	f	file:
+print_residue_bsasa	putbsasa.c	/^static void print_residue_bsasa(FILE *bsasaOutFile, Arg *arg, Str *pdb, MolSasa *molSasa)$/;"	f	file:
 print_residue_sasa	putsasa.c	/^static void print_residue_sasa(FILE *sasaOutFile, Arg *arg, Str *pdb, MolSasa *molSasa)$/;"	f	file:
 print_residue_sfe	putsigma.c	/^static void print_residue_sfe(FILE *sigmaOutFile, Arg *arg, Str *pdb, MolSFE *molSFE)$/;"	f	file:
 print_sasa	putsasa.c	/^void print_sasa(Arg *arg, Argpdb *argpdb, Str *pdb, Type *type, Topol *topol, \\$/;"	f
 print_sfe	putsigma.c	/^void print_sfe(Arg *arg, Argpdb *argpdb, Str *pdb, Type *type, Topol *topol, \\$/;"	f
+print_string	cJSON.c	/^static cJSON_bool print_string(const cJSON * const item, printbuffer * const p)$/;"	f	file:
+print_string_ptr	cJSON.c	/^static cJSON_bool print_string_ptr(const unsigned char * const input, printbuffer * const output_buffer)$/;"	f	file:
 print_topology	putsasa.c	/^static void print_topology(FILE *sasaOutFile, Arg *arg, Topol *topol)$/;"	f	file:
 print_torsion	topol.c	/^__inline__ static void print_torsion(Str *pdb, int t1, int t2, int t3, int t4)$/;"	f	file:
 print_types	putsasa.c	/^static void print_types(FILE *sasaOutFile, Arg *arg, Type *type, ConstantSasa *constant_sasa)$/;"	f	file:
+print_value	cJSON.c	/^static cJSON_bool print_value(const cJSON * const item, printbuffer * const output_buffer)$/;"	f	file:
 print_version	arg.c	/^static void print_version()$/;"	f	file:
+printbuffer	cJSON.c	/^} printbuffer;$/;"	t	typeref:struct:__anon14	file:
 process_het	getpdb.c	/^__inline__ static int process_het(Str *str, char *line, regex_t *regexPattern, char (*hetAtomNewname)[32], int nHetAtom)$/;"	f	file:
-rProbe	arg.h	/^    float rProbe;$/;"	m	struct:__anon23
-rSolvent	sasa_const.h	/^	float rSolvent; \/* solvent radius *\/$/;"	m	struct:__anon2
-radius	sasa_const.h	/^	float radius; \/* atom radius *\/$/;"	m	struct:__anon1
+rProbe	arg.h	/^    float rProbe;$/;"	m	struct:__anon17
+rSolvent	sasa_const.h	/^	float rSolvent; \/* solvent radius *\/$/;"	m	struct:__anon20
+radius	sasa_const.h	/^	float radius; \/* atom radius *\/$/;"	m	struct:__anon19
 read_conect	getpdb.c	/^int read_conect(FILE *pdbInFile)$/;"	f
 read_gromos_traj	gettraj.c	/^int read_gromos_traj(Traj *traj, Arg *arg, int protEnd)$/;"	f
 read_pdb	getpdb.c	/^int read_pdb(FILE *pdbInFile, Str *str, int coarse, int hydrogens)$/;"	f
+read_pdbml	getpdbml.c	/^int read_pdbml(FILE *pdbmlInFile, Str *str, int coarse, int hydrogens,$/;"	f
 read_structure	getpdb.c	/^void read_structure(Arg *arg, Argpdb *argpdb, Str *pdb)$/;"	f
-recordName	pdb_structure.h	/^	char recordName[8]; \/* Record type; 1 -  6*\/$/;"	m	struct:__anon19
-res	seq.h	/^    char *res; \/* array of residues = sequence *\/$/;"	m	struct:__anon14
-resSFE	sigma.h	/^	ResSFE *resSFE; \/* molecular values *\/$/;"	m	struct:__anon9
-resSasa	sasa.h	/^	ResSasa *resSasa; \/* molecular values *\/$/;"	m	struct:__anon18
-residueName	atomgroup.h	/^	char residueName[4]; \/* for PDB entries *\/$/;"	m	struct:__anon21
-residueName	pdb_structure.h	/^	char residueName[4]; \/* Residue name; 18 - 20 *\/$/;"	m	struct:__anon19
-residueName	sasa_const.h	/^	char residueName[4];$/;"	m	struct:__anon1
-residueName	sigma_const.h	/^	char residueName[4];$/;"	m	struct:__anon25
-residueNumber	pdb_structure.h	/^	int residueNumber; \/* Residue sequence number; 23 - 26 *\/$/;"	m	struct:__anon19
-residueOut	arg.h	/^	int residueOut;$/;"	m	struct:__anon23
-residueType	type.h	/^	int *residueType; \/* identifier to denote residue type *\/$/;"	m	struct:__anon24
-ring	sasa_const.h	/^	int ring; \/* not in ring = 0, in ring = 1 *\/$/;"	m	struct:__anon1
+read_structure_xml	getpdbml.c	/^void read_structure_xml(Arg *arg, Argpdb *argpdb, Str *pdb)$/;"	f
+reallocate	cJSON.c	/^    void *(*reallocate)(void *pointer, size_t size);$/;"	m	struct:internal_hooks	file:
+recordName	pdb_structure.h	/^	char recordName[8]; \/* Record type; 1 - 6*\/$/;"	m	struct:atom
+replace_item_in_object	cJSON.c	/^static cJSON_bool replace_item_in_object(cJSON *object, const char *string, cJSON *replacement, cJSON_bool case_sensitive)$/;"	f	file:
+res	seq.h	/^    char *res; \/* array of residues = sequence *\/$/;"	m	struct:__anon16
+res1	pdb_structure.h	/^   int  res1;$/;"	m	struct:secstr
+res2	pdb_structure.h	/^   int  res2;$/;"	m	struct:secstr
+resAtom	pdb_structure.h	/^	int *resAtom; \/* atom indices of CA and P atoms *\/$/;"	m	struct:str
+resSFE	sigma.h	/^	ResSFE *resSFE; \/* molecular values *\/$/;"	m	struct:__anon4
+resSasa	sasa.h	/^	ResSasa *resSasa; \/* molecular values *\/$/;"	m	struct:__anon8
+residue	pdb_structure.h	/^typedef struct residue $/;"	s
+residueID	pdb_structure.h	/^   char residueID[8]; $/;"	m	struct:residue
+residueName	atomgroup.h	/^	char residueName[4]; \/* for PDB entries *\/$/;"	m	struct:__anon9
+residueName	pdb_structure.h	/^	char residueName[4]; \/* Residue name; 18 - 20 *\/$/;"	m	struct:atom
+residueName	pdb_structure.h	/^   char residueName[4]; $/;"	m	struct:residue
+residueName	sasa_const.h	/^	char residueName[4];$/;"	m	struct:__anon19
+residueName	sigma_const.h	/^	char residueName[4];$/;"	m	struct:__anon22
+residueNumber	pdb_structure.h	/^	int residueNumber; \/* Residue sequence number; 23 - 26 *\/$/;"	m	struct:atom
+residueOut	arg.h	/^	int residueOut;$/;"	m	struct:__anon17
+residueType	type.h	/^	int *residueType; \/* identifier to denote residue type *\/$/;"	m	struct:__anon11
+residuenumber	pdb_structure.h	/^   int residuenumber; $/;"	m	struct:residue
+residues	pdb_structure.h	/^   Residue *residues; $/;"	m	struct:chain
+ring	sasa_const.h	/^	int ring; \/* not in ring = 0, in ring = 1 *\/$/;"	m	struct:__anon19
 rotate_2D	vector.c	/^void rotate_2D(float *dim1, float *dim2, float phi)$/;"	f
+rout	arg.h	/^	int rout;$/;"	m	struct:__anon17
 safe_malloc	safe.c	/^void *safe_malloc(size_t size)$/;"	f
 safe_open	safe.c	/^FILE *safe_open(const char *name, const char *mode)$/;"	f
 safe_realloc	safe.c	/^void *safe_realloc(void *ptr, size_t size)$/;"	f
-sasa	sasa.h	/^    double sasa; \/* SASA *\/$/;"	m	struct:__anon15
-sasa	sasa.h	/^    double sasa; \/* SASA *\/$/;"	m	struct:__anon16
-sasa	sasa.h	/^    double sasa; \/* SASA *\/$/;"	m	struct:__anon17
-sasa	sasa.h	/^    double sasa; \/* SASA *\/$/;"	m	struct:__anon18
-sasaOutFile	arg.h	/^    FILE *sasaOutFile;$/;"	m	struct:__anon23
-sasaOutFileName	arg.h	/^    char *sasaOutFileName;$/;"	m	struct:__anon23
-sasatrajOutFile	arg.h	/^    FILE *sasatrajOutFile;$/;"	m	struct:__anon23
-sasatrajOutFileName	arg.h	/^    char *sasatrajOutFileName;$/;"	m	struct:__anon23
+sasa	sasa.h	/^    double sasa; \/* SASA *\/$/;"	m	struct:__anon5
+sasa	sasa.h	/^    double sasa; \/* SASA *\/$/;"	m	struct:__anon6
+sasa	sasa.h	/^    double sasa; \/* SASA *\/$/;"	m	struct:__anon7
+sasa	sasa.h	/^    double sasa; \/* SASA *\/$/;"	m	struct:__anon8
+sasaOutFile	arg.h	/^    FILE *sasaOutFile;$/;"	m	struct:__anon17
+sasaOutFileName	arg.h	/^    char *sasaOutFileName;$/;"	m	struct:__anon17
+sasatrajOutFile	arg.h	/^    FILE *sasatrajOutFile;$/;"	m	struct:__anon17
+sasatrajOutFileName	arg.h	/^    char *sasatrajOutFileName;$/;"	m	struct:__anon17
 scan_array	getpdb.c	/^__inline__ static char scan_array(char *code3, char *residue_array[], int shift)$/;"	f	file:
-sequence	pdb_structure.h	/^	Seq sequence; \/* amino acid sequence of structure *\/$/;"	m	struct:__anon20
+secstr	pdb_structure.h	/^	char secstr; \/* Secondary structure *\/$/;"	m	struct:atom
+secstr	pdb_structure.h	/^typedef struct secstr$/;"	s
+segmentIdentifier	pdb_structure.h	/^	char segmentIdentifier[5]; \/* Segment identifier; 73 - 76 *\/$/;"	m	struct:atom
+sequence	pdb_structure.h	/^	Seq sequence; \/* amino acid sequence of structure *\/$/;"	m	struct:str
 set_defaults	arg.c	/^static void set_defaults(Arg *arg, Argpdb *argpdb)$/;"	f	file:
-sfe_group	sigma.h	/^	double sfe_group;$/;"	m	struct:__anon6
-sfe_group	sigma.h	/^	double sfe_group;$/;"	m	struct:__anon7
-sfe_group	sigma.h	/^	double sfe_group;$/;"	m	struct:__anon8
-sfe_group	sigma.h	/^	double sfe_group;$/;"	m	struct:__anon9
-sfe_type	sigma.h	/^    double sfe_type;$/;"	m	struct:__anon6
-sfe_type	sigma.h	/^    double sfe_type;$/;"	m	struct:__anon7
-sfe_type	sigma.h	/^    double sfe_type;$/;"	m	struct:__anon8
-sfe_type	sigma.h	/^    double sfe_type;$/;"	m	struct:__anon9
-sigmaOutFile	arg.h	/^    FILE *sigmaOutFile;$/;"	m	struct:__anon23
-sigmaOutFileName	arg.h	/^    char *sigmaOutFileName;$/;"	m	struct:__anon23
-sigma_group	sigma_const.h	/^	float sigma_group; \/* sigma atomgroup parameter *\/$/;"	m	struct:__anon25
-sigma_type	sigma_const.h	/^	float sigma_type; \/* sigma atomtype parameter *\/$/;"	m	struct:__anon25
-sigmatrajOutFile	arg.h	/^    FILE *sigmatrajOutFile;$/;"	m	struct:__anon23
-sigmatrajOutFileName	arg.h	/^    char *sigmatrajOutFileName;$/;"	m	struct:__anon23
-silent	arg.h	/^	int silent;$/;"	m	struct:__anon23
+sfe_group	sigma.h	/^	double sfe_group;$/;"	m	struct:__anon1
+sfe_group	sigma.h	/^	double sfe_group;$/;"	m	struct:__anon2
+sfe_group	sigma.h	/^	double sfe_group;$/;"	m	struct:__anon3
+sfe_group	sigma.h	/^	double sfe_group;$/;"	m	struct:__anon4
+sfe_type	sigma.h	/^    double sfe_type;$/;"	m	struct:__anon1
+sfe_type	sigma.h	/^    double sfe_type;$/;"	m	struct:__anon2
+sfe_type	sigma.h	/^    double sfe_type;$/;"	m	struct:__anon3
+sfe_type	sigma.h	/^    double sfe_type;$/;"	m	struct:__anon4
+sigmaOutFile	arg.h	/^    FILE *sigmaOutFile;$/;"	m	struct:__anon17
+sigmaOutFileName	arg.h	/^    char *sigmaOutFileName;$/;"	m	struct:__anon17
+sigma_group	sigma_const.h	/^	float sigma_group; \/* sigma atomgroup parameter *\/$/;"	m	struct:__anon22
+sigma_type	sigma_const.h	/^	float sigma_type; \/* sigma atomtype parameter *\/$/;"	m	struct:__anon22
+sigmatrajOutFile	arg.h	/^    FILE *sigmatrajOutFile;$/;"	m	struct:__anon17
+sigmatrajOutFileName	arg.h	/^    char *sigmatrajOutFileName;$/;"	m	struct:__anon17
+silent	arg.h	/^	int silent;$/;"	m	struct:__anon17
+size	cJSON.h	/^CJSON_PUBLIC(void *) cJSON_malloc(size_t size);$/;"	v
+skip_utf8_bom	cJSON.c	/^static parse_buffer *skip_utf8_bom(parse_buffer * const buffer)$/;"	f	file:
 sphere_surface	sasa.c	/^__inline__ static double sphere_surface(double atomRadius, float rSolvent)$/;"	f	file:
 standardise_name	getpdb.c	/^__inline__ static int standardise_name(char *residueName, char *atomName)$/;"	f	file:
+start	pdb_structure.h	/^   Atom *start, *stop; $/;"	m	struct:chain
+start	pdb_structure.h	/^   Atom *start, *stop; $/;"	m	struct:residue
 status	error.c	/^int status = 0;$/;"	v
-strSequence	pdb_structure.h	/^	Seq strSequence; \/* sequence of string-encoded structure *\/$/;"	m	struct:__anon20
+stop	pdb_structure.h	/^   Atom *start, *stop; $/;"	m	struct:chain
+stop	pdb_structure.h	/^   Atom *start, *stop; $/;"	m	struct:residue
+str	pdb_structure.h	/^	Str *str;$/;"	m	struct:__anon18
+str	pdb_structure.h	/^typedef struct str$/;"	s
+strSequence	pdb_structure.h	/^	Seq strSequence; \/* sequence of string-encoded structure *\/$/;"	m	struct:str
+string	cJSON.h	/^    char *string;$/;"	m	struct:cJSON
 strip_char	modstring.c	/^void strip_char(const char *s, char *t) $/;"	f
 strpos0	modstring.c	/^int strpos0(char *string, char *substring)$/;"	f
 strpos1	modstring.c	/^int strpos1(char *string, char *substring)$/;"	f
-surface	sasa.h	/^	double surface; \/* surface area of isolated atom *\/$/;"	m	struct:__anon15
-surface	sasa.h	/^	double surface; \/* surface area of isolated atoms in chain *\/$/;"	m	struct:__anon17
-surface	sasa.h	/^	double surface; \/* surface area of isolated atoms in residue *\/$/;"	m	struct:__anon16
-surface	sasa_const.h	/^	double surface; \/* SASA of fully exposed atom *\/$/;"	m	struct:__anon1
-topologyOut	arg.h	/^	int topologyOut;$/;"	m	struct:__anon23
-tpos	pdb_structure.h	/^	Vec tpos; \/* transformed position vector *\/$/;"	m	struct:__anon19
-trajInFile	arg.h	/^    FILE *trajInFile;$/;"	m	struct:__anon23
-trajInFileName	arg.h	/^	char *trajInFileName;$/;"	m	struct:__anon23
-trajatom	gettraj.h	/^	Trajatom *trajatom; \/* trajectory atom *\/$/;"	m	struct:__anon12
-typeOut	arg.h	/^	int typeOut;$/;"	m	struct:__anon23
+suffix_object	cJSON.c	/^static void suffix_object(cJSON *prev, cJSON *item)$/;"	f	file:
+surface	sasa.h	/^	double surface; \/* surface area of isolated atom *\/$/;"	m	struct:__anon5
+surface	sasa.h	/^	double surface; \/* surface area of isolated atoms in chain *\/$/;"	m	struct:__anon7
+surface	sasa.h	/^	double surface; \/* surface area of isolated atoms in residue *\/$/;"	m	struct:__anon6
+surface	sasa_const.h	/^	double surface; \/* SASA of fully exposed atom *\/$/;"	m	struct:__anon19
+temperatureFactor	pdb_structure.h	/^	float temperatureFactor; \/* Temperature factor; 61 - 66 *\/$/;"	m	struct:atom
+topologyOut	arg.h	/^	int topologyOut;$/;"	m	struct:__anon17
+tpos	pdb_structure.h	/^	Vec tpos; \/* transformed position vector *\/$/;"	m	struct:atom
+trajInFile	arg.h	/^    FILE *trajInFile;$/;"	m	struct:__anon17
+trajInFileName	arg.h	/^	char *trajInFileName;$/;"	m	struct:__anon17
+trajatom	gettraj.h	/^	Trajatom *trajatom; \/* trajectory atom *\/$/;"	m	struct:__anon27
+true	cJSON.c	62;"	d	file:
+type	cJSON.h	/^    int type;$/;"	m	struct:cJSON
+type	pdb_structure.h	/^   char type;$/;"	m	struct:secstr
+typeOut	arg.h	/^	int typeOut;$/;"	m	struct:__anon17
+update_offset	cJSON.c	/^static void update_offset(printbuffer * const buffer)$/;"	f	file:
+utf16_literal_to_utf8	cJSON.c	/^static unsigned char utf16_literal_to_utf8(const unsigned char * const input_pointer, const unsigned char * const input_end, unsigned char **output_pointer)$/;"	f	file:
 v_ang	vector.c	/^float v_ang(Vec *v1, Vec *v2)$/;"	f
 v_copy	vector.c	/^void v_copy(Vec *v2, Vec *v1)$/;"	f
 v_cro_pro	vector.c	/^void v_cro_pro(Vec *v3, Vec *v1, Vec *v2)$/;"	f
@@ -354,6 +650,9 @@ v_shift_rotate_xy	vector.c	/^Vec v_shift_rotate_xy(Vec *v1, Vec *shift, float ph
 v_shift_rotate_yz	vector.c	/^Vec v_shift_rotate_yz(Vec *v1, Vec *shift, float phi)$/;"	f
 v_sum	vector.c	/^void v_sum(Vec *v3, Vec *v1, Vec *v2)$/;"	f
 v_zero	vector.c	/^void v_zero(Vec *v)$/;"	f
+valuedouble	cJSON.h	/^    double valuedouble;$/;"	m	struct:cJSON
+valueint	cJSON.h	/^    int valueint;$/;"	m	struct:cJSON
+valuestring	cJSON.h	/^    char *valuestring;$/;"	m	struct:cJSON
 vector_copy	vector.c	/^void vector_copy(Vec *v1, Vec *v2)$/;"	f
 vector_cro_pro	vector.c	/^void vector_cro_pro(Vec *v1, Vec *v2, Vec *v3)$/;"	f
 vector_dif	vector.c	/^void vector_dif(Vec *v1, Vec *v2, Vec *v3)$/;"	f
@@ -361,6 +660,6 @@ vector_div_sca	vector.c	/^void vector_div_sca(Vec *v1, float a, Vec *v2)$/;"	f
 vector_mul_sca	vector.c	/^void vector_mul_sca(Vec *v1, float a, Vec *v2)$/;"	f
 vector_norm	vector.c	/^void vector_norm(Vec *v1, Vec *v2)$/;"	f
 vector_sum	vector.c	/^void vector_sum(Vec *v1, Vec *v2, Vec *v3)$/;"	f
-x	vector.h	/^   float x, y, z;$/;"	m	struct:__anon10
-y	vector.h	/^   float x, y, z;$/;"	m	struct:__anon10
-z	vector.h	/^   float x, y, z;$/;"	m	struct:__anon10
+x	vector.h	/^   float x, y, z;$/;"	m	struct:__anon21
+y	vector.h	/^   float x, y, z;$/;"	m	struct:__anon21
+z	vector.h	/^   float x, y, z;$/;"	m	struct:__anon21
