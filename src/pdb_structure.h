@@ -46,22 +46,22 @@ typedef struct atom
 /* residue */
 typedef struct residue 
 { 
-   struct residue *next, *prev; 
-   Atom *start, *stop; 
-   int residuenumber; 
-   char chainIdentifier[2]; 
-   char insert[8]; 
-   char residueName[4]; 
-   char residueID[8]; 
+	struct residue *next, *prev; 
+	Atom *start, *stop; 
+	int residuenumber; 
+	char chainIdentifier[2]; 
+	char insert[8]; 
+	char residueName[4]; 
+	char residueID[8]; 
 } Residue; 
 
 /* chain */
 typedef struct chain 
 { 
-   struct chain *next, *prev; 
-   Atom *start, *stop; 
-   Residue *residues; 
-   char chainIdentifier[2]; 
+	struct chain *next, *prev; 
+	Atom *start, *stop; 
+	Residue *residues; 
+	char chainIdentifier[2]; 
 } Chain; 
 
 /* molecular structure */
@@ -86,14 +86,14 @@ typedef struct str
 /* secondary structure */
 typedef struct secstr
 {
-   struct secstr *next, *prev;
-   char chain1[8];
-   char insert1[8];
-   char chain2[8];
-   char insert2[8];
-   int  res1;
-   int  res2;
-   char type;
+	struct secstr *next, *prev;
+	char chain1[8];
+	char insert1[8];
+	char chain2[8];
+	char insert2[8];
+	int  res1;
+	int  res2;
+	char type;
 }  Secstr;
 
 /* ensemble of structures; multiple models */

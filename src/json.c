@@ -113,8 +113,9 @@ void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 	/* 'json' is the root object to which everything else will be attached */
 
 	/* indices to iterate through arrays defined below */
-	unsigned int r = 0; /* residue index */
+	unsigned int c = 0; /* chain index */
 	char isChainLabel[2] = "@"; /* dummy chain name, never in structure */
+	unsigned int r = 0; /* residue index */
 
 	/* header: attached to 'json' */
 	cJSON_AddStringToObject(json, "data_resource", "popscomp_asymmetric");
@@ -127,56 +128,64 @@ void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 	/* add Chain array */
 	cJSON *chains = cJSON_AddArrayToObject(json, "chains");
 	strcpy(isChainLabel, pdb->atom[pdb->resAtom[0]].chainIdentifier);
-	cJSON *chain = cJSON_CreateObject();
-	cJSON_AddItemToArray(chains, chain);
-	cJSON_AddStringToObject(chain, "chain_label", isChainLabel); 
-	cJSON_AddObjectToObject(chain, "additional_chain_annotations");
 
-	/* add Residue array for new Chain */
-	cJSON *residues = cJSON_AddArrayToObject(chain, "residues");
+	/* iterate over all Chains */
+	for (c = 0; c < pdb->nChain; ++ c) {
+		cJSON *chain = cJSON_CreateObject();
+		cJSON_AddItemToArray(chains, chain);
+		cJSON_AddStringToObject(chain, "chain_label", isChainLabel); 
+		cJSON_AddObjectToObject(chain, "additional_chain_annotations");
 
-	/* iterate over all Residues */
-	for (r = 0; r < pdb->nResidue; ++ r) { 
-		if (strcmp(pdb->atom[pdb->resAtom[r]].chainIdentifier, isChainLabel) != 0) {
-			strcpy(isChainLabel, pdb->atom[pdb->resAtom[r]].chainIdentifier);
-			cJSON *chain = cJSON_CreateObject();
-			cJSON_AddItemToArray(chains, chain);
-			cJSON_AddStringToObject(chain, "chain_label", isChainLabel); 
+		/* add Residue array for new Chain */
+		cJSON *residues = cJSON_AddArrayToObject(chain, "residues");
+
+		/* iterate over all Residues */
+		for ( ; r < pdb->nResidue; ++ r) {
+			/* add Residue */
+			cJSON *residue = cJSON_CreateObject();
+			cJSON_AddItemToArray(residues, residue);
+			sprintf(reslab, "%d", r);
+			cJSON_AddStringToObject(residue, "pdb_res_label", reslab);
+			cJSON_AddStringToObject(residue, "aa_type", \
+									pdb->atom[pdb->resAtom[r]].residueName);
+			cJSON_AddObjectToObject(residue, "additional_residue_annotations");
+
+			/* add Site_Data array */
+			cJSON *site_data = cJSON_AddArrayToObject(residue, "site_data");
+
+			/* add Sites */
+			cJSON *phil = cJSON_CreateObject();
+			cJSON_AddItemToArray(site_data, phil);
+			cJSON_AddNumberToObject(phil, "site_id_ref", r+1);
+			cJSON_AddNumberToObject(phil, "raw_score", resSasa[r].philicSasa);
+			cJSON_AddNumberToObject(phil, "confidence_score", 0.9);
+			cJSON_AddStringToObject(phil, "confidence_classification", "high");
+
+			cJSON *phob = cJSON_CreateObject();
+			cJSON_AddItemToArray(site_data, phob);
+			cJSON_AddNumberToObject(phob, "site_id_ref", r+1);
+			cJSON_AddNumberToObject(phob, "raw_score", resSasa[r].phobicSasa);
+			cJSON_AddNumberToObject(phob, "confidence_score", 0.9);
+			cJSON_AddStringToObject(phob, "confidence_classification", "high");
+
+			cJSON *total = cJSON_CreateObject();
+			cJSON_AddItemToArray(site_data, total);
+			cJSON_AddNumberToObject(total, "site_id_ref", r+1);
+			cJSON_AddNumberToObject(total, "raw_score", resSasa[r].sasa);
+			cJSON_AddNumberToObject(total, "confidence_score", 0.9);
+			cJSON_AddStringToObject(total, "confidence_classification", "high");
+
+			/* if the next residue has a different chain identifier */
+			if (r < (pdb->nResidue - 1) &&
+				strcmp(pdb->atom[pdb->resAtom[r+1]].chainIdentifier, isChainLabel) != 0) {
+				/* increment Residue, update Chain identifier and break out
+				   into enclosing loop for creating a new Chain,
+				   including its cognate Residue array */
+				r ++; 
+				strcpy(isChainLabel, pdb->atom[pdb->resAtom[r]].chainIdentifier);
+				break;
+			}
 		}
-
-		/* add Residue */
-		cJSON *residue = cJSON_CreateObject();
-		cJSON_AddItemToArray(residues, residue);
-		sprintf(reslab, "%d", r);
-		cJSON_AddStringToObject(residue, "pdb_res_label", reslab);
-		cJSON_AddStringToObject(residue, "aa_type", \
-								pdb->atom[pdb->resAtom[r]].residueName);
-		cJSON_AddObjectToObject(residue, "additional_residue_annotations");
-
-		/* add Site_Data array */
-		cJSON *site_data = cJSON_AddArrayToObject(residue, "site_data");
-
-		/* add Sites */
-		cJSON *phil = cJSON_CreateObject();
-		cJSON_AddItemToArray(site_data, phil);
-		cJSON_AddNumberToObject(phil, "site_id_ref", r+1);
-		cJSON_AddNumberToObject(phil, "raw_score", resSasa[r].philicSasa);
-		cJSON_AddNumberToObject(phil, "confidence_score", 0.9);
-		cJSON_AddStringToObject(phil, "confidence_classification", "high");
-
-		cJSON *phob = cJSON_CreateObject();
-		cJSON_AddItemToArray(site_data, phob);
-		cJSON_AddNumberToObject(phob, "site_id_ref", r+1);
-		cJSON_AddNumberToObject(phob, "raw_score", resSasa[r].phobicSasa);
-		cJSON_AddNumberToObject(phob, "confidence_score", 0.9);
-		cJSON_AddStringToObject(phob, "confidence_classification", "high");
-
-		cJSON *total = cJSON_CreateObject();
-		cJSON_AddItemToArray(site_data, total);
-		cJSON_AddNumberToObject(total, "site_id_ref", r+1);
-		cJSON_AddNumberToObject(total, "raw_score", resSasa[r].sasa);
-		cJSON_AddNumberToObject(total, "confidence_score", 0.9);
-		cJSON_AddStringToObject(total, "confidence_classification", "high");
 	}
 
 	/* add Sites array */
