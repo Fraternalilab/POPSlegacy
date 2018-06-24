@@ -1,5 +1,7 @@
 /*==============================================================================
 json.c : JSON routines, using the cJSON library
+To validate JSON output format:
+../funpdbe-client/funpdbe_client.py --path=pops.json --mode=validate
 Copyright (C) 2018 Jens Kleinjung
 Read the COPYING file for license information.
 ==============================================================================*/
@@ -14,79 +16,6 @@ extern int nodes;
 extern int my_rank;
 
 /*____________________________________________________________________________*/
-/*
-{
-  "data_resource": "popscomp_asymmetric", # this could be the name of the "asymmetric" calculated data
-  "resource_version": "", # you don't have a database, so there is no version number, if I'm correct
-  "software_version": "1.0.0", # this would be the version of your software
-  "resource_entry_url": "", # this would probably not apply to you - for databases, this is where the entry data would be found
-  "release_date": "21/02/2018",
-  "pdb_id": "0x00",
-  "chains": [
-    {
-      "chain_label": "A",
-      "additional_chain_annotations": {},
-      "residues": [
-        {
-          "pdb_res_label": "1",
-          "aa_type": "ALA",
-          "additional_residue_annotations": {},
-          "site_data": [
-            {
-              "raw_score": 99.3, # this is the SASA value
-              "confidence_score": 1, # this is a confidence score that you calculate for your value; if cannot be applied, delete this item
-              "confidence_classification": "high" # this is a textual confidence classification (low, medium, high, null)
-            }
-          ]
-        },
-        {
-          "pdb_res_label": "2",
-          "aa_type": "HIS",
-          "additional_residue_annotations": {},
-          "site_data": [
-            {
-              "site_id_ref": 1, # this can show that this particular residue belongs to a site
-              "raw_score": 134.5, # this is the SASA value
-              "confidence_score": 1,
-              "confidence_classification": "high"
-            }
-          ]
-        },
-        {
-          "pdb_res_label": "3",
-          "aa_type": "GLU",
-          "additional_residue_annotations": {},
-          "site_data": [
-            {
-              "raw_score": 85.1, # this is the SASA value
-              "confidence_score": 1,
-              "confidence_classification": "high"
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "sites": [
-    {
-      "site_id": 1,
-      "label": "interface", # this can collect all residues on a specific interface
-      "source_database": "pdb",
-      "source_accession": "0x00",
-      "source_release_date": "01/01/2017"
-    }
-  ],
-  "additional_entry_annotations": {},
-  "evidence_code_ontology": [
-    {
-      "eco_term": "computational combinatorial evidence used in automatic assertion",
-      "eco_code": "ECO:0000246"
-    }
-  ]
-}
-*/
-
-/*____________________________________________________________________________*/
 void print_json(Arg *arg, cJSON *json)
 {
 	/* print JSON object to string */
@@ -99,7 +28,6 @@ void print_json(Arg *arg, cJSON *json)
 
 	free(popsOutJson);
 }
-
 
 /*____________________________________________________________________________*/
 /* The natural way to make residues dependent on chains would be a
@@ -146,7 +74,7 @@ void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 			cJSON_AddItemToArray(residues, residue);
 			sprintf(reslab, "%d", r);
 			cJSON_AddStringToObject(residue, "pdb_res_label", reslab);
-			cJSON_AddStringToObject(residue, "aa_type", \
+			cJSON_AddStringToObject(residue, "aa_type",
 									pdb->atom[pdb->resAtom[r]].residueName);
 			cJSON_AddObjectToObject(residue, "additional_residue_annotations");
 
@@ -157,21 +85,27 @@ void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 			cJSON *phil = cJSON_CreateObject();
 			cJSON_AddItemToArray(site_data, phil);
 			cJSON_AddNumberToObject(phil, "site_id_ref", r+1);
-			cJSON_AddNumberToObject(phil, "raw_score", resSasa[r].philicSasa);
+			/* truncate SASA area to 4 digits */
+			/* rounded to 1 postcomma digit would suffice,
+				but the format validator trips over identical entries */
+			cJSON_AddNumberToObject(phil, "raw_score",
+								trunc(resSasa[r].philicSasa * 1e4) / 1e4);
 			cJSON_AddNumberToObject(phil, "confidence_score", 0.9);
 			cJSON_AddStringToObject(phil, "confidence_classification", "high");
 
 			cJSON *phob = cJSON_CreateObject();
 			cJSON_AddItemToArray(site_data, phob);
 			cJSON_AddNumberToObject(phob, "site_id_ref", r+1);
-			cJSON_AddNumberToObject(phob, "raw_score", resSasa[r].phobicSasa);
+			cJSON_AddNumberToObject(phob, "raw_score",
+								trunc(resSasa[r].phobicSasa * 1e4) / 1e4);
 			cJSON_AddNumberToObject(phob, "confidence_score", 0.9);
 			cJSON_AddStringToObject(phob, "confidence_classification", "high");
 
 			cJSON *total = cJSON_CreateObject();
 			cJSON_AddItemToArray(site_data, total);
 			cJSON_AddNumberToObject(total, "site_id_ref", r+1);
-			cJSON_AddNumberToObject(total, "raw_score", resSasa[r].sasa);
+			cJSON_AddNumberToObject(total, "raw_score",
+								trunc(resSasa[r].sasa * 1e4) / 1e4);
 			cJSON_AddNumberToObject(total, "confidence_score", 0.9);
 			cJSON_AddStringToObject(total, "confidence_classification", "high");
 
