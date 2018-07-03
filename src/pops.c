@@ -155,8 +155,6 @@ int main(int argc, char *argv[])
 		print_bsasa(&arg, &argpdb, &pdb, &type, &topol, &molSasa, constant_sasa, -1);
 	}
 
-	cJSON_Delete(resSasaJson);
-
     /*____________________________________________________________________________*/
 	/** print bSASA */
 
@@ -228,6 +226,9 @@ int main(int argc, char *argv[])
 	/* type */
 	free(type.atomType);
 	free(type.residueType);
+
+	/* JSON object */
+	cJSON_Delete(resSasaJson);
 
     /*________________________________________________________________________*/
     /* MPI */

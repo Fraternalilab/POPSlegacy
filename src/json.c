@@ -46,10 +46,10 @@ void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 	unsigned int r = 0; /* residue index */
 
 	/* header: attached to 'json' */
-	cJSON_AddStringToObject(json, "data_resource", "popscomp_asymmetric");
+	cJSON_AddStringToObject(json, "data_resource", "popscomp");
 	cJSON_AddStringToObject(json, "resource_version", "3.0.0");
 	cJSON_AddStringToObject(json, "software_version", "3.0.0");
-	cJSON_AddStringToObject(json, "resource_entry_url", "https://github.com/Fraternalilab/POPS");
+	cJSON_AddStringToObject(json, "resource_entry_url", "https://github.com/Fraternalilab/POPSCOMP");
 	cJSON_AddStringToObject(json, "release_date", "21/02/2018");
 	cJSON_AddStringToObject(json, "pdb_id", "1f3r");
 
@@ -62,7 +62,7 @@ void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 		cJSON *chain = cJSON_CreateObject();
 		cJSON_AddItemToArray(chains, chain);
 		cJSON_AddStringToObject(chain, "chain_label", isChainLabel); 
-		cJSON_AddObjectToObject(chain, "additional_chain_annotations");
+		/*cJSON_AddObjectToObject(chain, "additional_chain_annotations");*/
 
 		/* add Residue array for new Chain */
 		cJSON *residues = cJSON_AddArrayToObject(chain, "residues");
@@ -72,11 +72,11 @@ void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 			/* add Residue */
 			cJSON *residue = cJSON_CreateObject();
 			cJSON_AddItemToArray(residues, residue);
-			sprintf(reslab, "%d", r);
+			sprintf(reslab, "%d", pdb->atom[pdb->resAtom[r]].residueNumber);
 			cJSON_AddStringToObject(residue, "pdb_res_label", reslab);
 			cJSON_AddStringToObject(residue, "aa_type",
 									pdb->atom[pdb->resAtom[r]].residueName);
-			cJSON_AddObjectToObject(residue, "additional_residue_annotations");
+			/*cJSON_AddObjectToObject(residue, "additional_residue_annotations");*/
 
 			/* add Site_Data array */
 			cJSON *site_data = cJSON_AddArrayToObject(residue, "site_data");
@@ -84,7 +84,7 @@ void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 			/* add Sites */
 			cJSON *phil = cJSON_CreateObject();
 			cJSON_AddItemToArray(site_data, phil);
-			cJSON_AddNumberToObject(phil, "site_id_ref", r+1);
+			cJSON_AddNumberToObject(phil, "site_id_ref", 1);
 			/* truncate SASA area to 4 digits */
 			/* rounded to 1 postcomma digit would suffice,
 				but the format validator trips over identical entries */
@@ -95,7 +95,7 @@ void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 
 			cJSON *phob = cJSON_CreateObject();
 			cJSON_AddItemToArray(site_data, phob);
-			cJSON_AddNumberToObject(phob, "site_id_ref", r+1);
+			cJSON_AddNumberToObject(phob, "site_id_ref", 2);
 			cJSON_AddNumberToObject(phob, "raw_score",
 								trunc(resSasa[r].phobicSasa * 1e4) / 1e4);
 			cJSON_AddNumberToObject(phob, "confidence_score", 0.9);
@@ -103,7 +103,7 @@ void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 
 			cJSON *total = cJSON_CreateObject();
 			cJSON_AddItemToArray(site_data, total);
-			cJSON_AddNumberToObject(total, "site_id_ref", r+1);
+			cJSON_AddNumberToObject(total, "site_id_ref", 3);
 			cJSON_AddNumberToObject(total, "raw_score",
 								trunc(resSasa[r].sasa * 1e4) / 1e4);
 			cJSON_AddNumberToObject(total, "confidence_score", 0.9);
@@ -128,14 +128,29 @@ void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 	cJSON_AddItemToArray(sites, site);
 
 	/* add Site information */
+	/* hydrophilic SASA */
 	cJSON_AddNumberToObject(site, "site_id", 1);
-	cJSON_AddStringToObject(site, "label", "interface");
+	cJSON_AddStringToObject(site, "label", "hydrophobic SASA [A^2]");
+	cJSON_AddStringToObject(site, "source_database", "pdb");
+	cJSON_AddStringToObject(site, "source_accession", "1f3r");
+	cJSON_AddStringToObject(site, "source_release_date", "01/01/2017");
+
+	/* hydrophilic SASA */
+	cJSON_AddNumberToObject(site, "site_id", 2);
+	cJSON_AddStringToObject(site, "label", "hydrophilic SASA [A^2]");
+	cJSON_AddStringToObject(site, "source_database", "pdb");
+	cJSON_AddStringToObject(site, "source_accession", "1f3r");
+	cJSON_AddStringToObject(site, "source_release_date", "01/01/2017");
+
+	/* total SASA */
+	cJSON_AddNumberToObject(site, "site_id", 3);
+	cJSON_AddStringToObject(site, "label", "total SASA [A^2]");
 	cJSON_AddStringToObject(site, "source_database", "pdb");
 	cJSON_AddStringToObject(site, "source_accession", "1f3r");
 	cJSON_AddStringToObject(site, "source_release_date", "01/01/2017");
 
 	/* entry annotations */
-	cJSON_AddObjectToObject(json, "additional_entry_annotations");
+	/*cJSON_AddObjectToObject(json, "additional_entry_annotations");*/
 
 	/* add Evidence array */
 	cJSON *evidence_code_ontology = cJSON_AddArrayToObject(json, "evidence_code_ontology");

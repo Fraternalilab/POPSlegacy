@@ -28,15 +28,10 @@ Read the COPYING file for license information.
                andrew.martin@ucl.ac.uk
                
 **************************************************************************
-   This code is NOT IN THE PUBLIC DOMAIN, but it may be copied
-   according to the conditions laid out in the accompanying file
-   COPYING.DOC.
+BiopLib is a library of routines for the manipulation of protein
+structure and sequence using the C programming language.
 
-   The code may be modified as required, but any modifications must be
-   documented so that the person responsible can be identified.
-
-   The code may not be sold commercially or included as part of a 
-   commercial product except as described in the file COPYING.DOC.
+BiopLib is licensed under the Gnu Public Licence Version 3.
 */
 
 #include "getpdbml.h"
