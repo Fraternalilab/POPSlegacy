@@ -355,12 +355,12 @@ int read_pdbml(FILE *pdbmlInFile, Str *str, int coarse, int hydrogens,
 			}
 			*/
 
-		/* allocate more memory if needed */
-		if (str->nAtom == allocated_atom) {
-			allocated_atom += 64;
-			str->atom = safe_realloc(str->atom, allocated_atom * sizeof(Atom));
-			str->atomMap = safe_realloc(str->atomMap, allocated_atom * sizeof(int));
-		}
+			/* allocate more memory if needed */
+			if (str->nAtom == allocated_atom) {
+				allocated_atom += 64;
+				str->atom = safe_realloc(str->atom, allocated_atom * sizeof(Atom));
+				str->atomMap = safe_realloc(str->atomMap, allocated_atom * sizeof(int));
+			}
 		}
 	}
 
@@ -379,6 +379,7 @@ void read_structure_xml(Arg *arg, Argpdb *argpdb, Str *pdb)
     read_pdbml(pdbmlInFile, pdb, argpdb->coarse, argpdb->hydrogens,
 						argpdb->multiModel, argpdb->partOcc);
     fclose(pdbmlInFile);
+exit(1);
 
     /* check for empty pdb structure and exit */
     if (pdb->nAtom == 0)
