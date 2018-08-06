@@ -9,12 +9,12 @@ Read the COPYING file for license information.
 /*____________________________________________________________________________*/
 int parseXML(const char *filename, Str *pdb) {
     xmlDoc *doc; /* the resulting document tree */
-    xmlNode *root_node = NULL;
-	xmlNode *cur_node = NULL;
-	xmlNode *site_node = NULL;
-	xmlNode *atom_node = NULL;
+    xmlNode *root_node = 0;
+	xmlNode *cur_node = 0;
+	xmlNode *site_node = 0;
+	xmlNode *atom_node = 0;
 	unsigned int allocated_atom = 64;
-	unsigned int nAtom = 0;
+	xmlChar *content = 0;
 
 	/*____________________________________________________________________________*/
     /*parse the file and get the document (DOM) */
@@ -39,19 +39,37 @@ int parseXML(const char *filename, Str *pdb) {
 	/*____________________________________________________________________________*/
 	/* allocate PDB structure */
 	pdb->atom = safe_malloc(allocated_atom * sizeof(Atom));
+	pdb->nAtom = 0;
 
 	/*____________________________________________________________________________*/
-	/* traverse XML tree (atom sites) and copy content to PDB data structure */
+	/* traverse XML tree (atom sites) */
 	for (atom_node = site_node->children; atom_node; atom_node = atom_node->next) {
 		if (strcmp("atom_site", (char *)atom_node->name) == 0) {
-			;
-		}
-		++ nAtom;
+			/* children of atom this atom site */
+			for (cur_node = atom_node->children; cur_node; cur_node = cur_node->next) {
+				/* assign node content to string */
+				content = xmlNodeGetContent(cur_node);
 
-		/* allocate more memory if needed */
-		if (pdb->nAtom == allocated_atom) {
-			allocated_atom += 64;
-			pdb->atom = safe_realloc(pdb->atom, allocated_atom * sizeof(Atom));
+				/* copy string content to PDB data structure */
+				/* temperature factor */
+				if (strcmp((char *)cur_node->name, "B_iso_or_equiv") == 0) {
+					sscanf((char *)content, "%f", &(pdb->atom[pdb->nAtom].temperatureFactor));
+				}
+				/* x coordinate */
+				if (strcmp((char *)cur_node->name, "Cartn_x") == 0) {
+					sscanf((char *)content, "%f", &(pdb->atom[pdb->nAtom].pos.x));
+				}
+				/* ... */
+
+			}
+
+			/* increment atom number */
+			++ pdb->nAtom;
+			/* allocate more memory if needed */
+			if (pdb->nAtom == allocated_atom) {
+				allocated_atom += 64;
+				pdb->atom = safe_realloc(pdb->atom, allocated_atom * sizeof(Atom));
+			}
 		}
 	}
 
