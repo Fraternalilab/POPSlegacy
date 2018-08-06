@@ -7,23 +7,23 @@ Read the COPYING file for license information.
 #include "pdb_structure.h"
 
 /*____________________________________________________________________________*/
-int parseXML(const char *filename) {
+int parseXML(const char *filename, Str *pdb) {
     xmlDoc *doc; /* the resulting document tree */
     xmlNode *root_node = NULL;
 	xmlNode *cur_node = NULL;
 	xmlNode *site_node = NULL;
 	xmlNode *atom_node = NULL;
+	unsigned int allocated_atom = 64;
+	unsigned int nAtom = 0;
 
-	//char buff[256];
-
-	/*____________________________________*/
+	/*____________________________________________________________________________*/
     /*parse the file and get the document (DOM) */
 	if ((doc = xmlReadFile(filename, NULL, 0)) == NULL) {
         fprintf(stderr, "XML Parser: Failed to read %s\n", filename);
 		exit(-1);
 	}
 
-	/*____________________________________*/
+	/*____________________________________________________________________________*/
 	/* parse document tree */
 	/* set root node */
 	root_node = xmlDocGetRootElement(doc);
@@ -36,11 +36,22 @@ int parseXML(const char *filename) {
 		}
 	}
 
-	/*____________________________________*/
+	/*____________________________________________________________________________*/
+	/* allocate PDB structure */
+	pdb->atom = safe_malloc(allocated_atom * sizeof(Atom));
+
+	/*____________________________________________________________________________*/
 	/* traverse XML tree (atom sites) and copy content to PDB data structure */
 	for (atom_node = site_node->children; atom_node; atom_node = atom_node->next) {
 		if (strcmp("atom_site", (char *)atom_node->name) == 0) {
 			;
+		}
+		++ nAtom;
+
+		/* allocate more memory if needed */
+		if (pdb->nAtom == allocated_atom) {
+			allocated_atom += 64;
+			pdb->atom = safe_realloc(pdb->atom, allocated_atom * sizeof(Atom));
 		}
 	}
 
@@ -64,7 +75,7 @@ void read_structure_xml(Arg *arg, Argpdb *argpdb, Str *pdb)
     LIBXML_TEST_VERSION;
 
 	fprintf(stderr, "Parsing XML input file\n");
-    parseXML(filename);
+    parseXML(filename, pdb);
 
     xmlCleanupParser();
     xmlMemoryDump();

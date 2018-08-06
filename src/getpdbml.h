@@ -28,8 +28,6 @@ Read the COPYING file for license information.
 
 /*____________________________________________________________________________*/
 /* prototypes */
-int readpdbml(FILE *pdbfile, Str *str, int coarse, int hydrogens,
-							int multiModel, int partOcc);
 void read_structure_xml(Arg *arg, Argpdb *argpdb, Str *pdb);
 
 #endif
