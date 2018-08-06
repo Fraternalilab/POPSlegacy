@@ -8,49 +8,45 @@ Read the COPYING file for license information.
 
 /*____________________________________________________________________________*/
 int parseXML(const char *filename) {
-    xmlDocPtr doc; /* the resulting document tree */
-    xmlNodePtr root_node = NULL;
-	xmlNodePtr node = NULL;
-	xmlNodePtr node1 = NULL; /* node pointers */
-    char buff[256];
-    int i, j;
+    xmlDoc *doc; /* the resulting document tree */
+    xmlNode *root_node = NULL;
+	xmlNode *cur_node = NULL;
+	xmlNode *site_node = NULL;
+	xmlNode *atom_node = NULL;
+
+	//char buff[256];
 
 	/*____________________________________*/
-	/* read document from file */
-    doc = xmlReadFile(filename, NULL, 0);
-    if (doc == NULL) {
-        fprintf(stderr, "Failed to parse %s\n", filename);
-		return 0;
-    }
+    /*parse the file and get the document (DOM) */
+	if ((doc = xmlReadFile(filename, NULL, 0)) == NULL) {
+        fprintf(stderr, "XML Parser: Failed to read %s\n", filename);
+		exit(-1);
+	}
 
 	/*____________________________________*/
-	/* create tree */
-    root_node = xmlNewNode(NULL, BAD_CAST "root");
-    xmlDocSetRootElement(doc, root_node);
+	/* parse document tree */
+	/* set root node */
+	root_node = xmlDocGetRootElement(doc);
 
-	/* DTD declaration, not mandatory */
-	xmlCreateIntSubset(doc, BAD_CAST "root", NULL, BAD_CAST "tree2.dtd");
+	/* atom sites are set as child nodes */
+	for (cur_node = root_node->children; cur_node; cur_node = cur_node->next) {
+		if(strcmp("atom_siteCategory", (char *)cur_node->name) == 0) {
+			site_node = cur_node;
+			break;
+		}
+	}
 
-     /* xmlNewChild() creates a new node,
-		"attached" as child node of root_node node */
-    xmlNewChild(root_node, NULL, BAD_CAST "node1", BAD_CAST "content of node 1");
-	/* same as above, but the new child node doesn't have a content */
-    xmlNewChild(root_node, NULL, BAD_CAST "node2", NULL);
-
-	/* loop to repeat node creation */
-    for (i = 5; i < 7; ++ i) {
-        sprintf(buff, "node %d", i);
-        node = xmlNewChild(root_node, NULL, BAD_CAST buff, NULL);
-        for (j = 1; j < 4; ++ j) {
-            sprintf(buff, "node %d %d", i, j);
-            node1 = xmlNewChild(node, NULL, BAD_CAST buff, NULL);
-            xmlNewProp(node1, BAD_CAST "odd", BAD_CAST((j % 2) ? "no" : "yes"));
-        }
-    }
+	/*____________________________________*/
+	/* traverse XML tree (atom sites) and copy content to PDB data structure */
+	for (atom_node = site_node->children; atom_node; atom_node = atom_node->next) {
+		if (strcmp("atom_site", (char *)atom_node->name) == 0) {
+			;
+		}
+	}
 
 	/*____________________________________*/
 	/* write document to file */
-    xmlSaveFormatFileEnc("outfile.xml", doc, "UTF-8", 1);
+    //xmlSaveFormatFileEnc("outfile.xml", doc, "UTF-8", 1);
 
 	/*____________________________________*/
 	/* free global variables */
@@ -67,6 +63,7 @@ void read_structure_xml(Arg *arg, Argpdb *argpdb, Str *pdb)
 
     LIBXML_TEST_VERSION;
 
+	fprintf(stderr, "Parsing XML input file\n");
     parseXML(filename);
 
     xmlCleanupParser();
