@@ -41,6 +41,7 @@ typedef struct atom
 	Vec tpos; /* transformed position vector */
 	int atomType; /* GROMOS atom type */
 	int groupID; /* atom group ID */
+	int modelNumber; /* model number */
 } Atom;
 
 /* residue */

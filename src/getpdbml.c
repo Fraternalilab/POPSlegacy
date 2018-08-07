@@ -59,7 +59,38 @@ int parseXML(const char *filename, Str *pdb) {
 				if (strcmp((char *)cur_node->name, "Cartn_x") == 0) {
 					sscanf((char *)content, "%f", &(pdb->atom[pdb->nAtom].pos.x));
 				}
-				/* ... */
+				/* y coordinate */
+				if (strcmp((char *)cur_node->name, "Cartn_y") == 0) {
+					sscanf((char *)content, "%f", &(pdb->atom[pdb->nAtom].pos.y));
+				}
+				/* z coordinate */
+				if (strcmp((char *)cur_node->name, "Cartn_z") == 0) {
+					sscanf((char *)content, "%f", &(pdb->atom[pdb->nAtom].pos.z));
+				}
+				/* chain identifier */
+				if (strcmp((char *)cur_node->name, "auth_asym_id") == 0) {
+					sscanf((char *)content, "%s", pdb->atom[pdb->nAtom].chainIdentifier);
+				}
+				/* atom name */
+				if (strcmp((char *)cur_node->name, "auth_atom_id") == 0) {
+					sscanf((char *)content, "%s", pdb->atom[pdb->nAtom].atomName);
+				}
+				/* residue name */
+				if (strcmp((char *)cur_node->name, "auth_comp_id") == 0) {
+					sscanf((char *)content, "%s", pdb->atom[pdb->nAtom].residueName);
+				}
+				/* occupancy */
+				if (strcmp((char *)cur_node->name, "occupancy") == 0) {
+					sscanf((char *)content, "%f", &(pdb->atom[pdb->nAtom].occupancy));
+				}
+				/* model number */
+				if (strcmp((char *)cur_node->name, "pdbx_PDB_model_num") == 0) {
+					sscanf((char *)content, "%d", &(pdb->atom[pdb->nAtom].modelNumber));
+				}
+				/* atom element */
+				if (strcmp((char *)cur_node->name, "type_symbol") == 0) {
+					sscanf((char *)content, "%s", pdb->atom[pdb->nAtom].element);
+				}
 
 			}
 
