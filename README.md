@@ -293,12 +293,12 @@ and the solvent radius for water.
   - Unknown standard residue or atom. 
   - Too short atom distance.
   - Less than 2 atoms, 2 bonds, 2 angles or 2 torsions in input structure.
-  - Assertions: Internal data flow is partially controlled by assertions.
+* Assertions: Internal data flow is partially controlled by assertions.
   The 'assert' macro does not return an error value itself,
   but the program exits with a (non-zero) error code and a comment.
-  - Warning messages: Error and warninig output is directed to 'stderr'.
-  - Progress messsages: Progress output is sparse and directed to 'stdout'.
-  - Default result output: By default the program prints results to 'pops.out'.
+* Warning messages: Error and warninig output is directed to 'stderr'.
+* Progress messsages: Progress output is sparse and directed to 'stdout'.
+* Default result output: By default the program prints results to 'pops.out'.
 
 
 ## Code
@@ -307,7 +307,7 @@ and the solvent radius for water.
 
 ### Github branches
 * master : the distributed version of POPS
-* mmCIF : parses mmCIF format instead of PDB format
+* PDBML : parses XML format instead of PDB format
 * json : prints POPS output in JSON format
 * popscomp : computes results of POPSCOMP protocol
 * Rout : prints POPS output in R compatible table format
@@ -319,8 +319,6 @@ and the solvent radius for water.
 
 
 ## Copyright
-* 2018 Using XML parser code in getpdbml.c from the Bioplib library
-	by Dr. Andrew C. R. Martin 1988-2015 (ReadPDB.c)
 * 2002-2018 Franca Fraternali (program author)
 * 2008-2018 Jens Kleinjung (modular C code)
 * 2002 Kuang Lin and Valerie Hindie (translation to C)

@@ -159,12 +159,13 @@ static void print_args(Arg *arg, Argpdb *argpdb)
 
     fprintf(stdout, "\ndate: %s", ctime(&now));
     fprintf(stdout, \
-                    "pdb: %s\n"
+                    "pdb/pdbml: %s%s\n"
                     "traj: %s\n"
                     "coarse: %d\n"
                     "multiModel: %d\n"
                     "rProbe: %f\n",
-        arg->pdbInFileName, arg->trajInFileName, argpdb->coarse,
+        arg->pdbInFileName, arg->pdbmlInFileName,
+		arg->trajInFileName, argpdb->coarse,
         0, arg->rProbe);
     fflush(stdout);
 }
@@ -353,7 +354,7 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
 				print_citation();
                 exit(0);
             case 31:
-                fprintf(stderr, "%s", usage);
+				print_version();
 				print_license();
                 exit(0);
             default:

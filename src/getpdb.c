@@ -341,7 +341,7 @@ z_off_t gzseek (gzFile file, z_off_t offset, int whence);
 			++ str->nChain;
 
 		/*____________________________________________________________________________*/
-		/* recors original atom order (count) */
+		/* records original atom order (count) */
 		str->atomMap[str->nAtom] = str->nAllAtom;
 		/* increment to next atom entry */
 		++ str->nAtom;
