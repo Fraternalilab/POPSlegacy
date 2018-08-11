@@ -276,22 +276,20 @@ int parseXML(const char *filename, Str *pdb) {
 /* parse PDB file in XML format */
 void read_structure_xml(Arg *arg, Argpdb *argpdb, Str *pdb)
 {
-	const char filename[] = "5lff.xml";
-
     LIBXML_TEST_VERSION;
 
-    pdb->sequence.name = safe_malloc((strlen(basename(arg->pdbInFileName)) + 1) * sizeof(char));
-    strcpy(pdb->sequence.name, basename(arg->pdbInFileName));
+    pdb->sequence.name = safe_malloc((strlen(basename(arg->pdbmlInFileName)) + 1) * sizeof(char));
+    strcpy(pdb->sequence.name, basename(arg->pdbmlInFileName));
 
-	fprintf(stderr, "Parsing XML input file\n");
-    parseXML(filename, pdb);
+	fprintf(stderr, "Parsing XML input file %s\n", arg->pdbmlInFileName);
+    parseXML(arg->pdbmlInFileName, pdb);
     xmlCleanupParser();
     xmlMemoryDump();
 
     /* check for empty pdb structure and exit */
     if (pdb->nAtom == 0)
     {
-        ErrorSpecNoexit("Invalid PDB file", arg->pdbInFileName);
+        ErrorSpecNoexit("Invalid PDB file", arg->pdbmlInFileName);
         free(pdb->atom);
         free(pdb->sequence.res);
         free(pdb->sequence.name);
@@ -302,7 +300,7 @@ void read_structure_xml(Arg *arg, Argpdb *argpdb, Str *pdb)
 										"\tPDB file content:\n"
 										"\tnAtom = %d (excluding hydrogens)\n"
 										"\tnAllAtom = %d (all atoms to match trajectory entries)\n",
-							arg->pdbInFileName, pdb->nAtom, pdb->nAllAtom);
+							arg->pdbmlInFileName, pdb->nAtom, pdb->nAllAtom);
 
 
 }
