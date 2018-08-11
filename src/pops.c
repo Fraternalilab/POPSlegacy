@@ -110,7 +110,6 @@ int main(int argc, char *argv[])
 	} else {
 		read_structure(&arg, &argpdb, &pdb);
 	}
-	exit(1);
 
     /*____________________________________________________________________________*/
     /** read input trajectory */

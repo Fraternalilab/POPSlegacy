@@ -7,6 +7,62 @@ Read the COPYING file for license information.
 #include "pdb_structure.h"
 
 /*____________________________________________________________________________*/
+/* match PDB residue name against constant residue name array */
+__inline__ static char scan_array(char *code3, char *residue_array[], int shift)
+{
+	unsigned int i;
+	char residue = ' ';
+
+	for (i = 0; i < 26; ++ i)
+		if (strncmp(code3, residue_array[i], 3) == 0) {
+			residue = i + shift; /* shift=65 for UPPER, shift=97 for lower */
+			break;
+		}
+
+	return residue;
+}
+
+/*____________________________________________________________________________*/
+/** amino acid 3-letter to 1-letter code conversion */
+__inline__ static char aacode(char *code3)
+{
+	char residue = ' '; /* 1-letter residue name */
+
+	/* three-letter code of amino acid residues, exception HET -> X */
+	char *aa3[] = {"ALA","---","CYS","ASP","GLU","PHE","GLY","HIS","ILE","---","LYS","LEU","MET","ASN","---","PRO","GLN","ARG","SER","THR","UNL","VAL","TRP","HET","TYR","UNK"};
+	/* nucleotide residues */
+	char *nuc[] = {"  A"," DA","  C"," DC","---","---","  G"," DG","  I"," DI","---","---","---","  N"," DN","---","---","---"," DT","  T","  U"," DU","---","---","---","---"};
+
+	/* match against amino acid residues */
+	residue = scan_array(code3, aa3, 65);
+
+	/* match against nucleotide residues */
+	if (residue == ' ')
+		residue = scan_array(code3, nuc, 97);
+
+	/* residue not found */
+	if (residue == ' ') {
+		Warning("Check the format of the PDB file: might be non-standard. See examples in the README file.");
+		ErrorSpec("Unknown standard residue type in protein structure:", code3);
+	}
+	/*else
+		fprintf(stderr, "%s:%d: %c ", __FILE__, __LINE__, residue);*/
+	
+	return residue;
+}
+
+/*____________________________________________________________________________*/
+/** standardise non-standard atom names */
+__inline__ static int standardise_name(char *residueName, char *atomName)
+{
+	/* GRO 'ILE CD' to PDB 'ILE CD1' */
+	if ((strcmp(residueName, "ILE") == 0) && (strcmp(atomName, " CD ") == 0))
+		strcpy(atomName, " CD1");
+
+	return 0;
+}
+
+/*____________________________________________________________________________*/
 int parseXML(const char *filename, Str *pdb) {
     xmlDoc *doc; /* the resulting document tree */
     xmlNode *root_node = 0;
@@ -14,7 +70,10 @@ int parseXML(const char *filename, Str *pdb) {
 	xmlNode *site_node = 0;
 	xmlNode *atom_node = 0;
 	unsigned int allocated_atom = 64;
+	unsigned int allocated_residue = 64;
 	xmlChar *content = 0;
+	unsigned int k = 0;
+	int ca_p = 0;
 
 	/*____________________________________________________________________________*/
     /*parse the file and get the document (DOM) */
@@ -39,7 +98,13 @@ int parseXML(const char *filename, Str *pdb) {
 	/*____________________________________________________________________________*/
 	/* allocate PDB structure */
 	pdb->atom = safe_malloc(allocated_atom * sizeof(Atom));
+	/* array of residue-centric atom indices */
+	pdb->resAtom = safe_malloc(allocated_residue * sizeof(int));
+	/* allocate memory for sequence residues */
+	pdb->sequence.res = safe_malloc(allocated_residue * sizeof(char));
+
 	pdb->nAtom = 0;
+	pdb->nAllAtom = 0;
 
 	/*____________________________________________________________________________*/
 	/* traverse XML tree (atom sites) */
@@ -91,11 +156,46 @@ int parseXML(const char *filename, Str *pdb) {
 				if (strcmp((char *)cur_node->name, "type_symbol") == 0) {
 					sscanf((char *)content, "%s", pdb->atom[pdb->nAtom].element);
 				}
-
+				/* charge */
+				if (strcmp((char *)cur_node->name, "pdbx_formal_charge") == 0) {
+					sscanf((char *)content, "%s", pdb->atom[pdb->nAtom].charge);
+					sscanf((char *)content, "%d", &(pdb->atom[pdb->nAtom].formalCharge));
+					sscanf((char *)content, "%f", &(pdb->atom[pdb->nAtom].partialCharge));
+				}
 			}
+
+			/*____________________________________________________________________________*/
+			/* select entries to record */
+			/* only first MODEL if several are persent in PDB entry */
+			if (pdb->atom[pdb->nAtom].modelNumber > 1) {
+				goto ENDPARSE;
+			}
+
+			/* skip hydrogen atoms */
+			if (strcmp(pdb->atom[pdb->nAtom].element, "H") == 0) {
+				continue;
+			}
+
+			/* detect CA and P atoms of standard residues for residue allocation */
+			if ((strcmp(pdb->atom[pdb->nAtom].atomName, "CA") == 0) ||
+				(strcmp(pdb->atom[pdb->nAtom].atomName, "P") == 0)) {
+				pdb->resAtom[k] = pdb->nAtom;
+				pdb->sequence.res[k ++] = aacode(pdb->atom[pdb->nAtom].residueName);
+				if (k == allocated_residue) {
+					allocated_residue += 64;
+					pdb->resAtom = safe_realloc(pdb->resAtom, allocated_residue * sizeof(int));
+					pdb->sequence.res = safe_realloc(pdb->sequence.res, allocated_residue * sizeof(char));
+				}
+				++ ca_p;
+			}
+
+			/* standardise non-standard atom names (here GRO ILE_CD) */
+			standardise_name(pdb->atom[pdb->nAtom].residueName, pdb->atom[pdb->nAtom].atomName);
 
 			/* increment atom number */
 			++ pdb->nAtom;
+			++ pdb->nAllAtom;
+
 			/* allocate more memory if needed */
 			if (pdb->nAtom == allocated_atom) {
 				allocated_atom += 64;
@@ -104,11 +204,10 @@ int parseXML(const char *filename, Str *pdb) {
 		}
 	}
 
-	/*____________________________________*/
-	/* write document to file */
-    //xmlSaveFormatFileEnc("outfile.xml", doc, "UTF-8", 1);
+	ENDPARSE:
+		fprintf(stderr, "\tUsing only the first model of the PDB entry\n");
 
-	/*____________________________________*/
+	/*____________________________________________________________________________*/
 	/* free global variables */
     xmlFreeDoc(doc);
 
