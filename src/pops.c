@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
 	if (! arg.silent) fprintf(stdout, "Topology\n");
 	init_topology(&pdb, &topol);
     get_topology(&pdb, &type, &topol, constant_sasa, &argpdb, &arg);
-    
+
     /*____________________________________________________________________________*/
     /** compute SASA: atoms, residues, chains, molecule */
 	if (! arg.silent) fprintf(stdout, "Solvent Accessible Surface Area\n");
