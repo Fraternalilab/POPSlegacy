@@ -64,36 +64,44 @@ The latex documentation is completed by executing 'make pdf' in the
 ## Usage
 ### Command Line Parameters
 ```
-pops [--pdb ...] [OPTIONS ...]
-    INPUT OPTIONS
-    --pdb <PDB input>		(mode: mandatory, type: char  , default: void)
-    --traj <trajectory input>	(mode: optional, type: char  , default: void)
-    MODE OPTIONS
-    --coarse			(mode: optional , type: no_arg, default: off)
-    --multiModel (disabled)	(mode: optional , type: no_arg, default: off)
-    --rProbe <probe radius [A]>	(mode: optional , type: float , default: 1.4)
-    --silent			(mode: optional , type: no_arg, default: off)
-    OUTPUT OPTIONS
-    --popsOut <POPS output>	(mode: optional , type: char  , default: pops.out)
-    --popstrajOut <POPS output>	(mode: optional , type: char  , default: popstraj.out)
-    --sigmaOut <SFE output>	(mode: optional , type: char  , default: sigma.out)
-    --sigmatrajOut <SFE output>	(mode: optional , type: char  , default: sigmatraj.out)
-    --compositionOut		(mode: optional , type: no_arg, default: off)
-    --typeOut			(mode: optional , type: no_arg, default: off)
-    --topologyOut		(mode: optional , type: no_arg, default: off)
-    --atomOut			(mode: optional , type: no_arg, default: off)
-    --residueOut			(mode: optional , type: no_arg, default: off)
-    --chainOut			(mode: optional , type: no_arg, default: off)
-    --neighbourOut		(mode: optional , type: no_arg, default: off)
-    --parameterOut		(mode: optional , type: no_arg, default: off)
-    --noTotalOut			(mode: optional , type: no_arg, default: off)
-    --noHeaderOut		(mode: optional , type: no_arg, default: off)
-    --padding			(mode: optional , type: no_arg, default: off)
-    INFO OPTIONS
-    --cite			(mode: optional , type: no_arg, default: off)
-    --version			(mode: optional , type: no_arg, default: off)
-    --help
-```
+pops [--pdb ... | --pdbml ...] [OPTIONS ...]
+	 INPUT OPTIONS
+       Input is either a *.pdb[.gz] file (--pdb) or a *.xml[.gz] file (--pdbml).
+	   --pdb <PDB input>		(mode: optional, type: char  , default: void)
+	   --pdbml <PDBML input>	(mode: optional, type: char  , default: void)
+	   --traj <trajectory input>	(mode: optional , type: char  , default: void)
+	 MODE OPTIONS
+	   --coarse			(mode: optional , type: no_arg, default: off)
+	   --hydrogens			(mode: optional , type: no_arg, default: off)
+	   --multiModel			(mode: optional , type: no_arg, default: off)
+	   --partOcc			(mode: optional , type: no_arg, default: off)
+	   --rProbe <probe radius [A]>	(mode: optional , type: float , default: 1.4)
+	   --silent			(mode: optional , type: no_arg, default: off)
+	 OUTPUT OPTIONS
+	   --popsOut <POPS output>	(mode: optional , type: char  , default: pops.out)
+	   --popstrajOut <POPS output>	(mode: optional , type: char  , default: popstraj.out)
+	   --popsbOut <POPSb output>	(mode: optional , type: char  , default: popsb.out)
+	   --popsbtrajOut <POPSb output>(mode: optional , type: char  , default: popsbtraj.out)
+	   --sigmaOut <SFE output>	(mode: optional , type: char  , default: sigma.out)
+	   --sigmatrajOut <SFE output>	(mode: optional , type: char  , default: sigmatraj.out)
+	   --interfaceOut		(mode: optional , type: no_arg, default: off)
+	   --compositionOut		(mode: optional , type: no_arg, default: off)
+	   --typeOut			(mode: optional , type: no_arg, default: off)
+	   --topologyOut		(mode: optional , type: no_arg, default: off)
+	   --atomOut			(mode: optional , type: no_arg, default: off)
+	   --residueOut			(mode: optional , type: no_arg, default: off)
+	   --chainOut			(mode: optional , type: no_arg, default: off)
+	   --neighbourOut		(mode: optional , type: no_arg, default: off)
+	   --parameterOut		(mode: optional , type: no_arg, default: off)
+	   --noTotalOut			(mode: optional , type: no_arg, default: off)
+	   --noHeaderOut		(mode: optional , type: no_arg, default: off)
+	   --padding			(mode: optional , type: no_arg, default: off)
+	   --rout			(mode: optional , type: no_arg, default: off)
+	   --jsonOut			(mode: optional , type: no_arg, default: off)
+	 INFO OPTIONS
+	   --cite			(mode: optional , type: no_arg, default: off)
+	   --version			(mode: optional , type: no_arg, default: off)
+	   --help
 
 ### Short Description of Command Line Parameters
 * trajInFileName : trajectory input file
