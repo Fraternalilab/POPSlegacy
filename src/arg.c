@@ -41,7 +41,6 @@ static void print_license()
 			"Copyright (C) 2008-2018 Jens Kleinjung (modular C code)\n"
 			"Copyright (C) 2002 Kuang Lin and Valerie Hindie (translation to C)\n"
 			"Copyright (C) 2002 Luigi Cavallo (parametrisation)\n"
-			"The routine 'getpdbml.c' has been adapted from Bioplib.\n"
 			"POPS* is free software and comes with ABSOLUTELY NO WARRANTY.\n"
 			"You are welcome to redistribute it under certain conditions.\n"
 			"Read the COPYING file for distribution details.\n\n");
