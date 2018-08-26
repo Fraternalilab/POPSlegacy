@@ -34,7 +34,7 @@ __inline__ static char aacode(char *code3)
 {
 	char residue = ' '; /* 1-letter residue name */
 
-	/* three-letter code of amino acid residues, exception HET -> X */
+	/* three-letter code of amino acid residues, exception HET (X) */
 	char *aa3[] = {"ALA","---","CYS","ASP","GLU","PHE","GLY","HIS","ILE","---","LYS","LEU","MET","ASN","---","PRO","GLN","ARG","SER","THR","UNL","VAL","TRP","HET","TYR","UNK"};
 	/* nucleotide residues */
 	char *nuc[] = {"  A"," DA","  C"," DC","---","---","  G"," DG","  I"," DI","---","---","---","  N"," DN","---","---","---"," DT","  T","  U"," DU","---","---","---","---"};
@@ -77,14 +77,15 @@ __inline__ static int process_het(Str *str, char *line, regex_t *regexPattern, c
 {
 	int hetAtomNr = -1;
 
-	/* residue name */
-	strncpy(str->atom[str->nAtom].residueName, "HET", 3);
-
 	/* atom name: assign only allowed atom elements, otherwise atom is skipped */
 	if ((hetAtomNr = match_patterns(regexPattern, nHetAtom, &(str->atom[str->nAtom].atomName[0]))) >= 0) {
-			sprintf(str->atom[str->nAtom].atomName, "%s", &(hetAtomNewname[hetAtomNr][0]));
+		sprintf(str->atom[str->nAtom].atomName, "%s", &(hetAtomNewname[hetAtomNr][0]));
+		sprintf(str->atom[str->nAtom].atomName, "%s", &(hetAtomNewname[hetAtomNr][0]));
+		fprintf(stderr, "Setting atom %d name %s to %s of residue HET\n",
+					str->nAtom, str->atom[str->nAtom].atomName, 
+					&(hetAtomNewname[hetAtomNr][0]));
 	} else {
-		WarningSpec("Skipping HEATM", str->atom[str->nAtom].atomName);
+		WarningSpec("Skipping HETATM", str->atom[str->nAtom].atomName);
 		return 1;
 	}
 
@@ -136,7 +137,7 @@ int read_pdb(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
 	char resbuf;
 	int ca_p = 0;
 	/* for HETATM entries */
-	regex_t *regexPattern; /* regular atom patterns */
+	regex_t *regexPattern = 0; /* regular atom patterns */
 	/* allowed HETATM atom types (standard N,CA,C,O) and elements (any N,C,O,P,S) */
 	const int nHetAtom = 9;
 	char hetAtomPattern[9][32] = {{" N  "},{" CA "},{" C  "},{" O  "},{".{1}C[[:print:]]{1,3}"},{".{1}N[[:print:]]{1,3}"},{".{1}O[[:print:]]{1,3}"},{".{1}P[[:print:]]{1,3}"},{".{1}S[[:print:]]{1,3}"}};
@@ -301,30 +302,32 @@ z_off_t gzseek (gzFile file, z_off_t offset, int whence);
 		}
 
 		/* check whether ATOM residue name is standard */
-		if (strncmp(line, "ATOM  ", 6) == 0)
+		if (strncmp(line, "ATOM  ", 6) == 0) {
 			assert((resbuf = aacode(str->atom[str->nAtom].residueName)) != ' ');
 			
-		/* detect CA and P atoms of standard residues for residue allocation */
-		if ((strncmp(line, "ATOM  ", 6) == 0) &&
-			((strncmp(str->atom[str->nAtom].atomName, " CA ", 4) == 0) ||
-			(strncmp(str->atom[str->nAtom].atomName, " P  ", 4) == 0))) {
-			str->resAtom[k] = str->nAtom;
-			str->sequence.res[k ++] = aacode(str->atom[str->nAtom].residueName);
-			if (k == allocated_residue) {
-				allocated_residue += 64;
-				str->resAtom = safe_realloc(str->resAtom, allocated_residue * sizeof(int));
-				str->sequence.res = safe_realloc(str->sequence.res, allocated_residue * sizeof(char));
+			/* detect CA and P atoms of standard residues for residue allocation */
+			if ((strncmp(str->atom[str->nAtom].atomName, " CA ", 4) == 0) ||
+			(strncmp(str->atom[str->nAtom].atomName, " P  ", 4) == 0)) {
+				str->resAtom[k] = str->nAtom;
+				str->sequence.res[k ++] = aacode(str->atom[str->nAtom].residueName);
+				if (k == allocated_residue) {
+					allocated_residue += 64;
+					str->resAtom = safe_realloc(str->resAtom, allocated_residue * sizeof(int));
+					str->sequence.res = safe_realloc(str->sequence.res, allocated_residue * sizeof(char));
+				}
+				++ ca_p;
 			}
-			++ ca_p;
+
+			/* standardise non-standard atom names */
+			standardise_name(str->atom[str->nAtom].residueName, str->atom[str->nAtom].atomName);
 		}
 
-		/* standardise non-standard atom names */
-		standardise_name(str->atom[str->nAtom].residueName, str->atom[str->nAtom].atomName);
-
 		/* process HETATM entries */
-		if (strncmp(line, "HETATM", 6) == 0)
-			if (process_het(str, &(line[0]), regexPattern, &(hetAtomNewname[0]), nHetAtom) != 0)
+		if (strncmp(line, "HETATM", 6) == 0) {
+			if (process_het(str, &(line[0]), regexPattern, &(hetAtomNewname[0]), nHetAtom) != 0) {
 				continue;
+			}
+		}
 
 		/* in coarse mode record only CA and P entries */
 		if (!ca_p && coarse)
@@ -332,13 +335,18 @@ z_off_t gzseek (gzFile file, z_off_t offset, int whence);
 
 		/*____________________________________________________________________________*/
 		/* count number of allResidues (including HETATM residues) */
-        if (str->nAtom == 0 || str->atom[str->nAtom].residueNumber != str->atom[str->nAtom - 1].residueNumber || strcmp(str->atom[str->nAtom].icode, str->atom[str->nAtom - 1].icode) != 0)
+        if (str->nAtom == 0 ||
+			str->atom[str->nAtom].residueNumber != str->atom[str->nAtom - 1].residueNumber ||
+			strcmp(str->atom[str->nAtom].icode, str->atom[str->nAtom - 1].icode) != 0) {
 			++ str->nAllResidue;
+		}
 
 		/*____________________________________________________________________________*/
 		/* count number of chains */
-        if (str->nAtom == 0 || str->atom[str->nAtom].chainIdentifier[0] != str->atom[str->nAtom - 1].chainIdentifier[0])
+        if (str->nAtom == 0 ||
+			str->atom[str->nAtom].chainIdentifier[0] != str->atom[str->nAtom - 1].chainIdentifier[0]) {
 			++ str->nChain;
+		}
 
 		/*____________________________________________________________________________*/
 		/* records original atom order (count) */
@@ -422,8 +430,8 @@ void read_structure(Arg *arg, Argpdb *argpdb, Str *pdb)
 
     if (! arg->silent) fprintf(stdout, "\tPDB file: %s\n"
 										"\tPDB file content:\n"
-										"\tnAtom = %d (excluding hydrogens)\n"
-										"\tnAllAtom = %d (all atoms to match trajectory entries)\n",
+										"\t\tnAtom = %d (excluding hydrogens)\n"
+										"\t\tnAllAtom = %d (all atoms to match trajectory entries)\n",
 							arg->pdbInFileName, pdb->nAtom, pdb->nAllAtom);
 }
 

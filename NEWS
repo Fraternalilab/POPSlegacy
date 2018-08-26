@@ -1,7 +1,8 @@
-- inclusion of the POPSCOMP method into the POPS*
-- mmCIF parser
-- JSON output
 - R-compatible output
+- inclusion of the POPSCOMP method into the POPS*
+- gzip library
+- XML parser (libxml2 library)
+- JSON output
 - computation of solvation free energies
 - git revision control
 - Compilation/check/installation on any POSIX platform with GNU Build Tools.

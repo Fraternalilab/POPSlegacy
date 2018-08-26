@@ -31,8 +31,8 @@ void print_json(Arg *arg, cJSON *json)
 
 /*____________________________________________________________________________*/
 /* The natural way to make residues dependent on chains would be a
-	double loop iterating over chains and residues. The current data
-	is such that it is easier (but less natural) to iterate over residues
+	double loop iterating over chains and residues. The POPS PDB data structure
+	is such that it is easier here to iterate over residues
 	and to create chains on the fly, to which new residue array are attached. */
 void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 {

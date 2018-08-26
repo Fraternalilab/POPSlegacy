@@ -37,17 +37,14 @@ __inline__ static char aacode(char *code3)
 	residue = scan_array(code3, aa3, 65);
 
 	/* match against nucleotide residues */
-	if (residue == ' ')
-		residue = scan_array(code3, nuc, 97);
-
-	/* residue not found */
 	if (residue == ' ') {
-		Warning("Check the format of the PDB file: might be non-standard. See examples in the README file.");
-		ErrorSpec("Unknown standard residue type in protein structure:", code3);
+		residue = scan_array(code3, nuc, 97);
+	} else if (residue == ' ') {
+		Warning("Non-standard residue: Using residue 'UNK' with default parameters.");
+		residue = 37;
+		//ErrorSpec("Unknown standard residue type in protein structure:", code3);
 	}
-	/*else
-		fprintf(stderr, "%s:%d: %c ", __FILE__, __LINE__, residue);*/
-	
+
 	return residue;
 }
 
@@ -58,6 +55,28 @@ __inline__ static int standardise_name(char *residueName, char *atomName)
 	/* GRO 'ILE CD' to PDB 'ILE CD1' */
 	if ((strcmp(residueName, "ILE") == 0) && (strcmp(atomName, " CD ") == 0))
 		strcpy(atomName, " CD1");
+
+	return 0;
+}
+
+/*____________________________________________________________________________*/
+/** process HET residues */
+__inline__ static int process_het(Str *str, char *line, regex_t *regexPattern, char (*hetAtomNewname)[32], int nHetAtom)
+{
+	int hetAtomNr = -1;
+
+	/* atom name: assign only allowed atom elements, otherwise atom is skipped */
+	if ((hetAtomNr = match_patterns(regexPattern, nHetAtom, &(str->atom[str->nAtom].atomName[0]))) >= 0) {
+
+		sprintf(str->atom[str->nAtom].atomName, "%s", &(hetAtomNewname[hetAtomNr][0]));
+		sprintf(str->atom[str->nAtom].residueName, "%s", "HET");
+		fprintf(stderr, "Setting atom %d name %s to %s of residue HET\n",
+					str->nAtom, str->atom[str->nAtom].atomName, 
+					&(hetAtomNewname[hetAtomNr][0]));
+	} else {
+		WarningSpec("Skipping HETATM", str->atom[str->nAtom].atomName);
+		return 1;
+	}
 
 	return 0;
 }
@@ -74,6 +93,7 @@ __inline__ static void init_atom(Str *pdb)
 	strcpy(pdb->atom[pdb->nAtom].atomName, "");
 	strcpy(pdb->atom[pdb->nAtom].residueName, "");
 	pdb->atom[pdb->nAtom].residueNumber = 0;
+	strcpy(pdb->atom[pdb->nAtom].hetatm, "");
 	strcpy(pdb->atom[pdb->nAtom].icode, "");
 	pdb->atom[pdb->nAtom].occupancy = 0.;
 	pdb->atom[pdb->nAtom].modelNumber = 0;
@@ -95,6 +115,12 @@ int parseXML(const char *filename, Str *pdb) {
 	xmlChar *content = 0;
 	unsigned int k = 0;
 	int ca_p = 0;
+	char line[80];
+	regex_t *regexPattern = 0; /* regular atom patterns */
+	/* allowed HETATM atom types (standard N,CA,C,O) and elements (any N,C,O,P,S) */
+	const int nHetAtom = 5;
+	char hetAtomPattern[5][32] = {{"N"},{"C"},{"O"},{"P"},{"S"}};
+	char hetAtomNewname[5][32] = {{"N_"},{"C_"},{"O_"},{"P_"},{"S_"}};
 
 	/*____________________________________________________________________________*/
     /*parse the file and get the document (DOM) */
@@ -131,6 +157,10 @@ int parseXML(const char *filename, Str *pdb) {
 	pdb->nResidue = 0;
 	pdb->nAllResidue = 0;
 	pdb->nChain = 0;
+
+	/* compile allowed HETATM element patterns */
+	regexPattern = safe_malloc(nHetAtom * sizeof(regex_t));
+	compile_patterns(regexPattern, &(hetAtomPattern[0]), nHetAtom);
 
 	/*____________________________________________________________________________*/
 	/* traverse XML tree (atom sites) */
@@ -176,6 +206,10 @@ int parseXML(const char *filename, Str *pdb) {
 				/* residue number */
 				if (strcmp((char *)cur_node->name, "auth_seq_id") == 0) {
 					sscanf((char *)content, "%d", &(pdb->atom[pdb->nAtom].residueNumber));
+				}
+				/* ATOM or HETATM */
+				if (strcmp((char *)cur_node->name, "group_PDB") == 0) {
+					sscanf((char *)content, "%s", pdb->atom[pdb->nAtom].hetatm);
 				}
 				/* insert code */
 				if (strcmp((char *)cur_node->name, "pdbx_PDB_ins_code") == 0) {
@@ -229,6 +263,14 @@ int parseXML(const char *filename, Str *pdb) {
 			/* standardise non-standard atom names (here GRO ILE_CD) */
 			standardise_name(pdb->atom[pdb->nAtom].residueName,
 								pdb->atom[pdb->nAtom].atomName);
+			
+			/* process HETATM entries */
+			if (strcmp(pdb->atom[pdb->nAtom].hetatm, "HETATM") == 0) {
+				if (process_het(pdb, &(line[0]), regexPattern,
+						&(hetAtomNewname[0]), nHetAtom) != 0) {
+					continue;
+				}
+			}
 
 			/*____________________________________________________________________________*/
 			/* count number of allResidues (including HETATM residues) */
@@ -256,6 +298,7 @@ int parseXML(const char *filename, Str *pdb) {
 			if (pdb->nAtom == allocated_atom) {
 				allocated_atom += 64;
 				pdb->atom = safe_realloc(pdb->atom, allocated_atom * sizeof(Atom));
+				pdb->atomMap = safe_realloc(pdb->atomMap, allocated_atom * sizeof(int));
 			}
 		}
 	}
@@ -268,6 +311,11 @@ int parseXML(const char *filename, Str *pdb) {
 	/*____________________________________________________________________________*/
 	/* free global variables */
     xmlFreeDoc(doc);
+
+	/*____________________________________________________________________________*/
+	/* free the compiled regular expressions */
+	free_patterns(regexPattern, nHetAtom);
+	free(regexPattern);
 
 	return 0;
 }
@@ -298,8 +346,8 @@ void read_structure_xml(Arg *arg, Argpdb *argpdb, Str *pdb)
 
     if (! arg->silent) fprintf(stdout, "\tPDB file: %s\n"
 										"\tPDB file content:\n"
-										"\tnAtom = %d (excluding hydrogens)\n"
-										"\tnAllAtom = %d (all atoms to match trajectory entries)\n",
+										"\t\tnAtom = %d (excluding hydrogens)\n"
+										"\t\tnAllAtom = %d (all atoms to match trajectory entries)\n",
 							arg->pdbmlInFileName, pdb->nAtom, pdb->nAllAtom);
 
 

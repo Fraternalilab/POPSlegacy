@@ -98,6 +98,7 @@ WarningSpec	error.c	/^void WarningSpec(char *message, char *spec) {$/;"	f
 _CRT_SECURE_NO_DEPRECATE	cJSON.c	28;"	d	file:
 __WINDOWS__	cJSON.h	84;"	d
 aacode	getpdb.c	/^__inline__ static char aacode(char *code3)$/;"	f	file:
+aacode	getpdbml.c	/^__inline__ static char aacode(char *code3)$/;"	f	file:
 add_item_to_array	cJSON.c	/^static cJSON_bool add_item_to_array(cJSON *array, cJSON *item)$/;"	f	file:
 add_item_to_object	cJSON.c	/^static cJSON_bool add_item_to_object(cJSON * const object, const char * const string, cJSON * const item, const internal_hooks * const hooks, const cJSON_bool constant_key)$/;"	f	file:
 alloc_mat2D_float	matrix.c	/^float **alloc_mat2D_float(float **mat2D_float, int x, int y)$/;"	f
@@ -326,6 +327,7 @@ global_error	cJSON.c	/^static error global_error = { NULL, 0 };$/;"	v	file:
 global_hooks	cJSON.c	/^static internal_hooks global_hooks = { internal_malloc, internal_free, internal_realloc };$/;"	v	file:
 groupID	atomgroup.h	/^	int groupID; \/* group ID number (sequential index) *\/$/;"	m	struct:__anon9
 groupID	pdb_structure.h	/^	int groupID; \/* atom group ID *\/$/;"	m	struct:atom
+hetatm	pdb_structure.h	/^	char hetatm[8]; \/* ATOM or HETATM *\/$/;"	m	struct:atom
 hooks	cJSON.c	/^    internal_hooks hooks;$/;"	m	struct:__anon13	file:
 hooks	cJSON.c	/^    internal_hooks hooks;$/;"	m	struct:__anon14	file:
 hooks	cJSON.h	/^CJSON_PUBLIC(void) cJSON_InitHooks(cJSON_Hooks* hooks);$/;"	v
@@ -333,6 +335,7 @@ hydrogens	argpdb.h	/^	int hydrogens; \/* read hydrogen atoms *\/$/;"	m	struct:__
 ib	topol.h	/^	int *ib; \/* atoms forming the bonds: array of size bond-number *\/$/;"	m	struct:__anon15
 icode	pdb_structure.h	/^	char icode[2]; \/* Code for insertion of residues; 27 *\/$/;"	m	struct:atom
 in	topol.h	/^	int *in; \/* atoms forming the L-J overlaps: array of size ~30*bond-number *\/$/;"	m	struct:__anon15
+init_atom	getpdbml.c	/^__inline__ static void init_atom(Str *pdb)$/;"	f	file:
 init_mat2D_float	matrix.c	/^void init_mat2D_float(float **mat2D_float, int x, int y, float val)$/;"	f
 init_mat2D_int	matrix.c	/^void init_mat2D_int(int **mat2D_int, int x, int y, int val)$/;"	f
 init_mat2D_vec	matrix.c	/^void init_mat2D_vec(Vec **mat2D_vec, int x, int y, Vec val)$/;"	f
@@ -399,6 +402,7 @@ malloc_fn	cJSON.h	/^      void *(*malloc_fn)(size_t sz);$/;"	m	struct:cJSON_Hook
 match_pattern	pattern.c	/^int match_pattern(regex_t *regex, char *searchString)$/;"	f
 match_patterns	pattern.c	/^int match_patterns(regex_t *regex, int nPattern, char *searchString)$/;"	f
 mod_atom_sasa	sasa.c	/^__inline__ static int mod_atom_sasa(Str *pdb, Topol *topol, Type *type, \\$/;"	f	file:
+modelNumber	pdb_structure.h	/^	int modelNumber; \/* model number *\/$/;"	m	struct:atom
 modelNumber	pdb_structure.h	/^	int modelNumber; \/* number of PDB model *\/$/;"	m	struct:str
 multiModel	argpdb.h	/^	int multiModel; \/* read multiple models *\/$/;"	m	struct:__anon25
 multiModel	pdb_structure.h	/^	int multiModel; \/* multiple models *\/$/;"	m	struct:str
@@ -455,7 +459,7 @@ parameter	sasa_const.h	/^	float parameter; \/* atom-specific  SASA parameter *\/
 parameterOut	arg.h	/^	int parameterOut;$/;"	m	struct:__anon17
 parameterOutFile	arg.h	/^    FILE *parameterOutFile;$/;"	m	struct:__anon17
 parameterOutFileName	arg.h	/^    char *parameterOutFileName;$/;"	m	struct:__anon17
-parseXML	getpdbml.c	/^int parseXML(const char *filename) {$/;"	f
+parseXML	getpdbml.c	/^int parseXML(const char *filename, Str *pdb) {$/;"	f
 parse_args	arg.c	/^int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)$/;"	f
 parse_array	cJSON.c	/^static cJSON_bool parse_array(cJSON * const item, parse_buffer * const input_buffer)$/;"	f	file:
 parse_buffer	cJSON.c	/^} parse_buffer;$/;"	t	typeref:struct:__anon13	file:
@@ -536,6 +540,7 @@ print_value	cJSON.c	/^static cJSON_bool print_value(const cJSON * const item, pr
 print_version	arg.c	/^static void print_version()$/;"	f	file:
 printbuffer	cJSON.c	/^} printbuffer;$/;"	t	typeref:struct:__anon14	file:
 process_het	getpdb.c	/^__inline__ static int process_het(Str *str, char *line, regex_t *regexPattern, char (*hetAtomNewname)[32], int nHetAtom)$/;"	f	file:
+process_het	getpdbml.c	/^__inline__ static int process_het(Str *str, char *line, regex_t *regexPattern, char (*hetAtomNewname)[32], int nHetAtom)$/;"	f	file:
 rProbe	arg.h	/^    float rProbe;$/;"	m	struct:__anon17
 rSolvent	sasa_const.h	/^	float rSolvent; \/* solvent radius *\/$/;"	m	struct:__anon20
 radius	sasa_const.h	/^	float radius; \/* atom radius *\/$/;"	m	struct:__anon19
@@ -580,6 +585,7 @@ sasaOutFileName	arg.h	/^    char *sasaOutFileName;$/;"	m	struct:__anon17
 sasatrajOutFile	arg.h	/^    FILE *sasatrajOutFile;$/;"	m	struct:__anon17
 sasatrajOutFileName	arg.h	/^    char *sasatrajOutFileName;$/;"	m	struct:__anon17
 scan_array	getpdb.c	/^__inline__ static char scan_array(char *code3, char *residue_array[], int shift)$/;"	f	file:
+scan_array	getpdbml.c	/^__inline__ static char scan_array(char *code3, char *residue_array[], int shift)$/;"	f	file:
 secstr	pdb_structure.h	/^	char secstr; \/* Secondary structure *\/$/;"	m	struct:atom
 secstr	pdb_structure.h	/^typedef struct secstr$/;"	s
 segmentIdentifier	pdb_structure.h	/^	char segmentIdentifier[5]; \/* Segment identifier; 73 - 76 *\/$/;"	m	struct:atom
@@ -604,6 +610,7 @@ size	cJSON.h	/^CJSON_PUBLIC(void *) cJSON_malloc(size_t size);$/;"	v
 skip_utf8_bom	cJSON.c	/^static parse_buffer *skip_utf8_bom(parse_buffer * const buffer)$/;"	f	file:
 sphere_surface	sasa.c	/^__inline__ static double sphere_surface(double atomRadius, float rSolvent)$/;"	f	file:
 standardise_name	getpdb.c	/^__inline__ static int standardise_name(char *residueName, char *atomName)$/;"	f	file:
+standardise_name	getpdbml.c	/^__inline__ static int standardise_name(char *residueName, char *atomName)$/;"	f	file:
 start	pdb_structure.h	/^	Atom *start, *stop; $/;"	m	struct:chain
 start	pdb_structure.h	/^	Atom *start, *stop; $/;"	m	struct:residue
 status	error.c	/^int status = 0;$/;"	v
