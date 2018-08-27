@@ -93,7 +93,7 @@ __inline__ static void init_atom(Str *pdb)
 	strcpy(pdb->atom[pdb->nAtom].atomName, "");
 	strcpy(pdb->atom[pdb->nAtom].residueName, "");
 	pdb->atom[pdb->nAtom].residueNumber = 0;
-	strcpy(pdb->atom[pdb->nAtom].hetatm, "");
+	strcpy(pdb->atom[pdb->nAtom].recordName, "");
 	strcpy(pdb->atom[pdb->nAtom].icode, "");
 	pdb->atom[pdb->nAtom].occupancy = 0.;
 	pdb->atom[pdb->nAtom].modelNumber = 0;
@@ -209,7 +209,7 @@ int parseXML(const char *filename, Str *pdb) {
 				}
 				/* ATOM or HETATM */
 				if (strcmp((char *)cur_node->name, "group_PDB") == 0) {
-					sscanf((char *)content, "%s", pdb->atom[pdb->nAtom].hetatm);
+					sscanf((char *)content, "%s", pdb->atom[pdb->nAtom].recordName);
 				}
 				/* insert code */
 				if (strcmp((char *)cur_node->name, "pdbx_PDB_ins_code") == 0) {
@@ -265,7 +265,7 @@ int parseXML(const char *filename, Str *pdb) {
 								pdb->atom[pdb->nAtom].atomName);
 			
 			/* process HETATM entries */
-			if (strcmp(pdb->atom[pdb->nAtom].hetatm, "HETATM") == 0) {
+			if (strcmp(pdb->atom[pdb->nAtom].recordName, "HETATM") == 0) {
 				if (process_het(pdb, &(line[0]), regexPattern,
 						&(hetAtomNewname[0]), nHetAtom) != 0) {
 					continue;

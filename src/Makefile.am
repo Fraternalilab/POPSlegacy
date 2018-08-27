@@ -21,7 +21,7 @@ safe.c safe.h sasa.c sasa.h sasa_const.h sasa_data.h seq.h \
 sigma.c sigma.h sigma_const.h sigma_data.h \
 topol.c topol.h type.c type.h vector.c vector.h
 
-pops_LDADD = $(INTI_LIBS) $(XML_LIBS) $(ZLIB_CFLAGS)
+pops_LDADD = $(INTI_LIBS) $(XML_LIBS) $(ZLIB_LIBS)
 
 EXTRA_DIST = doxygen.cfg
 

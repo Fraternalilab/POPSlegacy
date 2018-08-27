@@ -42,7 +42,6 @@ typedef struct atom
 	int atomType; /* GROMOS atom type */
 	int groupID; /* atom group ID */
 	int modelNumber; /* model number */
-	char hetatm[8]; /* ATOM or HETATM */
 } Atom;
 
 /* residue */

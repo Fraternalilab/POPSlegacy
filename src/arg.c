@@ -78,6 +78,7 @@ static void set_defaults(Arg *arg, Argpdb *argpdb)
     arg->pdbInFileName = "";
     arg->pdbmlInFileName = "";
 	arg->pdbml = 0;
+	arg->zipped = 0;
 	arg->trajInFileName = 0; /* trajectory input file */ 
 	argpdb->coarse = 0; /* Calpha- or Pphosphate-only computation [0,1] */
 	argpdb->hydrogens = 0; /* read hydrogens [0,1] */
@@ -120,6 +121,7 @@ static void check_input(Arg *arg, Argpdb *argpdb)
 		(strlen(arg->pdbmlInFileName) == 0))
 		Error("Invalid PDB file name");
 	assert(arg->pdbml == 0 || arg->pdbml == 1);
+	assert(arg->zipped == 0 || arg->zipped == 1);
 	assert(argpdb->coarse == 0 || argpdb->coarse == 1);
     assert(argpdb->hydrogens == 0 || argpdb->hydrogens == 1);
 	assert(argpdb->multiModel == 0 || argpdb->multiModel == 1);
@@ -159,11 +161,12 @@ static void print_args(Arg *arg, Argpdb *argpdb)
     fprintf(stdout, "\ndate: %s", ctime(&now));
     fprintf(stdout, \
                     "pdb/pdbml: %s%s\n"
+					"zipped: %d\n"
                     "traj: %s\n"
                     "coarse: %d\n"
                     "multiModel: %d\n"
                     "rProbe: %f\n",
-        arg->pdbInFileName, arg->pdbmlInFileName,
+        arg->pdbInFileName, arg->pdbmlInFileName, arg->zipped,
 		arg->trajInFileName, argpdb->coarse,
         0, arg->rProbe);
     fflush(stdout);
@@ -180,6 +183,7 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
 	   --pdb <PDB input>\t\t(mode: optional, type: char  , default: void)\n\
 	   --pdbml <PDBML input>\t(mode: optional, type: char  , default: void)\n\
 	   --traj <trajectory input>\t(mode: optional , type: char  , default: void)\n\
+	   --zipped\t\t\t(mode: opional , type: bool  , default: false)\n\
 	 MODE OPTIONS\n\
 	   --coarse\t\t\t(mode: optional , type: no_arg, default: off)\n\
 	   --hydrogens\t\t\t(mode: optional , type: no_arg, default: off)\n\
@@ -253,14 +257,15 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
         {"hydrogens", no_argument, 0, 27},
         {"partOcc", no_argument, 0, 28},
         {"pdbml", required_argument, 0, 29},
-        {"cite", no_argument, 0, 30},
-        {"version", no_argument, 0, 31},
-        {"help", no_argument, 0, 32},
+        {"zipped", required_argument, 0, 30},
+        {"cite", no_argument, 0, 40},
+        {"version", no_argument, 0, 41},
+        {"help", no_argument, 0, 42},
         {0, 0, 0, 0}
     };
 
     /** assign parameters to long options */
-    while ((c = getopt_long(argc, argv, "1:2:3 4 5:6:7:8:9:10:11:12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29:30 31 32", long_options, NULL)) != -1) {
+    while ((c = getopt_long(argc, argv, "1:2:3 4 5:6:7:8:9:10:11:12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29:30 40 41", long_options, NULL)) != -1) {
         switch(c) {
             case 1:
                 arg->pdbInFileName = optarg;
@@ -350,9 +355,12 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
 				arg->pdbml = 1;
 				break;
             case 30:
+				arg->zipped = 1;
+				break;
+            case 40:
 				print_citation();
                 exit(0);
-            case 31:
+            case 41:
 				print_version();
 				print_license();
                 exit(0);

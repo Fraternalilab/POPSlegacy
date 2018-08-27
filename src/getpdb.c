@@ -124,7 +124,7 @@ ________________________________________________________________________________
 79 - 80        LString(2)      charge        Charge on the atom.
 */
 
-int read_pdb(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
+int read_pdb(FILE *pdbInFile, gzFile *pdbgzInFile, Arg *arg, Argpdb *argpdb, Str *str)
 {
 	unsigned int i, j;
 	unsigned int k = 0;
@@ -142,6 +142,7 @@ int read_pdb(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
 	const int nHetAtom = 9;
 	char hetAtomPattern[9][32] = {{" N  "},{" CA "},{" C  "},{" O  "},{".{1}C[[:print:]]{1,3}"},{".{1}N[[:print:]]{1,3}"},{".{1}O[[:print:]]{1,3}"},{".{1}P[[:print:]]{1,3}"},{".{1}S[[:print:]]{1,3}"}};
 	char hetAtomNewname[9][32] = {{" N  "},{" CA "},{" C  "},{" O  "},{" C_ "},{" N_ "},{" O_ "},{" P_ "},{" S_ "}};
+	int getsFlag = 1;
 
 	/*____________________________________________________________________________*/
 	/* initialise/allocate memory for set of (64) selected (CA) atom entries */
@@ -166,41 +167,57 @@ int read_pdb(FILE *pdbInFile, Str *str, int coarse, int hydrogens)
 
 	/*____________________________________________________________________________*/
     /* count the number of models */
-/*
-char * gzgets (gzFile file, char *buf, int len);
-    Reads bytes from the compressed file until len-1 characters are read, or a newline character is read and transferred to buf, or an end-of-file condition is encountered. The string is then terminated with a null character.
-
-    gzgets returns buf, or Z_NULL in case of error.
-*/
-    while(fgets(line, 80, pdbInFile) != 0) {
-        if (strncmp(line, "MODEL ", 6) == 0) {
-            if (stopflag == 0) {
-                stopflag = 1;
-                continue;
-            } else {
-                strcpy(stopline, line);
-                break;
-            }
-        }
-    }
-
-/*
-z_off_t gzseek (gzFile file, z_off_t offset, int whence);
-    Sets the starting position for the next gzread or gzwrite on the given compressed file. The offset represents a number of bytes in the uncompressed data stream. The whence parameter is defined as in lseek(2); the value SEEK_END is not supported.
-
-    If the file is opened for reading, this function is emulated but can be extremely slow. If the file is opened for writing, only forward seeks are supported ; gzseek then compresses a sequence of zeroes up to the new starting position.
-
-    gzseek returns the resulting offset location as measured in bytes from the beginning of the uncompressed stream, or -1 in case of error, in particular if the file is opened for writing and the new starting position would be before the current position. 
-*/
+	if (arg->zipped) {
+		while(gzgets(*pdbgzInFile, line, 80) != 0) {
+			if (strncmp(line, "MODEL ", 6) == 0) {
+				if (stopflag == 0) {
+					stopflag = 1;
+					continue;
+				} else {
+					strcpy(stopline, line);
+					break;
+				}
+			}
+		}
+	} else {
+		while(fgets(line, 80, pdbInFile) != 0) {
+			if (strncmp(line, "MODEL ", 6) == 0) {
+				if (stopflag == 0) {
+					stopflag = 1;
+					continue;
+				} else {
+					strcpy(stopline, line);
+					break;
+				}
+			}
+		}
+	}
 
     /* rewind the file handle to the start */
-	if (fseek(pdbInFile, 0L, SEEK_SET) != 0) {
-		/* handle repositioning error */
+	if (arg->zipped) {
+		if (gzseek(*pdbgzInFile, 0L, SEEK_SET) != 0) {
+			/* handle repositioning error */
+		}
+	} else {
+		if (fseek(pdbInFile, 0L, SEEK_SET) != 0) {
+			/* handle repositioning error */
+		}
 	}
 
 	/*____________________________________________________________________________*/
 	/* not all PDB data types are used in this program to save resources */
-    while(fgets(line, 80, pdbInFile) != 0) {
+
+    while (getsFlag > 0) {
+		if (arg->zipped) {
+			line = gzgets(*pdbgzInFile, line, 80);
+		} else {
+			getsFlag = fgets(line, 80, pdbInFile);
+		}
+	
+		if (getsFlag == 0) {
+			break;
+		}
+
 		ca_p = 0; /* CA or P flag */
 
 		/*____________________________________________________________________________*/
@@ -224,6 +241,11 @@ z_off_t gzseek (gzFile file, z_off_t offset, int whence);
 		/* read this entry */
 		/* atom number */
 		str->atom[str->nAtom].atomNumber = atoi(&line[6]);
+
+		/* record type */
+		for (i = 0, j = 0; i < 6; )
+			str->atom[str->nAtom].recordName[j++] = line[i++];
+		str->atom[str->nAtom].recordName[j] = '\0';
 
 		/* atom name */
 		for (i = 12, j = 0; i < 16; )
@@ -291,7 +313,7 @@ z_off_t gzseek (gzFile file, z_off_t offset, int whence);
 		/*____________________________________________________________________________*/
 		/* check conditions to record this entry */
 		/* if no hydrogens set, skip hydrogen lines */
-		if (! hydrogens) {
+		if (! argpdb->hydrogens) {
 			strip_char(str->atom[str->nAtom].atomName, &(atomName[0]));
 			/* skip patterns 'H...' and '?H..', where '?' is a digit */
 			if ((atomName[0] == 'H') || \
@@ -330,7 +352,7 @@ z_off_t gzseek (gzFile file, z_off_t offset, int whence);
 		}
 
 		/* in coarse mode record only CA and P entries */
-		if (!ca_p && coarse)
+		if (!ca_p && argpdb->coarse)
 			continue;
 
 		/*____________________________________________________________________________*/
@@ -400,6 +422,7 @@ int read_conect(FILE *pdbInFile)
 void read_structure(Arg *arg, Argpdb *argpdb, Str *pdb)
 {
 	FILE *pdbInFile = 0;
+	gzFile pdbgzInFile;
 
 /*
 	typedef voidp gzFile;
@@ -412,11 +435,20 @@ void read_structure(Arg *arg, Argpdb *argpdb, Str *pdb)
     gzopen returns NULL if the file could not be opened or if there was insufficient memory to allocate the (de)compression state ; errno can be checked to distinguish the two cases (if errno is zero, the zlib error is Z_MEM_ERROR).
 */
 
-    pdbInFile = safe_open(arg->pdbInFileName, "r");
     pdb->sequence.name = safe_malloc((strlen(basename(arg->pdbInFileName)) + 1) * sizeof(char));
     strcpy(pdb->sequence.name, basename(arg->pdbInFileName));
-    read_pdb(pdbInFile, pdb, argpdb->coarse, argpdb->hydrogens);
-    fclose(pdbInFile);
+
+	/* gzipped or raw input file */
+	/* passing both types of file pointers to read_pdb, but only one will be used */
+	if (arg->zipped) {
+		pdbgzInFile = gzopen(arg->pdbInFileName, "r");
+		read_pdb(pdbInFile, &pdbgzInFile, arg, argpdb, pdb);
+		gzclose(pdbgzInFile);
+	} else {
+		pdbInFile = safe_open(arg->pdbInFileName, "r");
+		read_pdb(pdbInFile, &pdbgzInFile, arg, argpdb, pdb);
+		fclose(pdbInFile);
+	}
 
     /* check for empty pdb structure and exit */
     if (pdb->nAtom == 0)

@@ -13,6 +13,8 @@ Read the COPYING file for license information.
 #include <stdlib.h>
 #include <string.h>
 
+#include <zlib.h>
+
 #include "arg.h"
 #include "argpdb.h"
 #include "error.h"
@@ -25,7 +27,7 @@ Read the COPYING file for license information.
 
 /*____________________________________________________________________________*/
 /* prototypes */
-int read_pdb(FILE *pdbfile, Str *str, int coarse, int hydrogens);
+int read_pdb(FILE *pdbfile, gzFile *pdbgzInFile, Arg *arg, Argpdb *argpdb, Str *str);
 void read_structure(Arg *arg, Argpdb *argpdb, Str *pdb);
 
 #endif

@@ -16,6 +16,8 @@ Read the COPYING file for license information.
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 
+#include <zlib.h>
+
 #include "arg.h"
 #include "argpdb.h"
 #include "error.h"

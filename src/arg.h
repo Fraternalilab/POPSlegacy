@@ -27,6 +27,7 @@ typedef struct
 	char *pdbInFileName;
 	char *pdbmlInFileName;
 	int pdbml;
+	int zipped;
     FILE *trajInFile;
 	char *trajInFileName;
     float rProbe;
