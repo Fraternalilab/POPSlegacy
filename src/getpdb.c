@@ -142,7 +142,6 @@ int read_pdb(FILE *pdbInFile, gzFile *pdbgzInFile, Arg *arg, Argpdb *argpdb, Str
 	const int nHetAtom = 9;
 	char hetAtomPattern[9][32] = {{" N  "},{" CA "},{" C  "},{" O  "},{".{1}C[[:print:]]{1,3}"},{".{1}N[[:print:]]{1,3}"},{".{1}O[[:print:]]{1,3}"},{".{1}P[[:print:]]{1,3}"},{".{1}S[[:print:]]{1,3}"}};
 	char hetAtomNewname[9][32] = {{" N  "},{" CA "},{" C  "},{" O  "},{" C_ "},{" N_ "},{" O_ "},{" P_ "},{" S_ "}};
-	int getsFlag = 1;
 
 	/*____________________________________________________________________________*/
 	/* initialise/allocate memory for set of (64) selected (CA) atom entries */
@@ -206,18 +205,17 @@ int read_pdb(FILE *pdbInFile, gzFile *pdbgzInFile, Arg *arg, Argpdb *argpdb, Str
 
 	/*____________________________________________________________________________*/
 	/* not all PDB data types are used in this program to save resources */
-
-    while (getsFlag > 0) {
+    while (1) {
 		if (arg->zipped) {
-			line = gzgets(*pdbgzInFile, line, 80);
+			if (gzgets(*pdbgzInFile, line, 80) == 0) {
+				break;
+			}
 		} else {
-			getsFlag = fgets(line, 80, pdbInFile);
+			if (fgets(line, 80, pdbInFile) == 0) {
+				break;
+			}
 		}
 	
-		if (getsFlag == 0) {
-			break;
-		}
-
 		ca_p = 0; /* CA or P flag */
 
 		/*____________________________________________________________________________*/
