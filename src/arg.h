@@ -66,6 +66,8 @@ typedef struct
 	int jsonOut;
 	FILE *jsonOutFile;
 	char *jsonOutFileName;
+	FILE *jsonbOutFile;
+	char *jsonbOutFileName;
 } Arg;
 
 /*____________________________________________________________________________*/

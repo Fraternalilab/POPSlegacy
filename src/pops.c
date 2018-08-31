@@ -74,6 +74,13 @@ int main(int argc, char *argv[])
 		ErrorSpec("Exiting", "JSON object returned NULL");
     }
 
+	/* create JSONb object */
+	cJSON *resSasaJsonb = cJSON_CreateObject();
+    if (resSasaJsonb == NULL) {
+		cJSON_Delete(resSasaJsonb);
+		ErrorSpec("Exiting", "JSONb object returned NULL");
+    }
+
     /*________________________________________________________________________*/
     /* MPI */
 #ifdef MPI
@@ -144,9 +151,12 @@ int main(int argc, char *argv[])
     /*____________________________________________________________________________*/
 	/** print JSON output */
 	if (arg.jsonOut) {
-		if (! arg.silent) fprintf(stdout, "JSON Output:\n");
+		if (! arg.silent) fprintf(stdout, "SASA Output:\n");
 		make_resSasaJson(&arg, &pdb, molSasa.resSasa, resSasaJson);
 		print_json(&arg, resSasaJson);
+		if (! arg.silent) fprintf(stdout, "bSASA Output:\n");
+		make_resbSasaJson(&arg, &pdb, molSasa.resSasa, resSasaJsonb);
+		print_jsonb(&arg, resSasaJsonb);
 	} else {
 	/** print atom types and SASA */
 		if (! arg.silent) fprintf(stdout, "SASA Output:\n");

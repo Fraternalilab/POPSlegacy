@@ -1,5 +1,5 @@
 
-# POPS*: Parameter OPtimised Surface of proteins and nucleic acids 
+# POPS: Parameter OPtimised Surface of proteins and nucleic acids 
 Calculation of solvent accessible surface areas (SASAs) of biopolymers,
 currently proteins and nucleic acids.
 
@@ -18,12 +18,12 @@ should acknowledge its use by the following citation:
    *An efficient mean solvation force model for use in molecular dynamics simulations of proteins in aqueous solution.*
    **Journal of Molecular Biology** 256 (1996) 939-948.
 
-### POPS* method
+### POPS method
    Fraternali, F. and Cavallo, L.
    *Parameter optimized surfaces (POPS): analysis of key interactions and conformational changes in the ribosome.*
    **Nucleic Acids Research** 30 (2002) 2950-2960.
 
-### POPS* server
+### POPS server
    Cavallo, L., Kleinjung, J. and Fraternali, F.
    *POPS: A fast algorithm for solvent accessible surface areas at atomic and residue level.*
    **Nucleic Acids Research** 31 (2003) 3364-3366.
@@ -36,8 +36,9 @@ should acknowledge its use by the following citation:
 
 ## Install / Uninstall
 * Dependencies
-1. *gemmi* for mmCIF parsing
-2. *cJSON* for JSON output
+1. *libxml2* for XML parsing
+2. *zlib* for compressed input files
+3. *cJSON* for JSON output
 
 * Run the 'bootstrap' shell script and follow the general 'INSTALL' instructions.
 
@@ -60,6 +61,10 @@ Documentation files are created in 'doc/html' and 'doc/latex'.
 The latex documentation is completed by executing 'make pdf' in the
 'doc/latex' directory, which creates 'refman.ps' and 'refman.pdf'.
 
+* The examples in 'tests' run by the 'make check' invocation are as follows:
+- 5lff (test1 series): A peptide structure with 7 residues in one chain. 
+- 1f3r (test2 series): An antibody-peptide complex with one HETATM residue.
+- 1aki (test3 series): The GROMOS trajectory of a small molecule.  
 
 ## Usage
 ### Command Line Parameters
@@ -70,6 +75,7 @@ pops [--pdb ... | --pdbml ...] [OPTIONS ...]
 	   --pdb <PDB input>		(mode: optional, type: char  , default: void)
 	   --pdbml <PDBML input>	(mode: optional, type: char  , default: void)
 	   --traj <trajectory input>	(mode: optional , type: char  , default: void)
+       --zipped                 (mode: opional , type: bool  , default: false)
 	 MODE OPTIONS
 	   --coarse			(mode: optional , type: no_arg, default: off)
 	   --hydrogens			(mode: optional , type: no_arg, default: off)
@@ -104,7 +110,10 @@ pops [--pdb ... | --pdbml ...] [OPTIONS ...]
 	   --help
 
 ### Short Description of Command Line Parameters
+* pdb : input format is the classical PDB format
+* pdbml : input format is the XML format of the PDB database
 * trajInFileName : trajectory input file
+* zipped : the input file is compressed with gzip or similar (zlib compatible)
 * coarse : Calpha-only computation [0,1]
 * hydrogens : hydrogens [0,1]
 * multiModel : input with multiple models
@@ -132,6 +141,17 @@ pops [--pdb ... | --pdbml ...] [OPTIONS ...]
 * noHeaderOut : suppress output headers (for benchmarking)
 * padding : add lines to pad the missing hydrogen atom lines (for benchmarking)
 * rout : output of R-compatible output 
+
+
+## Input file formats
+POPS accepts two formats of the PDB database:
+the classical PDB format (*.pdb) using input parameter '--pdb' and the
+newer XML format (*.xml) using input parameter '--pdbml';
+the latter is the preferred option for forward compatibility.
+Structures are usually stored in compressed (zipped) form and
+POPS can read the compressed files directly.
+POPS depends therefore on the libxml2 and lzip libraries,
+whose presence is checked at the configuration stage.
 
 
 ## Program Design

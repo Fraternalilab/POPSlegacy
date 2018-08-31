@@ -111,6 +111,7 @@ static void set_defaults(Arg *arg, Argpdb *argpdb)
 	arg->rout = 0; /* output for R-version of POPSCOMP */ 
 	arg->jsonOut = 0; /* JSON output */
 	arg->jsonOutFileName = "pops.json";
+	arg->jsonbOutFileName = "popsb.json";
 }
 
 /*____________________________________________________________________________*/
@@ -165,10 +166,11 @@ static void print_args(Arg *arg, Argpdb *argpdb)
                     "traj: %s\n"
                     "coarse: %d\n"
                     "multiModel: %d\n"
-                    "rProbe: %f\n",
+                    "rProbe: %f\n"
+					"jsonOut: %d\n",
         arg->pdbInFileName, arg->pdbmlInFileName, arg->zipped,
 		arg->trajInFileName, argpdb->coarse,
-        0, arg->rProbe);
+        0, arg->rProbe, arg->jsonOut);
     fflush(stdout);
 }
 
@@ -257,7 +259,7 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
         {"hydrogens", no_argument, 0, 27},
         {"partOcc", no_argument, 0, 28},
         {"pdbml", required_argument, 0, 29},
-        {"zipped", required_argument, 0, 30},
+        {"zipped", no_argument, 0, 30},
         {"cite", no_argument, 0, 40},
         {"version", no_argument, 0, 41},
         {"help", no_argument, 0, 42},

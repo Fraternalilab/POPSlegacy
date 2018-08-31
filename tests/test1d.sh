@@ -1,8 +1,8 @@
 #! /bin/sh
 
 echo "--------------------------------------------------------------"
-echo " test1b                                                       "
+echo " test1d                                                       "
 echo "--------------------------------------------------------------"
 
-../src/pops --pdb 5lff.pdb --jsonOut || exit 1
+../src/pops --pdb 5lff.pdb.gz --zipped --jsonOut || exit 1
 

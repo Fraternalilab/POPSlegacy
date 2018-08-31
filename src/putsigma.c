@@ -122,7 +122,7 @@ void print_sfe(Arg *arg, Argpdb *argpdb, Str *pdb, Type *type, Topol *topol, \
 	/* for single (reference) molecule */
 	if (frame < 0) {
 		if (! arg->silent)
-			fprintf(stdout, "\tSFE of reference molecule: %s\n", arg->sigmaOutFileName);
+			fprintf(stdout, "\tSFE of input molecule: %s\n", arg->sigmaOutFileName);
 		arg->sigmaOutFile = safe_open(arg->sigmaOutFileName, "w");
 
 		/* atom SFE */

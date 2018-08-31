@@ -123,7 +123,7 @@ int parseXML(const char *filename, Str *pdb) {
 	char hetAtomNewname[5][32] = {{"N_"},{"C_"},{"O_"},{"P_"},{"S_"}};
 
 	/*____________________________________________________________________________*/
-    /*parse the file and get the document (DOM) */
+    /* parse the file and get the document (DOM) */
 	if ((doc = xmlReadFile(filename, NULL, 0)) == NULL) {
         fprintf(stderr, "XML Parser: Failed to read %s\n", filename);
 		exit(-1);
@@ -244,6 +244,7 @@ int parseXML(const char *filename, Str *pdb) {
 
 			/* skip hydrogen atoms */
 			if (strcmp(pdb->atom[pdb->nAtom].element, "H") == 0) {
+				++ pdb->nAllAtom;
 				continue;
 			}
 
@@ -346,10 +347,12 @@ void read_structure_xml(Arg *arg, Argpdb *argpdb, Str *pdb)
 
     if (! arg->silent) fprintf(stdout, "\tPDB file: %s\n"
 										"\tPDB file content:\n"
-										"\t\tnAtom = %d (excluding hydrogens)\n"
-										"\t\tnAllAtom = %d (all atoms to match trajectory entries)\n",
-							arg->pdbmlInFileName, pdb->nAtom, pdb->nAllAtom);
-
+										"\t\tall atoms = %d\n"
+										"\t\tprocessed atoms (C,N,O,S,P) = %d\n"
+										"\t\tresidues (CA||P) = %d\n"
+										"\t\tchains = %d\n",
+							arg->pdbInFileName, pdb->nAllAtom,
+							pdb->nAtom, pdb->nResidue, pdb->nChain);
 
 }
 

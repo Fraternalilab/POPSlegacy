@@ -1,4 +1,8 @@
 #! /bin/sh
 
-valgrind --leak-check=full --show-leak-kinds=all ../src/pops --pdb 1f3r.pdb --coarse --compositionOut --typeOut --topologyOut --atomOut --residueOut --chainOut || exit 1
+echo "--------------------------------------------------------------"
+echo " test1a                                                       "
+echo "--------------------------------------------------------------"
+
+../src/pops --pdb 5lff.pdb --compositionOut --typeOut --topologyOut --atomOut --residueOut --chainOut || exit 1
 

@@ -1,0 +1,349 @@
+HEADER    CYTOKINE                                01-JUL-16   5LFF              
+TITLE     NMR STRUCTURE OF PEPTIDE 2 TARGETING CXCR4                            
+COMPND    MOL_ID: 1;                                                            
+COMPND   2 MOLECULE: ARG-ALA-CYS-ARG-PHE-PHE-CYS;                               
+COMPND   3 CHAIN: A;                                                            
+COMPND   4 ENGINEERED: YES                                                      
+SOURCE    MOL_ID: 1;                                                            
+SOURCE   2 SYNTHETIC: YES;                                                      
+SOURCE   3 ORGANISM_SCIENTIFIC: HOMO SAPIENS;                                   
+SOURCE   4 ORGANISM_COMMON: HUMAN;                                              
+SOURCE   5 ORGANISM_TAXID: 9606                                                 
+KEYWDS    CXCR4, CXCL12, CXCR4 ANTAGONISTS, CANCER, MOLECULAR INVASION, DRUG    
+KEYWDS   2 DESIGN, CHEMOKINE, CYTOKINE                                          
+EXPDTA    SOLUTION NMR                                                          
+NUMMDL    10                                                                    
+AUTHOR    S.DI MARO,A.M.TROTTA,D.BRANCACCIO,F.S.DI LEVA,V.LA PIETRA,C.IERANO,   
+AUTHOR   2 M.NAPOLITANO,L.PORTELLA,C.D'ALTERIO,R.A.SICILIANO,D.SEMENTA,         
+AUTHOR   3 S.TOMASSI,A.CAROTENUTO,E.NOVELLINO,S.SCALA,L.MARINELLI               
+REVDAT   2   05-OCT-16 5LFF    1       JRNL                                     
+REVDAT   1   07-SEP-16 5LFF    0                                                
+JRNL        AUTH   S.DI MARO,A.M.TROTTA,D.BRANCACCIO,F.S.DI LEVA,V.LA PIETRA,   
+JRNL        AUTH 2 C.IERANO,M.NAPOLITANO,L.PORTELLA,C.D'ALTERIO,R.A.SICILIANO,  
+JRNL        AUTH 3 D.SEMENTA,S.TOMASSI,A.CAROTENUTO,E.NOVELLINO,S.SCALA,        
+JRNL        AUTH 4 L.MARINELLI                                                  
+JRNL        TITL   EXPLORING THE N-TERMINAL REGION OF C-X-C MOTIF CHEMOKINE 12  
+JRNL        TITL 2 (CXCL12): IDENTIFICATION OF PLASMA-STABLE CYCLIC PEPTIDES AS 
+JRNL        TITL 3 NOVEL, POTENT C-X-C CHEMOKINE RECEPTOR TYPE 4 (CXCR4)        
+JRNL        TITL 4 ANTAGONISTS.                                                 
+JRNL        REF    J.MED.CHEM.                   V.  59  8369 2016              
+JRNL        REFN                   ISSN 0022-2623                               
+JRNL        PMID   27571038                                                     
+JRNL        DOI    10.1021/ACS.JMEDCHEM.6B00695                                 
+REMARK   2                                                                      
+REMARK   2 RESOLUTION. NOT APPLICABLE.                                          
+REMARK   3                                                                      
+REMARK   3 REFINEMENT.                                                          
+REMARK   3   PROGRAM     : DISCOVER                                             
+REMARK   3   AUTHORS     : ACCELRYS SOFTWARE INC.                               
+REMARK   3                                                                      
+REMARK   3  OTHER REFINEMENT REMARKS: NULL                                      
+REMARK   4                                                                      
+REMARK   4 5LFF COMPLIES WITH FORMAT V. 3.30, 13-JUL-11                         
+REMARK 100                                                                      
+REMARK 100 THIS ENTRY HAS BEEN PROCESSED BY PDBE ON 01-JUL-16.                  
+REMARK 100 THE DEPOSITION ID IS D_1200000649.                                   
+REMARK 210                                                                      
+REMARK 210 EXPERIMENTAL DETAILS                                                 
+REMARK 210  EXPERIMENT TYPE                : NMR                                
+REMARK 210  TEMPERATURE           (KELVIN) : 298                                
+REMARK 210  PH                             : 5.5                                
+REMARK 210  IONIC STRENGTH                 : 0                                  
+REMARK 210  PRESSURE                       : 1 ATM                              
+REMARK 210  SAMPLE CONTENTS                : 2 MM PEPTIDE 2, 200 MM             
+REMARK 210                                   DEUTERATED SDS, 10 % DEUTERAD      
+REMARK 210                                   H2O, 90% H2O/10% D2O               
+REMARK 210                                                                      
+REMARK 210  NMR EXPERIMENTS CONDUCTED      : 1D 1H; 2D 1H-1H NOESY; 2D 1H-1H    
+REMARK 210                                   TOCSY; 2D DQF-COSY                 
+REMARK 210  SPECTROMETER FIELD STRENGTH    : 700 MHZ                            
+REMARK 210  SPECTROMETER MODEL             : INOVA                              
+REMARK 210  SPECTROMETER MANUFACTURER      : VARIAN                             
+REMARK 210                                                                      
+REMARK 210  STRUCTURE DETERMINATION.                                            
+REMARK 210   SOFTWARE USED                 : XEASY, DYANA                       
+REMARK 210   METHOD USED                   : SIMULATED ANNEALING                
+REMARK 210                                                                      
+REMARK 210 CONFORMERS, NUMBER CALCULATED   : 100                                
+REMARK 210 CONFORMERS, NUMBER SUBMITTED    : 10                                 
+REMARK 210 CONFORMERS, SELECTION CRITERIA  : STRUCTURES WITH THE LOWEST         
+REMARK 210                                   ENERGY                             
+REMARK 210                                                                      
+REMARK 210 BEST REPRESENTATIVE CONFORMER IN THIS ENSEMBLE : 1                   
+REMARK 210                                                                      
+REMARK 210 REMARK: NULL                                                         
+REMARK 215                                                                      
+REMARK 215 NMR STUDY                                                            
+REMARK 215 THE COORDINATES IN THIS ENTRY WERE GENERATED FROM SOLUTION           
+REMARK 215 NMR DATA.  PROTEIN DATA BANK CONVENTIONS REQUIRE THAT                
+REMARK 215 CRYST1 AND SCALE RECORDS BE INCLUDED, BUT THE VALUES ON              
+REMARK 215 THESE RECORDS ARE MEANINGLESS.                                       
+REMARK 300                                                                      
+REMARK 300 BIOMOLECULE: 1                                                       
+REMARK 300 SEE REMARK 350 FOR THE AUTHOR PROVIDED AND/OR PROGRAM                
+REMARK 300 GENERATED ASSEMBLY INFORMATION FOR THE STRUCTURE IN                  
+REMARK 300 THIS ENTRY. THE REMARK MAY ALSO PROVIDE INFORMATION ON               
+REMARK 300 BURIED SURFACE AREA.                                                 
+REMARK 350                                                                      
+REMARK 350 COORDINATES FOR A COMPLETE MULTIMER REPRESENTING THE KNOWN           
+REMARK 350 BIOLOGICALLY SIGNIFICANT OLIGOMERIZATION STATE OF THE                
+REMARK 350 MOLECULE CAN BE GENERATED BY APPLYING BIOMT TRANSFORMATIONS          
+REMARK 350 GIVEN BELOW.  BOTH NON-CRYSTALLOGRAPHIC AND                          
+REMARK 350 CRYSTALLOGRAPHIC OPERATIONS ARE GIVEN.                               
+REMARK 350                                                                      
+REMARK 350 BIOMOLECULE: 1                                                       
+REMARK 350 AUTHOR DETERMINED BIOLOGICAL UNIT: MONOMERIC                         
+REMARK 350 SOFTWARE DETERMINED QUATERNARY STRUCTURE: MONOMERIC                  
+REMARK 350 SOFTWARE USED: PISA                                                  
+REMARK 350 TOTAL BURIED SURFACE AREA: 0 ANGSTROM**2                             
+REMARK 350 SURFACE AREA OF THE COMPLEX: 1130 ANGSTROM**2                        
+REMARK 350 CHANGE IN SOLVENT FREE ENERGY: 0.0 KCAL/MOL                          
+REMARK 350 APPLY THE FOLLOWING TO CHAINS: A                                     
+REMARK 350   BIOMT1   1  1.000000  0.000000  0.000000        0.00000            
+REMARK 350   BIOMT2   1  0.000000  1.000000  0.000000        0.00000            
+REMARK 350   BIOMT3   1  0.000000  0.000000  1.000000        0.00000            
+REMARK 500                                                                      
+REMARK 500 GEOMETRY AND STEREOCHEMISTRY                                         
+REMARK 500 SUBTOPIC: COVALENT BOND LENGTHS                                      
+REMARK 500                                                                      
+REMARK 500 THE STEREOCHEMICAL PARAMETERS OF THE FOLLOWING RESIDUES              
+REMARK 500 HAVE VALUES WHICH DEVIATE FROM EXPECTED VALUES BY MORE               
+REMARK 500 THAN 6*RMSD (M=MODEL NUMBER; RES=RESIDUE NAME; C=CHAIN               
+REMARK 500 IDENTIFIER; SSEQ=SEQUENCE NUMBER; I=INSERTION CODE).                 
+REMARK 500                                                                      
+REMARK 500 STANDARD TABLE:                                                      
+REMARK 500 FORMAT: (10X,I3,1X,2(A3,1X,A1,I4,A1,1X,A4,3X),1X,F6.3)               
+REMARK 500                                                                      
+REMARK 500 EXPECTED VALUES PROTEIN: ENGH AND HUBER, 1999                        
+REMARK 500 EXPECTED VALUES NUCLEIC ACID: CLOWNEY ET AL 1996                     
+REMARK 500                                                                      
+REMARK 500  M RES CSSEQI ATM1   RES CSSEQI ATM2   DEVIATION                     
+REMARK 500  1 CYS A   7   C     CYS A   7   O       0.126                       
+REMARK 500  1 CYS A   7   C     CYS A   7   OXT     0.151                       
+REMARK 500  2 CYS A   7   C     CYS A   7   O       0.126                       
+REMARK 500  3 CYS A   7   C     CYS A   7   O       0.126                       
+REMARK 500  4 CYS A   7   C     CYS A   7   O       0.126                       
+REMARK 500  5 CYS A   7   C     CYS A   7   O       0.126                       
+REMARK 500  6 CYS A   7   C     CYS A   7   O       0.126                       
+REMARK 500  7 CYS A   7   C     CYS A   7   O       0.126                       
+REMARK 500  8 CYS A   7   C     CYS A   7   O       0.126                       
+REMARK 500  9 CYS A   7   C     CYS A   7   O       0.126                       
+REMARK 500 10 CYS A   7   C     CYS A   7   O       0.126                       
+REMARK 500                                                                      
+REMARK 500 REMARK: NULL                                                         
+REMARK 500                                                                      
+REMARK 500 GEOMETRY AND STEREOCHEMISTRY                                         
+REMARK 500 SUBTOPIC: COVALENT BOND ANGLES                                       
+REMARK 500                                                                      
+REMARK 500 THE STEREOCHEMICAL PARAMETERS OF THE FOLLOWING RESIDUES              
+REMARK 500 HAVE VALUES WHICH DEVIATE FROM EXPECTED VALUES BY MORE               
+REMARK 500 THAN 6*RMSD (M=MODEL NUMBER; RES=RESIDUE NAME; C=CHAIN               
+REMARK 500 IDENTIFIER; SSEQ=SEQUENCE NUMBER; I=INSERTION CODE).                 
+REMARK 500                                                                      
+REMARK 500 STANDARD TABLE:                                                      
+REMARK 500 FORMAT: (10X,I3,1X,A3,1X,A1,I4,A1,3(1X,A4,2X),12X,F5.1)              
+REMARK 500                                                                      
+REMARK 500 EXPECTED VALUES PROTEIN: ENGH AND HUBER, 1999                        
+REMARK 500 EXPECTED VALUES NUCLEIC ACID: CLOWNEY ET AL 1996                     
+REMARK 500                                                                      
+REMARK 500  M RES CSSEQI ATM1   ATM2   ATM3                                     
+REMARK 500  1 ARG A   1   NE  -  CZ  -  NH2 ANGL. DEV. =   3.7 DEGREES          
+REMARK 500  1 ARG A   4   NE  -  CZ  -  NH2 ANGL. DEV. =   3.5 DEGREES          
+REMARK 500  2 ARG A   4   NE  -  CZ  -  NH2 ANGL. DEV. =   3.7 DEGREES          
+REMARK 500  3 ARG A   1   NE  -  CZ  -  NH1 ANGL. DEV. =  -3.1 DEGREES          
+REMARK 500  3 ARG A   1   NE  -  CZ  -  NH2 ANGL. DEV. =   4.6 DEGREES          
+REMARK 500  3 CYS A   3   CB  -  CA  -  C   ANGL. DEV. =   8.4 DEGREES          
+REMARK 500  3 ARG A   4   NE  -  CZ  -  NH2 ANGL. DEV. =   3.8 DEGREES          
+REMARK 500  4 ARG A   1   NE  -  CZ  -  NH2 ANGL. DEV. =   3.7 DEGREES          
+REMARK 500  4 CYS A   3   CB  -  CA  -  C   ANGL. DEV. =   7.2 DEGREES          
+REMARK 500  4 ARG A   4   NE  -  CZ  -  NH2 ANGL. DEV. =   3.3 DEGREES          
+REMARK 500  5 ARG A   4   NE  -  CZ  -  NH1 ANGL. DEV. =  -3.1 DEGREES          
+REMARK 500  5 ARG A   4   NE  -  CZ  -  NH2 ANGL. DEV. =   3.7 DEGREES          
+REMARK 500  6 ARG A   1   NE  -  CZ  -  NH1 ANGL. DEV. =  -3.0 DEGREES          
+REMARK 500  6 ARG A   1   NE  -  CZ  -  NH2 ANGL. DEV. =   5.0 DEGREES          
+REMARK 500  6 ARG A   4   NE  -  CZ  -  NH1 ANGL. DEV. =  -4.1 DEGREES          
+REMARK 500  6 ARG A   4   NE  -  CZ  -  NH2 ANGL. DEV. =   4.2 DEGREES          
+REMARK 500  7 ARG A   1   NE  -  CZ  -  NH2 ANGL. DEV. =   3.9 DEGREES          
+REMARK 500  8 ARG A   1   NE  -  CZ  -  NH2 ANGL. DEV. =   4.9 DEGREES          
+REMARK 500  8 ARG A   4   NE  -  CZ  -  NH2 ANGL. DEV. =   3.2 DEGREES          
+REMARK 500  9 ARG A   4   NE  -  CZ  -  NH1 ANGL. DEV. =  -3.3 DEGREES          
+REMARK 500  9 ARG A   4   NE  -  CZ  -  NH2 ANGL. DEV. =   3.5 DEGREES          
+REMARK 500 10 ARG A   4   NE  -  CZ  -  NH2 ANGL. DEV. =   4.6 DEGREES          
+REMARK 500                                                                      
+REMARK 500 REMARK: NULL                                                         
+REMARK 500                                                                      
+REMARK 500 GEOMETRY AND STEREOCHEMISTRY                                         
+REMARK 500 SUBTOPIC: TORSION ANGLES                                             
+REMARK 500                                                                      
+REMARK 500 TORSION ANGLES OUTSIDE THE EXPECTED RAMACHANDRAN REGIONS:            
+REMARK 500 (M=MODEL NUMBER; RES=RESIDUE NAME; C=CHAIN IDENTIFIER;               
+REMARK 500 SSEQ=SEQUENCE NUMBER; I=INSERTION CODE).                             
+REMARK 500                                                                      
+REMARK 500 STANDARD TABLE:                                                      
+REMARK 500 FORMAT:(10X,I3,1X,A3,1X,A1,I4,A1,4X,F7.2,3X,F7.2)                    
+REMARK 500                                                                      
+REMARK 500 EXPECTED VALUES: GJ KLEYWEGT AND TA JONES (1996). PHI/PSI-           
+REMARK 500 CHOLOGY: RAMACHANDRAN REVISITED. STRUCTURE 4, 1395 - 1400            
+REMARK 500                                                                      
+REMARK 500  M RES CSSEQI        PSI       PHI                                   
+REMARK 500  1 CYS A   3      169.03     63.76                                   
+REMARK 500  1 PHE A   5      -61.54   -160.85                                   
+REMARK 500  2 CYS A   3      168.34     57.91                                   
+REMARK 500  2 PHE A   5      -64.35   -143.98                                   
+REMARK 500  3 CYS A   3     -142.60     60.77                                   
+REMARK 500  3 ARG A   4      -60.79   -135.04                                   
+REMARK 500  3 PHE A   5      -62.00   -129.94                                   
+REMARK 500  4 CYS A   3     -137.77     70.29                                   
+REMARK 500  4 ARG A   4      -61.94   -140.89                                   
+REMARK 500  4 PHE A   5      -54.48   -127.64                                   
+REMARK 500  5 CYS A   3     -175.81     68.67                                   
+REMARK 500  5 ARG A   4      -61.27   -101.21                                   
+REMARK 500  5 PHE A   5      -69.19   -138.54                                   
+REMARK 500  6 CYS A   3      174.01     70.71                                   
+REMARK 500  6 PHE A   5      -60.64   -145.66                                   
+REMARK 500  7 CYS A   3      149.93     64.92                                   
+REMARK 500  7 PHE A   5      -64.29   -153.32                                   
+REMARK 500  8 CYS A   3      174.08     65.02                                   
+REMARK 500  8 PHE A   5      -67.61   -154.39                                   
+REMARK 500  9 CYS A   3      173.57     69.18                                   
+REMARK 500  9 PHE A   5      -61.30   -150.97                                   
+REMARK 500 10 CYS A   3      163.68     71.93                                   
+REMARK 500 10 PHE A   5      -71.41   -151.32                                   
+REMARK 500                                                                      
+REMARK 500 REMARK: NULL                                                         
+REMARK 900                                                                      
+REMARK 900 RELATED ENTRIES                                                      
+REMARK 900 RELATED ID: 34016   RELATED DB: BMRB                                 
+DBREF  5LFF A    1     7  PDB    5LFF     5LFF             1      7             
+SEQRES   1 A    7  ARG ALA CYS ARG PHE PHE CYS                                  
+SSBOND   1 CYS A    3    CYS A    7                          1555   1555  2.00  
+CRYST1    1.000    1.000    1.000  90.00  90.00  90.00 P 1           1          
+ORIGX1      1.000000  0.000000  0.000000        0.00000                         
+ORIGX2      0.000000  1.000000  0.000000        0.00000                         
+ORIGX3      0.000000  0.000000  1.000000        0.00000                         
+SCALE1      1.000000  0.000000  0.000000        0.00000                         
+SCALE2      0.000000  1.000000  0.000000        0.00000                         
+SCALE3      0.000000  0.000000  1.000000        0.00000                         
+MODEL        1                                                                  
+ATOM      1  N   ARG A   1       1.560  -9.946  -0.216  1.00  0.00           N  
+ATOM      2  CA  ARG A   1       0.904  -8.684  -0.625  1.00  0.00           C  
+ATOM      3  C   ARG A   1       1.978  -7.599  -0.910  1.00  0.00           C  
+ATOM      4  O   ARG A   1       2.824  -7.305  -0.057  1.00  0.00           O  
+ATOM      5  CB  ARG A   1      -0.103  -8.243   0.473  1.00  0.00           C  
+ATOM      6  CG  ARG A   1      -1.044  -7.082   0.059  1.00  0.00           C  
+ATOM      7  CD  ARG A   1      -1.958  -6.548   1.180  1.00  0.00           C  
+ATOM      8  NE  ARG A   1      -2.995  -7.532   1.586  1.00  0.00           N  
+ATOM      9  CZ  ARG A   1      -3.888  -7.337   2.570  1.00  0.00           C  
+ATOM     10  NH1 ARG A   1      -4.731  -8.310   2.842  1.00  0.00           N  
+ATOM     11  NH2 ARG A   1      -3.973  -6.222   3.284  1.00  0.00           N  
+ATOM     12  H2  ARG A   1       1.869 -10.460  -1.054  1.00  0.00           H  
+ATOM     13  H   ARG A   1       0.892 -10.525   0.313  1.00  0.00           H  
+ATOM     14  HA  ARG A   1       0.330  -8.909  -1.545  1.00  0.00           H  
+ATOM     15  HB2 ARG A   1      -0.731  -9.107   0.766  1.00  0.00           H  
+ATOM     16  HB3 ARG A   1       0.448  -7.965   1.393  1.00  0.00           H  
+ATOM     17  HG2 ARG A   1      -0.433  -6.232  -0.299  1.00  0.00           H  
+ATOM     18  HG3 ARG A   1      -1.653  -7.380  -0.815  1.00  0.00           H  
+ATOM     19  HD2 ARG A   1      -1.341  -6.248   2.051  1.00  0.00           H  
+ATOM     20  HD3 ARG A   1      -2.448  -5.620   0.824  1.00  0.00           H  
+ATOM     21  HE  ARG A   1      -3.060  -8.448   1.131  1.00  0.00           H  
+ATOM     22 HH11 ARG A   1      -5.403  -8.144   3.598  1.00  0.00           H  
+ATOM     23 HH12 ARG A   1      -4.644  -9.164   2.280  1.00  0.00           H  
+ATOM     24 HH21 ARG A   1      -4.694  -6.187   4.011  1.00  0.00           H  
+ATOM     25 HH22 ARG A   1      -3.302  -5.485   3.046  1.00  0.00           H  
+ATOM     26  N   ALA A   2       1.884  -6.954  -2.088  1.00  0.00           N  
+ATOM     27  CA  ALA A   2       2.708  -5.761  -2.418  1.00  0.00           C  
+ATOM     28  C   ALA A   2       2.004  -4.442  -1.976  1.00  0.00           C  
+ATOM     29  O   ALA A   2       1.469  -3.696  -2.805  1.00  0.00           O  
+ATOM     30  CB  ALA A   2       3.019  -5.816  -3.929  1.00  0.00           C  
+ATOM     31  H   ALA A   2       1.130  -7.279  -2.705  1.00  0.00           H  
+ATOM     32  HA  ALA A   2       3.689  -5.818  -1.904  1.00  0.00           H  
+ATOM     33  HB1 ALA A   2       2.103  -5.773  -4.549  1.00  0.00           H  
+ATOM     34  HB2 ALA A   2       3.656  -4.966  -4.238  1.00  0.00           H  
+ATOM     35  HB3 ALA A   2       3.563  -6.739  -4.208  1.00  0.00           H  
+ATOM     36  N   CYS A   3       2.012  -4.163  -0.649  1.00  0.00           N  
+ATOM     37  CA  CYS A   3       1.409  -2.940  -0.036  1.00  0.00           C  
+ATOM     38  C   CYS A   3      -0.149  -2.812  -0.196  1.00  0.00           C  
+ATOM     39  O   CYS A   3      -0.790  -3.508  -0.990  1.00  0.00           O  
+ATOM     40  CB  CYS A   3       2.210  -1.679  -0.482  1.00  0.00           C  
+ATOM     41  SG  CYS A   3       1.873  -0.246   0.561  1.00  0.00           S  
+ATOM     42  H   CYS A   3       2.478  -4.876  -0.078  1.00  0.00           H  
+ATOM     43  HA  CYS A   3       1.596  -3.049   1.049  1.00  0.00           H  
+ATOM     44  HB2 CYS A   3       3.301  -1.863  -0.449  1.00  0.00           H  
+ATOM     45  HB3 CYS A   3       1.975  -1.413  -1.530  1.00  0.00           H  
+ATOM     46  N   ARG A   4      -0.752  -1.854   0.531  1.00  0.00           N  
+ATOM     47  CA  ARG A   4      -2.020  -1.191   0.092  1.00  0.00           C  
+ATOM     48  C   ARG A   4      -1.804  -0.336  -1.203  1.00  0.00           C  
+ATOM     49  O   ARG A   4      -2.402  -0.629  -2.240  1.00  0.00           O  
+ATOM     50  CB  ARG A   4      -2.600  -0.347   1.269  1.00  0.00           C  
+ATOM     51  CG  ARG A   4      -3.612  -1.077   2.185  1.00  0.00           C  
+ATOM     52  CD  ARG A   4      -3.859  -0.418   3.560  1.00  0.00           C  
+ATOM     53  NE  ARG A   4      -4.275   1.010   3.487  1.00  0.00           N  
+ATOM     54  CZ  ARG A   4      -4.476   1.800   4.556  1.00  0.00           C  
+ATOM     55  NH1 ARG A   4      -4.697   3.081   4.349  1.00  0.00           N  
+ATOM     56  NH2 ARG A   4      -4.468   1.364   5.809  1.00  0.00           N  
+ATOM     57  H   ARG A   4      -0.119  -1.379   1.183  1.00  0.00           H  
+ATOM     58  HA  ARG A   4      -2.760  -1.974  -0.167  1.00  0.00           H  
+ATOM     59  HB2 ARG A   4      -1.779   0.086   1.876  1.00  0.00           H  
+ATOM     60  HB3 ARG A   4      -3.125   0.544   0.870  1.00  0.00           H  
+ATOM     61  HG2 ARG A   4      -4.573  -1.186   1.646  1.00  0.00           H  
+ATOM     62  HG3 ARG A   4      -3.266  -2.112   2.363  1.00  0.00           H  
+ATOM     63  HD2 ARG A   4      -4.633  -1.000   4.098  1.00  0.00           H  
+ATOM     64  HD3 ARG A   4      -2.940  -0.507   4.169  1.00  0.00           H  
+ATOM     65  HE  ARG A   4      -4.315   1.503   2.588  1.00  0.00           H  
+ATOM     66 HH11 ARG A   4      -4.836   3.664   5.182  1.00  0.00           H  
+ATOM     67 HH12 ARG A   4      -4.684   3.401   3.375  1.00  0.00           H  
+ATOM     68 HH21 ARG A   4      -4.637   2.055   6.547  1.00  0.00           H  
+ATOM     69 HH22 ARG A   4      -4.303   0.360   5.936  1.00  0.00           H  
+ATOM     70  N   PHE A   5      -0.954   0.705  -1.123  1.00  0.00           N  
+ATOM     71  CA  PHE A   5      -0.606   1.600  -2.262  1.00  0.00           C  
+ATOM     72  C   PHE A   5       0.725   2.348  -1.938  1.00  0.00           C  
+ATOM     73  O   PHE A   5       1.713   2.158  -2.651  1.00  0.00           O  
+ATOM     74  CB  PHE A   5      -1.768   2.516  -2.775  1.00  0.00           C  
+ATOM     75  CG  PHE A   5      -2.610   3.297  -1.740  1.00  0.00           C  
+ATOM     76  CD1 PHE A   5      -3.760   2.715  -1.194  1.00  0.00           C  
+ATOM     77  CD2 PHE A   5      -2.238   4.584  -1.335  1.00  0.00           C  
+ATOM     78  CE1 PHE A   5      -4.509   3.396  -0.239  1.00  0.00           C  
+ATOM     79  CE2 PHE A   5      -2.987   5.262  -0.377  1.00  0.00           C  
+ATOM     80  CZ  PHE A   5      -4.120   4.669   0.171  1.00  0.00           C  
+ATOM     81  H   PHE A   5      -0.515   0.819  -0.203  1.00  0.00           H  
+ATOM     82  HA  PHE A   5      -0.358   0.940  -3.118  1.00  0.00           H  
+ATOM     83  HB2 PHE A   5      -1.365   3.218  -3.530  1.00  0.00           H  
+ATOM     84  HB3 PHE A   5      -2.453   1.884  -3.373  1.00  0.00           H  
+ATOM     85  HD1 PHE A   5      -4.073   1.727  -1.502  1.00  0.00           H  
+ATOM     86  HD2 PHE A   5      -1.360   5.057  -1.752  1.00  0.00           H  
+ATOM     87  HE1 PHE A   5      -5.394   2.938   0.179  1.00  0.00           H  
+ATOM     88  HE2 PHE A   5      -2.688   6.252  -0.060  1.00  0.00           H  
+ATOM     89  HZ  PHE A   5      -4.703   5.197   0.911  1.00  0.00           H  
+ATOM     90  N   PHE A   6       0.756   3.164  -0.863  1.00  0.00           N  
+ATOM     91  CA  PHE A   6       1.973   3.870  -0.391  1.00  0.00           C  
+ATOM     92  C   PHE A   6       2.477   3.181   0.914  1.00  0.00           C  
+ATOM     93  O   PHE A   6       1.807   3.226   1.951  1.00  0.00           O  
+ATOM     94  CB  PHE A   6       1.604   5.371  -0.204  1.00  0.00           C  
+ATOM     95  CG  PHE A   6       2.744   6.283   0.285  1.00  0.00           C  
+ATOM     96  CD1 PHE A   6       3.765   6.680  -0.587  1.00  0.00           C  
+ATOM     97  CD2 PHE A   6       2.775   6.714   1.617  1.00  0.00           C  
+ATOM     98  CE1 PHE A   6       4.801   7.493  -0.132  1.00  0.00           C  
+ATOM     99  CE2 PHE A   6       3.810   7.528   2.069  1.00  0.00           C  
+ATOM    100  CZ  PHE A   6       4.822   7.917   1.195  1.00  0.00           C  
+ATOM    101  H   PHE A   6      -0.137   3.240  -0.362  1.00  0.00           H  
+ATOM    102  HA  PHE A   6       2.764   3.835  -1.169  1.00  0.00           H  
+ATOM    103  HB2 PHE A   6       1.228   5.775  -1.165  1.00  0.00           H  
+ATOM    104  HB3 PHE A   6       0.734   5.460   0.478  1.00  0.00           H  
+ATOM    105  HD1 PHE A   6       3.762   6.355  -1.618  1.00  0.00           H  
+ATOM    106  HD2 PHE A   6       1.999   6.415   2.308  1.00  0.00           H  
+ATOM    107  HE1 PHE A   6       5.587   7.795  -0.807  1.00  0.00           H  
+ATOM    108  HE2 PHE A   6       3.828   7.858   3.098  1.00  0.00           H  
+ATOM    109  HZ  PHE A   6       5.624   8.550   1.547  1.00  0.00           H  
+ATOM    110  N   CYS A   7       3.679   2.580   0.846  1.00  0.00           N  
+ATOM    111  CA  CYS A   7       4.395   2.050   2.031  1.00  0.00           C  
+ATOM    112  C   CYS A   7       5.743   2.786   2.121  1.00  0.00           C  
+ATOM    113  O   CYS A   7       6.802   2.505   1.324  1.00  0.00           O  
+ATOM    114  CB  CYS A   7       4.566   0.519   1.945  1.00  0.00           C  
+ATOM    115  SG  CYS A   7       2.993  -0.324   2.214  1.00  0.00           S  
+ATOM    116  OXT CYS A   7       5.763   3.762   3.096  1.00  0.00           O  
+ATOM    117  H   CYS A   7       4.124   2.611  -0.079  1.00  0.00           H  
+ATOM    118  HA  CYS A   7       3.847   2.270   2.968  1.00  0.00           H  
+ATOM    119  HB2 CYS A   7       4.999   0.203   0.977  1.00  0.00           H  
+ATOM    120  HB3 CYS A   7       5.268   0.166   2.724  1.00  0.00           H  
+TER     121      CYS A   7                                                      
+END                                                                             

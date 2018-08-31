@@ -221,12 +221,14 @@ int read_pdb(FILE *pdbInFile, gzFile *pdbgzInFile, Arg *arg, Argpdb *argpdb, Str
 		/*____________________________________________________________________________*/
 		/* check conditions to start assigning this entry */
 		/* skip other models */
-		if((strcmp(line, stopline) == 0) && (stopflag == 1))
+		if((strcmp(line, stopline) == 0) && (stopflag == 1)) {
 			break;
+		}
 
 		/* read only ATOM/HETATM records */
-		if((strncmp(line, "ATOM  ", 6) != 0) && (strncmp(line, "HETATM", 6) != 0))
+		if((strncmp(line, "ATOM  ", 6) != 0) && (strncmp(line, "HETATM", 6) != 0)) {
 			continue;
+		}
 
         /* skip alternative locations except for location 'A' */ 
 		if (line[16] != 32 && line[16] != 65) {
@@ -241,13 +243,15 @@ int read_pdb(FILE *pdbInFile, gzFile *pdbgzInFile, Arg *arg, Argpdb *argpdb, Str
 		str->atom[str->nAtom].atomNumber = atoi(&line[6]);
 
 		/* record type */
-		for (i = 0, j = 0; i < 6; )
+		for (i = 0, j = 0; i < 6; ) {
 			str->atom[str->nAtom].recordName[j++] = line[i++];
+		}
 		str->atom[str->nAtom].recordName[j] = '\0';
 
 		/* atom name */
-		for (i = 12, j = 0; i < 16; )
+		for (i = 12, j = 0; i < 16; ) {
 			str->atom[str->nAtom].atomName[j++] = line[i++];
+		}
 		str->atom[str->nAtom].atomName[j] = '\0';
 
 		/* alternative location */
@@ -255,8 +259,9 @@ int read_pdb(FILE *pdbInFile, gzFile *pdbgzInFile, Arg *arg, Argpdb *argpdb, Str
 		str->atom[str->nAtom].alternativeLocation[1] = '\0';*/
 
 		/* residue name */
-		for (i = 17, j = 0; i < 20; )
+		for (i = 17, j = 0; i < 20; ) {
 			str->atom[str->nAtom].residueName[j++] = line[i++];
+		}
 		str->atom[str->nAtom].residueName[j] = '\0';
 
 		/* chain identifier */
@@ -294,8 +299,9 @@ int read_pdb(FILE *pdbInFile, gzFile *pdbgzInFile, Arg *arg, Argpdb *argpdb, Str
 		str->atom[str->nAtom].segmentIdentifier[j] = '\0';*/
 
 		/* element */
-		for (i = 76, j = 0; i < 78; )
+		for (i = 76, j = 0; i < 78; ) {
 			str->atom[str->nAtom].element[j++] = line[i++];
+		}
 		str->atom[str->nAtom].element[j] = '\0';
 
 		/* charge */
@@ -304,8 +310,9 @@ int read_pdb(FILE *pdbInFile, gzFile *pdbgzInFile, Arg *arg, Argpdb *argpdb, Str
 		str->atom[str->nAtom].charge[j] = '\0';*/
 
 		/* description: everything before coordinates */
-		for (i = 0, j = 0; i < 30; )
+		for (i = 0, j = 0; i < 30; ) {
 			str->atom[str->nAtom].description[j++] = line[i++];
+		}
 		str->atom[str->nAtom].description[j] = '\0';
 
 		/*____________________________________________________________________________*/
@@ -324,30 +331,30 @@ int read_pdb(FILE *pdbInFile, gzFile *pdbgzInFile, Arg *arg, Argpdb *argpdb, Str
 		/* check whether ATOM residue name is standard */
 		if (strncmp(line, "ATOM  ", 6) == 0) {
 			assert((resbuf = aacode(str->atom[str->nAtom].residueName)) != ' ');
-			
-			/* detect CA and P atoms of standard residues for residue allocation */
-			if ((strncmp(str->atom[str->nAtom].atomName, " CA ", 4) == 0) ||
-			(strncmp(str->atom[str->nAtom].atomName, " P  ", 4) == 0)) {
-				str->resAtom[k] = str->nAtom;
-				str->sequence.res[k ++] = aacode(str->atom[str->nAtom].residueName);
-				if (k == allocated_residue) {
-					allocated_residue += 64;
-					str->resAtom = safe_realloc(str->resAtom, allocated_residue * sizeof(int));
-					str->sequence.res = safe_realloc(str->sequence.res, allocated_residue * sizeof(char));
-				}
-				++ ca_p;
-			}
-
-			/* standardise non-standard atom names */
-			standardise_name(str->atom[str->nAtom].residueName, str->atom[str->nAtom].atomName);
 		}
-
+	
 		/* process HETATM entries */
 		if (strncmp(line, "HETATM", 6) == 0) {
 			if (process_het(str, &(line[0]), regexPattern, &(hetAtomNewname[0]), nHetAtom) != 0) {
 				continue;
 			}
 		}
+
+		/* detect CA and P atoms of standard residues for residue allocation */
+		if ((strncmp(str->atom[str->nAtom].atomName, " CA ", 4) == 0) ||
+		(strncmp(str->atom[str->nAtom].atomName, " P  ", 4) == 0)) {
+			str->resAtom[k] = str->nAtom;
+			str->sequence.res[k ++] = aacode(str->atom[str->nAtom].residueName);
+			if (k == allocated_residue) {
+				allocated_residue += 64;
+				str->resAtom = safe_realloc(str->resAtom, allocated_residue * sizeof(int));
+				str->sequence.res = safe_realloc(str->sequence.res, allocated_residue * sizeof(char));
+			}
+			++ ca_p;
+		}
+
+		/* standardise non-standard atom names */
+		standardise_name(str->atom[str->nAtom].residueName, str->atom[str->nAtom].atomName);
 
 		/* in coarse mode record only CA and P entries */
 		if (!ca_p && argpdb->coarse)
@@ -451,7 +458,8 @@ void read_structure(Arg *arg, Argpdb *argpdb, Str *pdb)
     /* check for empty pdb structure and exit */
     if (pdb->nAtom == 0)
     {
-        ErrorSpecNoexit("Invalid PDB file", arg->pdbInFileName);
+        ErrorSpecNoexit("Could not find atoms in input file. Please check input parameters:\nformat (--pdb or --pdbml), compression (--zipped or not) and file name",
+			arg->pdbInFileName);
         free(pdb->atom);
         free(pdb->sequence.res);
         free(pdb->sequence.name);
@@ -460,8 +468,11 @@ void read_structure(Arg *arg, Argpdb *argpdb, Str *pdb)
 
     if (! arg->silent) fprintf(stdout, "\tPDB file: %s\n"
 										"\tPDB file content:\n"
-										"\t\tnAtom = %d (excluding hydrogens)\n"
-										"\t\tnAllAtom = %d (all atoms to match trajectory entries)\n",
-							arg->pdbInFileName, pdb->nAtom, pdb->nAllAtom);
+										"\t\tall atoms = %d\n"
+										"\t\tprocessed atoms (C,N,O,S,P) = %d\n"
+										"\t\tresidues (CA||P) = %d\n"
+										"\t\tchains = %d\n",
+							arg->pdbInFileName, pdb->nAllAtom,
+							pdb->nAtom, pdb->nResidue, pdb->nChain);
 }
 
