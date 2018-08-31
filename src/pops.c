@@ -239,6 +239,7 @@ int main(int argc, char *argv[])
 
 	/* JSON object */
 	cJSON_Delete(resSasaJson);
+	cJSON_Delete(resSasaJsonb);
 
     /*________________________________________________________________________*/
     /* MPI */

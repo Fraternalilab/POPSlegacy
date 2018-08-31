@@ -40,9 +40,8 @@ __inline__ static char aacode(char *code3)
 	if (residue == ' ') {
 		residue = scan_array(code3, nuc, 97);
 	} else if (residue == ' ') {
-		Warning("Non-standard residue: Using residue 'UNK' with default parameters.");
-		residue = 37;
-		//ErrorSpec("Unknown standard residue type in protein structure:", code3);
+		Warning("Non-standard residue.");
+		residue = 'X';
 	}
 
 	return residue;
@@ -67,7 +66,6 @@ __inline__ static int process_het(Str *str, char *line, regex_t *regexPattern, c
 
 	/* atom name: assign only allowed atom elements, otherwise atom is skipped */
 	if ((hetAtomNr = match_patterns(regexPattern, nHetAtom, &(str->atom[str->nAtom].atomName[0]))) >= 0) {
-
 		sprintf(str->atom[str->nAtom].atomName, "%s", &(hetAtomNewname[hetAtomNr][0]));
 		sprintf(str->atom[str->nAtom].residueName, "%s", "HET");
 		fprintf(stderr, "Setting atom %d name %s to %s of residue HET\n",
@@ -115,6 +113,7 @@ int parseXML(const char *filename, Str *pdb) {
 	xmlChar *content = 0;
 	unsigned int k = 0;
 	int ca_p = 0;
+	char resbuf;
 	char line[80];
 	regex_t *regexPattern = 0; /* regular atom patterns */
 	/* allowed HETATM atom types (standard N,CA,C,O) and elements (any N,C,O,P,S) */
@@ -248,7 +247,20 @@ int parseXML(const char *filename, Str *pdb) {
 				continue;
 			}
 
-			/* detect CA and P atoms of standard residues for residue allocation */
+			/* aa code */
+			if (strcmp(pdb->atom[pdb->nAtom].recordName, "ATOM") == 0) {
+				assert((resbuf = aacode(pdb->atom[pdb->nAtom].residueName)) != ' ');
+			}
+	
+			/* process HETATM entries */
+			if (strcmp(pdb->atom[pdb->nAtom].recordName, "HETATM") == 0) {
+				if (process_het(pdb, &(line[0]), regexPattern,
+						&(hetAtomNewname[0]), nHetAtom) != 0) {
+					continue;
+				}
+			}
+
+			/* detect CA and P atoms for residue allocation */
 			if ((strcmp(pdb->atom[pdb->nAtom].atomName, "CA") == 0) ||
 				(strcmp(pdb->atom[pdb->nAtom].atomName, "P") == 0)) {
 				pdb->resAtom[k] = pdb->nAtom;
@@ -265,13 +277,6 @@ int parseXML(const char *filename, Str *pdb) {
 			standardise_name(pdb->atom[pdb->nAtom].residueName,
 								pdb->atom[pdb->nAtom].atomName);
 			
-			/* process HETATM entries */
-			if (strcmp(pdb->atom[pdb->nAtom].recordName, "HETATM") == 0) {
-				if (process_het(pdb, &(line[0]), regexPattern,
-						&(hetAtomNewname[0]), nHetAtom) != 0) {
-					continue;
-				}
-			}
 
 			/*____________________________________________________________________________*/
 			/* count number of allResidues (including HETATM residues) */

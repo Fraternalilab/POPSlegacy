@@ -48,11 +48,9 @@ __inline__ static char aacode(char *code3)
 
 	/* residue not found */
 	if (residue == ' ') {
-		Warning("Check the format of the PDB file: might be non-standard. See examples in the README file.");
-		ErrorSpec("Unknown standard residue type in protein structure:", code3);
+		Warning("Non-standard residue.");
+		residue = 'X';
 	}
-	/*else
-		fprintf(stderr, "%s:%d: %c ", __FILE__, __LINE__, residue);*/
 	
 	return residue;
 }
@@ -70,9 +68,6 @@ __inline__ static int standardise_name(char *residueName, char *atomName)
 
 /*____________________________________________________________________________*/
 /** process HET residues */
-/* Differences between standard residues and HET residues:
- * 1. HET residues may be single atoms/molecules or part of a polymer;
- * 2. HET residues may not have a CA or P atom. */
 __inline__ static int process_het(Str *str, char *line, regex_t *regexPattern, char (*hetAtomNewname)[32], int nHetAtom)
 {
 	int hetAtomNr = -1;
@@ -80,7 +75,7 @@ __inline__ static int process_het(Str *str, char *line, regex_t *regexPattern, c
 	/* atom name: assign only allowed atom elements, otherwise atom is skipped */
 	if ((hetAtomNr = match_patterns(regexPattern, nHetAtom, &(str->atom[str->nAtom].atomName[0]))) >= 0) {
 		sprintf(str->atom[str->nAtom].atomName, "%s", &(hetAtomNewname[hetAtomNr][0]));
-		sprintf(str->atom[str->nAtom].atomName, "%s", &(hetAtomNewname[hetAtomNr][0]));
+		sprintf(str->atom[str->nAtom].residueName, "%s", "HET");
 		fprintf(stderr, "Setting atom %d name %s to %s of residue HET\n",
 					str->nAtom, str->atom[str->nAtom].atomName, 
 					&(hetAtomNewname[hetAtomNr][0]));
@@ -328,7 +323,7 @@ int read_pdb(FILE *pdbInFile, gzFile *pdbgzInFile, Arg *arg, Argpdb *argpdb, Str
 			}
 		}
 
-		/* check whether ATOM residue name is standard */
+		/* aa code */
 		if (strncmp(line, "ATOM  ", 6) == 0) {
 			assert((resbuf = aacode(str->atom[str->nAtom].residueName)) != ' ');
 		}
