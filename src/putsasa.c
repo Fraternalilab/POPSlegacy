@@ -71,6 +71,8 @@ static void print_atom_sasa(FILE *sasaOutFile, Arg *arg, Str *pdb, MolSasa *molS
 {
 	unsigned int i, j;
 	float surface_ratio = 0.;
+	char *atomName;
+	char *residueName;
 
 	if (! arg->noHeaderOut && ! arg->rout) {
 		fprintf(sasaOutFile, "\n=== ATOM SASAs ===\n");
@@ -112,10 +114,19 @@ static void print_atom_sasa(FILE *sasaOutFile, Arg *arg, Str *pdb, MolSasa *molS
 #endif
 		}
 
+		/* use original residue number of heteroresidues */
+		if (pdb->atom[i].het) {
+			atomName = &(pdb->atom[i].atomNameHet[0]);
+			residueName = &(pdb->atom[i].residueNameHet[0]);
+		} else {
+			atomName = &(pdb->atom[i].atomName[0]);
+			residueName = &(pdb->atom[i].residueName[0]);
+		}
+
 		fprintf(sasaOutFile, "%8d\t%3s\t%3s\t%1s\t%6d\t%1s\t%10.2f\t%10.4f\t%8d\t\t%2d\t\t%2d\t%10.2f\n",
 			pdb->atom[i].atomNumber,
-			pdb->atom[i].atomName,
-			pdb->atom[i].residueName,
+			atomName,
+			residueName,
 			pdb->atom[i].chainIdentifier,
 			pdb->atom[i].residueNumber,
 			pdb->atom[i].icode,

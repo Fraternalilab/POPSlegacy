@@ -77,8 +77,14 @@ void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 			cJSON_AddItemToArray(residues, residue);
 			sprintf(reslab, "%d", pdb->atom[pdb->resAtom[r]].residueNumber);
 			cJSON_AddStringToObject(residue, "pdb_res_label", reslab);
-			cJSON_AddStringToObject(residue, "aa_type",
+			/* use original residue number of heteroresidues */
+			if (pdb->atom[pdb->resAtom[r]].het) {
+				cJSON_AddStringToObject(residue, "aa_type",
+									pdb->atom[pdb->resAtom[r]].residueNameHet);
+			} else {
+				cJSON_AddStringToObject(residue, "aa_type",
 									pdb->atom[pdb->resAtom[r]].residueName);
+			}
 			/*cJSON_AddObjectToObject(residue, "additional_residue_annotations");*/
 
 			/* add Site_Data array */

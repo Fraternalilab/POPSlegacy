@@ -42,7 +42,7 @@ if test "$ac_use_profiling" = "yes"; then
     AC_DEFINE(PROFILING,1,[Define to compile with PROFILING settings.])
 fi
 
-# MPI commpiler search with ax_mpi.m4 
+# MPI compiler search with ax_mpi.m4 
 # http://www.gnu.org/software/autoconf-archive/ax_mpi.html
 sinclude(ax_mpi.m4)
 

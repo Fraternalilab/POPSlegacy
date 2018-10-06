@@ -75,7 +75,7 @@ pops [--pdb ... | --pdbml ...] [OPTIONS ...]
 	   --pdb <PDB input>		(mode: optional, type: char  , default: void)
 	   --pdbml <PDBML input>	(mode: optional, type: char  , default: void)
 	   --traj <trajectory input>	(mode: optional , type: char  , default: void)
-       --zipped                 (mode: opional , type: bool  , default: false)
+	   --zipped                 (mode: opional , type: bool  , default: false)
 	 MODE OPTIONS
 	   --coarse			(mode: optional , type: no_arg, default: off)
 	   --hydrogens			(mode: optional , type: no_arg, default: off)
@@ -108,6 +108,7 @@ pops [--pdb ... | --pdbml ...] [OPTIONS ...]
 	   --cite			(mode: optional , type: no_arg, default: off)
 	   --version			(mode: optional , type: no_arg, default: off)
 	   --help
+```
 
 ### Short Description of Command Line Parameters
 * pdb : input format is the classical PDB format

@@ -74,6 +74,33 @@ __inline__ static int process_het(Str *str, char *line, regex_t *regexPattern, c
 
 	/* atom name: assign only allowed atom elements, otherwise atom is skipped */
 	if ((hetAtomNr = match_patterns(regexPattern, nHetAtom, &(str->atom[str->nAtom].atomName[0]))) >= 0) {
+		/* store original atom name in 'Het' and overwrite with new name
+			that is a generic name for the SASA parameters */
+		sprintf(str->atom[str->nAtom].atomNameHet, "%s", &(str->atom[str->nAtom].atomName[0]));
+		sprintf(str->atom[str->nAtom].atomName, "%s", &(hetAtomNewname[hetAtomNr][0]));
+
+		sprintf(str->atom[str->nAtom].residueNameHet, "%s", &(str->atom[str->nAtom].residueName[0]));
+		sprintf(str->atom[str->nAtom].residueName, "%s", "HET");
+		/* set heteroatom flag */
+		str->atom[str->nAtom].het = 1;
+		fprintf(stderr, "Setting atom %d name to %s of residue HET\n",
+					str->nAtom, str->atom[str->nAtom].atomName);
+	} else {
+		WarningSpec("Skipping HETATM", str->atom[str->nAtom].atomName);
+		return 1;
+	}
+
+	return 0;
+}
+
+/*____________________________________________________________________________*/
+/** process HET residues */
+/*
+__inline__ static int process_het(Str *str, char *line, regex_t *regexPattern, char (*hetAtomNewname)[32], int nHetAtom)
+{
+	int hetAtomNr = -1;
+
+	if ((hetAtomNr = match_patterns(regexPattern, nHetAtom, &(str->atom[str->nAtom].atomName[0]))) >= 0) {
 		sprintf(str->atom[str->nAtom].atomName, "%s", &(hetAtomNewname[hetAtomNr][0]));
 		sprintf(str->atom[str->nAtom].residueName, "%s", "HET");
 		fprintf(stderr, "Setting atom %d name %s to %s of residue HET\n",
@@ -86,7 +113,7 @@ __inline__ static int process_het(Str *str, char *line, regex_t *regexPattern, c
 
 	return 0;
 }
-
+*/
 /*____________________________________________________________________________*/
 /** read PDB file */
 

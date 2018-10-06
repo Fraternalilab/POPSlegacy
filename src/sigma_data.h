@@ -69,7 +69,7 @@ ConstantSigma constant_sigma_data[] = {
 			/* unknown polymer residue */
 			/*UNK*/ 5,
 			/* ligand */
-			/*HET*/ 9,
+			/*HET*/ 6,
 			/* unknown ligand */
 			/*UNL*/ 5
 		},
@@ -564,12 +564,9 @@ ConstantSigma constant_sigma_data[] = {
 				/*O   UNK*/   {"UNK", "O",    0., 0.},
 				/*P   UNK*/   {"UNK", "P",    0., 0.},
 				/*S   UNK*/   {"UNK", "S",    0., 0.}},
-			{	/*N   HET*/   {"HET", "N",    0., 0.}, 
+			{	/*N_  HET*/   {"HET", "N_",   0., 0.}, 
 				/*CA  HET*/   {"HET", "CA",   0., 0.},
-				/*C   HET*/   {"HET", "C",    0., 0.},
-				/*O   HET*/   {"HET", "O",    0., 0.},
 				/*C_  HET*/   {"HET", "C_",   0., 0.},
-				/*N_  HET*/   {"HET", "N_",   0., 0.}, 
 				/*O_  HET*/   {"HET", "O_",   0., 0.},
 				/*P_  HET*/   {"HET", "P_",   0., 0.},
 				/*S_  HET*/   {"HET", "S_",   0., 0.}},

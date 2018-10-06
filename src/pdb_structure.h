@@ -42,6 +42,9 @@ typedef struct atom
 	int atomType; /* GROMOS atom type */
 	int groupID; /* atom group ID */
 	int modelNumber; /* model number */
+	int het; /* heteroatom flag */
+	char atomNameHet[8]; /* original atom name of heteroatom; 13 - 16 */
+	char residueNameHet[8]; /* original residue name of heteroresidue */
 } Atom;
 
 /* residue */
@@ -54,6 +57,8 @@ typedef struct residue
 	char insert[8]; 
 	char residueName[4]; 
 	char residueID[8]; 
+	int het; /* heterotamp flag */
+	char residueNameHet[4]; /* original residue name of heteroresidue */
 } Residue; 
 
 /* chain */

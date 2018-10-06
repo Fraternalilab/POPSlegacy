@@ -1,7 +1,7 @@
 /*===============================================================================
 type.h : determine atom and residue types
-Copyright (C) 2002-2016 Franca Fraternali
-Copyright (C) 2008-2016 Jens Kleinjung
+Copyright (C) 2002-2018 Franca Fraternali
+Copyright (C) 2008-2018 Jens Kleinjung
 Copyright (C) 2002 Luigi Cavallo
 Copyright (C) 2002 Kuang Lin
 Read the COPYING file for license information.

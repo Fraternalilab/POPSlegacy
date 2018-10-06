@@ -96,18 +96,20 @@ int main(int argc, char *argv[])
 
     /*____________________________________________________________________________*/
 	/** select SASA parameters */
-	if (! argpdb.coarse)
+	if (! argpdb.coarse) {
 		constant_sasa = &(constant_sasa_data[0]); /* data array element 0: atomic */
-	else
+	} else {
 		constant_sasa = &(constant_sasa_data[1]); /* data array element 1: coarse-grained */
+	}
 	res_sasa = &(constant_sasa_data[1]);
 
     /*____________________________________________________________________________*/
 	/** select SIGMA parameters */
-	if (! argpdb.coarse)
+	if (! argpdb.coarse) {
 		constant_sigma = &(constant_sigma_data[0]); /* data array element 0: atomic */
-	else
+	} else {
 		constant_sigma = &(constant_sigma_data[1]); /* data array element 1: coarse-grained */
+	}
 
     /*____________________________________________________________________________*/
     /** read input structure, either XML format or classic PDB format */
@@ -149,8 +151,9 @@ int main(int argc, char *argv[])
     compute_sasa(&pdb, &topol, &type, &molSasa, constant_sasa, res_sasa, &arg);
     
     /*____________________________________________________________________________*/
-	/** print JSON output */
+	/* SASA output, bSASA is buried area */
 	if (arg.jsonOut) {
+		/** print JSON output */
 		if (! arg.silent) fprintf(stdout, "SASA Output:\n");
 		make_resSasaJson(&arg, &pdb, molSasa.resSasa, resSasaJson);
 		print_json(&arg, resSasaJson);
@@ -158,15 +161,12 @@ int main(int argc, char *argv[])
 		make_resbSasaJson(&arg, &pdb, molSasa.resSasa, resSasaJsonb);
 		print_jsonb(&arg, resSasaJsonb);
 	} else {
-	/** print atom types and SASA */
+		/** print tabulated output */
 		if (! arg.silent) fprintf(stdout, "SASA Output:\n");
 		print_sasa(&arg, &argpdb, &pdb, &type, &topol, &molSasa, constant_sasa, -1);
 		if (! arg.silent) fprintf(stdout, "bSASA Output:\n");
 		print_bsasa(&arg, &argpdb, &pdb, &type, &topol, &molSasa, constant_sasa, -1);
 	}
-
-    /*____________________________________________________________________________*/
-	/** print bSASA */
 
     /*____________________________________________________________________________*/
     /** compute Solvation Free Energy: atoms, residues, chains, molecule */
@@ -227,12 +227,14 @@ int main(int argc, char *argv[])
 	free(pdb.resAtom);
 	free(pdb.atomMap);
 	free(pdb.sequence.res);
+
 	/* trajectory */
 	if (arg.trajInFileName) {
 		for (i = 0; i < (traj.nFrame + 1); ++ i)
 			free(traj.frame[i].trajatom);
 		free(traj.frame);
 	}
+
 	/* type */
 	free(type.atomType);
 	free(type.residueType);

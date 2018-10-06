@@ -1,6 +1,6 @@
 /*===============================================================================
 putbsasa.h : routines for printing bSASA
-Copyright (C) 2016 Jens Kleinjung
+Copyright (C) 2016-2018 Jens Kleinjung
 Read the COPYING file for license information.
 ================================================================================*/
 

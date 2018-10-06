@@ -66,11 +66,17 @@ __inline__ static int process_het(Str *str, char *line, regex_t *regexPattern, c
 
 	/* atom name: assign only allowed atom elements, otherwise atom is skipped */
 	if ((hetAtomNr = match_patterns(regexPattern, nHetAtom, &(str->atom[str->nAtom].atomName[0]))) >= 0) {
+		/* store original atom name in 'Het' and overwrite with new name
+			that is a generic name for the SASA parameters */
+		sprintf(str->atom[str->nAtom].atomNameHet, "%s", &(str->atom[str->nAtom].atomName[0]));
 		sprintf(str->atom[str->nAtom].atomName, "%s", &(hetAtomNewname[hetAtomNr][0]));
+
+		sprintf(str->atom[str->nAtom].residueNameHet, "%s", &(str->atom[str->nAtom].residueName[0]));
 		sprintf(str->atom[str->nAtom].residueName, "%s", "HET");
-		fprintf(stderr, "Setting atom %d name %s to %s of residue HET\n",
-					str->nAtom, str->atom[str->nAtom].atomName, 
-					&(hetAtomNewname[hetAtomNr][0]));
+		/* set heteroatom flag */
+		str->atom[str->nAtom].het = 1;
+		fprintf(stderr, "Setting atom %d name to %s of residue HET\n",
+					str->nAtom, str->atom[str->nAtom].atomName);
 	} else {
 		WarningSpec("Skipping HETATM", str->atom[str->nAtom].atomName);
 		return 1;
@@ -89,6 +95,7 @@ __inline__ static void init_atom(Str *pdb)
 	pdb->atom[pdb->nAtom].pos.z = 0.;
 	strcpy(pdb->atom[pdb->nAtom].chainIdentifier, "");
 	strcpy(pdb->atom[pdb->nAtom].atomName, "");
+	strcpy(pdb->atom[pdb->nAtom].atomNameHet, "");
 	strcpy(pdb->atom[pdb->nAtom].residueName, "");
 	pdb->atom[pdb->nAtom].residueNumber = 0;
 	strcpy(pdb->atom[pdb->nAtom].recordName, "");
@@ -99,6 +106,7 @@ __inline__ static void init_atom(Str *pdb)
 	strcpy(pdb->atom[pdb->nAtom].charge, "");
 	pdb->atom[pdb->nAtom].formalCharge = 0;
 	pdb->atom[pdb->nAtom].partialCharge = 0.;
+	pdb->atom[pdb->nAtom].het = 0;
 }
 
 /*____________________________________________________________________________*/
@@ -117,9 +125,9 @@ int parseXML(const char *filename, Str *pdb) {
 	char line[80];
 	regex_t *regexPattern = 0; /* regular atom patterns */
 	/* allowed HETATM atom types (standard N,CA,C,O) and elements (any N,C,O,P,S) */
-	const int nHetAtom = 5;
-	char hetAtomPattern[5][32] = {{"N"},{"C"},{"O"},{"P"},{"S"}};
-	char hetAtomNewname[5][32] = {{"N_"},{"C_"},{"O_"},{"P_"},{"S_"}};
+	const int nHetAtom = 6;
+	char hetAtomPattern[6][32] = {{"N"},{"CA"},{"C"},{"O"},{"P"},{"S"}};
+	char hetAtomNewname[6][32] = {{"N_"},{"CA"},{"C_"},{"O_"},{"P_"},{"S_"}};
 
 	/*____________________________________________________________________________*/
     /* parse the file and get the document (DOM) */
@@ -254,6 +262,7 @@ int parseXML(const char *filename, Str *pdb) {
 	
 			/* process HETATM entries */
 			if (strcmp(pdb->atom[pdb->nAtom].recordName, "HETATM") == 0) {
+				fprintf(stderr, "+++ Processing HETATM\n");
 				if (process_het(pdb, &(line[0]), regexPattern,
 						&(hetAtomNewname[0]), nHetAtom) != 0) {
 					continue;

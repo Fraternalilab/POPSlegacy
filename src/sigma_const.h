@@ -21,7 +21,8 @@ typedef struct
 /*___________________________________________________________________________*/
 /* structures */
 /* constant SIGMA data */
-typedef struct {
+typedef struct
+{
     int nResidueType; /* number of residue types */
     int nAtomResidue[64]; /* number of atoms per residue */
     AtomdataSigma atomDataSigma[64][64]; /* atom-specific data */

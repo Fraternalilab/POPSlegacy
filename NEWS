@@ -1,10 +1,7 @@
-- R-compatible output
-- inclusion of the POPSCOMP method into the POPS*
-- gzip library
-- XML parser (libxml2 library)
-- JSON output
-- computation of solvation free energies
-- git revision control
-- Compilation/check/installation on any POSIX platform with GNU Build Tools.
-- POPSc is accelerated by hard coding of ring topologies.
-
+We are currently developing a version with improved functionality.
+In particular, the following features will be added:
+* Output of JSON formatted results. Done.
+* Input of XML formatted PDB files. Done.
+* Input of compressed PDB files. Done.
+* Output of R-compatible result tables and visualisation scripts.
+* Implementation of POPScomp in POPS* so that all functions are contained in a single progam.
