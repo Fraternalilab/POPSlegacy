@@ -75,8 +75,6 @@ __inline__ static int process_het(Str *str, char *line, regex_t *regexPattern, c
 		sprintf(str->atom[str->nAtom].residueName, "%s", "HET");
 		/* set heteroatom flag */
 		str->atom[str->nAtom].het = 1;
-		fprintf(stderr, "Setting atom %d name to %s of residue HET\n",
-					str->nAtom, str->atom[str->nAtom].atomName);
 	} else {
 		WarningSpec("Skipping HETATM", str->atom[str->nAtom].atomName);
 		return 1;
@@ -133,7 +131,7 @@ int parseXML(const char *filename, Str *pdb) {
     /* parse the file and get the document (DOM) */
 	if ((doc = xmlReadFile(filename, NULL, 0)) == NULL) {
         fprintf(stderr, "XML Parser: Failed to read %s\n", filename);
-		exit(-1);
+		exit(1);
 	}
 
 	/*____________________________________________________________________________*/
@@ -269,9 +267,9 @@ int parseXML(const char *filename, Str *pdb) {
 				}
 			}
 
-			/* detect CA and P atoms for residue allocation */
+			/* detect CA and N3 atoms for residue allocation */
 			if ((strcmp(pdb->atom[pdb->nAtom].atomName, "CA") == 0) ||
-				(strcmp(pdb->atom[pdb->nAtom].atomName, "P") == 0)) {
+				(strcmp(pdb->atom[pdb->nAtom].atomName, "N3") == 0)) {
 				pdb->resAtom[k] = pdb->nAtom;
 				pdb->sequence.res[k ++] = aacode(pdb->atom[pdb->nAtom].residueName);
 				if (k == allocated_residue) {
@@ -363,10 +361,9 @@ void read_structure_xml(Arg *arg, Argpdb *argpdb, Str *pdb)
 										"\tPDB file content:\n"
 										"\t\tall atoms = %d\n"
 										"\t\tprocessed atoms (C,N,O,S,P) = %d\n"
-										"\t\tresidues (CA||P) = %d\n"
+										"\t\tresidues (CA||N3) = %d\n"
 										"\t\tchains = %d\n",
 							arg->pdbInFileName, pdb->nAllAtom,
 							pdb->nAtom, pdb->nResidue, pdb->nChain);
-
 }
 

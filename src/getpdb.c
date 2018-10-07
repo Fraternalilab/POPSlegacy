@@ -83,8 +83,6 @@ __inline__ static int process_het(Str *str, char *line, regex_t *regexPattern, c
 		sprintf(str->atom[str->nAtom].residueName, "%s", "HET");
 		/* set heteroatom flag */
 		str->atom[str->nAtom].het = 1;
-		fprintf(stderr, "Setting atom %d name to %s of residue HET\n",
-					str->nAtom, str->atom[str->nAtom].atomName);
 	} else {
 		WarningSpec("Skipping HETATM", str->atom[str->nAtom].atomName);
 		return 1;
@@ -362,9 +360,9 @@ int read_pdb(FILE *pdbInFile, gzFile *pdbgzInFile, Arg *arg, Argpdb *argpdb, Str
 			}
 		}
 
-		/* detect CA and P atoms of standard residues for residue allocation */
+		/* detect CA and N3 atoms of standard residues for residue allocation */
 		if ((strncmp(str->atom[str->nAtom].atomName, " CA ", 4) == 0) ||
-		(strncmp(str->atom[str->nAtom].atomName, " P  ", 4) == 0)) {
+		(strncmp(str->atom[str->nAtom].atomName, " N3 ", 4) == 0)) {
 			str->resAtom[k] = str->nAtom;
 			str->sequence.res[k ++] = aacode(str->atom[str->nAtom].residueName);
 			if (k == allocated_residue) {
@@ -492,7 +490,7 @@ void read_structure(Arg *arg, Argpdb *argpdb, Str *pdb)
 										"\tPDB file content:\n"
 										"\t\tall atoms = %d\n"
 										"\t\tprocessed atoms (C,N,O,S,P) = %d\n"
-										"\t\tresidues (CA||P) = %d\n"
+										"\t\tresidues (CA||N3) = %d\n"
 										"\t\tchains = %d\n",
 							arg->pdbInFileName, pdb->nAllAtom,
 							pdb->nAtom, pdb->nResidue, pdb->nChain);

@@ -1,3 +1,6 @@
+- 3.1
+
+	Rout branch: Shiny application to visualise R output.
 
 - 3.0
 Sun 25 Feb 12:53:54 GMT 2018
@@ -8,6 +11,8 @@ Sun 25 Feb 12:53:54 GMT 2018
 Sat 18 Aug 15:47:57 BST 2018
 	master branch: adding capability to read gzipped files
 	configure.ac checks presence of zlib (system) library
+	HET residues and atoms are output with original names
+	HET nucleotides are now recognised by N3 (instead of P)
 
 - 2.2
 Sat 18 Aug 15:48:07 BST 2018
