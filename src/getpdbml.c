@@ -108,6 +108,9 @@ __inline__ static void init_atom(Str *pdb)
 }
 
 /*____________________________________________________________________________*/
+/* The XML library transparently handles compression when doing
+     file-based accesses. That is different from the 'read_structure' routine
+     in 'getpdb', where the 'gz' library is being invoked explicitly. */
 int parseXML(const char *filename, Str *pdb) {
     xmlDoc *doc; /* the resulting document tree */
     xmlNode *root_node = 0;
@@ -260,7 +263,6 @@ int parseXML(const char *filename, Str *pdb) {
 	
 			/* process HETATM entries */
 			if (strcmp(pdb->atom[pdb->nAtom].recordName, "HETATM") == 0) {
-				fprintf(stderr, "+++ Processing HETATM\n");
 				if (process_het(pdb, &(line[0]), regexPattern,
 						&(hetAtomNewname[0]), nHetAtom) != 0) {
 					continue;
@@ -317,7 +319,7 @@ int parseXML(const char *filename, Str *pdb) {
 	}
 
 	ENDPARSE:
-	fprintf(stderr, "\tUsing only the first model of the PDB entry\n");
+	/* fprintf(stderr, "\tUsing only the first model of the PDB entry\n"); */
 
 	pdb->nResidue = k;
 
@@ -342,7 +344,6 @@ void read_structure_xml(Arg *arg, Argpdb *argpdb, Str *pdb)
     pdb->sequence.name = safe_malloc((strlen(basename(arg->pdbmlInFileName)) + 1) * sizeof(char));
     strcpy(pdb->sequence.name, basename(arg->pdbmlInFileName));
 
-	fprintf(stderr, "Parsing XML input file %s\n", arg->pdbmlInFileName);
     parseXML(arg->pdbmlInFileName, pdb);
     xmlCleanupParser();
     xmlMemoryDump();
@@ -363,7 +364,7 @@ void read_structure_xml(Arg *arg, Argpdb *argpdb, Str *pdb)
 										"\t\tprocessed atoms (C,N,O,S,P) = %d\n"
 										"\t\tresidues (CA||N3) = %d\n"
 										"\t\tchains = %d\n",
-							arg->pdbInFileName, pdb->nAllAtom,
+							arg->pdbmlInFileName, pdb->nAllAtom,
 							pdb->nAtom, pdb->nResidue, pdb->nChain);
 }
 
