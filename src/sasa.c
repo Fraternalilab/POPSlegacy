@@ -249,32 +249,35 @@ static int compute_atom_sasa(Str *pdb, Topol *topol, Type *type, MolSasa *molSas
 	/*___________________________________________________________________________*/
 	/** 1-2 interactions along bonds 
 		using 1-2 connectivity parameters and identifiers of bond-forming atoms */
-	for (i = 0; i < topol->nBond; ++ i)
-        mod_atom_sasa(pdb, topol, type, molSasa, constant_sasa, \
-			constant_sasa->connect_12_parameter, \
+	for (i = 0; i < topol->nBond; ++ i) {
+        mod_atom_sasa(pdb, topol, type, molSasa, constant_sasa,
+			constant_sasa->connect_12_parameter,
 			topol->ib[i], topol->jb[i], arg->rProbe);
+	}
 
 	/*___________________________________________________________________________*/
     /** 1-3 interactions along angles */
-    for (i = 0; i < topol->nAngle; ++ i)
-        mod_atom_sasa(pdb, topol, type, molSasa, constant_sasa, \
-			constant_sasa->connect_13_parameter, \
+    for (i = 0; i < topol->nAngle; ++ i) {
+        mod_atom_sasa(pdb, topol, type, molSasa, constant_sasa,
+			constant_sasa->connect_13_parameter,
 			topol->it[i], topol->kt[i], arg->rProbe);
+	}
 
 	/*___________________________________________________________________________*/
     /* 1-4 interactions along torsion angles */
-    for (i = 0; i < topol->nTorsion; ++ i)
-		mod_atom_sasa(pdb, topol, type, molSasa, constant_sasa, \
-			constant_sasa->connect_14_parameter, \
+    for (i = 0; i < topol->nTorsion; ++ i) {
+		mod_atom_sasa(pdb, topol, type, molSasa, constant_sasa,
+			constant_sasa->connect_14_parameter,
 			topol->ip[i], topol->lp[i], arg->rProbe);
+	}
 
 	/*___________________________________________________________________________*/
     /*  >(1-4) interactions */
-    for (i = 0; i < topol->nNonBonded; ++ i)
-        mod_atom_sasa(pdb, topol, type, molSasa, constant_sasa, \
-			constant_sasa->connect_15_parameter, \
+    for (i = 0; i < topol->nNonBonded; ++ i) {
+        mod_atom_sasa(pdb, topol, type, molSasa, constant_sasa,
+			constant_sasa->connect_15_parameter,
 			topol->in[i], topol->jn[i], arg->rProbe);
-
+	}
 	return(0);
 }
 
