@@ -24,14 +24,15 @@ filenames = sapply(dirnames, function(x) {
 
 #_______________________________________________________________________________
 ## run all
-lapply(names(filenames), function(x) {
-	sapply(1:length(filenames[[x]]), function(y, x = x) {
-		## current input file
+sapply(names(filenames), function(x) {
+	print(x);
+	sapply(1:length(filenames[[x]]), function(y) {
 		infile = paste("./XML", x, filenames[[x]][y], sep = "/");
 		## shell command for POPSing current input file
 		command = paste("./pops --pdbml", infile, "--zipped --jsonOut || exit 1"); 
-		system2(command);
-		stopifnot(1 == 2);
+		#print(command);
+		try(system(command));
+
 	});
 })
 
