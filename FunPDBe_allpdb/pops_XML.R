@@ -15,25 +15,37 @@
 
 #_______________________________________________________________________________
 ## configure runs
-## get names of all subdirectories and 'xml.gz' files
+## get input names of all subdirectories and 'xml.gz' files
 dirnames = list.dirs(path = "./XML", full.names = FALSE);
 filenames = sapply(dirnames, function(x) {
 			list.files(path = paste("./XML/", x, sep = ""),
 			full.names = FALSE, pattern = 'xml\\.gz$');
 })
 
+## create output structure
+## each input file will have its own output directory to accommodate multiple
+##   output files from POPS
+#sapply(names(filenames), function(x) {
+#  if (! identical(x, "")) { 
+#    dir.create(paste("./JSON", x, sep = "/"));
+#    sapply(1:length(filenames[[x]]), function(y) {
+#      dir.create(paste("./JSON", x, filenames[[x]][y], sep = "/"));
+#    });
+#  }
+#})
+
 #_______________________________________________________________________________
 ## run all
-sapply(names(filenames), function(x) {
-	print(x);
-	sapply(1:length(filenames[[x]]), function(y) {
-		infile = paste("./XML", x, filenames[[x]][y], sep = "/");
-		## shell command for POPSing current input file
-		command = paste("./pops --pdbml", infile, "--zipped --jsonOut || exit 1"); 
-		#print(command);
-		try(system(command));
-
-	});
+sapply(names(filenames)[2:10], function(x) {
+	if (! identical(x, "")) { 
+		sapply(1:length(filenames[[x]]), function(y) {
+			infile = paste("./XML", x, filenames[[x]][y], sep = "/");
+			## shell command for POPSing current input file
+			command = paste("./pops --pdbml", infile, "--zipped --jsonOut || exit 1"); 
+			#print(command);
+			try(system(command));
+		});
+	}
 })
 
 #===============================================================================

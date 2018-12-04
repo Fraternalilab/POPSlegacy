@@ -158,8 +158,9 @@ int main(int argc, char *argv[])
 		make_resSasaJson(&arg, &pdb, molSasa.resSasa, resSasaJson);
 		print_json(&arg, resSasaJson);
 		if (! arg.silent) fprintf(stdout, "bSASA Output:\n");
-		make_resbSasaJson(&arg, &pdb, molSasa.resSasa, resSasaJsonb);
-		print_jsonb(&arg, resSasaJsonb);
+		/* disabled, because not validated against PDBe server */
+		/* make_resbSasaJson(&arg, &pdb, molSasa.resSasa, resSasaJsonb);
+		   print_jsonb(&arg, resSasaJsonb); */
 	} else {
 		/** print tabulated output */
 		if (! arg.silent) fprintf(stdout, "SASA Output:\n");
@@ -178,7 +179,7 @@ int main(int argc, char *argv[])
 	/** print Solvation Free Energy */
 	if (! arg.silent) fprintf(stdout, "SFE Output:\n");
 	/* we don't have SFEs for residues yet */
-	if (! argpdb.coarse)
+	if (! argpdb.coarse && ! arg.jsonOut)
 		print_sfe(&arg, &argpdb, &pdb, &type, &topol, &molSFE, constant_sigma, -1);
 
     /*____________________________________________________________________________*/
