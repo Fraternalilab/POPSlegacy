@@ -86,6 +86,7 @@ static void set_defaults(Arg *arg, Argpdb *argpdb)
 	argpdb->partOcc = 0; /* partial occupancy [0,1] */
 	arg->rProbe = 1.4; /* probe radius (in Angstrom) */
 	arg->silent = 0; /* suppress stdout */
+	arg->outDirName = ".";
     arg->sasaOutFileName = "pops.out";
     arg->sasatrajOutFileName = "popstraj";
     arg->bsasaOutFileName = "popsb.out";
@@ -128,6 +129,7 @@ static void check_input(Arg *arg, Argpdb *argpdb)
 	assert(argpdb->multiModel == 0 || argpdb->multiModel == 1);
 	assert(argpdb->partOcc == 0 || argpdb->partOcc == 1);
 	assert(arg->rProbe > 0);
+	assert(strlen(arg->outDirName) > 0);
 	assert(strlen(arg->sasaOutFileName) > 0);
 	assert(strlen(arg->sasatrajOutFileName) > 0);
 	assert(strlen(arg->bsasaOutFileName) > 0);
@@ -194,6 +196,7 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
 	   --rProbe <probe radius [A]>\t(mode: optional , type: float , default: 1.4)\n\
 	   --silent\t\t\t(mode: optional , type: no_arg, default: off)\n\
 	 OUTPUT OPTIONS\n\
+       --outDirName <output dir>\t(mode: optional , type: char  , default: '.')\n\
 	   --popsOut <POPS output>\t(mode: optional , type: char  , default: pops.out)\n\
 	   --popstrajOut <POPS output>\t(mode: optional , type: char  , default: popstraj.out)\n\
 	   --popsbOut <POPSb output>\t(mode: optional , type: char  , default: popsb.out)\n\
@@ -260,6 +263,7 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
         {"partOcc", no_argument, 0, 28},
         {"pdbml", required_argument, 0, 29},
         {"zipped", no_argument, 0, 30},
+        {"outDirName", required_argument, 0, 31},
         {"cite", no_argument, 0, 40},
         {"version", no_argument, 0, 41},
         {"help", no_argument, 0, 42},
@@ -267,7 +271,7 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
     };
 
     /** assign parameters to long options */
-    while ((c = getopt_long(argc, argv, "1:2:3 4 5:6:7:8:9:10:11:12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29:30 40 41", long_options, NULL)) != -1) {
+    while ((c = getopt_long(argc, argv, "1:2:3 4 5:6:7:8:9:10:11:12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29:30 31:40 41", long_options, NULL)) != -1) {
         switch(c) {
             case 1:
                 arg->pdbInFileName = optarg;
@@ -358,6 +362,9 @@ int parse_args(int argc, char **argv, Arg *arg, Argpdb *argpdb)
 				break;
             case 30:
 				arg->zipped = 1;
+				break;
+            case 31:
+				arg->outDirName = optarg;
 				break;
             case 40:
 				print_citation();

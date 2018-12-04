@@ -32,6 +32,7 @@ typedef struct
 	char *trajInFileName;
     float rProbe;
 	int silent;
+	char *outDirName;
     FILE *sasaOutFile;
     char *sasaOutFileName;
     FILE *sasatrajOutFile;

@@ -18,6 +18,7 @@ extern int my_rank;
 /*____________________________________________________________________________*/
 void print_json(Arg *arg, cJSON *json)
 {
+	char outpath[256];
 	/* print JSON object to string */
 	char *popsOutJson = cJSON_Print(json);
 
@@ -25,7 +26,8 @@ void print_json(Arg *arg, cJSON *json)
 		fprintf(stdout, "\tSASA of input molecule: %s\n", arg->jsonOutFileName);
 
 	/* print string to file */
-	arg->jsonOutFile = safe_open(arg->jsonOutFileName, "w");
+	sprintf(outpath, "%s/%s", arg->outDirName, arg->jsonOutFileName);
+	arg->jsonOutFile = safe_open(outpath, "w");
 	fprintf(arg->jsonOutFile, "%s", popsOutJson);
 	fclose(arg->jsonOutFile);
 
@@ -133,7 +135,6 @@ void make_resSasaJson(Arg *arg, Str *pdb, ResSasa *resSasa, cJSON *json)
 
 	/* add Sites array */
 	cJSON *sites = cJSON_AddArrayToObject(json, "sites");
-	cJSON *site = cJSON_CreateObject();
 
 	/* add Site information */
 	/* hydrophilic SASA */

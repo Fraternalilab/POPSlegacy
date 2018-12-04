@@ -40,8 +40,9 @@ sapply(names(filenames)[2:10], function(x) {
 	if (! identical(x, "")) { 
 		sapply(1:length(filenames[[x]]), function(y) {
 			infile = paste("./XML", x, filenames[[x]][y], sep = "/");
+			outdir = paste("./JSON", x, filenames[[x]][y], sep = "/");
 			## shell command for POPSing current input file
-			command = paste("./pops --pdbml", infile, "--zipped --jsonOut || exit 1"); 
+			command = paste("./pops --pdbml", infile, "--outDirName", outdir, "--zipped --jsonOut || exit 1"); 
 			#print(command);
 			try(system(command));
 		});
