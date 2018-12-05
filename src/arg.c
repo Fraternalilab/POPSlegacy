@@ -161,18 +161,19 @@ static void print_args(Arg *arg, Argpdb *argpdb)
     time_t now;
     time(&now);
 
-    fprintf(stdout, "\ndate: %s", ctime(&now));
-    fprintf(stdout, \
-                    "pdb/pdbml: %s%s\n"
+    fprintf(stdout, "date: %s", ctime(&now));
+    fprintf(stdout, "pdb/pdbml: %s%s\n",
+					arg->pdbInFileName, arg->pdbmlInFileName);
+    if(! arg->silent) fprintf(stdout, \
 					"zipped: %d\n"
                     "traj: %s\n"
                     "coarse: %d\n"
                     "multiModel: %d\n"
                     "rProbe: %f\n"
 					"jsonOut: %d\n",
-        arg->pdbInFileName, arg->pdbmlInFileName, arg->zipped,
-		arg->trajInFileName, argpdb->coarse,
-        0, arg->rProbe, arg->jsonOut);
+					arg->zipped,
+					arg->trajInFileName, argpdb->coarse,
+					0, arg->rProbe, arg->jsonOut);
     fflush(stdout);
 }
 
