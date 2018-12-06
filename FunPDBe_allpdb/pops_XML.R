@@ -4,11 +4,14 @@
 # (C) 2018 Jens Kleinjung
 #===============================================================================
 
+library("rslurm");
+#library("parallel");
+
 #_______________________________________________________________________________
 #' sadata: An S4 class input/output control.
 #' @slot dirnames : array of directory names
 #' @slot filenames : list of input files, list elements are the directories
-#' @slot filenames : matrix of directory and file names in rows
+#' @slot filenames_m : matrix of directory and file names in rows
 #' @slot outpath : list of output paths
 #' @slot command : command lines for shell
 ioctrl <- setClass(
@@ -17,7 +20,7 @@ ioctrl <- setClass(
   slots = c(
     dirnames = "character",
     filenames = "list",
-    filenames_df = "matrix",
+    filenames_m = "matrix",
     outpath = "character",
     command = "character"
   )
@@ -38,10 +41,11 @@ ioctrl_o = ioctrl();
 ## configure runs
 ## get input names of all subdirectories and 'xml.gz' files
 ioctrl_o@dirnames = list.dirs(path = "./XML", full.names = FALSE);
-ioctrl_o@filenames = sapply(dirnames, function(x) {
+ioctrl_o@filenames = lapply(ioctrl_o@dirnames, function(x) {
 			list.files(path = paste("./XML/", x, sep = ""),
 			          full.names = FALSE, pattern = 'xml\\.gz$');
 })
+names(ioctrl_o@filenames) = ioctrl_o@dirnames;
 
 #_______________________________________________________________________________
 ## function to coerce list of directories and filenames to matrix
@@ -54,53 +58,59 @@ coerce_filenames = function(ioctrl_o) {
       });
     }
   })
-  dir_file_df = unlist(dir_file_l);
-  dim(dir_file_df) = c(2, (length(dir_file_df) / 2));
-  rownames(dir_file_df) = c("dir", "file");
-  return(dir_file_df);
+  dir_file_m = unlist(dir_file_l);
+  dim(dir_file_m) = c(2, (length(dir_file_m) / 2));
+  rownames(dir_file_m) = c("dir", "file");
+  return(dir_file_m);
 }
 
 ## populate matrix of directory and file names
-ioctrl_o@filenames_df = coerce_filenames(ioctrl_o);
+ioctrl_o@filenames_m = coerce_filenames(ioctrl_o);
 
 #_______________________________________________________________________________
 ## create output directory structure
 ## each input file will have its own output directory to accommodate multiple
 ##   output files from POPS
-ioctrl_o@outpath = apply(ioctrl_o@filenames_df, 2, function(x) {
-  outpath = paste("./JSON", x[1], x[2], sep = "/");
-  dir.create(paste(outpath, showWarnings = FALSE, recursive = TRUE));
-  return(outpath);
-})
+#ioctrl_o@outpath = apply(ioctrl_o@filenames_m, 2, function(x) {
+#  outpath = paste("./JSON", x[1], x[2], sep = "/");
+#  dir.create(paste(outpath, showWarnings = FALSE, recursive = TRUE));
+#  return(outpath);
+#})
 
 #_______________________________________________________________________________
 ## create POPS commands
-ioctrl_o@command
-
-make_command = function(z) {
-  infile = paste("./XML", z$x, z$y, sep = "/");
-  outdir = paste("./JSON", z$x, z$y, sep = "/");
+ioctrl_o@command = apply(ioctrl_o@filenames_m, 2, function(x) {
+  infile = paste("./XML", x[1], x[2], sep = "/");
+  outdir = paste("./JSON", x[1], x[2], sep = "/");
   ## shell command for POPSing current input file
   command = paste("./pops --pdbml", infile, "--outDirName", outdir, "--zipped --jsonOut --silent || exit 1"); 
   return(command);
-}
-
-tt = make_command(traverse_dir(dirnames, filenames));
+})
 
 #_______________________________________________________________________________
-## run all command lines
-run_results_l = sapply(names(filenames), function(x) {
-	if (! identical(x, "")) { 
-		sapply(1:length(filenames[[x]]), function(y) {
-			infile = paste("./XML", x, filenames[[x]][y], sep = "/");
-			outdir = paste("./JSON", x, filenames[[x]][y], sep = "/");
-			## shell command for POPSing current input file
-			command = paste("./pops --pdbml", infile, "--outDirName", outdir, "--zipped --jsonOut --silent || exit 1"); 
-			#print(command);
-			try(system(command));
-		});
-	}
+#_______________________________________________________________________________
+## Option 1: run all command lines in serial mode
+run_results = parSapply(clu, 1:length(ioctrl_o@filenames_m), function(x) {
+  try(system(ioctrl_o@command[x]));
 })
+
+#_______________________________________________________________________________
+## Option 2: run all command lines on Slurm cluster
+## see 'rslurm' vignette: 'Parallelize R code on a Slurm cluster'
+
+#_______________________________________________________________________________
+## Option 3: run all command lines using parallelism
+## number of cores
+n_cores = detectCores() - 1;
+## initiate cluster
+clu = makeCluster(n_cores);
+clusterExport(clu, "ioctrl_o");
+
+run_results = parSapply(clu, 1:length(ioctrl_o@filenames_m), function(x) {
+  try(system(ioctrl_o@command[x]));
+})
+
+stopCluster(clu);
 
 #_______________________________________________________________________________
 ## validate all
