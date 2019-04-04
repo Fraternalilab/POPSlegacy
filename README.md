@@ -5,8 +5,11 @@ currently proteins and nucleic acids.
 
 
 ## Servers
-* [POPS](http://mathbio.crick.ac.uk/wiki/POPS)
-* [POPSCOMP](http://mathbio.crick.ac.uk/wiki/POPSCOMP)
+Note: These services have been disabled by the Francis Crick Institute in conjunction with the dissolution
+of the W.R.Taylor group. We are currently working on a replacement. Please email us if you need help
+with installing the software on your own computers.
+* currently unavailable: [POPS](http://mathbio.crick.ac.uk/wiki/POPS)
+* currently unavailable: [POPSCOMP](http://mathbio.crick.ac.uk/wiki/POPSCOMP)
 
 
 ## References
