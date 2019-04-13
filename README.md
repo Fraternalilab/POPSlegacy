@@ -5,11 +5,12 @@ currently proteins and nucleic acids.
 
 
 ## Servers
-Note: These services have been disabled by the Francis Crick Institute in conjunction with the dissolution
-of the W.R.Taylor group. We are currently working on a replacement. Please email us if you need help
-with installing the software on your own computers.
-* currently unavailable: [POPS](http://mathbio.crick.ac.uk/wiki/POPS)
-* currently unavailable: [POPSCOMP](http://mathbio.crick.ac.uk/wiki/POPSCOMP)
+Notice about planned server migration (13.04.2019): The POPS and POPSCOMP services are planned
+to migrate to a new location, probably a cloud server and a server at King's college.
+We intend to complete that migration by the end of May, at which point the links below
+will be updated together with this notice.
+* [POPS](http://mathbio.crick.ac.uk/wiki/POPS)
+* [POPSCOMP](http://mathbio.crick.ac.uk/wiki/POPSCOMP)
 
 
 ## References
