@@ -8,7 +8,7 @@ currently proteins and nucleic acids.
 ```
 Notice about planned server migration (end of May 2019):
 The POPS and POPSCOMP services are planned to migrate to a new location,
-probably a cloud server and a server at King's college.
+probably a cloud server and a server at King's College London (Fraternali group).
 We intend to complete that migration by the end of May, at which point the links below
 will be updated together with this notice.
 ```
