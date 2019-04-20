@@ -1,5 +1,10 @@
 
 # POPS: Parameter OPtimised Surface of proteins and nucleic acids 
+
+Note: This repository contains the POPS program that was in use under the name *POPS* until April 2019.
+It has been renamed *POPSlegacy* and replaced with a repository named *POPS* that contains the
+POPS program in the subdirectory POPSC and the R Shiny code POPSR.
+
 Calculation of solvent accessible surface areas (SASAs) of biopolymers,
 currently proteins and nucleic acids.
 
