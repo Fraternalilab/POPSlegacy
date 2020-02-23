@@ -1,9 +1,8 @@
 
 # POPS: Parameter OPtimised Surface of proteins and nucleic acids 
 
-<mark>Notice: Please go to the new [POPScomp](https://github.com/Fraternalilab/POPScomp) repository.
-This repository contains the outdated POPS program that was in use under the name *POPS* until April 2019.
-</mark>
+## Notice: Please go to the new [POPScomp](https://github.com/Fraternalilab/POPScomp) repository.
+This POPSlegacy repository contains the outdated POPS program that was in use under the name *POPS* until April 2019.
 
 Calculation of solvent accessible surface areas (SASAs) of biopolymers,
 currently proteins and nucleic acids.
